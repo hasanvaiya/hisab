@@ -3,24 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Live Server Hisab & Cashflow Tracker | কাস্টমার ভিউ</title>
+    <title>Live Server Hisab & Cashflow Tracker | লাইভ হিসাব খাতা</title>
     
-    <!-- Google Fonts: Hind Siliguri (Bengali) & Outfit (English/Numbers) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Canvas Confetti CDN -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body class="dark-theme customer-view-mode">
 
     <div class="app-container">
 
-        <!-- ================= TOP NAVBAR ================= -->
         <header class="navbar">
             <div class="brand-box">
                 <div class="brand-icon">
@@ -35,13 +30,11 @@
             </div>
 
             <div class="nav-actions">
-                <!-- Sync status indicator -->
                 <div class="sync-status" id="sync-status-badge" title="Realtime Sync Active">
                     <span class="pulse-dot"></span>
                     <span id="sync-text">Live Sync Active</span>
                 </div>
 
-                <!-- Export CSV Button -->
                 <button class="btn btn-outline" id="export-csv-btn" title="Download Statement CSV">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
                         <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
@@ -51,7 +44,6 @@
             </div>
         </header>
 
-        <!-- ================= HERO BALANCE SECTION ================= -->
         <section class="hero-balance-section">
             <div class="balance-card main-card">
                 <div class="card-bg-glow"></div>
@@ -62,14 +54,14 @@
                 
                 <div class="balance-amount-display">
                     <span class="currency-symbol">৳</span>
-                    <span class="amount-number" id="current-balance-display">0.00</span>
+                    <span class="amount-number" id="current-balance-display">23,592.00</span>
                     <span class="currency-code">BDT</span>
                 </div>
 
                 <div class="balance-footer-meta">
                     <div class="meta-item">
                         <span class="lbl">মোট লেনদেন</span>
-                        <span class="val" id="total-txn-count">0 টি</span>
+                        <span class="val" id="total-txn-count">75 টি</span>
                     </div>
                     <div class="meta-item">
                         <span class="lbl">প্রারম্ভিক ব্যালেন্স</span>
@@ -77,45 +69,37 @@
                     </div>
                     <div class="meta-item">
                         <span class="lbl">নেট ক্যাশ ফ্লো</span>
-                        <span class="val" id="net-flow-val">৳ 0.00</span>
+                        <span class="val net-negative" id="net-flow-val">-৳ 23,592</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Summary Mini Widgets -->
             <div class="summary-widgets">
                 <div class="widget-card widget-in">
                     <div class="widget-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M12 19V5M5 12l7-7 7 7"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
                     </div>
                     <div class="widget-data">
                         <span class="widget-label">মোট জমা (Money IN)</span>
-                        <h2 class="widget-amount" id="total-in-display">৳ 0.00</h2>
-                        <span class="widget-count" id="in-count-badge">0 টি জমা</span>
+                        <h2 class="widget-amount" id="total-in-display">৳ 264,756</h2>
+                        <span class="widget-count" id="in-count-badge">46 টি জমা</span>
                     </div>
                 </div>
 
                 <div class="widget-card widget-out">
                     <div class="widget-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M12 5v14M19 12l-7 7-7-7"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
                     </div>
                     <div class="widget-data">
                         <span class="widget-label">মোট খরচ (Money OUT)</span>
-                        <h2 class="widget-amount" id="total-out-display">৳ 0.00</h2>
-                        <span class="widget-count" id="out-count-badge">0 টি আউট</span>
+                        <h2 class="widget-amount" id="total-out-display">৳ 241,164</h2>
+                        <span class="widget-count" id="out-count-badge">29 টি আউট</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ================= MAIN CONTENT AREA ================= -->
         <main class="main-layout customer-single-col">
-            
-            <!-- TRANSACTION HISTORY & CONTROLS -->
             <section class="content-card history-section">
                 <div class="section-header">
                     <div class="section-title-box">
@@ -123,12 +107,9 @@
                         <p>সার্ভার থেকে রিয়েল-টাইম হিসাবের তালিকা (Read Only)</p>
                     </div>
 
-                    <!-- Search and Filters -->
                     <div class="filter-controls">
                         <div class="search-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
-                                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
                             <input type="text" id="search-input" placeholder="সার্চ আইডি, ক্যাটাগরি, নোট...">
                         </div>
                         
@@ -140,7 +121,6 @@
                     </div>
                 </div>
 
-                <!-- Desktop Table View -->
                 <div class="table-responsive desktop-view-table">
                     <table class="data-table">
                         <thead>
@@ -154,31 +134,1825 @@
                             </tr>
                         </thead>
                         <tbody id="transaction-table-body">
-                            <!-- Injected dynamically by app.js -->
+                            
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1075</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Operating Cost</div>
+            </td>
+            <td class="amt-out">-৳40</td>
+            <td class="running-bal">৳23,592</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1074</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳17,300</td>
+            <td class="running-bal">৳23,632</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1073</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Payout / Withdrawal</div>
+            </td>
+            <td class="amt-out">-৳50,000</td>
+            <td class="running-bal">৳6,332</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1072</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳26,150</td>
+            <td class="running-bal">৳56,332</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1071</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Other Add</div>
+            </td>
+            <td class="amt-in">+৳1,000</td>
+            <td class="running-bal">৳30,182</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1070</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Investment</div>
+            </td>
+            <td class="amt-in">+৳25,000</td>
+            <td class="running-bal">৳29,182</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1069</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳2,550</td>
+            <td class="running-bal">৳4,182</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1068</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,020</td>
+            <td class="running-bal">৳1,632</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1067</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Operating Cost</div>
+            </td>
+            <td class="amt-out">-৳500</td>
+            <td class="running-bal">৳612</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1066</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Expense</div>
+            </td>
+            <td class="amt-out">-৳3,320</td>
+            <td class="running-bal">৳1,112</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1065</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Payout / Withdrawal</div>
+            </td>
+            <td class="amt-out">-৳20,300</td>
+            <td class="running-bal">৳4,432</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1064</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳5,000</td>
+            <td class="running-bal">৳24,732</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1063</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Expense</div>
+            </td>
+            <td class="amt-out">-৳2,550</td>
+            <td class="running-bal">৳19,732</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1062</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳3,030</td>
+            <td class="running-bal">৳22,282</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1061</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳750</td>
+            <td class="running-bal">৳19,252</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1060</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Operating Cost</div>
+            </td>
+            <td class="amt-out">-৳459</td>
+            <td class="running-bal">৳18,502</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1059</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,020</td>
+            <td class="running-bal">৳18,961</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1058</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,030</td>
+            <td class="running-bal">৳17,941</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1057</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Expense</div>
+            </td>
+            <td class="amt-out">-৳4,200</td>
+            <td class="running-bal">৳16,911</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1056</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳3,000</td>
+            <td class="running-bal">৳21,111</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1055</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳2,040</td>
+            <td class="running-bal">৳18,111</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1054</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳2,000</td>
+            <td class="running-bal">৳16,071</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1053</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,020</td>
+            <td class="running-bal">৳14,071</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1052</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Client Payment</div>
+            </td>
+            <td class="amt-in">+৳10,250</td>
+            <td class="running-bal">৳13,051</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1051</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,538</td>
+            <td class="running-bal">৳2,801</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1050</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Expense</div>
+            </td>
+            <td class="amt-out">-৳3,380</td>
+            <td class="running-bal">৳1,263</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1049</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳3,000</td>
+            <td class="running-bal">৳4,643</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1048</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Payout / Withdrawal</div>
+            </td>
+            <td class="amt-out">-৳5,000</td>
+            <td class="running-bal">৳1,643</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1047</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳5,090</td>
+            <td class="running-bal">৳6,643</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1046</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Expense</div>
+            </td>
+            <td class="amt-out">-৳1,015</td>
+            <td class="running-bal">৳1,553</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1045</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳2,040</td>
+            <td class="running-bal">৳2,568</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1044</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Operating Cost</div>
+            </td>
+            <td class="amt-out">-৳50</td>
+            <td class="running-bal">৳528</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1043</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Operating Cost</div>
+            </td>
+            <td class="amt-out">-৳4,150</td>
+            <td class="running-bal">৳578</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1042</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Expense</div>
+            </td>
+            <td class="amt-out">-৳6,000</td>
+            <td class="running-bal">৳4,728</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1041</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Client Payment</div>
+            </td>
+            <td class="amt-in">+৳10,200</td>
+            <td class="running-bal">৳10,728</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1040</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Payout / Withdrawal</div>
+            </td>
+            <td class="amt-out">-৳26,000</td>
+            <td class="running-bal">৳528</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1039</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳16,750</td>
+            <td class="running-bal">৳26,528</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1038</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Hosting / Domain</div>
+            </td>
+            <td class="amt-out">-৳6,550</td>
+            <td class="running-bal">৳9,778</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1037</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Payout / Withdrawal</div>
+            </td>
+            <td class="amt-out">-৳22,000</td>
+            <td class="running-bal">৳16,328</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1036</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Expense</div>
+            </td>
+            <td class="amt-out">-৳10,000</td>
+            <td class="running-bal">৳38,328</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1035</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Payout / Withdrawal</div>
+            </td>
+            <td class="amt-out">-৳15,200</td>
+            <td class="running-bal">৳48,328</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1034</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Operating Cost</div>
+            </td>
+            <td class="amt-out">-৳55</td>
+            <td class="running-bal">৳63,528</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1033</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,520</td>
+            <td class="running-bal">৳63,583</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1032</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,530</td>
+            <td class="running-bal">৳62,063</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1031</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Investment</div>
+            </td>
+            <td class="amt-in">+৳25,500</td>
+            <td class="running-bal">৳60,533</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1030</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,530</td>
+            <td class="running-bal">৳35,033</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1029</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,530</td>
+            <td class="running-bal">৳33,503</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1028</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,530</td>
+            <td class="running-bal">৳31,973</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1027</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,530</td>
+            <td class="running-bal">৳30,443</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1026</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,530</td>
+            <td class="running-bal">৳28,913</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1025</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Other Add</div>
+            </td>
+            <td class="amt-in">+৳1,500</td>
+            <td class="running-bal">৳27,383</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1024</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳3,075</td>
+            <td class="running-bal">৳25,883</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1023</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Client Payment</div>
+            </td>
+            <td class="amt-in">+৳16,000</td>
+            <td class="running-bal">৳22,808</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1022</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,530</td>
+            <td class="running-bal">৳6,808</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1021</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳2,040</td>
+            <td class="running-bal">৳5,278</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1020</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,530</td>
+            <td class="running-bal">৳3,238</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1019</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Operating Cost</div>
+            </td>
+            <td class="amt-out">-৳3,340</td>
+            <td class="running-bal">৳1,708</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1018</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Expense</div>
+            </td>
+            <td class="amt-out">-৳1,550</td>
+            <td class="running-bal">৳5,048</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1017</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Payout / Withdrawal</div>
+            </td>
+            <td class="amt-out">-৳18,600</td>
+            <td class="running-bal">৳6,598</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1016</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Investment</div>
+            </td>
+            <td class="amt-in">+৳22,000</td>
+            <td class="running-bal">৳25,198</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1015</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Operating Cost</div>
+            </td>
+            <td class="amt-out">-৳250</td>
+            <td class="running-bal">৳3,198</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1014</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Expense</div>
+            </td>
+            <td class="amt-out">-৳10,010</td>
+            <td class="running-bal">৳3,448</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1013</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳5,000</td>
+            <td class="running-bal">৳13,458</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1012</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳5,000</td>
+            <td class="running-bal">৳8,458</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1011</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Hosting / Domain</div>
+            </td>
+            <td class="amt-out">-৳5,510</td>
+            <td class="running-bal">৳3,458</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1010</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳8,252</td>
+            <td class="running-bal">৳8,968</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1009</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Payout / Withdrawal</div>
+            </td>
+            <td class="amt-out">-৳10,005</td>
+            <td class="running-bal">৳716</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1008</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳1,530</td>
+            <td class="running-bal">৳10,721</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1007</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Client Payment</div>
+            </td>
+            <td class="amt-in">+৳2,040</td>
+            <td class="running-bal">৳9,191</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1006</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Operating Cost</div>
+            </td>
+            <td class="amt-out">-৳30</td>
+            <td class="running-bal">৳7,151</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1005</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳5,000</td>
+            <td class="running-bal">৳7,181</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1004</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type out">Money OUT</span></td>
+            <td>
+                <div style="font-weight:600;">Money OUT</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Expense</div>
+            </td>
+            <td class="amt-out">-৳11,100</td>
+            <td class="running-bal">৳2,181</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1003</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Client Payment</div>
+            </td>
+            <td class="amt-in">+৳2,550</td>
+            <td class="running-bal">৳13,281</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1002</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Sales Income</div>
+            </td>
+            <td class="amt-in">+৳3,081</td>
+            <td class="running-bal">৳10,731</td>
+        </tr>
+    
+        <tr>
+            <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">TXN-1001</code></td>
+            <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">০৩ জুলাই ২০২৬</td>
+            <td><span class="badge-type in">Money IN</span></td>
+            <td>
+                <div style="font-weight:600;">Money IN</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);">Server Deposit</div>
+            </td>
+            <td class="amt-in">+৳7,650</td>
+            <td class="running-bal">৳7,650</td>
+        </tr>
+    
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Mobile Card Stream View -->
                 <div class="mobile-card-stream" id="mobile-card-stream">
-                    <!-- Cards injected dynamically by app.js -->
+                    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳40</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳23,592</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳17,300</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳23,632</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳50,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳6,332</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳26,150</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳56,332</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Other Add</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳30,182</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Investment</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳25,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳29,182</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳2,550</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳4,182</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,020</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳1,632</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳500</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳612</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳3,320</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳1,112</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳20,300</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳4,432</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳5,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳24,732</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳2,550</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳19,732</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳3,030</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳22,282</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳750</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳19,252</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳459</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳18,502</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,020</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳18,961</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,030</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳17,941</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳4,200</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳16,911</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳3,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳21,111</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳2,040</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳18,111</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳2,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳16,071</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,020</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳14,071</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Client Payment</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳10,250</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳13,051</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,538</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳2,801</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳3,380</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳1,263</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳3,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳4,643</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳5,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳1,643</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳5,090</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳6,643</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳1,015</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳1,553</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳2,040</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳2,568</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳50</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳528</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳4,150</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳578</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳6,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳4,728</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Client Payment</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳10,200</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳10,728</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳26,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳528</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳16,750</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳26,528</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Hosting / Domain</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳6,550</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳9,778</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳22,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳16,328</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳10,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳38,328</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳15,200</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳48,328</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳55</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳63,528</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,520</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳63,583</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,530</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳62,063</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Investment</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳25,500</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳60,533</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,530</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳35,033</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,530</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳33,503</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,530</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳31,973</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,530</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳30,443</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,530</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳28,913</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Other Add</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,500</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳27,383</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳3,075</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳25,883</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Client Payment</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳16,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳22,808</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,530</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳6,808</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳2,040</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳5,278</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,530</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳3,238</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳3,340</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳1,708</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳1,550</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳5,048</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳18,600</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳6,598</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Investment</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳22,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳25,198</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳250</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳3,198</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳10,010</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳3,448</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳5,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳13,458</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳5,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳8,458</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Hosting / Domain</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳5,510</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳3,458</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳8,252</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳8,968</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳10,005</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳716</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳1,530</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳10,721</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Client Payment</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳2,040</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳9,191</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳30</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳7,151</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳5,000</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳7,181</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money OUT</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
+                <div><span class="badge-type out">Money OUT</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-out">-৳11,100</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳2,181</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Client Payment</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳2,550</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳13,281</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳3,081</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳10,731</div>
+            </div>
+        </div>
+    
+        <div class="mobile-txn-card">
+            <div class="mobile-card-left">
+                <div class="mobile-card-title">Money IN</div>
+                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
+                <div><span class="badge-type in">Money IN</span></div>
+            </div>
+            <div class="mobile-card-right">
+                <div class="mobile-card-amount amt-in">+৳7,650</div>
+                <div class="mobile-card-balance">ব্যালেন্স: ৳7,650</div>
+            </div>
+        </div>
+    
                 </div>
 
-                <!-- Empty State -->
                 <div class="empty-state" id="empty-state" style="display: none;">
                     <div class="empty-icon">📂</div>
                     <h3>কোনো লেনদেন পাওয়া যায়নি</h3>
-                    <p>অন্য কোনো সার্চ কিওয়ার্ড দিয়ে চেষ্টা করুন।</p>
                 </div>
             </section>
         </main>
 
-    </div> <!-- /.app-container -->
+    </div>
 
-    <!-- TOAST CONTAINER FOR LIVE NOTIFICATIONS -->
     <div class="toast-container" id="toast-container"></div>
-
-    <!-- MAIN APP SCRIPT -->
     <script src="app.js"></script>
 </body>
 </html>
