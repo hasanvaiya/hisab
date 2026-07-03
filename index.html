@@ -10,11 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Canvas Confetti & html2pdf CDN -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body class="dark-theme customer-view-mode">
 
-    <div class="app-container">
+    <div class="app-container" id="printable-area">
 
         <header class="navbar">
             <div class="brand-box">
@@ -30,16 +33,18 @@
             </div>
 
             <div class="nav-actions">
-                <div class="sync-status" id="sync-status-badge" title="Realtime Sync Active">
+                <div class="sync-status" id="sync-status-badge">
                     <span class="pulse-dot"></span>
-                    <span id="sync-text">Live Sync Active</span>
+                    <span id="sync-text">Live Connected</span>
                 </div>
 
-                <button class="btn btn-outline" id="export-csv-btn" title="Download Statement CSV">
+                <!-- PDF Downloader Button -->
+                <button class="btn btn-pdf" id="export-pdf-btn" title="Download PDF Statement">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
-                        <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
+                        <path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/>
                     </svg>
-                    <span>CSV ডাউনলোড</span>
+                    <span>PDF ডাউনলোডার</span>
                 </button>
             </div>
         </header>
@@ -1042,902 +1047,1277 @@
                 <div class="mobile-card-stream" id="mobile-card-stream">
                     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1075</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳40</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳23,592</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Operating Cost • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳40</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳23,592</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1074</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳17,300</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳23,632</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳17,300</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳23,632</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1073</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳50,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳6,332</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Payout / Withdrawal • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳50,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳6,332</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1072</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳26,150</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳56,332</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳26,150</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳56,332</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Other Add</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1071</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳30,182</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Other Add • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳30,182</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Investment</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1070</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳25,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳29,182</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Investment • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳25,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳29,182</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1069</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳2,550</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳4,182</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳2,550</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳4,182</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1068</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,020</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳1,632</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,020</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳1,632</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1067</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳500</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳612</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Operating Cost • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳500</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳612</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1066</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳3,320</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳1,112</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Server Expense • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳3,320</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳1,112</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1065</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳20,300</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳4,432</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Payout / Withdrawal • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳20,300</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳4,432</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1064</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳5,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳24,732</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳5,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳24,732</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1063</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳2,550</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳19,732</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Server Expense • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳2,550</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳19,732</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1062</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳3,030</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳22,282</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳3,030</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳22,282</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1061</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳750</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳19,252</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳750</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳19,252</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1060</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳459</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳18,502</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Operating Cost • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳459</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳18,502</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1059</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,020</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳18,961</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,020</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳18,961</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1058</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,030</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳17,941</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,030</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳17,941</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1057</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳4,200</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳16,911</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Server Expense • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳4,200</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳16,911</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1056</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳3,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳21,111</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳3,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳21,111</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1055</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳2,040</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳18,111</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳2,040</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳18,111</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1054</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳2,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳16,071</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳2,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳16,071</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1053</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,020</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳14,071</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,020</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳14,071</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Client Payment</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1052</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳10,250</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳13,051</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Client Payment • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳10,250</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳13,051</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1051</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,538</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳2,801</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,538</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳2,801</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1050</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳3,380</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳1,263</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Server Expense • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳3,380</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳1,263</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1049</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳3,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳4,643</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳3,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳4,643</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1048</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳5,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳1,643</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Payout / Withdrawal • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳5,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳1,643</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1047</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳5,090</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳6,643</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳5,090</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳6,643</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1046</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳1,015</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳1,553</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Server Expense • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳1,015</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳1,553</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1045</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳2,040</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳2,568</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳2,040</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳2,568</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1044</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳50</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳528</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Operating Cost • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳50</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳528</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1043</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳4,150</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳578</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Operating Cost • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳4,150</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳578</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1042</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳6,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳4,728</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Server Expense • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳6,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳4,728</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Client Payment</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1041</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳10,200</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳10,728</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Client Payment • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳10,200</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳10,728</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1040</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳26,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳528</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Payout / Withdrawal • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳26,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳528</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1039</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳16,750</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳26,528</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳16,750</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳26,528</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Hosting / Domain</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1038</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳6,550</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳9,778</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Hosting / Domain • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳6,550</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳9,778</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1037</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳22,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳16,328</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Payout / Withdrawal • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳22,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳16,328</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1036</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳10,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳38,328</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Server Expense • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳10,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳38,328</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1035</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳15,200</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳48,328</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Payout / Withdrawal • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳15,200</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳48,328</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1034</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳55</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳63,528</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Operating Cost • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳55</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳63,528</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1033</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,520</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳63,583</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,520</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳63,583</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1032</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,530</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳62,063</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,530</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳62,063</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Investment</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1031</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳25,500</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳60,533</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Investment • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳25,500</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳60,533</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1030</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,530</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳35,033</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,530</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳35,033</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1029</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,530</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳33,503</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,530</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳33,503</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1028</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,530</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳31,973</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,530</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳31,973</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1027</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,530</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳30,443</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,530</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳30,443</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1026</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,530</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳28,913</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,530</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳28,913</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Other Add</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1025</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,500</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳27,383</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Other Add • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,500</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳27,383</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1024</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳3,075</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳25,883</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳3,075</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳25,883</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Client Payment</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1023</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳16,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳22,808</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Client Payment • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳16,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳22,808</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1022</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,530</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳6,808</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,530</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳6,808</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1021</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳2,040</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳5,278</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳2,040</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳5,278</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1020</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,530</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳3,238</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,530</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳3,238</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1019</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳3,340</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳1,708</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Operating Cost • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳3,340</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳1,708</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1018</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳1,550</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳5,048</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Server Expense • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳1,550</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳5,048</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1017</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳18,600</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳6,598</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Payout / Withdrawal • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳18,600</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳6,598</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Investment</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1016</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳22,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳25,198</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Investment • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳22,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳25,198</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1015</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳250</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳3,198</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Operating Cost • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳250</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳3,198</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1014</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳10,010</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳3,448</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Server Expense • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳10,010</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳3,448</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1013</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳5,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳13,458</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳5,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳13,458</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1012</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳5,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳8,458</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳5,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳8,458</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Hosting / Domain</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1011</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳5,510</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳3,458</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Hosting / Domain • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳5,510</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳3,458</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1010</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳8,252</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳8,968</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳8,252</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳8,968</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Payout / Withdrawal</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1009</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳10,005</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳716</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Payout / Withdrawal • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳10,005</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳716</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1008</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳1,530</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳10,721</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳1,530</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳10,721</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Client Payment</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1007</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳2,040</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳9,191</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Client Payment • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳2,040</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳9,191</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Operating Cost</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1006</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳30</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳7,151</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Operating Cost • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳30</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳7,151</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1005</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳5,000</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳7,181</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳5,000</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳7,181</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money OUT</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Expense</div>
-                <div><span class="badge-type out">Money OUT</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1004</span>
+                <span class="badge-type out">Money OUT</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-out">-৳11,100</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳2,181</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money OUT</span>
+                    <span class="mobile-sub">Server Expense • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-out">-৳11,100</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳2,181</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Client Payment</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1003</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳2,550</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳13,281</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Client Payment • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳2,550</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳13,281</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Sales Income</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1002</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳3,081</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳10,731</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Sales Income • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳3,081</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳10,731</span>
+                </div>
             </div>
         </div>
     
         <div class="mobile-txn-card">
-            <div class="mobile-card-left">
-                <div class="mobile-card-title">Money IN</div>
-                <div class="mobile-card-date">০৩ জুলাই ২০২৬ • Server Deposit</div>
-                <div><span class="badge-type in">Money IN</span></div>
+            <div class="mobile-card-top">
+                <span class="mobile-txn-id">TXN-1001</span>
+                <span class="badge-type in">Money IN</span>
             </div>
-            <div class="mobile-card-right">
-                <div class="mobile-card-amount amt-in">+৳7,650</div>
-                <div class="mobile-card-balance">ব্যালেন্স: ৳7,650</div>
+            <div class="mobile-card-body">
+                <div class="mobile-card-info">
+                    <span class="mobile-title">Money IN</span>
+                    <span class="mobile-sub">Server Deposit • ০৩ জুলাই</span>
+                </div>
+                <div class="mobile-card-amounts">
+                    <span class="mobile-amt amt-in">+৳7,650</span>
+                    <span class="mobile-bal">ব্যালেন্স: ৳7,650</span>
+                </div>
             </div>
         </div>
     
@@ -1949,6 +2329,14 @@
                 </div>
             </section>
         </main>
+
+        <!-- Mobile Floating Quick PDF Button -->
+        <div class="mobile-bottom-bar">
+            <button class="mobile-action-btn btn-highlight" id="mobile-btn-pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+                <span>PDF স্টেটমেন্ট নামান</span>
+            </button>
+        </div>
 
     </div>
 
