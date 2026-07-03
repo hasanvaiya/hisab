@@ -52,7 +52,7 @@ async function loadData() {
       }
     }
   } catch (e) {
-    console.warn("Failed to fetch data.json, rendering from DOM initial state", e);
+    console.warn("Failed to fetch data.json", e);
   }
 }
 
@@ -62,8 +62,10 @@ function recalculateBalances() {
   transactions.forEach(t => {
     if (t.type === "IN") {
       running += t.amount;
+      if (!t.category || t.category !== "Cash Add") t.category = "Cash Add";
     } else {
       running -= t.amount;
+      if (!t.category || t.category !== "Cash Out") t.category = "Cash Out";
     }
     t.runningBalance = running;
   });
@@ -148,6 +150,7 @@ function renderFeed() {
     const iconCls = isIn ? "in" : "out";
     const sign = isIn ? "+" : "-";
     const label = isIn ? "টাকা জমা" : "টাকা খরচ";
+    const catName = isIn ? "Cash Add" : "Cash Out";
 
     const adminBtns = isAdmin ? `
       <div class="txn-admin-actions">
@@ -163,7 +166,7 @@ function renderFeed() {
           </div>
           <div class="txn-info">
             <div class="txn-note">${t.note || label}</div>
-            <div class="txn-meta">${t.category || "General"} • <span class="txn-id">${t.id}</span></div>
+            <div class="txn-meta">${catName} • <span class="txn-id">${t.id}</span></div>
           </div>
         </div>
         <div class="txn-right">
@@ -225,12 +228,13 @@ async function saveCloud() {
 function addTxn(type, amount, category, note) {
   if (!amount || isNaN(amount) || amount <= 0) return;
   const numAmt = parseFloat(amount);
+  const catName = type === "IN" ? "Cash Add" : "Cash Out";
   
   const newTxn = {
     id: "TXN-" + Math.floor(100000 + Math.random() * 900000),
     type: type,
     amount: numAmt,
-    category: category || "General",
+    category: catName,
     note: note || (type === "IN" ? "টাকা জমা" : "টাকা খরচ"),
     timestamp: new Date().toISOString(),
     runningBalance: 0
@@ -258,6 +262,7 @@ function editTxn(id) {
 
   document.getElementById("edit-id").value = item.id;
   document.getElementById("edit-type").value = item.type;
+  document.getElementById("edit-category").value = item.category || (item.type === "IN" ? "Cash Add" : "Cash Out");
   document.getElementById("edit-amount").value = item.amount;
   document.getElementById("edit-note").value = item.note || "";
   openModal("modal-edit");
@@ -388,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formIn.addEventListener("submit", (e) => {
       e.preventDefault();
       const amt = document.getElementById("in-amount").value;
-      const cat = document.getElementById("in-category").value;
+      const cat = "Cash Add";
       const note = document.getElementById("in-note").value;
       addTxn("IN", amt, cat, note);
       closeModal("modal-in");
@@ -403,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formOut.addEventListener("submit", (e) => {
       e.preventDefault();
       const amt = document.getElementById("out-amount").value;
-      const cat = document.getElementById("out-category").value;
+      const cat = "Cash Out";
       const note = document.getElementById("out-note").value;
       addTxn("OUT", amt, cat, note);
       closeModal("modal-out");
@@ -421,6 +426,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const item = transactions.find(x => x.id === id);
       if (item) {
         item.type = document.getElementById("edit-type").value;
+        item.category = document.getElementById("edit-category").value;
         item.amount = parseFloat(document.getElementById("edit-amount").value);
         item.note = document.getElementById("edit-note").value;
       }
