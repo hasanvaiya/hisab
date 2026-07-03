@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Live Server Hisab & Cashflow Tracker | লাইভ হিসাব খাতা</title>
+    <title>Admin Panel | সার্ভার এডমিন কন্ট্রোল সেন্টার</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Canvas Confetti & html2pdf CDN -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
@@ -21,30 +19,26 @@
 
         <header class="navbar">
             <div class="brand-box">
-                <div class="brand-icon">
+                <div class="brand-icon admin-brand-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                        <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                     </svg>
                 </div>
                 <div class="brand-text">
-                    <h1>লাইভ হিসাব খাতা <span class="badge-live">LIVE</span></h1>
-                    <p>Server Balance & Transaction Ledger</p>
+                    <h1>এডমিন প্যানেল <span class="badge-admin">OWNER ONLY</span></h1>
+                    <p>Server Balance & Money Controller</p>
                 </div>
             </div>
 
             <div class="nav-actions">
-                <div class="sync-status" id="sync-status-badge">
-                    <span class="pulse-dot"></span>
-                    <span id="sync-text">Live Connected</span>
-                </div>
-
-                <!-- PDF Downloader Button -->
-                <button class="btn btn-pdf" id="export-pdf-btn" title="Download PDF Statement">
+                <a href="index.html" class="btn btn-outline" target="_blank">
+                    <span>কাস্টমার ভিউ ↗</span>
+                </a>
+                <button class="btn btn-primary" id="admin-toggle-btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
-                        <path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/>
+                        <path d="M12 5v14M5 12h14"/>
                     </svg>
-                    <span>PDF ডাউনলোডার</span>
+                    <span>টাকা যোগ / আউট কন্ট্রোল</span>
                 </button>
             </div>
         </header>
@@ -53,7 +47,7 @@
             <div class="balance-card main-card">
                 <div class="card-bg-glow"></div>
                 <div class="card-header">
-                    <span class="card-subtitle">বর্তমান সর্বমোট ব্যালেন্স (Current Balance)</span>
+                    <span class="card-subtitle">বর্তমান লাইভ ব্যালেন্স (Live Server Balance)</span>
                     <span class="last-update-tag" id="last-updated-tag">সর্বশেষ আপডেট: এইমাত্র</span>
                 </div>
                 
@@ -65,7 +59,7 @@
 
                 <div class="balance-footer-meta">
                     <div class="meta-item">
-                        <span class="lbl">মোট লেনদেন</span>
+                        <span class="lbl">মোট ট্রানজ্যাকশন</span>
                         <span class="val" id="total-txn-count">75 টি</span>
                     </div>
                     <div class="meta-item">
@@ -104,24 +98,23 @@
             </div>
         </section>
 
-        <main class="main-layout customer-single-col">
+        <main class="main-layout">
             <section class="content-card history-section">
                 <div class="section-header">
                     <div class="section-title-box">
-                        <h2>লাইভ ট্রানজ্যাকশন হিস্ট্রি (Live Stream)</h2>
-                        <p>সার্ভার থেকে রিয়েল-টাইম হিসাবের তালিকা (Read Only)</p>
+                        <h2>ট্রানজ্যাকশন ম্যানেজমেন্ট (Edit & Delete Enabled)</h2>
+                        <p>এখানে যেকোনো হিসাব এডিট বা ডিলিট করা যাবে</p>
                     </div>
 
                     <div class="filter-controls">
                         <div class="search-box">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                            <input type="text" id="search-input" placeholder="সার্চ আইডি, ক্যাটাগরি, নোট...">
+                            <input type="text" id="search-input" placeholder="সার্চ আইডি, নোট...">
                         </div>
-                        
                         <select id="type-filter" class="custom-select">
-                            <option value="ALL">সকল লেনদেন (All)</option>
-                            <option value="IN">শুধুমাত্র জমা (Money IN)</option>
-                            <option value="OUT">শুধুমাত্র খরচ (Money OUT)</option>
+                            <option value="ALL">সকল (All)</option>
+                            <option value="IN">Money IN</option>
+                            <option value="OUT">Money OUT</option>
                         </select>
                     </div>
                 </div>
@@ -131,11 +124,12 @@
                         <thead>
                             <tr>
                                 <th># আইডি</th>
-                                <th>তারিখ ও সময়</th>
+                                <th>তারিখ</th>
                                 <th>ধরন</th>
                                 <th>বিবরণ / নোট</th>
-                                <th>পরিমাণ (Amount)</th>
-                                <th>রানিং ব্যালেন্স (Balance)</th>
+                                <th>পরিমাণ</th>
+                                <th>রানিং ব্যালেন্স</th>
+                                <th class="admin-only-col">অ্যাকশন</th>
                             </tr>
                         </thead>
                         <tbody id="transaction-table-body">
@@ -150,6 +144,10 @@
             </td>
             <td class="amt-out">-৳40</td>
             <td class="running-bal">৳23,592</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1075')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1075')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -162,6 +160,10 @@
             </td>
             <td class="amt-in">+৳17,300</td>
             <td class="running-bal">৳23,632</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1074')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1074')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -174,6 +176,10 @@
             </td>
             <td class="amt-out">-৳50,000</td>
             <td class="running-bal">৳6,332</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1073')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1073')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -186,6 +192,10 @@
             </td>
             <td class="amt-in">+৳26,150</td>
             <td class="running-bal">৳56,332</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1072')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1072')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -198,6 +208,10 @@
             </td>
             <td class="amt-in">+৳1,000</td>
             <td class="running-bal">৳30,182</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1071')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1071')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -210,6 +224,10 @@
             </td>
             <td class="amt-in">+৳25,000</td>
             <td class="running-bal">৳29,182</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1070')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1070')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -222,6 +240,10 @@
             </td>
             <td class="amt-in">+৳2,550</td>
             <td class="running-bal">৳4,182</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1069')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1069')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -234,6 +256,10 @@
             </td>
             <td class="amt-in">+৳1,020</td>
             <td class="running-bal">৳1,632</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1068')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1068')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -246,6 +272,10 @@
             </td>
             <td class="amt-out">-৳500</td>
             <td class="running-bal">৳612</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1067')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1067')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -258,6 +288,10 @@
             </td>
             <td class="amt-out">-৳3,320</td>
             <td class="running-bal">৳1,112</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1066')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1066')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -270,6 +304,10 @@
             </td>
             <td class="amt-out">-৳20,300</td>
             <td class="running-bal">৳4,432</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1065')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1065')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -282,6 +320,10 @@
             </td>
             <td class="amt-in">+৳5,000</td>
             <td class="running-bal">৳24,732</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1064')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1064')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -294,6 +336,10 @@
             </td>
             <td class="amt-out">-৳2,550</td>
             <td class="running-bal">৳19,732</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1063')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1063')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -306,6 +352,10 @@
             </td>
             <td class="amt-in">+৳3,030</td>
             <td class="running-bal">৳22,282</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1062')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1062')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -318,6 +368,10 @@
             </td>
             <td class="amt-in">+৳750</td>
             <td class="running-bal">৳19,252</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1061')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1061')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -330,6 +384,10 @@
             </td>
             <td class="amt-out">-৳459</td>
             <td class="running-bal">৳18,502</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1060')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1060')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -342,6 +400,10 @@
             </td>
             <td class="amt-in">+৳1,020</td>
             <td class="running-bal">৳18,961</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1059')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1059')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -354,6 +416,10 @@
             </td>
             <td class="amt-in">+৳1,030</td>
             <td class="running-bal">৳17,941</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1058')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1058')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -366,6 +432,10 @@
             </td>
             <td class="amt-out">-৳4,200</td>
             <td class="running-bal">৳16,911</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1057')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1057')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -378,6 +448,10 @@
             </td>
             <td class="amt-in">+৳3,000</td>
             <td class="running-bal">৳21,111</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1056')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1056')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -390,6 +464,10 @@
             </td>
             <td class="amt-in">+৳2,040</td>
             <td class="running-bal">৳18,111</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1055')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1055')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -402,6 +480,10 @@
             </td>
             <td class="amt-in">+৳2,000</td>
             <td class="running-bal">৳16,071</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1054')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1054')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -414,6 +496,10 @@
             </td>
             <td class="amt-in">+৳1,020</td>
             <td class="running-bal">৳14,071</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1053')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1053')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -426,6 +512,10 @@
             </td>
             <td class="amt-in">+৳10,250</td>
             <td class="running-bal">৳13,051</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1052')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1052')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -438,6 +528,10 @@
             </td>
             <td class="amt-in">+৳1,538</td>
             <td class="running-bal">৳2,801</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1051')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1051')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -450,6 +544,10 @@
             </td>
             <td class="amt-out">-৳3,380</td>
             <td class="running-bal">৳1,263</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1050')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1050')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -462,6 +560,10 @@
             </td>
             <td class="amt-in">+৳3,000</td>
             <td class="running-bal">৳4,643</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1049')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1049')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -474,6 +576,10 @@
             </td>
             <td class="amt-out">-৳5,000</td>
             <td class="running-bal">৳1,643</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1048')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1048')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -486,6 +592,10 @@
             </td>
             <td class="amt-in">+৳5,090</td>
             <td class="running-bal">৳6,643</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1047')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1047')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -498,6 +608,10 @@
             </td>
             <td class="amt-out">-৳1,015</td>
             <td class="running-bal">৳1,553</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1046')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1046')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -510,6 +624,10 @@
             </td>
             <td class="amt-in">+৳2,040</td>
             <td class="running-bal">৳2,568</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1045')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1045')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -522,6 +640,10 @@
             </td>
             <td class="amt-out">-৳50</td>
             <td class="running-bal">৳528</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1044')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1044')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -534,6 +656,10 @@
             </td>
             <td class="amt-out">-৳4,150</td>
             <td class="running-bal">৳578</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1043')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1043')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -546,6 +672,10 @@
             </td>
             <td class="amt-out">-৳6,000</td>
             <td class="running-bal">৳4,728</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1042')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1042')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -558,6 +688,10 @@
             </td>
             <td class="amt-in">+৳10,200</td>
             <td class="running-bal">৳10,728</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1041')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1041')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -570,6 +704,10 @@
             </td>
             <td class="amt-out">-৳26,000</td>
             <td class="running-bal">৳528</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1040')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1040')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -582,6 +720,10 @@
             </td>
             <td class="amt-in">+৳16,750</td>
             <td class="running-bal">৳26,528</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1039')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1039')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -594,6 +736,10 @@
             </td>
             <td class="amt-out">-৳6,550</td>
             <td class="running-bal">৳9,778</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1038')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1038')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -606,6 +752,10 @@
             </td>
             <td class="amt-out">-৳22,000</td>
             <td class="running-bal">৳16,328</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1037')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1037')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -618,6 +768,10 @@
             </td>
             <td class="amt-out">-৳10,000</td>
             <td class="running-bal">৳38,328</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1036')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1036')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -630,6 +784,10 @@
             </td>
             <td class="amt-out">-৳15,200</td>
             <td class="running-bal">৳48,328</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1035')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1035')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -642,6 +800,10 @@
             </td>
             <td class="amt-out">-৳55</td>
             <td class="running-bal">৳63,528</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1034')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1034')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -654,6 +816,10 @@
             </td>
             <td class="amt-in">+৳1,520</td>
             <td class="running-bal">৳63,583</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1033')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1033')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -666,6 +832,10 @@
             </td>
             <td class="amt-in">+৳1,530</td>
             <td class="running-bal">৳62,063</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1032')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1032')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -678,6 +848,10 @@
             </td>
             <td class="amt-in">+৳25,500</td>
             <td class="running-bal">৳60,533</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1031')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1031')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -690,6 +864,10 @@
             </td>
             <td class="amt-in">+৳1,530</td>
             <td class="running-bal">৳35,033</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1030')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1030')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -702,6 +880,10 @@
             </td>
             <td class="amt-in">+৳1,530</td>
             <td class="running-bal">৳33,503</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1029')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1029')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -714,6 +896,10 @@
             </td>
             <td class="amt-in">+৳1,530</td>
             <td class="running-bal">৳31,973</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1028')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1028')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -726,6 +912,10 @@
             </td>
             <td class="amt-in">+৳1,530</td>
             <td class="running-bal">৳30,443</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1027')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1027')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -738,6 +928,10 @@
             </td>
             <td class="amt-in">+৳1,530</td>
             <td class="running-bal">৳28,913</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1026')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1026')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -750,6 +944,10 @@
             </td>
             <td class="amt-in">+৳1,500</td>
             <td class="running-bal">৳27,383</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1025')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1025')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -762,6 +960,10 @@
             </td>
             <td class="amt-in">+৳3,075</td>
             <td class="running-bal">৳25,883</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1024')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1024')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -774,6 +976,10 @@
             </td>
             <td class="amt-in">+৳16,000</td>
             <td class="running-bal">৳22,808</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1023')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1023')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -786,6 +992,10 @@
             </td>
             <td class="amt-in">+৳1,530</td>
             <td class="running-bal">৳6,808</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1022')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1022')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -798,6 +1008,10 @@
             </td>
             <td class="amt-in">+৳2,040</td>
             <td class="running-bal">৳5,278</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1021')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1021')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -810,6 +1024,10 @@
             </td>
             <td class="amt-in">+৳1,530</td>
             <td class="running-bal">৳3,238</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1020')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1020')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -822,6 +1040,10 @@
             </td>
             <td class="amt-out">-৳3,340</td>
             <td class="running-bal">৳1,708</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1019')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1019')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -834,6 +1056,10 @@
             </td>
             <td class="amt-out">-৳1,550</td>
             <td class="running-bal">৳5,048</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1018')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1018')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -846,6 +1072,10 @@
             </td>
             <td class="amt-out">-৳18,600</td>
             <td class="running-bal">৳6,598</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1017')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1017')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -858,6 +1088,10 @@
             </td>
             <td class="amt-in">+৳22,000</td>
             <td class="running-bal">৳25,198</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1016')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1016')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -870,6 +1104,10 @@
             </td>
             <td class="amt-out">-৳250</td>
             <td class="running-bal">৳3,198</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1015')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1015')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -882,6 +1120,10 @@
             </td>
             <td class="amt-out">-৳10,010</td>
             <td class="running-bal">৳3,448</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1014')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1014')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -894,6 +1136,10 @@
             </td>
             <td class="amt-in">+৳5,000</td>
             <td class="running-bal">৳13,458</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1013')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1013')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -906,6 +1152,10 @@
             </td>
             <td class="amt-in">+৳5,000</td>
             <td class="running-bal">৳8,458</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1012')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1012')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -918,6 +1168,10 @@
             </td>
             <td class="amt-out">-৳5,510</td>
             <td class="running-bal">৳3,458</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1011')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1011')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -930,6 +1184,10 @@
             </td>
             <td class="amt-in">+৳8,252</td>
             <td class="running-bal">৳8,968</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1010')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1010')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -942,6 +1200,10 @@
             </td>
             <td class="amt-out">-৳10,005</td>
             <td class="running-bal">৳716</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1009')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1009')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -954,6 +1216,10 @@
             </td>
             <td class="amt-in">+৳1,530</td>
             <td class="running-bal">৳10,721</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1008')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1008')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -966,6 +1232,10 @@
             </td>
             <td class="amt-in">+৳2,040</td>
             <td class="running-bal">৳9,191</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1007')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1007')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -978,6 +1248,10 @@
             </td>
             <td class="amt-out">-৳30</td>
             <td class="running-bal">৳7,151</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1006')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1006')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -990,6 +1264,10 @@
             </td>
             <td class="amt-in">+৳5,000</td>
             <td class="running-bal">৳7,181</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1005')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1005')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -1002,6 +1280,10 @@
             </td>
             <td class="amt-out">-৳11,100</td>
             <td class="running-bal">৳2,181</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1004')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1004')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -1014,6 +1296,10 @@
             </td>
             <td class="amt-in">+৳2,550</td>
             <td class="running-bal">৳13,281</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1003')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1003')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -1026,6 +1312,10 @@
             </td>
             <td class="amt-in">+৳3,081</td>
             <td class="running-bal">৳10,731</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1002')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1002')">🗑️</button>
+            </td>
         </tr>
     
         <tr>
@@ -1038,6 +1328,10 @@
             </td>
             <td class="amt-in">+৳7,650</td>
             <td class="running-bal">৳7,650</td>
+            <td class="admin-only-col">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1001')">✏️</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1001')">🗑️</button>
+            </td>
         </tr>
     
                         </tbody>
@@ -1061,6 +1355,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳23,592</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1075')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1075')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1077,6 +1375,10 @@
                     <span class="mobile-amt amt-in">+৳17,300</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳23,632</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1074')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1074')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1095,6 +1397,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳6,332</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1073')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1073')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1111,6 +1417,10 @@
                     <span class="mobile-amt amt-in">+৳26,150</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳56,332</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1072')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1072')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1129,6 +1439,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳30,182</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1071')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1071')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1145,6 +1459,10 @@
                     <span class="mobile-amt amt-in">+৳25,000</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳29,182</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1070')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1070')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1163,6 +1481,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳4,182</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1069')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1069')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1179,6 +1501,10 @@
                     <span class="mobile-amt amt-in">+৳1,020</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳1,632</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1068')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1068')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1197,6 +1523,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳612</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1067')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1067')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1213,6 +1543,10 @@
                     <span class="mobile-amt amt-out">-৳3,320</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳1,112</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1066')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1066')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1231,6 +1565,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳4,432</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1065')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1065')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1247,6 +1585,10 @@
                     <span class="mobile-amt amt-in">+৳5,000</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳24,732</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1064')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1064')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1265,6 +1607,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳19,732</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1063')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1063')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1281,6 +1627,10 @@
                     <span class="mobile-amt amt-in">+৳3,030</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳22,282</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1062')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1062')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1299,6 +1649,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳19,252</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1061')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1061')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1315,6 +1669,10 @@
                     <span class="mobile-amt amt-out">-৳459</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳18,502</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1060')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1060')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1333,6 +1691,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳18,961</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1059')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1059')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1349,6 +1711,10 @@
                     <span class="mobile-amt amt-in">+৳1,030</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳17,941</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1058')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1058')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1367,6 +1733,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳16,911</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1057')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1057')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1383,6 +1753,10 @@
                     <span class="mobile-amt amt-in">+৳3,000</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳21,111</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1056')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1056')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1401,6 +1775,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳18,111</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1055')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1055')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1417,6 +1795,10 @@
                     <span class="mobile-amt amt-in">+৳2,000</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳16,071</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1054')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1054')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1435,6 +1817,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳14,071</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1053')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1053')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1451,6 +1837,10 @@
                     <span class="mobile-amt amt-in">+৳10,250</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳13,051</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1052')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1052')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1469,6 +1859,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳2,801</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1051')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1051')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1485,6 +1879,10 @@
                     <span class="mobile-amt amt-out">-৳3,380</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳1,263</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1050')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1050')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1503,6 +1901,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳4,643</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1049')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1049')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1519,6 +1921,10 @@
                     <span class="mobile-amt amt-out">-৳5,000</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳1,643</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1048')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1048')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1537,6 +1943,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳6,643</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1047')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1047')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1553,6 +1963,10 @@
                     <span class="mobile-amt amt-out">-৳1,015</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳1,553</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1046')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1046')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1571,6 +1985,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳2,568</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1045')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1045')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1587,6 +2005,10 @@
                     <span class="mobile-amt amt-out">-৳50</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳528</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1044')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1044')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1605,6 +2027,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳578</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1043')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1043')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1621,6 +2047,10 @@
                     <span class="mobile-amt amt-out">-৳6,000</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳4,728</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1042')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1042')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1639,6 +2069,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳10,728</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1041')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1041')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1655,6 +2089,10 @@
                     <span class="mobile-amt amt-out">-৳26,000</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳528</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1040')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1040')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1673,6 +2111,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳26,528</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1039')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1039')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1689,6 +2131,10 @@
                     <span class="mobile-amt amt-out">-৳6,550</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳9,778</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1038')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1038')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1707,6 +2153,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳16,328</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1037')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1037')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1723,6 +2173,10 @@
                     <span class="mobile-amt amt-out">-৳10,000</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳38,328</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1036')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1036')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1741,6 +2195,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳48,328</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1035')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1035')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1757,6 +2215,10 @@
                     <span class="mobile-amt amt-out">-৳55</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳63,528</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1034')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1034')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1775,6 +2237,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳63,583</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1033')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1033')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1791,6 +2257,10 @@
                     <span class="mobile-amt amt-in">+৳1,530</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳62,063</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1032')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1032')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1809,6 +2279,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳60,533</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1031')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1031')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1825,6 +2299,10 @@
                     <span class="mobile-amt amt-in">+৳1,530</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳35,033</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1030')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1030')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1843,6 +2321,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳33,503</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1029')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1029')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1859,6 +2341,10 @@
                     <span class="mobile-amt amt-in">+৳1,530</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳31,973</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1028')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1028')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1877,6 +2363,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳30,443</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1027')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1027')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1893,6 +2383,10 @@
                     <span class="mobile-amt amt-in">+৳1,530</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳28,913</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1026')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1026')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1911,6 +2405,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳27,383</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1025')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1025')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1927,6 +2425,10 @@
                     <span class="mobile-amt amt-in">+৳3,075</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳25,883</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1024')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1024')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1945,6 +2447,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳22,808</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1023')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1023')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1961,6 +2467,10 @@
                     <span class="mobile-amt amt-in">+৳1,530</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳6,808</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1022')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1022')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -1979,6 +2489,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳5,278</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1021')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1021')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -1995,6 +2509,10 @@
                     <span class="mobile-amt amt-in">+৳1,530</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳3,238</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1020')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1020')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -2013,6 +2531,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳1,708</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1019')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1019')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -2029,6 +2551,10 @@
                     <span class="mobile-amt amt-out">-৳1,550</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳5,048</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1018')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1018')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -2047,6 +2573,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳6,598</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1017')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1017')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -2063,6 +2593,10 @@
                     <span class="mobile-amt amt-in">+৳22,000</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳25,198</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1016')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1016')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -2081,6 +2615,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳3,198</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1015')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1015')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -2097,6 +2635,10 @@
                     <span class="mobile-amt amt-out">-৳10,010</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳3,448</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1014')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1014')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -2115,6 +2657,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳13,458</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1013')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1013')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -2131,6 +2677,10 @@
                     <span class="mobile-amt amt-in">+৳5,000</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳8,458</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1012')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1012')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -2149,6 +2699,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳3,458</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1011')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1011')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -2165,6 +2719,10 @@
                     <span class="mobile-amt amt-in">+৳8,252</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳8,968</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1010')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1010')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -2183,6 +2741,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳716</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1009')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1009')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -2199,6 +2761,10 @@
                     <span class="mobile-amt amt-in">+৳1,530</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳10,721</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1008')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1008')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -2217,6 +2783,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳9,191</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1007')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1007')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -2233,6 +2803,10 @@
                     <span class="mobile-amt amt-out">-৳30</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳7,151</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1006')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1006')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -2251,6 +2825,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳7,181</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1005')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1005')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -2267,6 +2845,10 @@
                     <span class="mobile-amt amt-out">-৳11,100</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳2,181</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1004')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1004')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -2285,6 +2867,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳13,281</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1003')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1003')">🗑️ Delete</button>
+            </div>
         </div>
     
         <div class="mobile-txn-card">
@@ -2301,6 +2887,10 @@
                     <span class="mobile-amt amt-in">+৳3,081</span>
                     <span class="mobile-bal">ব্যালেন্স: ৳10,731</span>
                 </div>
+            </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1002')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1002')">🗑️ Delete</button>
             </div>
         </div>
     
@@ -2319,6 +2909,10 @@
                     <span class="mobile-bal">ব্যালেন্স: ৳7,650</span>
                 </div>
             </div>
+            <div style="text-align:right;margin-top:4px;">
+                <button class="btn-icon-sm" onclick="UIController.openEditModal('TXN-1001')">✏️ Edit</button>
+                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('TXN-1001')">🗑️ Delete</button>
+            </div>
         </div>
     
                 </div>
@@ -2328,16 +2922,216 @@
                     <h3>কোনো লেনদেন পাওয়া যায়নি</h3>
                 </div>
             </section>
+
+            <aside class="sidebar-section">
+                <div class="content-card external-api-card">
+                    <div class="card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                        <h3>External Push API System</h3>
+                    </div>
+                    <p class="api-desc">বাইরে থেকে (cURL, Python, Webhook) টাকা পুশ করার কমান্ড:</p>
+
+                    <div class="code-snippet-box">
+                        <pre><code id="curl-code-snippet">curl -X POST "https://api.your-server.com/push" \
+  -d '{"type":"IN","amount":5000}'</code></pre>
+                        <button class="btn-copy-code" id="copy-curl-btn">Copy</button>
+                    </div>
+                    <button class="btn btn-primary btn-block" id="open-api-docs-btn">External API টেস্ট করুন</button>
+                </div>
+
+                <div class="content-card activity-log-card">
+                    <div class="card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        <h3>সার্ভার লাইভ অ্যাক্টিভিটি</h3>
+                    </div>
+                    <div class="activity-stream" id="activity-stream"></div>
+                </div>
+            </aside>
         </main>
 
-        <!-- Mobile Floating Quick PDF Button -->
         <div class="mobile-bottom-bar">
-            <button class="mobile-action-btn btn-highlight" id="mobile-btn-pdf">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
-                <span>PDF স্টেটমেন্ট নামান</span>
+            <button class="mobile-action-btn btn-highlight" id="mobile-btn-admin">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                <span>টাকা যোগ / আউট প্যানেল</span>
             </button>
         </div>
 
+    </div>
+
+    <!-- ADMIN PIN MODAL -->
+    <div class="modal-overlay" id="admin-pin-modal">
+        <div class="modal-content pin-modal-box">
+            <button class="modal-close-btn" id="close-pin-modal-btn">&times;</button>
+            <div class="pin-header">
+                <div class="pin-icon-wrapper">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                </div>
+                <h2>এডমিন সিকিউরিটি PIN</h2>
+                <p>ব্যাকএন্ডে প্রবেশ করতে পিন দিন (ডিফল্ট PIN: <b>1234</b>)</p>
+            </div>
+            <form id="admin-pin-form">
+                <div class="pin-input-group">
+                    <input type="password" id="pin-input" maxlength="6" inputmode="numeric" placeholder="••••" autofocus required>
+                </div>
+                <div id="pin-error-msg" class="error-msg" style="display: none;">ভুল PIN কোড! আবার চেষ্টা করুন।</div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg">আনলক এডমিন কন্ট্রোল</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN CONTROL PANEL MODAL -->
+    <div class="modal-overlay" id="admin-panel-modal">
+        <div class="modal-content admin-panel-box">
+            <header class="modal-header">
+                <div class="header-left-title">
+                    <span class="badge-admin">ADMIN BACKEND</span>
+                    <h2>সার্ভার এডমিন কন্ট্রোল প্যানেল</h2>
+                </div>
+                <button class="modal-close-btn" id="close-admin-modal-btn">&times;</button>
+            </header>
+
+            <div class="admin-modal-body">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="tab-add-in"><span>টাকা জমা (IN)</span></button>
+                    <button class="tab-btn" data-tab="tab-add-out"><span>টাকা আউট (OUT)</span></button>
+                    <button class="tab-btn" data-tab="tab-api-settings"><span>External Push</span></button>
+                    <button class="tab-btn" data-tab="tab-settings"><span>সেটিংস</span></button>
+                </div>
+
+                <div class="tab-pane active" id="tab-add-in">
+                    <form id="form-money-in" class="admin-form">
+                        <div class="form-group">
+                            <label for="in-amount">টাকার পরিমাণ (Amount IN) *</label>
+                            <div class="input-currency-wrapper">
+                                <span class="curr">৳</span>
+                                <input type="number" id="in-amount" min="1" step="any" placeholder="7650" inputmode="decimal" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-half">
+                                <label>ক্যাটাগরি</label>
+                                <select id="in-category" class="custom-select">
+                                    <option value="Server Deposit">Server Deposit</option>
+                                    <option value="Client Payment">Client Payment</option>
+                                    <option value="Sales Income">Sales Income</option>
+                                    <option value="Investment">Investment</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-half">
+                                <label>মেথড</label>
+                                <select id="in-method" class="custom-select">
+                                    <option value="bKash">bKash</option>
+                                    <option value="Nagad">Nagad</option>
+                                    <option value="Bank Transfer">Bank Transfer</option>
+                                    <option value="Cash">Cash</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>নোট / বিবরণ</label><input type="text" id="in-note" placeholder="e.g. Server money add"></div>
+                        <div class="form-group"><label>TXN ID</label><input type="text" id="in-ref" placeholder="TXN-9988"></div>
+                        <button type="submit" class="btn btn-success btn-block btn-lg">টাকা জমা করুন (Money IN)</button>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="tab-add-out">
+                    <form id="form-money-out" class="admin-form">
+                        <div class="form-group">
+                            <label for="out-amount">টাকার পরিমাণ (Amount OUT) *</label>
+                            <div class="input-currency-wrapper out-wrapper">
+                                <span class="curr">৳</span>
+                                <input type="number" id="out-amount" min="1" step="any" placeholder="11100" inputmode="decimal" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-half">
+                                <label>ক্যাটাগরি</label>
+                                <select id="out-category" class="custom-select">
+                                    <option value="Server Expense">Server Expense</option>
+                                    <option value="Hosting / Domain">Hosting / Domain</option>
+                                    <option value="Payout / Withdrawal">Payout / Withdrawal</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-half">
+                                <label>মেথড</label>
+                                <select id="out-method" class="custom-select">
+                                    <option value="Bank Transfer">Bank Transfer</option>
+                                    <option value="bKash">bKash</option>
+                                    <option value="Nagad">Nagad</option>
+                                    <option value="Cash">Cash</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>নোট / বিবরণ</label><input type="text" id="out-note" placeholder="e.g. Server bill payout"></div>
+                        <div class="form-group"><label>TXN ID</label><input type="text" id="out-ref" placeholder="OUT-1122"></div>
+                        <button type="submit" class="btn btn-danger btn-block btn-lg">টাকা আউট করুন (Money OUT)</button>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="tab-api-settings">
+                    <div class="api-modal-info">
+                        <h3>🌐 External Push In Simulator</h3>
+                        <div class="api-tester-card">
+                            <div class="test-push-controls">
+                                <input type="number" id="sim-amount" value="5000" inputmode="decimal">
+                                <select id="sim-type" class="custom-select">
+                                    <option value="IN">Money IN (+)</option>
+                                    <option value="OUT">Money OUT (-)</option>
+                                </select>
+                                <button type="button" class="btn btn-primary" id="btn-run-sim-push">Simulate Call</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="tab-settings">
+                    <div class="settings-box">
+                        <div class="setting-item">
+                            <label>প্রারম্ভিক ব্যালেন্স (Initial Balance)</label>
+                            <div class="inline-input-btn">
+                                <input type="number" id="setting-initial-balance" value="0" inputmode="decimal">
+                                <button type="button" class="btn btn-secondary" id="btn-save-initial-bal">সেভ করুন</button>
+                            </div>
+                        </div>
+                        <hr class="divider">
+                        <div class="setting-item">
+                            <label>এডমিন PIN পরিবর্তন</label>
+                            <div class="inline-input-btn">
+                                <input type="password" id="setting-new-pin" maxlength="6" inputmode="numeric" placeholder="নতুন PIN">
+                                <button type="button" class="btn btn-secondary" id="btn-change-pin">আপডেট</button>
+                            </div>
+                        </div>
+                        <hr class="divider">
+                        <div class="setting-item danger-zone">
+                            <button type="button" class="btn btn-danger-outline" id="btn-reset-data">সকল ডাটা রিসেট করুন</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT MODAL -->
+    <div class="modal-overlay" id="edit-txn-modal">
+        <div class="modal-content edit-modal-box">
+            <button class="modal-close-btn" id="close-edit-modal-btn">&times;</button>
+            <div class="modal-header"><h2>ট্রানজ্যাকশন এডিট</h2></div>
+            <form id="edit-txn-form" class="admin-form">
+                <input type="hidden" id="edit-txn-id">
+                <div class="form-group">
+                    <label>ধরন</label>
+                    <select id="edit-txn-type" class="custom-select">
+                        <option value="IN">Money IN (+)</option>
+                        <option value="OUT">Money OUT (-)</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>পরিমাণ</label><input type="number" id="edit-txn-amount" step="any" inputmode="decimal" required></div>
+                <div class="form-group"><label>নোট</label><input type="text" id="edit-txn-note"></div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-edit-btn">বাতিল</button>
+                    <button type="submit" class="btn btn-primary">সেভ</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <div class="toast-container" id="toast-container"></div>
