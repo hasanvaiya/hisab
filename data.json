@@ -676,6 +676,15 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T17:14:00Z",
       "runningBalance": 23592
+    },
+    {
+      "id": "TXN-639092",
+      "type": "IN",
+      "amount": 1,
+      "category": "Sales Income",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T17:47:49.181Z",
+      "runningBalance": 23593
     }
   ]
 }
