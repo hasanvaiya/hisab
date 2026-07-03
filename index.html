@@ -1,1190 +1,375 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>লাইভ হিসাব খাতা App</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<title>&#2482;&#2494;&#2439;&#2477; &#2489;&#2495;&#2488;&#2494;&#2476; &#2454;&#2494;&#2468;&#2494;</title>
+<meta name="description" content="&#2439;&#2482;&#2494;&#2439;&#2477; &#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2463;&#2509;&#2480;&#2509;&#2479;&#2494;&#2453;&#2494;&#2480; - &#2489;&#2494;&#2488;&#2494;&#2472; &#2477;&#2494;&#2439;&#2479;&#2492;&#2494;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body class="mobile-app-theme customer-mode">
-
-    <div class="app-viewport" id="printable-area">
-
-        <!-- MOBILE APP TOP BAR -->
-        <header class="app-topbar">
-            <div class="user-profile-box">
-                <div class="avatar">
-                    <span>H</span>
-                </div>
-                <div class="user-meta">
-                    <span class="greeting">লাইভ হিসাব খাতা</span>
-                    <span class="user-name">হাসান ভাইয়া <span class="online-dot"></span></span>
-                </div>
-            </div>
-
-            <div class="topbar-actions">
-                <button class="topbar-btn" id="export-pdf-btn" title="PDF ডাউনলোড">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
-                </button>
-            </div>
-        </header>
-
-        <!-- HERO BALANCE CARD (NATIVE APP STYLE) -->
-        <section class="m-hero-card">
-            <div class="m-card-glow"></div>
-            <div class="m-hero-top">
-                <span class="m-card-lbl">বর্তমান মোট ব্যালেন্স</span>
-                <span class="m-live-pill">LIVE SYNC</span>
-            </div>
-
-            <div class="m-hero-balance">
-                <span class="m-taka-symbol">৳</span>
-                <span class="m-balance-num" id="current-balance-display">23,592.00</span>
-                <span class="m-currency">BDT</span>
-            </div>
-
-            <div class="m-hero-stats">
-                <div class="m-stat-box">
-                    <span class="stat-lbl">মোট জমা (IN)</span>
-                    <span class="stat-val stat-in" id="total-in-display">৳ 264,756</span>
-                </div>
-                <div class="m-stat-divider"></div>
-                <div class="m-stat-box">
-                    <span class="stat-lbl">মোট খরচ (OUT)</span>
-                    <span class="stat-val stat-out" id="total-out-display">৳ 241,164</span>
-                </div>
-                <div class="m-stat-divider"></div>
-                <div class="m-stat-box">
-                    <span class="stat-lbl">নেট ক্যাশ ফ্লো</span>
-                    <span class="stat-val stat-in" id="net-flow-val">+৳ 23,592</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- QUICK ACTION MENU -->
-        <section class="m-quick-actions">
-            <div class="q-action-item" id="btn-quick-pdf">
-                <div class="q-icon-btn pdf-gradient">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
-                </div>
-                <span>PDF রিপোর্ট</span>
-            </div>
-            <div class="q-action-item" id="btn-quick-search">
-                <div class="q-icon-btn search-gradient">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                </div>
-                <span>সার্চ করুন</span>
-            </div>
-            <div class="q-action-item" id="btn-quick-count">
-                <div class="q-icon-btn count-gradient">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-                </div>
-                <span id="total-txn-count">75 টি হিসেব</span>
-            </div>
-            <a href="admin.html" class="q-action-item" style="text-decoration:none;">
-                <div class="q-icon-btn admin-gradient">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                </div>
-                <span>এডমিন লগইন</span>
-            </a>
-        </section>
-
-        <!-- STREAM LIST CONTAINER -->
-        <main class="m-stream-section">
-            <div class="m-stream-header">
-                <h3>সর্বশেষ লেনদেনসমূহ (Live Feed)</h3>
-                <div class="m-filter-pills">
-                    <button class="pill-btn active" data-filter="ALL">সকল</button>
-                    <button class="pill-btn" data-filter="IN">জমা</button>
-                    <button class="pill-btn" data-filter="OUT">আউট</button>
-                </div>
-            </div>
-
-            <div class="m-search-bar" id="search-box-wrapper" style="display:none;">
-                <input type="text" id="search-input" placeholder="আইডি বা নোট টাইপ করুন...">
-            </div>
-
-            <div class="m-card-feed" id="mobile-card-stream">
-                
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Operating Cost • <span class="m-txn-code">TXN-1075</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳40</div>
-                <div class="m-card-bal">ব্যালেন্স ৳23,592</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1074</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳17,300</div>
-                <div class="m-card-bal">ব্যালেন্স ৳23,632</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Payout / Withdrawal • <span class="m-txn-code">TXN-1073</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳50,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳6,332</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1072</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳26,150</div>
-                <div class="m-card-bal">ব্যালেন্স ৳56,332</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Other Add • <span class="m-txn-code">TXN-1071</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳30,182</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Investment • <span class="m-txn-code">TXN-1070</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳25,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳29,182</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1069</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳2,550</div>
-                <div class="m-card-bal">ব্যালেন্স ৳4,182</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1068</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,020</div>
-                <div class="m-card-bal">ব্যালেন্স ৳1,632</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Operating Cost • <span class="m-txn-code">TXN-1067</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳500</div>
-                <div class="m-card-bal">ব্যালেন্স ৳612</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Server Expense • <span class="m-txn-code">TXN-1066</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳3,320</div>
-                <div class="m-card-bal">ব্যালেন্স ৳1,112</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Payout / Withdrawal • <span class="m-txn-code">TXN-1065</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳20,300</div>
-                <div class="m-card-bal">ব্যালেন্স ৳4,432</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1064</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳5,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳24,732</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Server Expense • <span class="m-txn-code">TXN-1063</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳2,550</div>
-                <div class="m-card-bal">ব্যালেন্স ৳19,732</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1062</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳3,030</div>
-                <div class="m-card-bal">ব্যালেন্স ৳22,282</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1061</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳750</div>
-                <div class="m-card-bal">ব্যালেন্স ৳19,252</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Operating Cost • <span class="m-txn-code">TXN-1060</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳459</div>
-                <div class="m-card-bal">ব্যালেন্স ৳18,502</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1059</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,020</div>
-                <div class="m-card-bal">ব্যালেন্স ৳18,961</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1058</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,030</div>
-                <div class="m-card-bal">ব্যালেন্স ৳17,941</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Server Expense • <span class="m-txn-code">TXN-1057</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳4,200</div>
-                <div class="m-card-bal">ব্যালেন্স ৳16,911</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1056</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳3,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳21,111</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1055</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳2,040</div>
-                <div class="m-card-bal">ব্যালেন্স ৳18,111</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1054</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳2,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳16,071</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1053</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,020</div>
-                <div class="m-card-bal">ব্যালেন্স ৳14,071</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Client Payment • <span class="m-txn-code">TXN-1052</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳10,250</div>
-                <div class="m-card-bal">ব্যালেন্স ৳13,051</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1051</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,538</div>
-                <div class="m-card-bal">ব্যালেন্স ৳2,801</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Server Expense • <span class="m-txn-code">TXN-1050</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳3,380</div>
-                <div class="m-card-bal">ব্যালেন্স ৳1,263</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1049</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳3,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳4,643</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Payout / Withdrawal • <span class="m-txn-code">TXN-1048</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳5,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳1,643</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1047</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳5,090</div>
-                <div class="m-card-bal">ব্যালেন্স ৳6,643</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Server Expense • <span class="m-txn-code">TXN-1046</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳1,015</div>
-                <div class="m-card-bal">ব্যালেন্স ৳1,553</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1045</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳2,040</div>
-                <div class="m-card-bal">ব্যালেন্স ৳2,568</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Operating Cost • <span class="m-txn-code">TXN-1044</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳50</div>
-                <div class="m-card-bal">ব্যালেন্স ৳528</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Operating Cost • <span class="m-txn-code">TXN-1043</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳4,150</div>
-                <div class="m-card-bal">ব্যালেন্স ৳578</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Server Expense • <span class="m-txn-code">TXN-1042</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳6,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳4,728</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Client Payment • <span class="m-txn-code">TXN-1041</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳10,200</div>
-                <div class="m-card-bal">ব্যালেন্স ৳10,728</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Payout / Withdrawal • <span class="m-txn-code">TXN-1040</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳26,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳528</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1039</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳16,750</div>
-                <div class="m-card-bal">ব্যালেন্স ৳26,528</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Hosting / Domain • <span class="m-txn-code">TXN-1038</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳6,550</div>
-                <div class="m-card-bal">ব্যালেন্স ৳9,778</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Payout / Withdrawal • <span class="m-txn-code">TXN-1037</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳22,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳16,328</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Server Expense • <span class="m-txn-code">TXN-1036</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳10,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳38,328</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Payout / Withdrawal • <span class="m-txn-code">TXN-1035</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳15,200</div>
-                <div class="m-card-bal">ব্যালেন্স ৳48,328</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Operating Cost • <span class="m-txn-code">TXN-1034</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳55</div>
-                <div class="m-card-bal">ব্যালেন্স ৳63,528</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1033</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,520</div>
-                <div class="m-card-bal">ব্যালেন্স ৳63,583</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1032</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,530</div>
-                <div class="m-card-bal">ব্যালেন্স ৳62,063</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Investment • <span class="m-txn-code">TXN-1031</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳25,500</div>
-                <div class="m-card-bal">ব্যালেন্স ৳60,533</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1030</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,530</div>
-                <div class="m-card-bal">ব্যালেন্স ৳35,033</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1029</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,530</div>
-                <div class="m-card-bal">ব্যালেন্স ৳33,503</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1028</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,530</div>
-                <div class="m-card-bal">ব্যালেন্স ৳31,973</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1027</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,530</div>
-                <div class="m-card-bal">ব্যালেন্স ৳30,443</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1026</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,530</div>
-                <div class="m-card-bal">ব্যালেন্স ৳28,913</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Other Add • <span class="m-txn-code">TXN-1025</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,500</div>
-                <div class="m-card-bal">ব্যালেন্স ৳27,383</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1024</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳3,075</div>
-                <div class="m-card-bal">ব্যালেন্স ৳25,883</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Client Payment • <span class="m-txn-code">TXN-1023</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳16,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳22,808</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1022</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,530</div>
-                <div class="m-card-bal">ব্যালেন্স ৳6,808</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1021</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳2,040</div>
-                <div class="m-card-bal">ব্যালেন্স ৳5,278</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1020</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,530</div>
-                <div class="m-card-bal">ব্যালেন্স ৳3,238</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Operating Cost • <span class="m-txn-code">TXN-1019</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳3,340</div>
-                <div class="m-card-bal">ব্যালেন্স ৳1,708</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Server Expense • <span class="m-txn-code">TXN-1018</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳1,550</div>
-                <div class="m-card-bal">ব্যালেন্স ৳5,048</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Payout / Withdrawal • <span class="m-txn-code">TXN-1017</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳18,600</div>
-                <div class="m-card-bal">ব্যালেন্স ৳6,598</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Investment • <span class="m-txn-code">TXN-1016</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳22,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳25,198</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Operating Cost • <span class="m-txn-code">TXN-1015</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳250</div>
-                <div class="m-card-bal">ব্যালেন্স ৳3,198</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Server Expense • <span class="m-txn-code">TXN-1014</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳10,010</div>
-                <div class="m-card-bal">ব্যালেন্স ৳3,448</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1013</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳5,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳13,458</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1012</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳5,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳8,458</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Hosting / Domain • <span class="m-txn-code">TXN-1011</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳5,510</div>
-                <div class="m-card-bal">ব্যালেন্স ৳3,458</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1010</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳8,252</div>
-                <div class="m-card-bal">ব্যালেন্স ৳8,968</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Payout / Withdrawal • <span class="m-txn-code">TXN-1009</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳10,005</div>
-                <div class="m-card-bal">ব্যালেন্স ৳716</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1008</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳1,530</div>
-                <div class="m-card-bal">ব্যালেন্স ৳10,721</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Client Payment • <span class="m-txn-code">TXN-1007</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳2,040</div>
-                <div class="m-card-bal">ব্যালেন্স ৳9,191</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Operating Cost • <span class="m-txn-code">TXN-1006</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳30</div>
-                <div class="m-card-bal">ব্যালেন্স ৳7,151</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1005</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳5,000</div>
-                <div class="m-card-bal">ব্যালেন্স ৳7,181</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon out">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা আউট (OUT)</div>
-                <div class="m-card-sub">Server Expense • <span class="m-txn-code">TXN-1004</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-out">-৳11,100</div>
-                <div class="m-card-bal">ব্যালেন্স ৳2,181</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Client Payment • <span class="m-txn-code">TXN-1003</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳2,550</div>
-                <div class="m-card-bal">ব্যালেন্স ৳13,281</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Sales Income • <span class="m-txn-code">TXN-1002</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳3,081</div>
-                <div class="m-card-bal">ব্যালেন্স ৳10,731</div>
-            </div>
-        </div>
-    
-        <div class="m-card">
-            <div class="m-card-icon in">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            </div>
-            <div class="m-card-details">
-                <div class="m-card-title">টাকা জমা (IN)</div>
-                <div class="m-card-sub">Server Deposit • <span class="m-txn-code">TXN-1001</span></div>
-            </div>
-            <div class="m-card-right">
-                <div class="m-card-amount amt-in">+৳7,650</div>
-                <div class="m-card-bal">ব্যালেন্স ৳7,650</div>
-            </div>
-        </div>
-    
-            </div>
-        </main>
-
-        <!-- FLOATING BOTTOM NAVIGATION -->
-        <nav class="m-bottom-nav">
-            <a href="index.html" class="nav-item active">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-                <span>হোম</span>
-            </a>
-            <button class="nav-item btn-nav-pdf" id="mobile-btn-pdf">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
-                <span>PDF নামান</span>
-            </button>
-            <a href="admin.html" class="nav-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                <span>এডমিন</span>
-            </a>
-        </nav>
-
+<body>
+<div class="wrap" id="printable-area">
+  <header class="topbar">
+    <div class="tl">
+      <div class="av av-c">H</div>
+      <div class="ti">
+        <span class="ts">&#2482;&#2494;&#2439;&#2477; &#2489;&#2495;&#2488;&#2494;&#2476; &#2454;&#2494;&#2468;&#2494;</span>
+        <span class="tn">&#2489;&#2494;&#2488;&#2494;&#2472; &#2477;&#2494;&#2439;&#2479;&#2492;&#2494; <span class="dot"></span></span>
+      </div>
     </div>
-
-    <div class="toast-container" id="toast-container"></div>
-    <script src="app.js"></script>
-</body>
-</html>
+    <div class="tr">
+      <button class="ibtn" id="pdf-top" title="PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+      </button>
+    </div>
+  </header>
+  <section class="hero hero-c">
+    <div class="htop">
+      <span class="hlbl">&#2476;&#2480;&#2509;&#2468;&#2478;&#2494;&#2472; &#2478;&#2507;&#2463; &#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488;</span>
+      <span class="lbadge">LIVE SYNC</span>
+    </div>
+    <div class="hbal">
+      <span class="htaka">&#2547;</span>
+      <span class="hamt" id="bal">23,592</span>
+      <span class="hcur">BDT</span>
+    </div>
+    <div class="hstats">
+      <div class="si"><span class="slbl">&#2478;&#2507;&#2463; &#2460;&#2478;&#2494;</span><span class="svi" id="tin">&#2547;264,756</span></div>
+      <div class="sdiv"></div>
+      <div class="si"><span class="slbl">&#2478;&#2507;&#2463; &#2454;&#2480;&#2458;</span><span class="svo" id="tout">&#2547;241,164</span></div>
+      <div class="sdiv"></div>
+      <div class="si"><span class="slbl">&#2472;&#2503;&#2463; &#2398;&#2509;&#2482;&#2507;</span><span class="svn" id="nflow">+&#2547;23,592</span></div>
+    </div>
+  </section>
+  <section class="qg">
+    <div class="qi" id="q-pdf"><div class="qic qpdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg></div><span class="qlbl">PDF &#2480;&#2495;&#2474;&#2507;&#2480;&#2509;&#2463;</span></div>
+    <div class="qi" id="q-search"><div class="qic qsrc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div><span class="qlbl">&#2488;&#2494;&#2480;&#2509;&#2458; &#2453;&#2480;&#2497;&#2472;</span></div>
+    <div class="qi" id="q-count"><div class="qic qcnt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div><span class="qlbl" id="cnt">75 &#2463;&#2495; &#2489;&#2495;&#2488;&#2503;&#2476;</span></div>
+    <a href="admin.html" class="qi"><div class="qic qadm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><span class="qlbl">&#2319;&#2337;&#2478;&#2495;&#2472;</span></a>
+  </section>
+  <main class="feed">
+    <div class="fhd">
+      <span class="ftit">&#2488;&#2480;&#2509;&#2476;&#2577;&#2488;&#2494;&#2478;&#2509;&#2479;&#2493;&#2495;&#2453; &#2482;&#2503;&#2472;&#2470;&#2503;&#2472;</span>
+      <div class="ftabs">
+        <button class="ftab on" data-f="ALL">&#2488;&#2453;&#2482;</button>
+        <button class="ftab" data-f="IN">&#2460;&#2478;&#2494;</button>
+        <button class="ftab" data-f="OUT">&#2454;&#2480;&#2458;</button>
+      </div>
+    </div>
+    <div class="sbox" id="sbox"><input type="text" id="sinp" placeholder="&#2438;&#2439;&#2465;&#2495; &#2476;&#2494; &#2472;&#2507;&#2463; &#2463;&#2494;&#2439;&#2474; &#2453;&#2480;&#2497;&#2472;..."></div>
+    <div class="cards" id="feed"><div class="tc" data-type="OUT" data-id="TXN-1075">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1075</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;40</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;23,592</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1074">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1074</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;17,300</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;23,632</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1073">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1073</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;50,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;6,332</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1072">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1072</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;26,150</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;56,332</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1071">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Other Add &bull; <span class="tcode">TXN-1071</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;30,182</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1070">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Investment &bull; <span class="tcode">TXN-1070</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;25,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;29,182</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1069">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1069</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;2,550</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;4,182</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1068">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1068</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,020</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,632</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1067">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1067</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;500</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;612</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1066">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1066</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;3,320</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,112</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1065">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1065</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;20,300</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;4,432</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1064">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1064</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;5,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;24,732</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1063">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1063</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;2,550</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;19,732</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1062">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1062</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;3,030</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;22,282</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1061">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1061</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;750</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;19,252</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1060">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1060</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;459</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;18,502</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1059">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1059</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,020</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;18,961</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1058">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1058</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,030</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;17,941</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1057">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1057</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;4,200</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;16,911</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1056">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1056</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;3,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;21,111</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1055">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1055</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;2,040</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;18,111</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1054">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1054</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;2,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;16,071</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1053">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1053</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,020</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;14,071</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1052">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Client Payment &bull; <span class="tcode">TXN-1052</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;10,250</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;13,051</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1051">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1051</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,538</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;2,801</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1050">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1050</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;3,380</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,263</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1049">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1049</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;3,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;4,643</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1048">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1048</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;5,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,643</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1047">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1047</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;5,090</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;6,643</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1046">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1046</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;1,015</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,553</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1045">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1045</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;2,040</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;2,568</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1044">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1044</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;50</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;528</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1043">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1043</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;4,150</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;578</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1042">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1042</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;6,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;4,728</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1041">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Client Payment &bull; <span class="tcode">TXN-1041</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;10,200</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;10,728</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1040">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1040</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;26,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;528</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1039">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1039</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;16,750</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;26,528</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1038">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Hosting &bull; <span class="tcode">TXN-1038</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;6,550</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;9,778</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1037">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1037</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;22,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;16,328</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1036">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1036</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;10,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;38,328</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1035">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1035</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;15,200</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;48,328</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1034">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1034</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;55</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;63,528</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1033">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1033</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,520</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;63,583</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1032">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1032</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;62,063</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1031">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Investment &bull; <span class="tcode">TXN-1031</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;25,500</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;60,533</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1030">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1030</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;35,033</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1029">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1029</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;33,503</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1028">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1028</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;31,973</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1027">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1027</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;30,443</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1026">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1026</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;28,913</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1025">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Other Add &bull; <span class="tcode">TXN-1025</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,500</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;27,383</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1024">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1024</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;3,075</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;25,883</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1023">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Client Payment &bull; <span class="tcode">TXN-1023</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;16,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;22,808</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1022">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1022</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;6,808</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1021">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1021</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;2,040</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;5,278</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1020">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1020</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;3,238</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1019">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1019</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;3,340</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,708</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1018">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1018</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;1,550</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;5,048</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1017">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1017</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;18,600</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;6,598</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1016">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Investment &bull; <span class="tcode">TXN-1016</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;22,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;25,198</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1015">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1015</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;250</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;3,198</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1014">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1014</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;10,010</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;3,448</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1013">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1013</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;5,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;13,458</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1012">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1012</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;5,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;8,458</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1011">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Hosting &bull; <span class="tcode">TXN-1011</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;5,510</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;3,458</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1010">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1010</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;8,252</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;8,968</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1009">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1009</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;10,005</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;716</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1008">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1008</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;10,721</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1007">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Client Payment &bull; <span class="tcode">TXN-1007</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;2,040</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;9,191</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1006">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1006</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;30</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;7,151</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1005">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1005</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;5,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;7,181</div></div>
+</div><div class="tc" data-type="OUT" data-id="TXN-1004">
+  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1004</span></div></div>
+  <div class="trgt"><div class="tamt out">-&#2547;11,100</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;2,181</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1003">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Client Payment &bull; <span class="tcode">TXN-1003</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;2,550</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;13,281</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1002">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1002</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;3,081</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;10,731</div></div>
+</div><div class="tc" data-type="IN" data-id="TXN-1001">
+  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1001</span></div></div>
+  <div class="trgt"><div class="tamt in">+&#2547;7,650</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;7,650</div></div>
+</div></div>
+  </main>
+</div>
+<nav class="bnav">
+  <a href="index.html" class="nitem on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>&#2489;&#2507;&#2478;</span></a>
+  <button class="nitem" id="nav-pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg><span>PDF</span></button>
+  <a href="admin.html" class="nitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg><span>&#2319;&#2337;&#2478;&#2495;&#2472;</span></a>
+</nav>
+<div class="tw" id="tw"></div>
+<script src="app.js"></script>
+</body></html>
