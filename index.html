@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Live Server Hisab & Cashflow Tracker | কাস্টমার ভিউ</title>
+    
+    <!-- Google Fonts: Hind Siliguri (Bengali) & Outfit (English/Numbers) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="dark-theme customer-view-mode">
+
+    <div class="app-container">
+
+        <!-- ================= TOP NAVBAR ================= -->
+        <header class="navbar">
+            <div class="brand-box">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1>লাইভ হিসাব খাতা <span class="badge-live">LIVE</span></h1>
+                    <p>Server Balance & Transaction Ledger</p>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <!-- Sync status indicator -->
+                <div class="sync-status" id="sync-status-badge" title="Realtime Sync Active">
+                    <span class="pulse-dot"></span>
+                    <span id="sync-text">Live Sync Active</span>
+                </div>
+
+                <!-- Export CSV Button -->
+                <button class="btn btn-outline" id="export-csv-btn" title="Download Statement CSV">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                        <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                    </svg>
+                    <span>CSV ডাউনলোড</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ================= HERO BALANCE SECTION ================= -->
+        <section class="hero-balance-section">
+            <div class="balance-card main-card">
+                <div class="card-bg-glow"></div>
+                <div class="card-header">
+                    <span class="card-subtitle">বর্তমান সর্বমোট ব্যালেন্স (Current Balance)</span>
+                    <span class="last-update-tag" id="last-updated-tag">সর্বশেষ আপডেট: এইমাত্র</span>
+                </div>
+                
+                <div class="balance-amount-display">
+                    <span class="currency-symbol">৳</span>
+                    <span class="amount-number" id="current-balance-display">0.00</span>
+                    <span class="currency-code">BDT</span>
+                </div>
+
+                <div class="balance-footer-meta">
+                    <div class="meta-item">
+                        <span class="lbl">মোট লেনদেন</span>
+                        <span class="val" id="total-txn-count">0 টি</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="lbl">প্রারম্ভিক ব্যালেন্স</span>
+                        <span class="val" id="initial-balance-val">৳ 0.00</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="lbl">নেট ক্যাশ ফ্লো</span>
+                        <span class="val" id="net-flow-val">৳ 0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Mini Widgets -->
+            <div class="summary-widgets">
+                <div class="widget-card widget-in">
+                    <div class="widget-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M12 19V5M5 12l7-7 7 7"/>
+                        </svg>
+                    </div>
+                    <div class="widget-data">
+                        <span class="widget-label">মোট জমা (Money IN)</span>
+                        <h2 class="widget-amount" id="total-in-display">৳ 0.00</h2>
+                        <span class="widget-count" id="in-count-badge">0 টি জমা</span>
+                    </div>
+                </div>
+
+                <div class="widget-card widget-out">
+                    <div class="widget-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M12 5v14M19 12l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                    <div class="widget-data">
+                        <span class="widget-label">মোট খরচ (Money OUT)</span>
+                        <h2 class="widget-amount" id="total-out-display">৳ 0.00</h2>
+                        <span class="widget-count" id="out-count-badge">0 টি আউট</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MAIN CONTENT AREA ================= -->
+        <main class="main-layout customer-single-col">
+            
+            <!-- TRANSACTION HISTORY & CONTROLS -->
+            <section class="content-card history-section">
+                <div class="section-header">
+                    <div class="section-title-box">
+                        <h2>লাইভ ট্রানজ্যাকশন হিস্ট্রি (Live Stream)</h2>
+                        <p>সার্ভার থেকে রিয়েল-টাইম হিসাবের তালিকা (Read Only)</p>
+                    </div>
+
+                    <!-- Search and Filters -->
+                    <div class="filter-controls">
+                        <div class="search-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+                                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+                            </svg>
+                            <input type="text" id="search-input" placeholder="সার্চ আইডি, ক্যাটাগরি, নোট...">
+                        </div>
+                        
+                        <select id="type-filter" class="custom-select">
+                            <option value="ALL">সকল লেনদেন (All)</option>
+                            <option value="IN">শুধুমাত্র জমা (Money IN)</option>
+                            <option value="OUT">শুধুমাত্র খরচ (Money OUT)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Desktop Table View -->
+                <div class="table-responsive desktop-view-table">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th># আইডি</th>
+                                <th>তারিখ ও সময়</th>
+                                <th>ধরন</th>
+                                <th>বিবরণ / নোট</th>
+                                <th>পরিমাণ (Amount)</th>
+                                <th>রানিং ব্যালেন্স (Balance)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transaction-table-body">
+                            <!-- Injected dynamically by app.js -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mobile Card Stream View -->
+                <div class="mobile-card-stream" id="mobile-card-stream">
+                    <!-- Cards injected dynamically by app.js -->
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="empty-state" style="display: none;">
+                    <div class="empty-icon">📂</div>
+                    <h3>কোনো লেনদেন পাওয়া যায়নি</h3>
+                    <p>অন্য কোনো সার্চ কিওয়ার্ড দিয়ে চেষ্টা করুন।</p>
+                </div>
+            </section>
+        </main>
+
+    </div> <!-- /.app-container -->
+
+    <!-- TOAST CONTAINER FOR LIVE NOTIFICATIONS -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- MAIN APP SCRIPT -->
+    <script src="app.js"></script>
+</body>
+</html>
