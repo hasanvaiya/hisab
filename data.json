@@ -6,11 +6,9 @@
       "id": "TXN-1001",
       "type": "IN",
       "amount": 7650,
-      "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1001",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Sales Income",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T10:00:00Z",
       "runningBalance": 7650
     },
     {
@@ -18,10 +16,8 @@
       "type": "IN",
       "amount": 3081,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1002",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T10:01:00Z",
       "runningBalance": 10731
     },
     {
@@ -29,10 +25,8 @@
       "type": "IN",
       "amount": 2550,
       "category": "Client Payment",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1003",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T10:02:00Z",
       "runningBalance": 13281
     },
     {
@@ -40,10 +34,8 @@
       "type": "OUT",
       "amount": 11100,
       "category": "Server Expense",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1004",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T10:03:00Z",
       "runningBalance": 2181
     },
     {
@@ -51,10 +43,8 @@
       "type": "IN",
       "amount": 5000,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1005",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T10:04:00Z",
       "runningBalance": 7181
     },
     {
@@ -62,10 +52,8 @@
       "type": "OUT",
       "amount": 30,
       "category": "Operating Cost",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1006",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T10:05:00Z",
       "runningBalance": 7151
     },
     {
@@ -73,10 +61,8 @@
       "type": "IN",
       "amount": 2040,
       "category": "Client Payment",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1007",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T10:06:00Z",
       "runningBalance": 9191
     },
     {
@@ -84,21 +70,17 @@
       "type": "IN",
       "amount": 1530,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1008",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T10:07:00Z",
       "runningBalance": 10721
     },
     {
       "id": "TXN-1009",
       "type": "OUT",
       "amount": 10005,
-      "category": "Payout / Withdrawal",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1009",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Payout",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T10:08:00Z",
       "runningBalance": 716
     },
     {
@@ -106,21 +88,17 @@
       "type": "IN",
       "amount": 8252,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1010",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T10:09:00Z",
       "runningBalance": 8968
     },
     {
       "id": "TXN-1011",
       "type": "OUT",
       "amount": 5510,
-      "category": "Hosting / Domain",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1011",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Hosting",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T11:10:00Z",
       "runningBalance": 3458
     },
     {
@@ -128,10 +106,8 @@
       "type": "IN",
       "amount": 5000,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1012",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T11:11:00Z",
       "runningBalance": 8458
     },
     {
@@ -139,10 +115,8 @@
       "type": "IN",
       "amount": 5000,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1013",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T11:12:00Z",
       "runningBalance": 13458
     },
     {
@@ -150,10 +124,8 @@
       "type": "OUT",
       "amount": 10010,
       "category": "Server Expense",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1014",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T11:13:00Z",
       "runningBalance": 3448
     },
     {
@@ -161,10 +133,8 @@
       "type": "OUT",
       "amount": 250,
       "category": "Operating Cost",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1015",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T11:14:00Z",
       "runningBalance": 3198
     },
     {
@@ -172,21 +142,17 @@
       "type": "IN",
       "amount": 22000,
       "category": "Investment",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1016",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T11:15:00Z",
       "runningBalance": 25198
     },
     {
       "id": "TXN-1017",
       "type": "OUT",
       "amount": 18600,
-      "category": "Payout / Withdrawal",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1017",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Payout",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T11:16:00Z",
       "runningBalance": 6598
     },
     {
@@ -194,10 +160,8 @@
       "type": "OUT",
       "amount": 1550,
       "category": "Server Expense",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1018",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T11:17:00Z",
       "runningBalance": 5048
     },
     {
@@ -205,10 +169,8 @@
       "type": "OUT",
       "amount": 3340,
       "category": "Operating Cost",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1019",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T11:18:00Z",
       "runningBalance": 1708
     },
     {
@@ -216,10 +178,8 @@
       "type": "IN",
       "amount": 1530,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1020",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T11:19:00Z",
       "runningBalance": 3238
     },
     {
@@ -227,10 +187,8 @@
       "type": "IN",
       "amount": 2040,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1021",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T12:20:00Z",
       "runningBalance": 5278
     },
     {
@@ -238,10 +196,8 @@
       "type": "IN",
       "amount": 1530,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1022",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T12:21:00Z",
       "runningBalance": 6808
     },
     {
@@ -249,10 +205,8 @@
       "type": "IN",
       "amount": 16000,
       "category": "Client Payment",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1023",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T12:22:00Z",
       "runningBalance": 22808
     },
     {
@@ -260,10 +214,8 @@
       "type": "IN",
       "amount": 3075,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1024",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T12:23:00Z",
       "runningBalance": 25883
     },
     {
@@ -271,10 +223,8 @@
       "type": "IN",
       "amount": 1500,
       "category": "Other Add",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1025",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T12:24:00Z",
       "runningBalance": 27383
     },
     {
@@ -282,10 +232,8 @@
       "type": "IN",
       "amount": 1530,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1026",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T12:25:00Z",
       "runningBalance": 28913
     },
     {
@@ -293,10 +241,8 @@
       "type": "IN",
       "amount": 1530,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1027",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T12:26:00Z",
       "runningBalance": 30443
     },
     {
@@ -304,10 +250,8 @@
       "type": "IN",
       "amount": 1530,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1028",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T12:27:00Z",
       "runningBalance": 31973
     },
     {
@@ -315,10 +259,8 @@
       "type": "IN",
       "amount": 1530,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1029",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T12:28:00Z",
       "runningBalance": 33503
     },
     {
@@ -326,10 +268,8 @@
       "type": "IN",
       "amount": 1530,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1030",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T12:29:00Z",
       "runningBalance": 35033
     },
     {
@@ -337,10 +277,8 @@
       "type": "IN",
       "amount": 25500,
       "category": "Investment",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1031",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T13:30:00Z",
       "runningBalance": 60533
     },
     {
@@ -348,10 +286,8 @@
       "type": "IN",
       "amount": 1530,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1032",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T13:31:00Z",
       "runningBalance": 62063
     },
     {
@@ -359,10 +295,8 @@
       "type": "IN",
       "amount": 1520,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1033",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T13:32:00Z",
       "runningBalance": 63583
     },
     {
@@ -370,21 +304,17 @@
       "type": "OUT",
       "amount": 55,
       "category": "Operating Cost",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1034",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T13:33:00Z",
       "runningBalance": 63528
     },
     {
       "id": "TXN-1035",
       "type": "OUT",
       "amount": 15200,
-      "category": "Payout / Withdrawal",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1035",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Payout",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T13:34:00Z",
       "runningBalance": 48328
     },
     {
@@ -392,32 +322,26 @@
       "type": "OUT",
       "amount": 10000,
       "category": "Server Expense",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1036",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T13:35:00Z",
       "runningBalance": 38328
     },
     {
       "id": "TXN-1037",
       "type": "OUT",
       "amount": 22000,
-      "category": "Payout / Withdrawal",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1037",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Payout",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T13:36:00Z",
       "runningBalance": 16328
     },
     {
       "id": "TXN-1038",
       "type": "OUT",
       "amount": 6550,
-      "category": "Hosting / Domain",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1038",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Hosting",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T13:37:00Z",
       "runningBalance": 9778
     },
     {
@@ -425,21 +349,17 @@
       "type": "IN",
       "amount": 16750,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1039",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T13:38:00Z",
       "runningBalance": 26528
     },
     {
       "id": "TXN-1040",
       "type": "OUT",
       "amount": 26000,
-      "category": "Payout / Withdrawal",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1040",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Payout",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T13:39:00Z",
       "runningBalance": 528
     },
     {
@@ -447,10 +367,8 @@
       "type": "IN",
       "amount": 10200,
       "category": "Client Payment",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1041",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T14:40:00Z",
       "runningBalance": 10728
     },
     {
@@ -458,10 +376,8 @@
       "type": "OUT",
       "amount": 6000,
       "category": "Server Expense",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1042",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T14:41:00Z",
       "runningBalance": 4728
     },
     {
@@ -469,10 +385,8 @@
       "type": "OUT",
       "amount": 4150,
       "category": "Operating Cost",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1043",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T14:42:00Z",
       "runningBalance": 578
     },
     {
@@ -480,10 +394,8 @@
       "type": "OUT",
       "amount": 50,
       "category": "Operating Cost",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1044",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T14:43:00Z",
       "runningBalance": 528
     },
     {
@@ -491,10 +403,8 @@
       "type": "IN",
       "amount": 2040,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1045",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T14:44:00Z",
       "runningBalance": 2568
     },
     {
@@ -502,10 +412,8 @@
       "type": "OUT",
       "amount": 1015,
       "category": "Server Expense",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1046",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T14:45:00Z",
       "runningBalance": 1553
     },
     {
@@ -513,21 +421,17 @@
       "type": "IN",
       "amount": 5090,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1047",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T14:46:00Z",
       "runningBalance": 6643
     },
     {
       "id": "TXN-1048",
       "type": "OUT",
       "amount": 5000,
-      "category": "Payout / Withdrawal",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1048",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Payout",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T14:47:00Z",
       "runningBalance": 1643
     },
     {
@@ -535,10 +439,8 @@
       "type": "IN",
       "amount": 3000,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1049",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T14:48:00Z",
       "runningBalance": 4643
     },
     {
@@ -546,10 +448,8 @@
       "type": "OUT",
       "amount": 3380,
       "category": "Server Expense",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1050",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T14:49:00Z",
       "runningBalance": 1263
     },
     {
@@ -557,10 +457,8 @@
       "type": "IN",
       "amount": 1538,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1051",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T15:50:00Z",
       "runningBalance": 2801
     },
     {
@@ -568,10 +466,8 @@
       "type": "IN",
       "amount": 10250,
       "category": "Client Payment",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1052",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T15:51:00Z",
       "runningBalance": 13051
     },
     {
@@ -579,10 +475,8 @@
       "type": "IN",
       "amount": 1020,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1053",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T15:52:00Z",
       "runningBalance": 14071
     },
     {
@@ -590,10 +484,8 @@
       "type": "IN",
       "amount": 2000,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1054",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T15:53:00Z",
       "runningBalance": 16071
     },
     {
@@ -601,10 +493,8 @@
       "type": "IN",
       "amount": 2040,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1055",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T15:54:00Z",
       "runningBalance": 18111
     },
     {
@@ -612,10 +502,8 @@
       "type": "IN",
       "amount": 3000,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1056",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T15:55:00Z",
       "runningBalance": 21111
     },
     {
@@ -623,10 +511,8 @@
       "type": "OUT",
       "amount": 4200,
       "category": "Server Expense",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1057",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T15:56:00Z",
       "runningBalance": 16911
     },
     {
@@ -634,10 +520,8 @@
       "type": "IN",
       "amount": 1030,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1058",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T15:57:00Z",
       "runningBalance": 17941
     },
     {
@@ -645,10 +529,8 @@
       "type": "IN",
       "amount": 1020,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1059",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T15:58:00Z",
       "runningBalance": 18961
     },
     {
@@ -656,10 +538,8 @@
       "type": "OUT",
       "amount": 459,
       "category": "Operating Cost",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1060",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T15:59:00Z",
       "runningBalance": 18502
     },
     {
@@ -667,10 +547,8 @@
       "type": "IN",
       "amount": 750,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1061",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T16:00:00Z",
       "runningBalance": 19252
     },
     {
@@ -678,10 +556,8 @@
       "type": "IN",
       "amount": 3030,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1062",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T16:01:00Z",
       "runningBalance": 22282
     },
     {
@@ -689,10 +565,8 @@
       "type": "OUT",
       "amount": 2550,
       "category": "Server Expense",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1063",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T16:02:00Z",
       "runningBalance": 19732
     },
     {
@@ -700,21 +574,17 @@
       "type": "IN",
       "amount": 5000,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1064",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T16:03:00Z",
       "runningBalance": 24732
     },
     {
       "id": "TXN-1065",
       "type": "OUT",
       "amount": 20300,
-      "category": "Payout / Withdrawal",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1065",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Payout",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T16:04:00Z",
       "runningBalance": 4432
     },
     {
@@ -722,10 +592,8 @@
       "type": "OUT",
       "amount": 3320,
       "category": "Server Expense",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1066",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T16:05:00Z",
       "runningBalance": 1112
     },
     {
@@ -733,10 +601,8 @@
       "type": "OUT",
       "amount": 500,
       "category": "Operating Cost",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1067",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T16:06:00Z",
       "runningBalance": 612
     },
     {
@@ -744,10 +610,8 @@
       "type": "IN",
       "amount": 1020,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1068",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T16:07:00Z",
       "runningBalance": 1632
     },
     {
@@ -755,10 +619,8 @@
       "type": "IN",
       "amount": 2550,
       "category": "Sales Income",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1069",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T16:08:00Z",
       "runningBalance": 4182
     },
     {
@@ -766,10 +628,8 @@
       "type": "IN",
       "amount": 25000,
       "category": "Investment",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1070",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T16:09:00Z",
       "runningBalance": 29182
     },
     {
@@ -777,10 +637,8 @@
       "type": "IN",
       "amount": 1000,
       "category": "Other Add",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1071",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T17:10:00Z",
       "runningBalance": 30182
     },
     {
@@ -788,21 +646,17 @@
       "type": "IN",
       "amount": 26150,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1072",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T17:11:00Z",
       "runningBalance": 56332
     },
     {
       "id": "TXN-1073",
       "type": "OUT",
       "amount": 50000,
-      "category": "Payout / Withdrawal",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1073",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "category": "Payout",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T17:12:00Z",
       "runningBalance": 6332
     },
     {
@@ -810,10 +664,8 @@
       "type": "IN",
       "amount": 17300,
       "category": "Server Deposit",
-      "paymentMethod": "bKash",
-      "note": "Money IN",
-      "reference": "REF-1074",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-03T17:13:00Z",
       "runningBalance": 23632
     },
     {
@@ -821,20 +673,9 @@
       "type": "OUT",
       "amount": 40,
       "category": "Operating Cost",
-      "paymentMethod": "Bank Transfer",
-      "note": "Money OUT",
-      "reference": "REF-1075",
-      "timestamp": "2026-07-03T16:00:00.000Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-03T17:14:00Z",
       "runningBalance": 23592
-    },
-    {
-      "id": "TXN-101959",
-      "type": "IN",
-      "amount": 1,
-      "category": "Other Add",
-      "note": "৳যা জমা",
-      "timestamp": "2026-07-03T17:43:54.860Z",
-      "runningBalance": 23593
     }
   ]
 }
