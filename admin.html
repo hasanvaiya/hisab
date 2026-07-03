@@ -3,423 +3,1045 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
-<title>&#2319;&#2337;&#2478;&#2495;&#2472; &#2453;&#2472;&#2509;&#2463;&#2509;&#2480;&#2507;&#2482; &#2474;&#2509;&#2479;&#2494;&#2472;&#2503;&#2482;</title>
+<meta name="theme-color" content="#060b13">
+<title>&#2319;&#2337;&#2478;&#2495;&#2472; &#2474;&#2509;&#2479;&#2494;&#2472;&#2503;&#2482;</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
-<!-- PIN OVERLAY -->
+
+<!-- PIN SCREEN -->
 <div class="pinov" id="pin-ov">
   <div class="pincard">
-    <div class="pinico">&#128081;</div>
-    <div class="pintit">&#2319;&#2337;&#2478;&#2495;&#2472; &#2476;&#2509;&#2479;&#2494;&#2453;&#2448;&#2474;&#2494;&#2488;</div>
-    <div class="pinsub">&#2488;&#2495;&#2453;&#2495;&#2489;&#2495;&#2463;&#2495; PIN &#2478;&#2494;&#2468;&#2494;&#2472;</div>
-    <input type="password" inputmode="numeric" maxlength="4" class="pininp" id="pin-inp" placeholder="_ _ _ _">
-    <button class="sbtn bi2" onclick="checkPin()">&#2474;&#2509;&#2480;&#2476;&#2503;&#2486; &#2453;&#2480;&#2497;&#2472;</button>
+    <div class="pin-ring">&#128081;</div>
+    <div class="pin-tit">&#2319;&#2337;&#2478;&#2495;&#2472; &#2476;&#2509;&#2479;&#2494;&#2453;&#2448;&#2474;&#2494;&#2488;</div>
+    <div class="pin-sub">&#2486;&#2497;&#2471;&#2497;&#2478;&#2494;&#2468;&#2509;&#2480; &#2478;&#2494;&#2482;&#2495;&#2453; &#2470;&#2503;&#2454;&#2468;&#2503; &#2474;&#2494;&#2480;&#2476;&#2503;&#2472;<br>&#2486;&#2494;&#2474;&#2472;&#2494;&#2480; PIN &#2472;&#2494;&#2478;&#2489;&#2494;&#2480; &#2470;&#2495;&#2472;</div>
+    <input type="password" inputmode="numeric" maxlength="4" class="pininp" id="pin-inp" placeholder="&#8226; &#8226; &#8226; &#8226;" autofocus>
     <div class="pinerr" id="pin-err"></div>
+    <button class="sbtn sbtn-i" onclick="checkPin()">&#2474;&#2509;&#2480;&#2476;&#2503;&#2486; &#2453;&#2480;&#2497;&#2472; &#10132;</button>
   </div>
 </div>
-<div class="wrap" id="admin-wrap" style="display:none">
+
+<!-- ADMIN PANEL -->
+<div class="pg" id="admin-pg" style="display:none">
+
   <header class="topbar">
-    <div class="tl">
+    <div class="tb-left">
       <div class="av av-a">&#128081;</div>
-      <div class="ti">
-        <span class="ts">&#2319;&#2337;&#2478;&#2495;&#2472; &#2453;&#2472;&#2509;&#2463;&#2509;&#2480;&#2507;&#2482; &#2474;&#2509;&#2479;&#2494;&#2472;&#2503;&#2482;</span>
-        <span class="tn">&#2489;&#2494;&#2488;&#2494;&#2472; &#2477;&#2494;&#2439;&#2479;&#2492;&#2494; (Owner)</span>
+      <div class="tb-info">
+        <span class="tb-s">&#2319;&#2337;&#2478;&#2495;&#2472; &#2474;&#2509;&#2479;&#2494;&#2472;&#2503;&#2482;</span>
+        <span class="tb-n">&#2489;&#2494;&#2488;&#2494;&#2472; &#2477;&#2494;&#2439;&#2479;&#2492;&#2494; (Owner)</span>
       </div>
     </div>
-    <div class="tr">
-      <a href="index.html" class="ibtn" title="&#2453;&#2494;&#2488;&#2509;&#2463;&#2478;&#2494;&#2480;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    <div class="tb-right">
+      <a href="index.html" class="tb-btn" title="&#2453;&#2494;&#2488;&#2509;&#2463;&#2478;&#2494;&#2480; &#2477;&#2495;&#2441;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
     </div>
   </header>
+
   <section class="hero hero-a">
-    <div class="htop">
-      <span class="hlbl">&#2476;&#2480;&#2509;&#2468;&#2478;&#2494;&#2472; &#2478;&#2507;&#2463; &#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488;</span>
+    <div class="hero-top">
+      <span class="hero-lbl">&#2476;&#2480;&#2509;&#2468;&#2478;&#2494;&#2472; &#2478;&#2507;&#2463; &#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488;</span>
       <span class="lbadge">OWNER MODE</span>
     </div>
-    <div class="hbal">
-      <span class="htaka">&#2547;</span>
-      <span class="hamt" id="bal">23,592</span>
-      <span class="hcur">BDT</span>
+    <div class="hero-bal">
+      <span class="hero-sym">&#2547;</span>
+      <span class="hero-num" id="bal">23,592</span>
+      <span class="hero-cur">BDT</span>
     </div>
-    <div class="hstats">
-      <div class="si"><span class="slbl">&#2478;&#2507;&#2463; &#2460;&#2478;&#2494;</span><span class="svi" id="tin">&#2547;264,756</span></div>
-      <div class="sdiv"></div>
-      <div class="si"><span class="slbl">&#2478;&#2507;&#2463; &#2454;&#2480;&#2458;</span><span class="svo" id="tout">&#2547;241,164</span></div>
-      <div class="sdiv"></div>
-      <div class="si"><span class="slbl">&#2472;&#2503;&#2463; &#2398;&#2509;&#2482;&#2507;</span><span class="svn" id="nflow">+&#2547;23,592</span></div>
+    <div class="hero-stats">
+      <div class="hsi">
+        <span class="hsl">&#2478;&#2507;&#2463; &#2460;&#2478;&#2494;</span>
+        <span class="hsv hsv-in" id="tin">&#2547;264,756</span>
+      </div>
+      <div class="hsdiv"></div>
+      <div class="hsi">
+        <span class="hsl">&#2478;&#2507;&#2463; &#2454;&#2480;&#2458;</span>
+        <span class="hsv hsv-out" id="tout">&#2547;241,164</span>
+      </div>
+      <div class="hsdiv"></div>
+      <div class="hsi">
+        <span class="hsl">&#2472;&#2503;&#2463; &#2398;&#2509;&#2482;&#2507;</span>
+        <span class="hsv hsv-net" id="nfl">+&#2547;23,592</span>
+      </div>
     </div>
   </section>
-  <div class="ag">
-    <button class="abtn ain" id="btn-in">
-      <div class="aico aico-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-      <div class="atxt"><strong>+ &#2463;&#2453;&#2494; &#2460;&#2478;&#2494;</strong><span>Money IN</span></div>
+
+  <!-- MONEY IN/OUT BUTTONS -->
+  <div class="abtns">
+    <button class="abtn ain-btn" id="btn-in">
+      <div class="a-ico ain-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </div>
+      <div class="a-txt">
+        <strong>+ &#2463;&#2453;&#2494; &#2460;&#2478;&#2494;</strong>
+        <small>Money IN</small>
+      </div>
     </button>
-    <button class="abtn aout" id="btn-out">
-      <div class="aico aico-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-      <div class="atxt"><strong>- &#2463;&#2453;&#2494; &#2486;&#2480;&#2458;</strong><span>Money OUT</span></div>
+    <button class="abtn aout-btn" id="btn-out">
+      <div class="a-ico aout-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+      </div>
+      <div class="a-txt">
+        <strong>- &#2463;&#2453;&#2494; &#2486;&#2480;&#2458;</strong>
+        <small>Money OUT</small>
+      </div>
     </button>
   </div>
-  <main class="feed" id="printable-area">
-    <div class="fhd">
-      <span class="ftit">&#2489;&#2495;&#2488;&#2494;&#2476; &#2468;&#2494;&#2482;&#2495;&#2453;&#2494;</span>
+
+  <main class="feed-wrap" id="printable-area">
+    <div class="feed-hd">
+      <span class="feed-tit">&#2488;&#2478;&#2488;&#2509;&#2468; &#2489;&#2495;&#2488;&#2494;&#2476;</span>
       <div class="ftabs">
         <button class="ftab on" data-f="ALL">&#2488;&#2453;&#2482;</button>
         <button class="ftab" data-f="IN">&#2460;&#2478;&#2494;</button>
-        <button class="ftab" data-f="OUT">&#2486;&#2480;&#2458;</button>
+        <button class="ftab" data-f="OUT">&#2454;&#2480;&#2458;</button>
       </div>
     </div>
     <div class="cards" id="feed"><div class="tc" data-type="OUT" data-id="TXN-1075">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1075</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;40</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;23,592</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1075')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1075')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1075</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;40</div>
+    <div class="tc-bal">&#2547;23,592</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1075')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1075')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1074">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1074</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;17,300</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;23,632</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1074')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1074')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1074</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;17,300</div>
+    <div class="tc-bal">&#2547;23,632</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1074')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1074')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1073">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1073</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;50,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;6,332</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1073')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1073')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1073</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;50,000</div>
+    <div class="tc-bal">&#2547;6,332</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1073')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1073')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1072">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1072</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;26,150</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;56,332</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1072')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1072')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1072</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;26,150</div>
+    <div class="tc-bal">&#2547;56,332</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1072')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1072')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1071">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Other Add &bull; <span class="tcode">TXN-1071</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;30,182</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1071')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1071')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Other Add <span class="tc-code">&bull; TXN-1071</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,000</div>
+    <div class="tc-bal">&#2547;30,182</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1071')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1071')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1070">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Investment &bull; <span class="tcode">TXN-1070</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;25,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;29,182</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1070')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1070')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Investment <span class="tc-code">&bull; TXN-1070</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;25,000</div>
+    <div class="tc-bal">&#2547;29,182</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1070')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1070')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1069">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1069</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;2,550</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;4,182</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1069')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1069')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1069</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;2,550</div>
+    <div class="tc-bal">&#2547;4,182</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1069')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1069')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1068">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1068</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,020</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,632</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1068')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1068')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1068</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,020</div>
+    <div class="tc-bal">&#2547;1,632</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1068')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1068')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1067">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1067</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;500</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;612</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1067')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1067')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1067</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;500</div>
+    <div class="tc-bal">&#2547;612</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1067')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1067')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1066">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1066</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;3,320</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,112</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1066')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1066')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1066</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;3,320</div>
+    <div class="tc-bal">&#2547;1,112</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1066')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1066')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1065">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1065</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;20,300</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;4,432</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1065')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1065')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1065</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;20,300</div>
+    <div class="tc-bal">&#2547;4,432</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1065')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1065')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1064">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1064</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;5,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;24,732</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1064')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1064')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1064</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;5,000</div>
+    <div class="tc-bal">&#2547;24,732</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1064')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1064')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1063">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1063</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;2,550</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;19,732</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1063')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1063')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1063</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;2,550</div>
+    <div class="tc-bal">&#2547;19,732</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1063')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1063')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1062">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1062</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;3,030</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;22,282</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1062')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1062')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1062</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;3,030</div>
+    <div class="tc-bal">&#2547;22,282</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1062')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1062')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1061">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1061</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;750</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;19,252</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1061')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1061')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1061</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;750</div>
+    <div class="tc-bal">&#2547;19,252</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1061')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1061')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1060">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1060</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;459</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;18,502</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1060')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1060')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1060</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;459</div>
+    <div class="tc-bal">&#2547;18,502</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1060')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1060')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1059">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1059</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,020</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;18,961</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1059')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1059')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1059</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,020</div>
+    <div class="tc-bal">&#2547;18,961</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1059')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1059')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1058">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1058</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,030</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;17,941</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1058')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1058')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1058</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,030</div>
+    <div class="tc-bal">&#2547;17,941</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1058')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1058')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1057">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1057</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;4,200</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;16,911</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1057')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1057')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1057</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;4,200</div>
+    <div class="tc-bal">&#2547;16,911</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1057')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1057')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1056">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1056</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;3,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;21,111</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1056')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1056')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1056</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;3,000</div>
+    <div class="tc-bal">&#2547;21,111</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1056')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1056')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1055">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1055</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;2,040</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;18,111</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1055')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1055')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1055</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;2,040</div>
+    <div class="tc-bal">&#2547;18,111</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1055')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1055')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1054">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1054</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;2,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;16,071</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1054')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1054')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1054</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;2,000</div>
+    <div class="tc-bal">&#2547;16,071</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1054')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1054')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1053">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1053</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,020</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;14,071</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1053')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1053')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1053</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,020</div>
+    <div class="tc-bal">&#2547;14,071</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1053')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1053')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1052">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Client Payment &bull; <span class="tcode">TXN-1052</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;10,250</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;13,051</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1052')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1052')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Client Payment <span class="tc-code">&bull; TXN-1052</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;10,250</div>
+    <div class="tc-bal">&#2547;13,051</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1052')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1052')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1051">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1051</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,538</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;2,801</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1051')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1051')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1051</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,538</div>
+    <div class="tc-bal">&#2547;2,801</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1051')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1051')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1050">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1050</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;3,380</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,263</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1050')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1050')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1050</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;3,380</div>
+    <div class="tc-bal">&#2547;1,263</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1050')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1050')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1049">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1049</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;3,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;4,643</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1049')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1049')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1049</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;3,000</div>
+    <div class="tc-bal">&#2547;4,643</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1049')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1049')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1048">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1048</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;5,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,643</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1048')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1048')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1048</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;5,000</div>
+    <div class="tc-bal">&#2547;1,643</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1048')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1048')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1047">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1047</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;5,090</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;6,643</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1047')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1047')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1047</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;5,090</div>
+    <div class="tc-bal">&#2547;6,643</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1047')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1047')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1046">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1046</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;1,015</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,553</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1046')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1046')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1046</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;1,015</div>
+    <div class="tc-bal">&#2547;1,553</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1046')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1046')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1045">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1045</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;2,040</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;2,568</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1045')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1045')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1045</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;2,040</div>
+    <div class="tc-bal">&#2547;2,568</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1045')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1045')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1044">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1044</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;50</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;528</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1044')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1044')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1044</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;50</div>
+    <div class="tc-bal">&#2547;528</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1044')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1044')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1043">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1043</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;4,150</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;578</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1043')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1043')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1043</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;4,150</div>
+    <div class="tc-bal">&#2547;578</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1043')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1043')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1042">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1042</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;6,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;4,728</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1042')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1042')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1042</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;6,000</div>
+    <div class="tc-bal">&#2547;4,728</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1042')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1042')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1041">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Client Payment &bull; <span class="tcode">TXN-1041</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;10,200</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;10,728</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1041')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1041')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Client Payment <span class="tc-code">&bull; TXN-1041</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;10,200</div>
+    <div class="tc-bal">&#2547;10,728</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1041')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1041')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1040">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1040</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;26,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;528</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1040')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1040')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1040</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;26,000</div>
+    <div class="tc-bal">&#2547;528</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1040')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1040')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1039">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1039</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;16,750</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;26,528</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1039')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1039')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1039</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;16,750</div>
+    <div class="tc-bal">&#2547;26,528</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1039')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1039')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1038">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Hosting &bull; <span class="tcode">TXN-1038</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;6,550</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;9,778</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1038')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1038')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Hosting <span class="tc-code">&bull; TXN-1038</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;6,550</div>
+    <div class="tc-bal">&#2547;9,778</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1038')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1038')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1037">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1037</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;22,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;16,328</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1037')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1037')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1037</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;22,000</div>
+    <div class="tc-bal">&#2547;16,328</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1037')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1037')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1036">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1036</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;10,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;38,328</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1036')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1036')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1036</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;10,000</div>
+    <div class="tc-bal">&#2547;38,328</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1036')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1036')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1035">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1035</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;15,200</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;48,328</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1035')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1035')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1035</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;15,200</div>
+    <div class="tc-bal">&#2547;48,328</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1035')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1035')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1034">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1034</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;55</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;63,528</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1034')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1034')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1034</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;55</div>
+    <div class="tc-bal">&#2547;63,528</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1034')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1034')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1033">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1033</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,520</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;63,583</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1033')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1033')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1033</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,520</div>
+    <div class="tc-bal">&#2547;63,583</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1033')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1033')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1032">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1032</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;62,063</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1032')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1032')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1032</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,530</div>
+    <div class="tc-bal">&#2547;62,063</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1032')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1032')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1031">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Investment &bull; <span class="tcode">TXN-1031</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;25,500</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;60,533</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1031')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1031')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Investment <span class="tc-code">&bull; TXN-1031</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;25,500</div>
+    <div class="tc-bal">&#2547;60,533</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1031')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1031')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1030">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1030</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;35,033</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1030')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1030')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1030</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,530</div>
+    <div class="tc-bal">&#2547;35,033</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1030')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1030')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1029">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1029</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;33,503</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1029')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1029')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1029</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,530</div>
+    <div class="tc-bal">&#2547;33,503</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1029')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1029')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1028">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1028</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;31,973</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1028')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1028')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1028</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,530</div>
+    <div class="tc-bal">&#2547;31,973</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1028')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1028')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1027">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1027</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;30,443</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1027')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1027')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1027</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,530</div>
+    <div class="tc-bal">&#2547;30,443</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1027')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1027')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1026">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1026</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;28,913</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1026')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1026')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1026</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,530</div>
+    <div class="tc-bal">&#2547;28,913</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1026')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1026')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1025">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Other Add &bull; <span class="tcode">TXN-1025</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,500</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;27,383</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1025')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1025')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Other Add <span class="tc-code">&bull; TXN-1025</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,500</div>
+    <div class="tc-bal">&#2547;27,383</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1025')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1025')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1024">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1024</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;3,075</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;25,883</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1024')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1024')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1024</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;3,075</div>
+    <div class="tc-bal">&#2547;25,883</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1024')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1024')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1023">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Client Payment &bull; <span class="tcode">TXN-1023</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;16,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;22,808</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1023')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1023')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Client Payment <span class="tc-code">&bull; TXN-1023</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;16,000</div>
+    <div class="tc-bal">&#2547;22,808</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1023')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1023')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1022">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1022</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;6,808</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1022')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1022')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1022</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,530</div>
+    <div class="tc-bal">&#2547;6,808</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1022')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1022')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1021">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1021</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;2,040</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;5,278</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1021')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1021')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1021</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;2,040</div>
+    <div class="tc-bal">&#2547;5,278</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1021')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1021')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1020">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1020</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;3,238</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1020')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1020')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1020</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,530</div>
+    <div class="tc-bal">&#2547;3,238</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1020')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1020')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1019">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1019</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;3,340</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;1,708</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1019')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1019')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1019</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;3,340</div>
+    <div class="tc-bal">&#2547;1,708</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1019')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1019')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1018">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1018</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;1,550</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;5,048</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1018')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1018')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1018</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;1,550</div>
+    <div class="tc-bal">&#2547;5,048</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1018')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1018')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1017">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1017</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;18,600</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;6,598</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1017')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1017')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1017</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;18,600</div>
+    <div class="tc-bal">&#2547;6,598</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1017')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1017')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1016">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Investment &bull; <span class="tcode">TXN-1016</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;22,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;25,198</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1016')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1016')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Investment <span class="tc-code">&bull; TXN-1016</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;22,000</div>
+    <div class="tc-bal">&#2547;25,198</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1016')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1016')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1015">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1015</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;250</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;3,198</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1015')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1015')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1015</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;250</div>
+    <div class="tc-bal">&#2547;3,198</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1015')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1015')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1014">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1014</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;10,010</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;3,448</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1014')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1014')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1014</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;10,010</div>
+    <div class="tc-bal">&#2547;3,448</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1014')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1014')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1013">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1013</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;5,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;13,458</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1013')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1013')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1013</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;5,000</div>
+    <div class="tc-bal">&#2547;13,458</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1013')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1013')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1012">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1012</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;5,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;8,458</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1012')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1012')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1012</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;5,000</div>
+    <div class="tc-bal">&#2547;8,458</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1012')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1012')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1011">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Hosting &bull; <span class="tcode">TXN-1011</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;5,510</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;3,458</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1011')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1011')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Hosting <span class="tc-code">&bull; TXN-1011</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;5,510</div>
+    <div class="tc-bal">&#2547;3,458</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1011')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1011')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1010">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1010</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;8,252</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;8,968</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1010')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1010')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1010</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;8,252</div>
+    <div class="tc-bal">&#2547;8,968</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1010')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1010')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1009">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Payout &bull; <span class="tcode">TXN-1009</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;10,005</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;716</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1009')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1009')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1009</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;10,005</div>
+    <div class="tc-bal">&#2547;716</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1009')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1009')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1008">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1008</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;1,530</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;10,721</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1008')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1008')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1008</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;1,530</div>
+    <div class="tc-bal">&#2547;10,721</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1008')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1008')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1007">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Client Payment &bull; <span class="tcode">TXN-1007</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;2,040</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;9,191</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1007')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1007')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Client Payment <span class="tc-code">&bull; TXN-1007</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;2,040</div>
+    <div class="tc-bal">&#2547;9,191</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1007')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1007')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1006">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Operating Cost &bull; <span class="tcode">TXN-1006</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;30</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;7,151</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1006')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1006')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1006</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;30</div>
+    <div class="tc-bal">&#2547;7,151</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1006')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1006')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1005">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1005</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;5,000</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;7,181</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1005')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1005')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1005</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;5,000</div>
+    <div class="tc-bal">&#2547;7,181</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1005')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1005')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="OUT" data-id="TXN-1004">
-  <div class="tico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা খরচ (OUT)</div><div class="tsub">Server Expense &bull; <span class="tcode">TXN-1004</span></div></div>
-  <div class="trgt"><div class="tamt out">-&#2547;11,100</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;2,181</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1004')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1004')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা খরচ</div>
+    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1004</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt out">-&#2547;11,100</div>
+    <div class="tc-bal">&#2547;2,181</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1004')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1004')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1003">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Client Payment &bull; <span class="tcode">TXN-1003</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;2,550</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;13,281</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1003')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1003')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Client Payment <span class="tc-code">&bull; TXN-1003</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;2,550</div>
+    <div class="tc-bal">&#2547;13,281</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1003')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1003')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1002">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Sales Income &bull; <span class="tcode">TXN-1002</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;3,081</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;10,731</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1002')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1002')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1002</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;3,081</div>
+    <div class="tc-bal">&#2547;10,731</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1002')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1002')">&#128465;</button></div>
+  </div>
 </div><div class="tc" data-type="IN" data-id="TXN-1001">
-  <div class="tico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tdet"><div class="ttit">৳যা জমা (IN)</div><div class="tsub">Server Deposit &bull; <span class="tcode">TXN-1001</span></div></div>
-  <div class="trgt"><div class="tamt in">+&#2547;7,650</div><div class="tbal">&#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488; &#2547;7,650</div><div class="tacts"><button class="bedit" onclick="editTxn('TXN-1001')">&#9998; এডিট</button><button class="bdel" onclick="delTxn('TXN-1001')">&#128465; ডিলিট</button></div></div>
+  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+  <div class="tc-det">
+    <div class="tc-tit">৳যা জমা</div>
+    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1001</span></div>
+  </div>
+  <div class="tc-rgt">
+    <div class="tc-amt in">+&#2547;7,650</div>
+    <div class="tc-bal">&#2547;7,650</div>
+    <div class="tc-acts"><button class="e-btn" onclick="editTxn('TXN-1001')">&#9998;</button><button class="d-btn" onclick="delTxn('TXN-1001')">&#128465;</button></div>
+  </div>
 </div></div>
   </main>
-</div>
-<!-- IN MODAL -->
+
+</div><!-- /pg -->
+
+<!-- MONEY IN MODAL -->
 <div class="moverlay" id="m-in">
-  <div class="sheet"><div class="sh"></div>
-    <div class="shead"><span class="stit">+ &#2463;&#2453;&#2494; &#2460;&#2478;&#2494;</span><button class="scls" onclick="closeM('m-in')">&#215;</button></div>
+  <div class="sheet">
+    <div class="sheet-drag"></div>
+    <div class="sheet-hd">
+      <span class="sheet-tit">+ &#2463;&#2453;&#2494; &#2460;&#2478;&#2494; &#2453;&#2480;&#2497;&#2472;</span>
+      <button class="sheet-cls" onclick="closeM('m-in')">&#215;</button>
+    </div>
     <form id="form-in">
-      <div class="ff"><label class="fl">&#2474;&#2480;&#2495;&#2478;&#2494;&#2467; (&#2463;&#2453;&#2494;)</label><input type="number" class="finp" id="in-amt" placeholder="0" required min="1"></div>
-      <div class="ff"><label class="fl">&#2453;&#2509;&#2479;&#2494;&#2463;&#2494;&#2455;&#2480;&#2495;</label><select class="fsel" id="in-cat"><option>Sales Income</option><option>Server Deposit</option><option>Client Payment</option><option>Investment</option><option>Other Add</option></select></div>
-      <div class="ff"><label class="fl">&#2472;&#2507;&#2463;</label><input type="text" class="finp" id="in-note" placeholder="&#2439;&#2459;&#2509;&#2459;&#2494;&#2478;&#2468;&#2503; &#2482;&#2495;&#2454;&#2497;&#2472;"></div>
-      <button type="submit" class="sbtn bg2">+ &#2460;&#2478;&#2494; &#2488;&#2468;&#2509;&#2479;&#2494;&#2479;&#2492;&#2503;&#2472; &#2453;&#2480;&#2497;&#2472;</button>
+      <div class="ff">
+        <label class="fl">&#2474;&#2480;&#2495;&#2478;&#2494;&#2467; (&#2463;&#2453;&#2494;) *</label>
+        <input type="number" class="finp" id="in-amt" placeholder="0.00" required min="1" inputmode="numeric">
+      </div>
+      <div class="ff">
+        <label class="fl">&#2453;&#2509;&#2479;&#2494;&#2463;&#2494;&#2455;&#2480;&#2495;</label>
+        <select class="fsel" id="in-cat">
+          <option>Sales Income</option>
+          <option>Server Deposit</option>
+          <option>Client Payment</option>
+          <option>Investment</option>
+          <option>Other Add</option>
+        </select>
+      </div>
+      <div class="ff">
+        <label class="fl">&#2472;&#2507;&#2463; / &#2476;&#2495;&#2476;&#2480;&#2467;</label>
+        <input type="text" class="finp" id="in-note" placeholder="&#2488;&#2494;&#2476;&#2495;&#2458;&#2472;&#2494;&#2482;&#2497;&#2478;">
+      </div>
+      <button type="submit" class="sbtn sbtn-g">&#10003; &#2460;&#2478;&#2494; &#2472;&#2495;&#2577;&#2439;&#2468; &#2453;&#2480;&#2497;&#2472;</button>
     </form>
   </div>
 </div>
-<!-- OUT MODAL -->
+
+<!-- MONEY OUT MODAL -->
 <div class="moverlay" id="m-out">
-  <div class="sheet"><div class="sh"></div>
-    <div class="shead"><span class="stit">- &#2463;&#2453;&#2494; &#2486;&#2480;&#2458;</span><button class="scls" onclick="closeM('m-out')">&#215;</button></div>
+  <div class="sheet">
+    <div class="sheet-drag"></div>
+    <div class="sheet-hd">
+      <span class="sheet-tit">- &#2463;&#2453;&#2494; &#2486;&#2480;&#2458; &#2453;&#2480;&#2497;&#2472;</span>
+      <button class="sheet-cls" onclick="closeM('m-out')">&#215;</button>
+    </div>
     <form id="form-out">
-      <div class="ff"><label class="fl">&#2474;&#2480;&#2495;&#2478;&#2494;&#2467; (&#2463;&#2453;&#2494;)</label><input type="number" class="finp" id="out-amt" placeholder="0" required min="1"></div>
-      <div class="ff"><label class="fl">&#2453;&#2509;&#2479;&#2494;&#2463;&#2494;&#2455;&#2480;&#2495;</label><select class="fsel" id="out-cat"><option>Server Expense</option><option>Hosting / Domain</option><option>Payout</option><option>Operating Cost</option></select></div>
-      <div class="ff"><label class="fl">&#2472;&#2507;&#2463;</label><input type="text" class="finp" id="out-note" placeholder="&#2439;&#2459;&#2509;&#2459;&#2494;&#2478;&#2468;&#2503; &#2482;&#2495;&#2454;&#2497;&#2472;"></div>
-      <button type="submit" class="sbtn br2">- &#2486;&#2480;&#2458; &#2488;&#2468;&#2509;&#2479;&#2494;&#2479;&#2492;&#2503;&#2472; &#2453;&#2480;&#2497;&#2472;</button>
+      <div class="ff">
+        <label class="fl">&#2474;&#2480;&#2495;&#2478;&#2494;&#2467; (&#2463;&#2453;&#2494;) *</label>
+        <input type="number" class="finp" id="out-amt" placeholder="0.00" required min="1" inputmode="numeric">
+      </div>
+      <div class="ff">
+        <label class="fl">&#2453;&#2509;&#2479;&#2494;&#2463;&#2494;&#2455;&#2480;&#2495;</label>
+        <select class="fsel" id="out-cat">
+          <option>Server Expense</option>
+          <option>Hosting / Domain</option>
+          <option>Payout</option>
+          <option>Operating Cost</option>
+        </select>
+      </div>
+      <div class="ff">
+        <label class="fl">&#2472;&#2507;&#2463; / &#2476;&#2495;&#2476;&#2480;&#2467;</label>
+        <input type="text" class="finp" id="out-note" placeholder="&#2488;&#2494;&#2476;&#2495;&#2458;&#2472;&#2494;&#2482;&#2497;&#2478;">
+      </div>
+      <button type="submit" class="sbtn sbtn-r">&#10003; &#2486;&#2480;&#2458; &#2472;&#2495;&#2577;&#2439;&#2468; &#2453;&#2480;&#2497;&#2472;</button>
     </form>
   </div>
 </div>
+
 <!-- EDIT MODAL -->
 <div class="moverlay" id="m-edit">
-  <div class="sheet"><div class="sh"></div>
-    <div class="shead"><span class="stit">&#2489;&#2495;&#2488;&#2494;&#2476; &#2319;&#2337;&#2495;&#2463;</span><button class="scls" onclick="closeM('m-edit')">&#215;</button></div>
+  <div class="sheet">
+    <div class="sheet-drag"></div>
+    <div class="sheet-hd">
+      <span class="sheet-tit">&#2489;&#2495;&#2488;&#2494;&#2476; &#2319;&#2337;&#2495;&#2463; &#2453;&#2480;&#2497;&#2472;</span>
+      <button class="sheet-cls" onclick="closeM('m-edit')">&#215;</button>
+    </div>
     <form id="form-edit">
       <input type="hidden" id="edit-id">
-      <div class="ff"><label class="fl">&#2463;&#2494;&#2439;&#2474;</label><select class="fsel" id="edit-type"><option value="IN">IN (&#2460;&#2478;&#2494;)</option><option value="OUT">OUT (&#2486;&#2480;&#2458;)</option></select></div>
-      <div class="ff"><label class="fl">&#2474;&#2480;&#2495;&#2478;&#2494;&#2467;</label><input type="number" class="finp" id="edit-amt" required min="1"></div>
-      <div class="ff"><label class="fl">&#2472;&#2507;&#2463;</label><input type="text" class="finp" id="edit-note"></div>
-      <button type="submit" class="sbtn bi2">&#2316;&#2474;&#2337;&#2503;&#2463; &#2453;&#2480;&#2497;&#2472;</button>
+      <div class="ff">
+        <label class="fl">&#2463;&#2494;&#2439;&#2474;</label>
+        <select class="fsel" id="edit-type">
+          <option value="IN">IN (&#2460;&#2478;&#2494;)</option>
+          <option value="OUT">OUT (&#2486;&#2480;&#2458;)</option>
+        </select>
+      </div>
+      <div class="ff">
+        <label class="fl">&#2474;&#2480;&#2495;&#2478;&#2494;&#2467; (&#2463;&#2453;&#2494;)</label>
+        <input type="number" class="finp" id="edit-amt" required min="1" inputmode="numeric">
+      </div>
+      <div class="ff">
+        <label class="fl">&#2472;&#2507;&#2463;</label>
+        <input type="text" class="finp" id="edit-note">
+      </div>
+      <button type="submit" class="sbtn sbtn-i">&#10003; &#2316;&#2474;&#2337;&#2503;&#2463; &#2488;&#2474;&#2472;&#2509;&#2472; &#2453;&#2480;&#2497;&#2472;</button>
     </form>
   </div>
 </div>
+
+<!-- BOTTOM NAV -->
 <nav class="bnav">
-  <a href="index.html" class="nitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>&#2453;&#2494;&#2488;&#2509;&#2463;&#2478;&#2494;&#2480;</span></a>
-  <button class="nadd" id="nav-add"><div class="ncircle">+</div></button>
-  <button class="nitem" id="nav-pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg><span>PDF</span></button>
+  <a href="index.html" class="nitem">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+    <span>&#2453;&#2494;&#2488;&#2509;&#2463;&#2478;&#2494;&#2480;</span>
+  </a>
+  <button class="nadd" id="nav-add">
+    <div class="nadd-c">+</div>
+  </button>
+  <button class="nitem" id="nav-pdf">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+    <span>PDF</span>
+  </button>
 </nav>
+
 <div class="tw" id="tw"></div>
 <script src="app.js"></script>
-</body></html>
+</body>
+</html>
