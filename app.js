@@ -1,15 +1,14 @@
 /* ==========================================================================
    Live Server Hisab & Cashflow Tracker - Core JavaScript Controller
    Features:
-   - 75 Pre-loaded Seed Transactions (Guaranteed Auto-Seeding)
+   - 75 Pre-loaded Seed Transactions
+   - html2pdf.js PDF Statement Downloader & Print Adapter
+   - Mobile Responsive Card Renderer & Event Bindings
    - Real-time Multi-Tab Sync via BroadcastChannel API
    - Web Audio API Sound Synthesizer
-   - Mobile-First & Desktop Dual Rendering
    - Admin PIN Authentication (Default PIN: 1234)
-   - Statement CSV Exporter
    ========================================================================== */
 
-// 1. Web Audio Synthesizer
 const AudioFX = {
     ctx: null,
     init() {
@@ -55,7 +54,6 @@ const AudioFX = {
     }
 };
 
-// 2. Initial Preloaded 75 Transactions List
 const INITIAL_TRANSACTIONS = [
     { type: 'IN', amount: 7650, category: 'Server Deposit', method: 'bKash', note: 'Money IN', reference: 'TXN-101' },
     { type: 'IN', amount: 3081, category: 'Sales Income', method: 'bKash', note: 'Money IN', reference: 'TXN-102' },
@@ -134,7 +132,6 @@ const INITIAL_TRANSACTIONS = [
     { type: 'OUT', amount: 40, category: 'Operating Cost', method: 'Cash', note: 'Money OUT', reference: 'OUT-175' }
 ];
 
-// 3. Application State Store
 class AppState {
     constructor() {
         this.pin = '1234';
@@ -147,7 +144,7 @@ class AppState {
     }
 
     init() {
-        const savedData = localStorage.getItem('hisab_app_state_v2');
+        const savedData = localStorage.getItem('hisab_app_state_v3');
         if (savedData) {
             try {
                 const parsed = JSON.parse(savedData);
@@ -170,7 +167,7 @@ class AppState {
                 if (event.data && event.data.type === 'STATE_UPDATED') {
                     this.reloadFromStorage();
                     UIController.renderAll();
-                    UIController.showToast('লাইভ সিঙ্ক: সার্ভার ডাটা আপডেট হয়েছে!', 'success');
+                    UIController.showToast('লাইভ সিঙ্ক: ডেটা আপডেট হয়েছে!', 'success');
                 }
             };
         }
@@ -194,12 +191,12 @@ class AppState {
                 runningBalance: 0
             };
         });
-        this.logActivity('৭৫টি প্রিলোডেড লেনদেন সফলভাবে লোড হয়েছে');
+        this.logActivity('৭৫টি প্রিলোডেড লেনদেন লোড হয়েছে');
         this.saveState();
     }
 
     reloadFromStorage() {
-        const savedData = localStorage.getItem('hisab_app_state_v2');
+        const savedData = localStorage.getItem('hisab_app_state_v3');
         if (savedData) {
             const parsed = JSON.parse(savedData);
             this.pin = parsed.pin || '1234';
@@ -218,7 +215,7 @@ class AppState {
             transactions: this.transactions,
             activityLogs: this.activityLogs
         };
-        localStorage.setItem('hisab_app_state_v2', JSON.stringify(data));
+        localStorage.setItem('hisab_app_state_v3', JSON.stringify(data));
         if (this.broadcastChannel) {
             this.broadcastChannel.postMessage({ type: 'STATE_UPDATED' });
         }
@@ -269,7 +266,7 @@ class AppState {
         const idx = this.transactions.findIndex(t => t.id === id);
         if (idx !== -1) {
             const deleted = this.transactions.splice(idx, 1)[0];
-            this.logActivity(`ডিলিট করা হয়েছে: ${deleted.id} (৳${deleted.amount})`);
+            this.logActivity(`ডিলিট করা হয়েছে: ${deleted.id}`);
             this.saveState();
             return true;
         }
@@ -360,7 +357,7 @@ const UIController = {
                     document.getElementById('pin-input').value = '';
                     this.openModal('admin-panel-modal');
                     this.renderAll();
-                    UIController.showToast('এডমিন অ্যাকসেস আনলক হয়েছে!', 'success');
+                    UIController.showToast('এডমিন প্যানেল আনলক হয়েছে!', 'success');
                 } else {
                     document.getElementById('pin-error-msg').style.display = 'block';
                 }
@@ -393,7 +390,7 @@ const UIController = {
                 this.renderAll();
                 this.closeModal('admin-panel-modal');
                 formIn.reset();
-                UIController.showToast(`৳${parseFloat(amount).toLocaleString()} টাকা সফলভাবে জমা হয়েছে!`, 'success');
+                UIController.showToast(`৳${parseFloat(amount).toLocaleString()} টাকা জমা করা হয়েছে!`, 'success');
             });
         }
 
@@ -411,7 +408,7 @@ const UIController = {
                 this.renderAll();
                 this.closeModal('admin-panel-modal');
                 formOut.reset();
-                UIController.showToast(`৳${parseFloat(amount).toLocaleString()} টাকা সফলভাবে আউট হয়েছে!`, 'danger');
+                UIController.showToast(`৳${parseFloat(amount).toLocaleString()} টাকা আউট করা হয়েছে!`, 'danger');
             });
         }
 
@@ -426,12 +423,12 @@ const UIController = {
                     amount: amount,
                     category: 'External Push API',
                     paymentMethod: 'External API',
-                    note: 'Simulated Push Call from cURL / Script',
-                    reference: 'EXT-PUSH-' + Math.floor(1000 + Math.random() * 9000)
+                    note: 'External Push Simulator Call',
+                    reference: 'EXT-' + Math.floor(1000 + Math.random() * 9000)
                 });
 
                 this.renderAll();
-                UIController.showToast(`External Push Call Success: ৳${parseFloat(amount).toLocaleString()} (${type})`, 'success');
+                UIController.showToast(`Simulated Call: ৳${parseFloat(amount).toLocaleString()}`, 'success');
             });
         }
 
@@ -473,11 +470,11 @@ const UIController = {
         const resetBtn = document.getElementById('btn-reset-data');
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
-                if (confirm('আপনি কি নিশ্চিত যে সকল ডাটা মুছে প্রিলোডেড ৭৫টি লেনদেনে ফিরিয়ে আনবেন?')) {
+                if (confirm('আপনি কি নিশ্চিত যে সকল ডাটা রিসেট করে ৭৫টি লেনদেনে ফিরিয়ে আনবেন?')) {
                     state.loadInitialSeed();
                     this.renderAll();
                     this.closeModal('admin-panel-modal');
-                    UIController.showToast('৭৫টি লেনদেনে রিসেট করা হয়েছে!', 'danger');
+                    UIController.showToast('ডাটা রিসেট সম্পন্ন হয়েছে!', 'danger');
                 }
             });
         }
@@ -494,15 +491,16 @@ const UIController = {
                 state.updateTransaction(id, { type, amount, note });
                 this.renderAll();
                 this.closeModal('edit-txn-modal');
-                UIController.showToast('লেনদেন এডিট করা হয়েছে!', 'success');
+                UIController.showToast('এডিট সেভ করা হয়েছে!', 'success');
             });
         }
 
-        const csvBtn = document.getElementById('export-csv-btn');
-        if (csvBtn) csvBtn.addEventListener('click', () => this.exportCSV());
+        // PDF Exporters
+        const pdfBtn = document.getElementById('export-pdf-btn');
+        if (pdfBtn) pdfBtn.addEventListener('click', () => this.exportPDF());
 
-        const mobileCsv = document.getElementById('mobile-btn-csv');
-        if (mobileCsv) mobileCsv.addEventListener('click', () => this.exportCSV());
+        const mobilePdf = document.getElementById('mobile-btn-pdf');
+        if (mobilePdf) mobilePdf.addEventListener('click', () => this.exportPDF());
     },
 
     handleAdminBtnClick() {
@@ -646,21 +644,26 @@ const UIController = {
                 const card = document.createElement('div');
                 card.className = 'mobile-txn-card';
                 card.innerHTML = `
-                    <div class="mobile-card-left">
-                        <div class="mobile-card-title">${t.note || t.category}</div>
-                        <div class="mobile-card-date">${formattedDate} • ${t.paymentMethod}</div>
-                        <div>${typeBadge}</div>
+                    <div class="mobile-card-top">
+                        <span class="mobile-txn-id">${t.id}</span>
+                        ${typeBadge}
                     </div>
-                    <div class="mobile-card-right">
-                        <div class="mobile-card-amount ${amtClass}">${amtSign}৳${t.amount.toLocaleString()}</div>
-                        <div class="mobile-card-balance">ব্যালেন্স: ৳${t.runningBalance.toLocaleString()}</div>
-                        ${state.isAdminUnlocked ? `
-                            <div style="margin-top:4px;">
-                                <button class="btn-icon-sm" onclick="UIController.openEditModal('${t.id}')">✏️</button>
-                                <button class="btn-icon-sm delete" onclick="UIController.handleDelete('${t.id}')">🗑️</button>
-                            </div>
-                        ` : ''}
+                    <div class="mobile-card-body">
+                        <div class="mobile-card-info">
+                            <span class="mobile-title">${t.note || t.category}</span>
+                            <span class="mobile-sub">${t.category} • ${t.paymentMethod}</span>
+                        </div>
+                        <div class="mobile-card-amounts">
+                            <span class="mobile-amt ${amtClass}">${amtSign}৳${t.amount.toLocaleString()}</span>
+                            <span class="mobile-bal">ব্যালেন্স: ৳${t.runningBalance.toLocaleString()}</span>
+                        </div>
                     </div>
+                    ${state.isAdminUnlocked ? `
+                        <div style="text-align:right;margin-top:4px;">
+                            <button class="btn-icon-sm" onclick="UIController.openEditModal('${t.id}')">✏️ Edit</button>
+                            <button class="btn-icon-sm delete" onclick="UIController.handleDelete('${t.id}')">🗑️ Delete</button>
+                        </div>
+                    ` : ''}
                 `;
                 mobileContainer.appendChild(card);
             }
@@ -721,23 +724,27 @@ const UIController = {
         }, 3000);
     },
 
-    exportCSV() {
-        let csvContent = "data:text/csv;charset=utf-8,ID,Date,Type,Category,Payment Method,Note,Reference,Amount,Running Balance\n";
-        state.transactions.forEach(t => {
-            const dateStr = new Date(t.timestamp).toLocaleString();
-            const row = `"${t.id}","${dateStr}","${t.type}","${t.category}","${t.paymentMethod}","${t.note || ''}","${t.reference || ''}",${t.amount},${t.runningBalance}`;
-            csvContent += row + "\n";
+    exportPDF() {
+        UIController.showToast('PDF স্টেটমেন্ট প্রসেসিং হচ্ছে...', 'success');
+        const element = document.getElementById('printable-area');
+        if (!element || typeof html2pdf === 'undefined') {
+            window.print();
+            return;
+        }
+
+        const opt = {
+            margin:       [8, 8, 8, 8],
+            filename:     `hisab_ledger_statement_${new Date().toISOString().slice(0,10)}.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true, logging: false },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(element).save().then(() => {
+            UIController.showToast('PDF ডাউনলোড সফল হয়েছে!', 'success');
+        }).catch(() => {
+            window.print();
         });
-
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", `hisab_ledger_statement_${new Date().toISOString().slice(0,10)}.csv`);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        UIController.showToast('CSV স্টেটমেন্ট ডাউনলোড শুরু হয়েছে!', 'success');
     }
 };
 
