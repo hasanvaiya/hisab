@@ -1,953 +1,1260 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#060b13">
-<title>&#2482;&#2494;&#2439;&#2477; &#2489;&#2495;&#2488;&#2494;&#2476; &#2454;&#2494;&#2468;&#2494;</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#070b14">
+  <title>লাইভ হিসাব খাতা - হাসান</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
-<div class="pg" id="printable-area">
+  <div class="app-container" id="printable-area">
+    
+    <!-- TOP HEADER -->
+    <header class="app-header">
+      <div class="user-profile">
+        <div class="avatar">
+          H
+          <span class="avatar-online-dot"></span>
+        </div>
+        <div class="user-details">
+          <span class="app-title">লাইভ হিসাব খাতা</span>
+          <span class="user-name">হাসান <span class="live-pulse"></span></span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="pdf-header-btn" title="PDF রিপোর্ট">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+        </button>
+      </div>
+    </header>
 
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <div class="tb-left">
-      <div class="av av-c">H</div>
-      <div class="tb-info">
-        <span class="tb-s">&#2482;&#2494;&#2439;&#2477; &#2489;&#2495;&#2488;&#2494;&#2476; &#2454;&#2494;&#2468;&#2494;</span>
-        <span class="tb-n">&#2489;&#2494;&#2488;&#2494;&#2472; &#2477;&#2494;&#2439;&#2479;&#2492;&#2494; <span class="ldot"></span></span>
+    <!-- HERO BALANCE CARD -->
+    <section class="hero-card">
+      <div class="hero-top-row">
+        <span class="hero-label">বর্তমান মোট ব্যালেন্স</span>
+        <span class="hero-pill">🟢 LIVE SYNC</span>
       </div>
-    </div>
-    <div class="tb-right">
-      <button class="tb-btn" id="pdf-top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
-      </button>
-    </div>
-  </header>
+      <div class="hero-balance-row">
+        <span class="hero-currency-symbol">৳</span>
+        <span class="hero-balance-amount" id="balance-display">23,592</span>
+        <span class="hero-currency-tag">BDT</span>
+      </div>
+      <div class="hero-stats-grid">
+        <div class="stat-box">
+          <span class="stat-title">মোট জমা</span>
+          <span class="stat-value in" id="total-in-display">৳264,756</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+          <span class="stat-title">মোট খরচ</span>
+          <span class="stat-value out" id="total-out-display">৳241,164</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+          <span class="stat-title">নেট ফ্লো</span>
+          <span class="stat-value net" id="net-flow-display">+৳23,592</span>
+        </div>
+      </div>
+    </section>
 
-  <!-- HERO BALANCE CARD -->
-  <section class="hero hero-c">
-    <div class="hero-top">
-      <span class="hero-lbl">&#2476;&#2480;&#2509;&#2468;&#2478;&#2494;&#2472; &#2478;&#2507;&#2463; &#2476;&#2509;&#2479;&#2494;&#2482;&#2503;&#2472;&#2509;&#2488;</span>
-      <span class="lbadge">&#11044; LIVE</span>
-    </div>
-    <div class="hero-bal">
-      <span class="hero-sym">&#2547;</span>
-      <span class="hero-num" id="bal">23,592</span>
-      <span class="hero-cur">BDT</span>
-    </div>
-    <div class="hero-stats">
-      <div class="hsi">
-        <span class="hsl">&#2478;&#2507;&#2463; &#2460;&#2478;&#2494;</span>
-        <span class="hsv hsv-in" id="tin">&#2547;264,756</span>
+    <!-- QUICK ACTIONS -->
+    <section class="quick-actions-grid">
+      <div class="quick-action-item" id="btn-pdf-quick">
+        <div class="quick-icon-wrapper pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+        </div>
+        <span class="quick-label">PDF রিপোর্ট</span>
       </div>
-      <div class="hsdiv"></div>
-      <div class="hsi">
-        <span class="hsl">&#2478;&#2507;&#2463; &#2454;&#2480;&#2458;</span>
-        <span class="hsv hsv-out" id="tout">&#2547;241,164</span>
+      <div class="quick-action-item" id="btn-search-toggle">
+        <div class="quick-icon-wrapper search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <span class="quick-label">সার্চ করুন</span>
       </div>
-      <div class="hsdiv"></div>
-      <div class="hsi">
-        <span class="hsl">&#2472;&#2503;&#2463; &#2398;&#2509;&#2482;&#2507;</span>
-        <span class="hsv hsv-net" id="nfl">+&#2547;23,592</span>
+      <div class="quick-action-item" id="btn-count-quick">
+        <div class="quick-icon-wrapper count">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <span class="quick-label" id="txn-count-label">75 টি হিসাব</span>
       </div>
-    </div>
-  </section>
+      <a href="admin.html" class="quick-action-item">
+        <div class="quick-icon-wrapper admin">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        </div>
+        <span class="quick-label">অ্যাডমিন</span>
+      </a>
+    </section>
 
-  <!-- QUICK ACTIONS -->
-  <section class="qa">
-    <div class="qa-item" id="q-pdf">
-      <div class="qa-ico qi-pdf">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+    <!-- TRANSACTION FEED -->
+    <main class="feed-container">
+      <div class="feed-header">
+        <span class="feed-title">সর্বশেষ লেনদেন</span>
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="ALL">সকল</button>
+          <button class="filter-tab" data-filter="IN">জমা</button>
+          <button class="filter-tab" data-filter="OUT">খরচ</button>
+        </div>
       </div>
-      <span class="qa-lbl">PDF &#2480;&#2495;&#2474;&#2507;&#2480;&#2509;&#2463;</span>
+      <div class="search-box" id="search-box">
+        <input type="text" class="search-input" id="search-input" placeholder="আইডি, নোট বা পরিমাণ টাইপ করুন...">
+      </div>
+      <div class="cards-wrapper" id="cards-feed">
+        <div class="txn-card" data-type="OUT" data-id="TXN-1075">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Operating Cost • <span class="txn-id">TXN-1075</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳40</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳23,592</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1074">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1074</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳17,300</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳23,632</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1073">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Payout • <span class="txn-id">TXN-1073</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳50,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳6,332</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1072">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1072</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳26,150</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳56,332</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1071">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Other Add • <span class="txn-id">TXN-1071</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳30,182</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1070">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Investment • <span class="txn-id">TXN-1070</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳25,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳29,182</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1069">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1069</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳2,550</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳4,182</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1068">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1068</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,020</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳1,632</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1067">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Operating Cost • <span class="txn-id">TXN-1067</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳500</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳612</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1066">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Server Expense • <span class="txn-id">TXN-1066</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳3,320</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳1,112</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1065">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Payout • <span class="txn-id">TXN-1065</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳20,300</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳4,432</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1064">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1064</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳5,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳24,732</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1063">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Server Expense • <span class="txn-id">TXN-1063</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳2,550</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳19,732</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1062">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1062</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳3,030</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳22,282</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1061">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1061</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳750</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳19,252</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1060">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Operating Cost • <span class="txn-id">TXN-1060</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳459</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳18,502</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1059">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1059</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,020</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳18,961</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1058">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1058</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,030</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳17,941</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1057">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Server Expense • <span class="txn-id">TXN-1057</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳4,200</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳16,911</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1056">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1056</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳3,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳21,111</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1055">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1055</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳2,040</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳18,111</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1054">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1054</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳2,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳16,071</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1053">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1053</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,020</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳14,071</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1052">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Client Payment • <span class="txn-id">TXN-1052</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳10,250</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳13,051</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1051">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1051</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,538</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳2,801</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1050">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Server Expense • <span class="txn-id">TXN-1050</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳3,380</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳1,263</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1049">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1049</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳3,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳4,643</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1048">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Payout • <span class="txn-id">TXN-1048</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳5,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳1,643</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1047">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1047</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳5,090</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳6,643</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1046">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Server Expense • <span class="txn-id">TXN-1046</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳1,015</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳1,553</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1045">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1045</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳2,040</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳2,568</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1044">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Operating Cost • <span class="txn-id">TXN-1044</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳50</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳528</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1043">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Operating Cost • <span class="txn-id">TXN-1043</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳4,150</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳578</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1042">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Server Expense • <span class="txn-id">TXN-1042</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳6,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳4,728</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1041">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Client Payment • <span class="txn-id">TXN-1041</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳10,200</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳10,728</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1040">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Payout • <span class="txn-id">TXN-1040</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳26,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳528</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1039">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1039</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳16,750</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳26,528</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1038">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Hosting • <span class="txn-id">TXN-1038</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳6,550</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳9,778</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1037">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Payout • <span class="txn-id">TXN-1037</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳22,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳16,328</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1036">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Server Expense • <span class="txn-id">TXN-1036</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳10,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳38,328</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1035">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Payout • <span class="txn-id">TXN-1035</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳15,200</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳48,328</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1034">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Operating Cost • <span class="txn-id">TXN-1034</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳55</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳63,528</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1033">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1033</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,520</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳63,583</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1032">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1032</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,530</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳62,063</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1031">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Investment • <span class="txn-id">TXN-1031</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳25,500</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳60,533</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1030">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1030</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,530</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳35,033</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1029">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1029</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,530</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳33,503</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1028">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1028</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,530</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳31,973</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1027">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1027</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,530</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳30,443</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1026">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1026</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,530</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳28,913</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1025">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Other Add • <span class="txn-id">TXN-1025</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,500</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳27,383</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1024">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1024</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳3,075</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳25,883</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1023">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Client Payment • <span class="txn-id">TXN-1023</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳16,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳22,808</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1022">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1022</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,530</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳6,808</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1021">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1021</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳2,040</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳5,278</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1020">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1020</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,530</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳3,238</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1019">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Operating Cost • <span class="txn-id">TXN-1019</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳3,340</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳1,708</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1018">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Server Expense • <span class="txn-id">TXN-1018</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳1,550</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳5,048</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1017">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Payout • <span class="txn-id">TXN-1017</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳18,600</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳6,598</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1016">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Investment • <span class="txn-id">TXN-1016</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳22,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳25,198</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1015">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Operating Cost • <span class="txn-id">TXN-1015</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳250</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳3,198</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1014">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Server Expense • <span class="txn-id">TXN-1014</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳10,010</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳3,448</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1013">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1013</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳5,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳13,458</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1012">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1012</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳5,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳8,458</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1011">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Hosting • <span class="txn-id">TXN-1011</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳5,510</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳3,458</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1010">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1010</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳8,252</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳8,968</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1009">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Payout • <span class="txn-id">TXN-1009</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳10,005</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳716</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1008">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1008</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳1,530</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳10,721</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1007">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Client Payment • <span class="txn-id">TXN-1007</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳2,040</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳9,191</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1006">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Operating Cost • <span class="txn-id">TXN-1006</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳30</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳7,151</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1005">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Server Deposit • <span class="txn-id">TXN-1005</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳5,000</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳7,181</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="OUT" data-id="TXN-1004">
+      <div class="txn-left">
+        <div class="txn-type-icon out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা খরচ</div>
+          <div class="txn-meta">Server Expense • <span class="txn-id">TXN-1004</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount out">-৳11,100</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳2,181</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1003">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Client Payment • <span class="txn-id">TXN-1003</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳2,550</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳13,281</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1002">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1002</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳3,081</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳10,731</div>
+        
+      </div>
+    </div><div class="txn-card" data-type="IN" data-id="TXN-1001">
+      <div class="txn-left">
+        <div class="txn-type-icon in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <div class="txn-info">
+          <div class="txn-note">টাকা জমা</div>
+          <div class="txn-meta">Sales Income • <span class="txn-id">TXN-1001</span></div>
+        </div>
+      </div>
+      <div class="txn-right">
+        <div class="txn-amount in">+৳7,650</div>
+        <div class="txn-running-balance">ব্যালেন্স ৳7,650</div>
+        
+      </div>
     </div>
-    <div class="qa-item" id="q-srch">
-      <div class="qa-ico qi-srch">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       </div>
-      <span class="qa-lbl">&#2488;&#2494;&#2480;&#2509;&#2458;</span>
-    </div>
-    <div class="qa-item" id="q-cnt">
-      <div class="qa-ico qi-cnt">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-      </div>
-      <span class="qa-lbl" id="cnt">75 &#2463;&#2495;</span>
-    </div>
-    <a href="admin.html" class="qa-item">
-      <div class="qa-ico qi-adm">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-      </div>
-      <span class="qa-lbl">&#2319;&#2337;&#2478;&#2495;&#2472;</span>
+    </main>
+
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+      <span>হোম</span>
     </a>
-  </section>
+    <button class="nav-item" id="btn-pdf-nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+      <span>PDF</span>
+    </button>
+    <a href="admin.html" class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+      <span>অ্যাডমিন</span>
+    </a>
+  </nav>
 
-  <!-- TRANSACTION FEED -->
-  <main class="feed-wrap">
-    <div class="feed-hd">
-      <span class="feed-tit">&#2488;&#2480;&#2509;&#2476;&#2577; &#2482;&#2503;&#2472;&#2470;&#2503;&#2472;</span>
-      <div class="ftabs">
-        <button class="ftab on" data-f="ALL">&#2488;&#2453;&#2482;</button>
-        <button class="ftab" data-f="IN">&#2460;&#2478;&#2494;</button>
-        <button class="ftab" data-f="OUT">&#2454;&#2480;&#2458;</button>
-      </div>
-    </div>
-    <div class="sbox" id="sbox">
-      <input type="search" id="sinp" placeholder="&#2438;&#2439;&#2465;&#2495;, &#2472;&#2507;&#2463; &#2476;&#2494; &#2474;&#2480;&#2495;&#2478;&#2494;&#2467; &#2488;&#2494;&#2480;&#2509;&#2458; &#2453;&#2480;&#2497;&#2472;...">
-    </div>
-    <div class="cards" id="feed"><div class="tc" data-type="OUT" data-id="TXN-1075">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1075</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;40</div>
-    <div class="tc-bal">&#2547;23,592</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1074">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1074</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;17,300</div>
-    <div class="tc-bal">&#2547;23,632</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1073">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1073</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;50,000</div>
-    <div class="tc-bal">&#2547;6,332</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1072">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1072</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;26,150</div>
-    <div class="tc-bal">&#2547;56,332</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1071">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Other Add <span class="tc-code">&bull; TXN-1071</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,000</div>
-    <div class="tc-bal">&#2547;30,182</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1070">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Investment <span class="tc-code">&bull; TXN-1070</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;25,000</div>
-    <div class="tc-bal">&#2547;29,182</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1069">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1069</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;2,550</div>
-    <div class="tc-bal">&#2547;4,182</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1068">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1068</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,020</div>
-    <div class="tc-bal">&#2547;1,632</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1067">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1067</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;500</div>
-    <div class="tc-bal">&#2547;612</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1066">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1066</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;3,320</div>
-    <div class="tc-bal">&#2547;1,112</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1065">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1065</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;20,300</div>
-    <div class="tc-bal">&#2547;4,432</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1064">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1064</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;5,000</div>
-    <div class="tc-bal">&#2547;24,732</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1063">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1063</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;2,550</div>
-    <div class="tc-bal">&#2547;19,732</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1062">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1062</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;3,030</div>
-    <div class="tc-bal">&#2547;22,282</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1061">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1061</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;750</div>
-    <div class="tc-bal">&#2547;19,252</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1060">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1060</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;459</div>
-    <div class="tc-bal">&#2547;18,502</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1059">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1059</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,020</div>
-    <div class="tc-bal">&#2547;18,961</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1058">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1058</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,030</div>
-    <div class="tc-bal">&#2547;17,941</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1057">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1057</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;4,200</div>
-    <div class="tc-bal">&#2547;16,911</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1056">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1056</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;3,000</div>
-    <div class="tc-bal">&#2547;21,111</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1055">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1055</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;2,040</div>
-    <div class="tc-bal">&#2547;18,111</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1054">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1054</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;2,000</div>
-    <div class="tc-bal">&#2547;16,071</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1053">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1053</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,020</div>
-    <div class="tc-bal">&#2547;14,071</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1052">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Client Payment <span class="tc-code">&bull; TXN-1052</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;10,250</div>
-    <div class="tc-bal">&#2547;13,051</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1051">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1051</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,538</div>
-    <div class="tc-bal">&#2547;2,801</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1050">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1050</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;3,380</div>
-    <div class="tc-bal">&#2547;1,263</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1049">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1049</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;3,000</div>
-    <div class="tc-bal">&#2547;4,643</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1048">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1048</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;5,000</div>
-    <div class="tc-bal">&#2547;1,643</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1047">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1047</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;5,090</div>
-    <div class="tc-bal">&#2547;6,643</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1046">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1046</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;1,015</div>
-    <div class="tc-bal">&#2547;1,553</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1045">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1045</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;2,040</div>
-    <div class="tc-bal">&#2547;2,568</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1044">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1044</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;50</div>
-    <div class="tc-bal">&#2547;528</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1043">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1043</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;4,150</div>
-    <div class="tc-bal">&#2547;578</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1042">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1042</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;6,000</div>
-    <div class="tc-bal">&#2547;4,728</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1041">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Client Payment <span class="tc-code">&bull; TXN-1041</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;10,200</div>
-    <div class="tc-bal">&#2547;10,728</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1040">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1040</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;26,000</div>
-    <div class="tc-bal">&#2547;528</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1039">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1039</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;16,750</div>
-    <div class="tc-bal">&#2547;26,528</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1038">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Hosting <span class="tc-code">&bull; TXN-1038</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;6,550</div>
-    <div class="tc-bal">&#2547;9,778</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1037">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1037</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;22,000</div>
-    <div class="tc-bal">&#2547;16,328</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1036">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1036</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;10,000</div>
-    <div class="tc-bal">&#2547;38,328</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1035">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1035</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;15,200</div>
-    <div class="tc-bal">&#2547;48,328</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1034">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1034</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;55</div>
-    <div class="tc-bal">&#2547;63,528</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1033">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1033</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,520</div>
-    <div class="tc-bal">&#2547;63,583</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1032">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1032</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,530</div>
-    <div class="tc-bal">&#2547;62,063</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1031">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Investment <span class="tc-code">&bull; TXN-1031</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;25,500</div>
-    <div class="tc-bal">&#2547;60,533</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1030">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1030</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,530</div>
-    <div class="tc-bal">&#2547;35,033</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1029">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1029</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,530</div>
-    <div class="tc-bal">&#2547;33,503</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1028">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1028</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,530</div>
-    <div class="tc-bal">&#2547;31,973</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1027">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1027</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,530</div>
-    <div class="tc-bal">&#2547;30,443</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1026">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1026</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,530</div>
-    <div class="tc-bal">&#2547;28,913</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1025">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Other Add <span class="tc-code">&bull; TXN-1025</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,500</div>
-    <div class="tc-bal">&#2547;27,383</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1024">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1024</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;3,075</div>
-    <div class="tc-bal">&#2547;25,883</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1023">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Client Payment <span class="tc-code">&bull; TXN-1023</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;16,000</div>
-    <div class="tc-bal">&#2547;22,808</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1022">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1022</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,530</div>
-    <div class="tc-bal">&#2547;6,808</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1021">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1021</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;2,040</div>
-    <div class="tc-bal">&#2547;5,278</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1020">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1020</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,530</div>
-    <div class="tc-bal">&#2547;3,238</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1019">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1019</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;3,340</div>
-    <div class="tc-bal">&#2547;1,708</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1018">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1018</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;1,550</div>
-    <div class="tc-bal">&#2547;5,048</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1017">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1017</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;18,600</div>
-    <div class="tc-bal">&#2547;6,598</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1016">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Investment <span class="tc-code">&bull; TXN-1016</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;22,000</div>
-    <div class="tc-bal">&#2547;25,198</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1015">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1015</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;250</div>
-    <div class="tc-bal">&#2547;3,198</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1014">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1014</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;10,010</div>
-    <div class="tc-bal">&#2547;3,448</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1013">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1013</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;5,000</div>
-    <div class="tc-bal">&#2547;13,458</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1012">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1012</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;5,000</div>
-    <div class="tc-bal">&#2547;8,458</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1011">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Hosting <span class="tc-code">&bull; TXN-1011</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;5,510</div>
-    <div class="tc-bal">&#2547;3,458</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1010">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1010</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;8,252</div>
-    <div class="tc-bal">&#2547;8,968</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1009">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Payout <span class="tc-code">&bull; TXN-1009</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;10,005</div>
-    <div class="tc-bal">&#2547;716</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1008">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1008</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;1,530</div>
-    <div class="tc-bal">&#2547;10,721</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1007">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Client Payment <span class="tc-code">&bull; TXN-1007</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;2,040</div>
-    <div class="tc-bal">&#2547;9,191</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1006">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Operating Cost <span class="tc-code">&bull; TXN-1006</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;30</div>
-    <div class="tc-bal">&#2547;7,151</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1005">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Server Deposit <span class="tc-code">&bull; TXN-1005</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;5,000</div>
-    <div class="tc-bal">&#2547;7,181</div>
-    
-  </div>
-</div><div class="tc" data-type="OUT" data-id="TXN-1004">
-  <div class="tc-ico out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা খরচ</div>
-    <div class="tc-sub">Server Expense <span class="tc-code">&bull; TXN-1004</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt out">-&#2547;11,100</div>
-    <div class="tc-bal">&#2547;2,181</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1003">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Client Payment <span class="tc-code">&bull; TXN-1003</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;2,550</div>
-    <div class="tc-bal">&#2547;13,281</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1002">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1002</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;3,081</div>
-    <div class="tc-bal">&#2547;10,731</div>
-    
-  </div>
-</div><div class="tc" data-type="IN" data-id="TXN-1001">
-  <div class="tc-ico in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-  <div class="tc-det">
-    <div class="tc-tit">৳যা জমা</div>
-    <div class="tc-sub">Sales Income <span class="tc-code">&bull; TXN-1001</span></div>
-  </div>
-  <div class="tc-rgt">
-    <div class="tc-amt in">+&#2547;7,650</div>
-    <div class="tc-bal">&#2547;7,650</div>
-    
-  </div>
-</div></div>
-  </main>
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
 
-</div><!-- /pg -->
-
-<!-- BOTTOM NAV -->
-<nav class="bnav">
-  <a href="index.html" class="nitem on">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-    <span>&#2489;&#2507;&#2478;</span>
-  </a>
-  <button class="nitem" id="nav-pdf">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
-    <span>PDF</span>
-  </button>
-  <a href="admin.html" class="nitem">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-    <span>&#2319;&#2337;&#2478;&#2495;&#2472;</span>
-  </a>
-</nav>
-
-<div class="tw" id="tw"></div>
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
