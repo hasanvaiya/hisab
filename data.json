@@ -682,7 +682,7 @@
       "type": "IN",
       "amount": 1,
       "category": "Sales Income",
-      "note": "টাকা জমা",
+      "note": "add",
       "timestamp": "2026-07-03T17:47:49.181Z",
       "runningBalance": 23593
     }
