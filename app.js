@@ -161,6 +161,10 @@ class AppState {
             this.loadInitialSeed();
         }
 
+        if (window.location.pathname.includes('admin.html')) {
+            this.isAdminUnlocked = true;
+        }
+
         if ('BroadcastChannel' in window) {
             this.broadcastChannel = new BroadcastChannel('hisab_ledger_channel');
             this.broadcastChannel.onmessage = (event) => {
@@ -333,6 +337,9 @@ const UIController = {
         const adminBtn = document.getElementById('admin-toggle-btn');
         if (adminBtn) adminBtn.addEventListener('click', () => this.handleAdminBtnClick());
 
+        const mobileAdmin = document.getElementById('mobile-btn-admin');
+        if (mobileAdmin) mobileAdmin.addEventListener('click', () => this.handleAdminBtnClick());
+
         const closePin = document.getElementById('close-pin-modal-btn');
         if (closePin) closePin.addEventListener('click', () => this.closeModal('admin-pin-modal'));
 
@@ -495,7 +502,6 @@ const UIController = {
             });
         }
 
-        // PDF Exporters
         const pdfBtn = document.getElementById('export-pdf-btn');
         if (pdfBtn) pdfBtn.addEventListener('click', () => this.exportPDF());
 
