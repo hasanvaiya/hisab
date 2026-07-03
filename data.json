@@ -1,6 +1,6 @@
 {
-  "initialBalance": 0,
   "pin": "1234",
+  "initialBalance": 0,
   "transactions": [
     {
       "id": "TXN-1001",
@@ -11,7 +11,7 @@
       "note": "Money IN",
       "reference": "REF-1001",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 7650
     },
     {
       "id": "TXN-1002",
@@ -22,7 +22,7 @@
       "note": "Money IN",
       "reference": "REF-1002",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 10731
     },
     {
       "id": "TXN-1003",
@@ -33,7 +33,7 @@
       "note": "Money IN",
       "reference": "REF-1003",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 13281
     },
     {
       "id": "TXN-1004",
@@ -44,7 +44,7 @@
       "note": "Money OUT",
       "reference": "REF-1004",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 2181
     },
     {
       "id": "TXN-1005",
@@ -55,7 +55,7 @@
       "note": "Money IN",
       "reference": "REF-1005",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 7181
     },
     {
       "id": "TXN-1006",
@@ -66,7 +66,7 @@
       "note": "Money OUT",
       "reference": "REF-1006",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 7151
     },
     {
       "id": "TXN-1007",
@@ -77,7 +77,7 @@
       "note": "Money IN",
       "reference": "REF-1007",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 9191
     },
     {
       "id": "TXN-1008",
@@ -88,7 +88,7 @@
       "note": "Money IN",
       "reference": "REF-1008",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 10721
     },
     {
       "id": "TXN-1009",
@@ -99,7 +99,7 @@
       "note": "Money OUT",
       "reference": "REF-1009",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 716
     },
     {
       "id": "TXN-1010",
@@ -110,7 +110,7 @@
       "note": "Money IN",
       "reference": "REF-1010",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 8968
     },
     {
       "id": "TXN-1011",
@@ -121,7 +121,7 @@
       "note": "Money OUT",
       "reference": "REF-1011",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 3458
     },
     {
       "id": "TXN-1012",
@@ -132,7 +132,7 @@
       "note": "Money IN",
       "reference": "REF-1012",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 8458
     },
     {
       "id": "TXN-1013",
@@ -143,7 +143,7 @@
       "note": "Money IN",
       "reference": "REF-1013",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 13458
     },
     {
       "id": "TXN-1014",
@@ -154,7 +154,7 @@
       "note": "Money OUT",
       "reference": "REF-1014",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 3448
     },
     {
       "id": "TXN-1015",
@@ -165,7 +165,7 @@
       "note": "Money OUT",
       "reference": "REF-1015",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 3198
     },
     {
       "id": "TXN-1016",
@@ -176,7 +176,7 @@
       "note": "Money IN",
       "reference": "REF-1016",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 25198
     },
     {
       "id": "TXN-1017",
@@ -187,7 +187,7 @@
       "note": "Money OUT",
       "reference": "REF-1017",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 6598
     },
     {
       "id": "TXN-1018",
@@ -198,7 +198,7 @@
       "note": "Money OUT",
       "reference": "REF-1018",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 5048
     },
     {
       "id": "TXN-1019",
@@ -209,7 +209,7 @@
       "note": "Money OUT",
       "reference": "REF-1019",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 1708
     },
     {
       "id": "TXN-1020",
@@ -220,7 +220,7 @@
       "note": "Money IN",
       "reference": "REF-1020",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 3238
     },
     {
       "id": "TXN-1021",
@@ -231,7 +231,7 @@
       "note": "Money IN",
       "reference": "REF-1021",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 5278
     },
     {
       "id": "TXN-1022",
@@ -242,7 +242,7 @@
       "note": "Money IN",
       "reference": "REF-1022",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 6808
     },
     {
       "id": "TXN-1023",
@@ -253,7 +253,7 @@
       "note": "Money IN",
       "reference": "REF-1023",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 22808
     },
     {
       "id": "TXN-1024",
@@ -264,7 +264,7 @@
       "note": "Money IN",
       "reference": "REF-1024",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 25883
     },
     {
       "id": "TXN-1025",
@@ -275,7 +275,7 @@
       "note": "Money IN",
       "reference": "REF-1025",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 27383
     },
     {
       "id": "TXN-1026",
@@ -286,7 +286,7 @@
       "note": "Money IN",
       "reference": "REF-1026",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 28913
     },
     {
       "id": "TXN-1027",
@@ -297,7 +297,7 @@
       "note": "Money IN",
       "reference": "REF-1027",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 30443
     },
     {
       "id": "TXN-1028",
@@ -308,7 +308,7 @@
       "note": "Money IN",
       "reference": "REF-1028",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 31973
     },
     {
       "id": "TXN-1029",
@@ -319,7 +319,7 @@
       "note": "Money IN",
       "reference": "REF-1029",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 33503
     },
     {
       "id": "TXN-1030",
@@ -330,7 +330,7 @@
       "note": "Money IN",
       "reference": "REF-1030",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 35033
     },
     {
       "id": "TXN-1031",
@@ -341,7 +341,7 @@
       "note": "Money IN",
       "reference": "REF-1031",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 60533
     },
     {
       "id": "TXN-1032",
@@ -352,7 +352,7 @@
       "note": "Money IN",
       "reference": "REF-1032",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 62063
     },
     {
       "id": "TXN-1033",
@@ -363,7 +363,7 @@
       "note": "Money IN",
       "reference": "REF-1033",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 63583
     },
     {
       "id": "TXN-1034",
@@ -374,7 +374,7 @@
       "note": "Money OUT",
       "reference": "REF-1034",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 63528
     },
     {
       "id": "TXN-1035",
@@ -385,7 +385,7 @@
       "note": "Money OUT",
       "reference": "REF-1035",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 48328
     },
     {
       "id": "TXN-1036",
@@ -396,7 +396,7 @@
       "note": "Money OUT",
       "reference": "REF-1036",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 38328
     },
     {
       "id": "TXN-1037",
@@ -407,7 +407,7 @@
       "note": "Money OUT",
       "reference": "REF-1037",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 16328
     },
     {
       "id": "TXN-1038",
@@ -418,7 +418,7 @@
       "note": "Money OUT",
       "reference": "REF-1038",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 9778
     },
     {
       "id": "TXN-1039",
@@ -429,7 +429,7 @@
       "note": "Money IN",
       "reference": "REF-1039",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 26528
     },
     {
       "id": "TXN-1040",
@@ -440,7 +440,7 @@
       "note": "Money OUT",
       "reference": "REF-1040",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 528
     },
     {
       "id": "TXN-1041",
@@ -451,7 +451,7 @@
       "note": "Money IN",
       "reference": "REF-1041",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 10728
     },
     {
       "id": "TXN-1042",
@@ -462,7 +462,7 @@
       "note": "Money OUT",
       "reference": "REF-1042",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 4728
     },
     {
       "id": "TXN-1043",
@@ -473,7 +473,7 @@
       "note": "Money OUT",
       "reference": "REF-1043",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 578
     },
     {
       "id": "TXN-1044",
@@ -484,7 +484,7 @@
       "note": "Money OUT",
       "reference": "REF-1044",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 528
     },
     {
       "id": "TXN-1045",
@@ -495,7 +495,7 @@
       "note": "Money IN",
       "reference": "REF-1045",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 2568
     },
     {
       "id": "TXN-1046",
@@ -506,7 +506,7 @@
       "note": "Money OUT",
       "reference": "REF-1046",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 1553
     },
     {
       "id": "TXN-1047",
@@ -517,7 +517,7 @@
       "note": "Money IN",
       "reference": "REF-1047",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 6643
     },
     {
       "id": "TXN-1048",
@@ -528,7 +528,7 @@
       "note": "Money OUT",
       "reference": "REF-1048",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 1643
     },
     {
       "id": "TXN-1049",
@@ -539,7 +539,7 @@
       "note": "Money IN",
       "reference": "REF-1049",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 4643
     },
     {
       "id": "TXN-1050",
@@ -550,7 +550,7 @@
       "note": "Money OUT",
       "reference": "REF-1050",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 1263
     },
     {
       "id": "TXN-1051",
@@ -561,7 +561,7 @@
       "note": "Money IN",
       "reference": "REF-1051",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 2801
     },
     {
       "id": "TXN-1052",
@@ -572,7 +572,7 @@
       "note": "Money IN",
       "reference": "REF-1052",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 13051
     },
     {
       "id": "TXN-1053",
@@ -583,7 +583,7 @@
       "note": "Money IN",
       "reference": "REF-1053",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 14071
     },
     {
       "id": "TXN-1054",
@@ -594,7 +594,7 @@
       "note": "Money IN",
       "reference": "REF-1054",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 16071
     },
     {
       "id": "TXN-1055",
@@ -605,7 +605,7 @@
       "note": "Money IN",
       "reference": "REF-1055",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 18111
     },
     {
       "id": "TXN-1056",
@@ -616,7 +616,7 @@
       "note": "Money IN",
       "reference": "REF-1056",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 21111
     },
     {
       "id": "TXN-1057",
@@ -627,7 +627,7 @@
       "note": "Money OUT",
       "reference": "REF-1057",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 16911
     },
     {
       "id": "TXN-1058",
@@ -638,7 +638,7 @@
       "note": "Money IN",
       "reference": "REF-1058",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 17941
     },
     {
       "id": "TXN-1059",
@@ -649,7 +649,7 @@
       "note": "Money IN",
       "reference": "REF-1059",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 18961
     },
     {
       "id": "TXN-1060",
@@ -660,7 +660,7 @@
       "note": "Money OUT",
       "reference": "REF-1060",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 18502
     },
     {
       "id": "TXN-1061",
@@ -671,7 +671,7 @@
       "note": "Money IN",
       "reference": "REF-1061",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 19252
     },
     {
       "id": "TXN-1062",
@@ -682,7 +682,7 @@
       "note": "Money IN",
       "reference": "REF-1062",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 22282
     },
     {
       "id": "TXN-1063",
@@ -693,7 +693,7 @@
       "note": "Money OUT",
       "reference": "REF-1063",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 19732
     },
     {
       "id": "TXN-1064",
@@ -704,7 +704,7 @@
       "note": "Money IN",
       "reference": "REF-1064",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 24732
     },
     {
       "id": "TXN-1065",
@@ -715,7 +715,7 @@
       "note": "Money OUT",
       "reference": "REF-1065",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 4432
     },
     {
       "id": "TXN-1066",
@@ -726,7 +726,7 @@
       "note": "Money OUT",
       "reference": "REF-1066",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 1112
     },
     {
       "id": "TXN-1067",
@@ -737,7 +737,7 @@
       "note": "Money OUT",
       "reference": "REF-1067",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 612
     },
     {
       "id": "TXN-1068",
@@ -748,7 +748,7 @@
       "note": "Money IN",
       "reference": "REF-1068",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 1632
     },
     {
       "id": "TXN-1069",
@@ -759,7 +759,7 @@
       "note": "Money IN",
       "reference": "REF-1069",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 4182
     },
     {
       "id": "TXN-1070",
@@ -770,7 +770,7 @@
       "note": "Money IN",
       "reference": "REF-1070",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 29182
     },
     {
       "id": "TXN-1071",
@@ -781,7 +781,7 @@
       "note": "Money IN",
       "reference": "REF-1071",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 30182
     },
     {
       "id": "TXN-1072",
@@ -792,7 +792,7 @@
       "note": "Money IN",
       "reference": "REF-1072",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 56332
     },
     {
       "id": "TXN-1073",
@@ -803,7 +803,7 @@
       "note": "Money OUT",
       "reference": "REF-1073",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 6332
     },
     {
       "id": "TXN-1074",
@@ -814,7 +814,7 @@
       "note": "Money IN",
       "reference": "REF-1074",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 23632
     },
     {
       "id": "TXN-1075",
@@ -825,7 +825,16 @@
       "note": "Money OUT",
       "reference": "REF-1075",
       "timestamp": "2026-07-03T16:00:00.000Z",
-      "runningBalance": 0
+      "runningBalance": 23592
+    },
+    {
+      "id": "TXN-270171",
+      "type": "IN",
+      "amount": 1,
+      "category": "Other Add",
+      "note": "Money IN",
+      "timestamp": "2026-07-03T17:32:01.875Z",
+      "runningBalance": 23593
     }
   ]
 }
