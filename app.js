@@ -1,11 +1,5 @@
 /* ==========================================================================
-   Live Server Hisab & Cashflow Tracker - Global Sync JavaScript Controller
-   Features:
-   - Global Cloud Sync via GitHub API (data.json)
-   - Real-time updates visible across the entire world
-   - 75 Pre-loaded Seed Transactions
-   - html2pdf.js PDF Statement Downloader
-   - Admin PIN Authentication (Default PIN: 1234)
+   Live Server Hisab & Cashflow Tracker - Mobile Native App Controller
    ========================================================================== */
 
 const GH_TOKEN = ["ghp_", "RAgSxvBs9fao3HVyp0c9kMRB878oJI0EKStP"].join("");
@@ -140,8 +134,8 @@ class AppState {
         this.pin = '1234';
         this.initialBalance = 0;
         this.transactions = [];
-        this.activityLogs = [];
         this.isAdminUnlocked = false;
+        this.activeFilter = 'ALL';
         this.init();
     }
 
@@ -171,7 +165,7 @@ class AppState {
                 UIController.showToast('গ্লোবাল সার্ভার ডেটা লোড হয়েছে!', 'success');
             }
         } catch(e) {
-            console.log("Using preloaded static data", e);
+            console.log("Using static data", e);
         }
     }
 
@@ -184,14 +178,13 @@ class AppState {
                 type: t.type,
                 amount: parseFloat(t.amount),
                 category: t.category,
-                paymentMethod: t.method,
-                note: t.note,
-                reference: t.reference,
+                paymentMethod: t.method || 'bKash',
+                note: t.note || (t.type === 'IN' ? 'Money IN' : 'Money OUT'),
+                reference: t.reference || 'REF-' + (1001 + idx),
                 timestamp: timeObj.toISOString(),
                 runningBalance: 0
             };
         });
-        this.logActivity('৭৫টি প্রিলোডেড লেনদেন লোড হয়েছে');
         this.saveState();
     }
 
@@ -215,7 +208,7 @@ class AppState {
             transactions: this.transactions
         };
 
-        localStorage.setItem('hisab_app_state_v4', JSON.stringify(dataPayload));
+        localStorage.setItem('hisab_app_state_v5', JSON.stringify(dataPayload));
 
         if (this.isAdminUnlocked && GH_TOKEN) {
             this.pushToGitHubCloud(dataPayload);
@@ -254,8 +247,6 @@ class AppState {
 
             if (putRes.ok) {
                 UIController.showToast('বিশ্বের সকল কাস্টমারের জন্য লাইভ আপডেট সম্পন্ন! 🌍', 'success');
-            } else {
-                console.error("GitHub Push Error", await putRes.text());
             }
         } catch(e) {
             console.error("Cloud push failed", e);
@@ -268,15 +259,14 @@ class AppState {
             type: txnData.type,
             amount: parseFloat(txnData.amount),
             category: txnData.category || (txnData.type === 'IN' ? 'Server Deposit' : 'Server Expense'),
-            paymentMethod: txnData.paymentMethod || 'bKash',
+            paymentMethod: 'bKash',
             note: txnData.note || (txnData.type === 'IN' ? 'Money IN' : 'Money OUT'),
-            reference: txnData.reference || 'REF-' + Math.floor(1000 + Math.random() * 9000),
+            reference: 'REF-' + Math.floor(1000 + Math.random() * 9000),
             timestamp: new Date().toISOString(),
             runningBalance: 0
         };
 
         this.transactions.push(newTxn);
-        this.logActivity(`${txnData.type === 'IN' ? 'টাকা জমা' : 'টাকা আউট'}: ৳${newTxn.amount.toLocaleString()} (${newTxn.note})`);
         this.saveState();
 
         if (txnData.type === 'IN') {
@@ -294,8 +284,7 @@ class AppState {
     deleteTransaction(id) {
         const idx = this.transactions.findIndex(t => t.id === id);
         if (idx !== -1) {
-            const deleted = this.transactions.splice(idx, 1)[0];
-            this.logActivity(`ডিলিট করা হয়েছে: ${deleted.id}`);
+            this.transactions.splice(idx, 1);
             this.saveState();
             return true;
         }
@@ -308,39 +297,22 @@ class AppState {
             txn.type = updatedFields.type;
             txn.amount = parseFloat(updatedFields.amount);
             txn.note = updatedFields.note;
-            this.logActivity(`এডিট করা হয়েছে: ${id}`);
             this.saveState();
             return true;
         }
         return false;
     }
 
-    logActivity(msg) {
-        const timeStr = new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        this.activityLogs.unshift({ time: timeStr, text: msg });
-        if (this.activityLogs.length > 30) this.activityLogs.pop();
-    }
-
     getTotals() {
         let totalIn = 0;
         let totalOut = 0;
-        let inCount = 0;
-        let outCount = 0;
-
         this.transactions.forEach(t => {
-            if (t.type === 'IN') {
-                totalIn += t.amount;
-                inCount++;
-            } else if (t.type === 'OUT') {
-                totalOut += t.amount;
-                outCount++;
-            }
+            if (t.type === 'IN') totalIn += t.amount;
+            else if (t.type === 'OUT') totalOut += t.amount;
         });
-
         const currentBalance = (parseFloat(this.initialBalance) || 0) + totalIn - totalOut;
         const netFlow = totalIn - totalOut;
-
-        return { totalIn, totalOut, inCount, outCount, currentBalance, netFlow };
+        return { totalIn, totalOut, currentBalance, netFlow };
     }
 }
 
@@ -355,17 +327,49 @@ const UIController = {
         const searchInput = document.getElementById('search-input');
         if (searchInput) searchInput.addEventListener('input', () => this.renderTransactions());
 
-        const typeFilter = document.getElementById('type-filter');
-        if (typeFilter) typeFilter.addEventListener('change', () => this.renderTransactions());
+        const searchQuickBtn = document.getElementById('btn-quick-search');
+        if (searchQuickBtn) {
+            searchQuickBtn.addEventListener('click', () => {
+                const wrapper = document.getElementById('search-box-wrapper');
+                if (wrapper) {
+                    wrapper.style.display = wrapper.style.display === 'none' ? 'block' : 'none';
+                    if (searchInput) searchInput.focus();
+                }
+            });
+        }
 
-        const adminBtn = document.getElementById('admin-toggle-btn');
-        if (adminBtn) adminBtn.addEventListener('click', () => this.handleAdminBtnClick());
+        const pills = document.querySelectorAll('.pill-btn');
+        pills.forEach(btn => {
+            btn.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                state.activeFilter = btn.getAttribute('data-filter');
+                this.renderTransactions();
+            });
+        });
 
-        const mobileAdmin = document.getElementById('mobile-btn-admin');
-        if (mobileAdmin) mobileAdmin.addEventListener('click', () => this.handleAdminBtnClick());
+        const triggerIn = document.getElementById('btn-trigger-money-in');
+        if (triggerIn) {
+            triggerIn.addEventListener('click', () => {
+                this.openModal('admin-panel-modal');
+                this.switchTab('tab-add-in');
+            });
+        }
 
-        const closePin = document.getElementById('close-pin-modal-btn');
-        if (closePin) closePin.addEventListener('click', () => this.closeModal('admin-pin-modal'));
+        const triggerOut = document.getElementById('btn-trigger-money-out');
+        if (triggerOut) {
+            triggerOut.addEventListener('click', () => {
+                this.openModal('admin-panel-modal');
+                this.switchTab('tab-add-out');
+            });
+        }
+
+        const navAdd = document.getElementById('mobile-btn-add');
+        if (navAdd) {
+            navAdd.addEventListener('click', () => {
+                this.openModal('admin-panel-modal');
+            });
+        }
 
         const closeAdmin = document.getElementById('close-admin-modal-btn');
         if (closeAdmin) closeAdmin.addEventListener('click', () => this.closeModal('admin-panel-modal'));
@@ -376,52 +380,19 @@ const UIController = {
         const cancelEdit = document.getElementById('cancel-edit-btn');
         if (cancelEdit) cancelEdit.addEventListener('click', () => this.closeModal('edit-txn-modal'));
 
-        const pinForm = document.getElementById('admin-pin-form');
-        if (pinForm) {
-            pinForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const pinVal = document.getElementById('pin-input').value.trim();
-                if (pinVal === state.pin) {
-                    state.isAdminUnlocked = true;
-                    document.getElementById('pin-error-msg').style.display = 'none';
-                    this.closeModal('admin-pin-modal');
-                    document.getElementById('pin-input').value = '';
-                    this.openModal('admin-panel-modal');
-                    this.renderAll();
-                    UIController.showToast('এডমিন প্যানেল আনলক হয়েছে!', 'success');
-                } else {
-                    document.getElementById('pin-error-msg').style.display = 'block';
-                }
-            });
-        }
-
-        const tabBtns = document.querySelectorAll('.admin-tabs .tab-btn');
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const targetTab = btn.getAttribute('data-tab');
-                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-                const paneEl = document.getElementById(targetTab);
-                if (paneEl) paneEl.classList.add('active');
-            });
-        });
-
         const formIn = document.getElementById('form-money-in');
         if (formIn) {
             formIn.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const amount = document.getElementById('in-amount').value;
                 const category = document.getElementById('in-category').value;
-                const method = document.getElementById('in-method').value;
                 const note = document.getElementById('in-note').value;
-                const ref = document.getElementById('in-ref').value;
 
-                state.addTransaction({ type: 'IN', amount, category, paymentMethod: method, note, reference: ref });
+                state.addTransaction({ type: 'IN', amount, category, note });
                 this.renderAll();
                 this.closeModal('admin-panel-modal');
                 formIn.reset();
-                UIController.showToast(`৳${parseFloat(amount).toLocaleString()} টাকা জমা করা হয়েছে!`, 'success');
+                UIController.showToast(`৳${parseFloat(amount).toLocaleString()} টাকা জমা হয়েছে!`, 'success');
             });
         }
 
@@ -431,82 +402,13 @@ const UIController = {
                 e.preventDefault();
                 const amount = document.getElementById('out-amount').value;
                 const category = document.getElementById('out-category').value;
-                const method = document.getElementById('out-method').value;
                 const note = document.getElementById('out-note').value;
-                const ref = document.getElementById('out-ref').value;
 
-                state.addTransaction({ type: 'OUT', amount, category, paymentMethod: method, note, reference: ref });
+                state.addTransaction({ type: 'OUT', amount, category, note });
                 this.renderAll();
                 this.closeModal('admin-panel-modal');
                 formOut.reset();
-                UIController.showToast(`৳${parseFloat(amount).toLocaleString()} টাকা আউট করা হয়েছে!`, 'danger');
-            });
-        }
-
-        const simBtn = document.getElementById('btn-run-sim-push');
-        if (simBtn) {
-            simBtn.addEventListener('click', () => {
-                const amount = document.getElementById('sim-amount').value || 5000;
-                const type = document.getElementById('sim-type').value || 'IN';
-
-                state.addTransaction({
-                    type: type,
-                    amount: amount,
-                    category: 'External Push API',
-                    paymentMethod: 'External API',
-                    note: 'External Push Simulator Call',
-                    reference: 'EXT-' + Math.floor(1000 + Math.random() * 9000)
-                });
-
-                this.renderAll();
-                UIController.showToast(`Simulated Call: ৳${parseFloat(amount).toLocaleString()}`, 'success');
-            });
-        }
-
-        const copyBtn = document.getElementById('copy-curl-btn');
-        if (copyBtn) {
-            copyBtn.addEventListener('click', () => {
-                const text = document.getElementById('curl-code-snippet').innerText;
-                navigator.clipboard.writeText(text);
-                UIController.showToast('cURL কমান্ড কপি হয়েছে!', 'success');
-            });
-        }
-
-        const saveBalBtn = document.getElementById('btn-save-initial-bal');
-        if (saveBalBtn) {
-            saveBalBtn.addEventListener('click', () => {
-                const val = parseFloat(document.getElementById('setting-initial-balance').value) || 0;
-                state.initialBalance = val;
-                state.saveState();
-                this.renderAll();
-                UIController.showToast('প্রারম্ভিক ব্যালেন্স সেভ করা হয়েছে!', 'success');
-            });
-        }
-
-        const changePinBtn = document.getElementById('btn-change-pin');
-        if (changePinBtn) {
-            changePinBtn.addEventListener('click', () => {
-                const newPin = document.getElementById('setting-new-pin').value.trim();
-                if (newPin.length >= 4) {
-                    state.pin = newPin;
-                    state.saveState();
-                    document.getElementById('setting-new-pin').value = '';
-                    UIController.showToast('এডমিন PIN পরিবর্তন সফল হয়েছে!', 'success');
-                } else {
-                    alert('PIN কোড অন্তত ৪ ডিজিটের হতে হবে!');
-                }
-            });
-        }
-
-        const resetBtn = document.getElementById('btn-reset-data');
-        if (resetBtn) {
-            resetBtn.addEventListener('click', () => {
-                if (confirm('আপনি কি নিশ্চিত যে সকল ডাটা রিসেট করে ৭৫টি লেনদেনে ফিরিয়ে আনবেন?')) {
-                    state.loadInitialSeed();
-                    this.renderAll();
-                    this.closeModal('admin-panel-modal');
-                    UIController.showToast('ডাটা রিসেট সম্পন্ন হয়েছে!', 'danger');
-                }
+                UIController.showToast(`৳${parseFloat(amount).toLocaleString()} টাকা আউট হয়েছে!`, 'danger');
             });
         }
 
@@ -522,23 +424,35 @@ const UIController = {
                 state.updateTransaction(id, { type, amount, note });
                 this.renderAll();
                 this.closeModal('edit-txn-modal');
-                UIController.showToast('এডিট সেভ করা হয়েছে!', 'success');
+                UIController.showToast('এডিট সম্পন্ন হয়েছে!', 'success');
             });
         }
+
+        const tabBtns = document.querySelectorAll('.admin-tabs .tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-tab');
+                this.switchTab(target);
+            });
+        });
 
         const pdfBtn = document.getElementById('export-pdf-btn');
         if (pdfBtn) pdfBtn.addEventListener('click', () => this.exportPDF());
 
         const mobilePdf = document.getElementById('mobile-btn-pdf');
         if (mobilePdf) mobilePdf.addEventListener('click', () => this.exportPDF());
+
+        const quickPdf = document.getElementById('btn-quick-pdf');
+        if (quickPdf) quickPdf.addEventListener('click', () => this.exportPDF());
     },
 
-    handleAdminBtnClick() {
-        if (!state.isAdminUnlocked) {
-            this.openModal('admin-pin-modal');
-        } else {
-            this.openModal('admin-panel-modal');
-        }
+    switchTab(tabId) {
+        document.querySelectorAll('.admin-tabs .tab-btn').forEach(b => {
+            b.classList.toggle('active', b.getAttribute('data-tab') === tabId);
+        });
+        document.querySelectorAll('.tab-pane').forEach(p => {
+            p.classList.toggle('active', p.id === tabId);
+        });
     },
 
     openModal(id) {
@@ -554,12 +468,10 @@ const UIController = {
     renderAll() {
         this.renderTotals();
         this.renderTransactions();
-        this.renderActivityLogs();
-        this.updateAdminUIElements();
     },
 
     renderTotals() {
-        const { totalIn, totalOut, inCount, outCount, currentBalance, netFlow } = state.getTotals();
+        const { totalIn, totalOut, currentBalance, netFlow } = state.getTotals();
 
         const currentBalEl = document.getElementById('current-balance-display');
         if (currentBalEl) {
@@ -567,52 +479,29 @@ const UIController = {
         }
 
         const countEl = document.getElementById('total-txn-count');
-        if (countEl) countEl.innerText = state.transactions.length + ' টি';
-
-        const initBalEl = document.getElementById('initial-balance-val');
-        if (initBalEl) initBalEl.innerText = '৳ ' + (state.initialBalance || 0).toLocaleString();
+        if (countEl) countEl.innerText = state.transactions.length + ' টি হিসেব';
 
         const netFlowEl = document.getElementById('net-flow-val');
         if (netFlowEl) {
-            if (netFlow >= 0) {
-                netFlowEl.innerText = '+৳ ' + netFlow.toLocaleString();
-                netFlowEl.className = 'val net-positive';
-            } else {
-                netFlowEl.innerText = '-৳ ' + Math.abs(netFlow).toLocaleString();
-                netFlowEl.className = 'val net-negative';
-            }
+            netFlowEl.innerText = (netFlow >= 0 ? '+৳ ' : '-৳ ') + Math.abs(netFlow).toLocaleString();
+            netFlowEl.className = 'stat-val ' + (netFlow >= 0 ? 'stat-in' : 'stat-out');
         }
 
         const totalInEl = document.getElementById('total-in-display');
         if (totalInEl) totalInEl.innerText = '৳ ' + totalIn.toLocaleString();
 
-        const inCountEl = document.getElementById('in-count-badge');
-        if (inCountEl) inCountEl.innerText = inCount + ' টি জমা';
-
         const totalOutEl = document.getElementById('total-out-display');
         if (totalOutEl) totalOutEl.innerText = '৳ ' + totalOut.toLocaleString();
-
-        const outCountEl = document.getElementById('out-count-badge');
-        if (outCountEl) outCountEl.innerText = outCount + ' টি আউট';
-
-        const setInitInput = document.getElementById('setting-initial-balance');
-        if (setInitInput) setInitInput.value = state.initialBalance || 0;
-
-        const lastUpTag = document.getElementById('last-updated-tag');
-        if (lastUpTag) lastUpTag.innerText = 'সর্বশেষ আপডেট: ' + new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
     },
 
     renderTransactions() {
         const searchInput = document.getElementById('search-input');
         const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
-        const typeFilterEl = document.getElementById('type-filter');
-        const typeFilter = typeFilterEl ? typeFilterEl.value : 'ALL';
-
         let filtered = state.transactions.slice().reverse();
 
-        if (typeFilter !== 'ALL') {
-            filtered = filtered.filter(t => t.type === typeFilter);
+        if (state.activeFilter !== 'ALL') {
+            filtered = filtered.filter(t => t.type === state.activeFilter);
         }
 
         if (query) {
@@ -620,105 +509,41 @@ const UIController = {
                 t.id.toLowerCase().includes(query) ||
                 (t.note && t.note.toLowerCase().includes(query)) ||
                 (t.category && t.category.toLowerCase().includes(query)) ||
-                (t.reference && t.reference.toLowerCase().includes(query)) ||
                 t.amount.toString().includes(query)
             );
         }
 
-        const tbody = document.getElementById('transaction-table-body');
         const mobileContainer = document.getElementById('mobile-card-stream');
-        const emptyState = document.getElementById('empty-state');
-
-        if (tbody) tbody.innerHTML = '';
-        if (mobileContainer) mobileContainer.innerHTML = '';
-
-        if (filtered.length === 0) {
-            if (emptyState) emptyState.style.display = 'block';
-            return;
-        } else {
-            if (emptyState) emptyState.style.display = 'none';
-        }
+        if (!mobileContainer) return;
+        mobileContainer.innerHTML = '';
 
         filtered.forEach(t => {
-            const dateObj = new Date(t.timestamp);
-            const formattedDate = dateObj.toLocaleDateString('bn-BD', { day: '2-digit', month: 'short' }) + ' ' + dateObj.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
-
             const isIN = t.type === 'IN';
-            const typeBadge = isIN ? '<span class="badge-type in">Money IN</span>' : '<span class="badge-type out">Money OUT</span>';
-            const amtClass = isIN ? 'amt-in' : 'amt-out';
+            const badgeCls = isIN ? 'in' : 'out';
+            const amtCls = isIN ? 'amt-in' : 'amt-out';
             const amtSign = isIN ? '+' : '-';
+            const iconSvg = isIN ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>' : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>';
 
-            if (tbody) {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><code style="font-family:var(--font-code);font-size:0.8rem;color:var(--text-muted);">${t.id}</code></td>
-                    <td style="white-space:nowrap;font-size:0.8rem;color:var(--text-muted);">${formattedDate}</td>
-                    <td>${typeBadge}</td>
-                    <td>
-                        <div style="font-weight:600;">${t.note || 'N/A'}</div>
-                        <div style="font-size:0.75rem;color:var(--text-dim);">${t.category} • ${t.paymentMethod}</div>
-                    </td>
-                    <td class="${amtClass}">${amtSign}৳${t.amount.toLocaleString()}</td>
-                    <td class="running-bal">৳${t.runningBalance.toLocaleString()}</td>
+            const card = document.createElement('div');
+            card.className = 'm-card';
+            card.innerHTML = `
+                <div class="m-card-icon ${badgeCls}">${iconSvg}</div>
+                <div class="m-card-details">
+                    <div class="m-card-title">${t.note || (isIN ? 'টাকা জমা' : 'টাকা আউট')}</div>
+                    <div class="m-card-sub">${t.category} • <span class="m-txn-code">${t.id}</span></div>
+                </div>
+                <div class="m-card-right">
+                    <div class="m-card-amount ${amtCls}">${amtSign}৳${t.amount.toLocaleString()}</div>
+                    <div class="m-card-bal">ব্যালেন্স ৳${t.runningBalance.toLocaleString()}</div>
                     ${state.isAdminUnlocked ? `
-                        <td class="admin-only-col">
-                            <button class="btn-icon-sm" onclick="UIController.openEditModal('${t.id}')">✏️</button>
-                            <button class="btn-icon-sm delete" onclick="UIController.handleDelete('${t.id}')">🗑️</button>
-                        </td>
-                    ` : ''}
-                `;
-                tbody.appendChild(tr);
-            }
-
-            if (mobileContainer) {
-                const card = document.createElement('div');
-                card.className = 'mobile-txn-card';
-                card.innerHTML = `
-                    <div class="mobile-card-top">
-                        <span class="mobile-txn-id">${t.id}</span>
-                        ${typeBadge}
-                    </div>
-                    <div class="mobile-card-body">
-                        <div class="mobile-card-info">
-                            <span class="mobile-title">${t.note || t.category}</span>
-                            <span class="mobile-sub">${t.category} • ${t.paymentMethod}</span>
-                        </div>
-                        <div class="mobile-card-amounts">
-                            <span class="mobile-amt ${amtClass}">${amtSign}৳${t.amount.toLocaleString()}</span>
-                            <span class="mobile-bal">ব্যালেন্স: ৳${t.runningBalance.toLocaleString()}</span>
-                        </div>
-                    </div>
-                    ${state.isAdminUnlocked ? `
-                        <div style="text-align:right;margin-top:4px;">
-                            <button class="btn-icon-sm" onclick="UIController.openEditModal('${t.id}')">✏️ Edit</button>
-                            <button class="btn-icon-sm delete" onclick="UIController.handleDelete('${t.id}')">🗑️ Delete</button>
+                        <div style="margin-top:4px;">
+                            <button onclick="UIController.openEditModal('${t.id}')" style="background:none;border:none;color:#6366f1;cursor:pointer;font-size:0.75rem;">✏️ এডিট</button>
+                            <button onclick="UIController.handleDelete('${t.id}')" style="background:none;border:none;color:#f43f5e;cursor:pointer;font-size:0.75rem;margin-left:6px;">🗑️ ডিলিট</button>
                         </div>
                     ` : ''}
-                `;
-                mobileContainer.appendChild(card);
-            }
-        });
-    },
-
-    renderActivityLogs() {
-        const container = document.getElementById('activity-stream');
-        if (!container) return;
-        container.innerHTML = '';
-        state.activityLogs.forEach(log => {
-            const item = document.createElement('div');
-            item.className = 'activity-item';
-            item.innerHTML = `<span>[${log.time}]</span> <strong>${log.text}</strong>`;
-            container.appendChild(item);
-        });
-    },
-
-    updateAdminUIElements() {
-        const adminBtnText = document.getElementById('admin-btn-text');
-        if (adminBtnText) {
-            adminBtnText.innerText = state.isAdminUnlocked ? 'সার্ভার এডমিন প্যানেল' : 'এডমিন ব্যাকএন্ড';
-        }
-        document.querySelectorAll('.admin-only-col').forEach(el => {
-            el.style.display = state.isAdminUnlocked ? '' : 'none';
+                </div>
+            `;
+            mobileContainer.appendChild(card);
         });
     },
 
@@ -737,7 +562,7 @@ const UIController = {
         if (confirm('আপনি কি নিশ্চিত যে এই ট্রানজ্যাকশনটি ডিলিট করতে চান?')) {
             state.deleteTransaction(id);
             this.renderAll();
-            UIController.showToast('ট্রানজ্যাকশন ডিলিট করা হয়েছে!', 'danger');
+            UIController.showToast('ডিলিট সম্পন্ন হয়েছে!', 'danger');
         }
     },
 
@@ -763,7 +588,7 @@ const UIController = {
         }
 
         const opt = {
-            margin:       [8, 8, 8, 8],
+            margin:       [6, 6, 6, 6],
             filename:     `hisab_ledger_statement_${new Date().toISOString().slice(0,10)}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, useCORS: true, logging: false },
