@@ -6,7 +6,7 @@
       "id": "TXN-1001",
       "type": "IN",
       "amount": 7650,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T10:00:00Z",
       "runningBalance": 7650
@@ -15,7 +15,7 @@
       "id": "TXN-1002",
       "type": "IN",
       "amount": 3081,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T10:01:00Z",
       "runningBalance": 10731
@@ -24,7 +24,7 @@
       "id": "TXN-1003",
       "type": "IN",
       "amount": 2550,
-      "category": "Client Payment",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T10:02:00Z",
       "runningBalance": 13281
@@ -33,7 +33,7 @@
       "id": "TXN-1004",
       "type": "OUT",
       "amount": 11100,
-      "category": "Server Expense",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T10:03:00Z",
       "runningBalance": 2181
@@ -42,7 +42,7 @@
       "id": "TXN-1005",
       "type": "IN",
       "amount": 5000,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T10:04:00Z",
       "runningBalance": 7181
@@ -51,7 +51,7 @@
       "id": "TXN-1006",
       "type": "OUT",
       "amount": 30,
-      "category": "Operating Cost",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T10:05:00Z",
       "runningBalance": 7151
@@ -60,7 +60,7 @@
       "id": "TXN-1007",
       "type": "IN",
       "amount": 2040,
-      "category": "Client Payment",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T10:06:00Z",
       "runningBalance": 9191
@@ -69,7 +69,7 @@
       "id": "TXN-1008",
       "type": "IN",
       "amount": 1530,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T10:07:00Z",
       "runningBalance": 10721
@@ -78,7 +78,7 @@
       "id": "TXN-1009",
       "type": "OUT",
       "amount": 10005,
-      "category": "Payout",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T10:08:00Z",
       "runningBalance": 716
@@ -87,7 +87,7 @@
       "id": "TXN-1010",
       "type": "IN",
       "amount": 8252,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T10:09:00Z",
       "runningBalance": 8968
@@ -96,7 +96,7 @@
       "id": "TXN-1011",
       "type": "OUT",
       "amount": 5510,
-      "category": "Hosting",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T11:10:00Z",
       "runningBalance": 3458
@@ -105,7 +105,7 @@
       "id": "TXN-1012",
       "type": "IN",
       "amount": 5000,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T11:11:00Z",
       "runningBalance": 8458
@@ -114,7 +114,7 @@
       "id": "TXN-1013",
       "type": "IN",
       "amount": 5000,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T11:12:00Z",
       "runningBalance": 13458
@@ -123,7 +123,7 @@
       "id": "TXN-1014",
       "type": "OUT",
       "amount": 10010,
-      "category": "Server Expense",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T11:13:00Z",
       "runningBalance": 3448
@@ -132,7 +132,7 @@
       "id": "TXN-1015",
       "type": "OUT",
       "amount": 250,
-      "category": "Operating Cost",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T11:14:00Z",
       "runningBalance": 3198
@@ -141,7 +141,7 @@
       "id": "TXN-1016",
       "type": "IN",
       "amount": 22000,
-      "category": "Investment",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T11:15:00Z",
       "runningBalance": 25198
@@ -150,7 +150,7 @@
       "id": "TXN-1017",
       "type": "OUT",
       "amount": 18600,
-      "category": "Payout",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T11:16:00Z",
       "runningBalance": 6598
@@ -159,7 +159,7 @@
       "id": "TXN-1018",
       "type": "OUT",
       "amount": 1550,
-      "category": "Server Expense",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T11:17:00Z",
       "runningBalance": 5048
@@ -168,7 +168,7 @@
       "id": "TXN-1019",
       "type": "OUT",
       "amount": 3340,
-      "category": "Operating Cost",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T11:18:00Z",
       "runningBalance": 1708
@@ -177,7 +177,7 @@
       "id": "TXN-1020",
       "type": "IN",
       "amount": 1530,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T11:19:00Z",
       "runningBalance": 3238
@@ -186,7 +186,7 @@
       "id": "TXN-1021",
       "type": "IN",
       "amount": 2040,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T12:20:00Z",
       "runningBalance": 5278
@@ -195,7 +195,7 @@
       "id": "TXN-1022",
       "type": "IN",
       "amount": 1530,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T12:21:00Z",
       "runningBalance": 6808
@@ -204,7 +204,7 @@
       "id": "TXN-1023",
       "type": "IN",
       "amount": 16000,
-      "category": "Client Payment",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T12:22:00Z",
       "runningBalance": 22808
@@ -213,7 +213,7 @@
       "id": "TXN-1024",
       "type": "IN",
       "amount": 3075,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T12:23:00Z",
       "runningBalance": 25883
@@ -222,7 +222,7 @@
       "id": "TXN-1025",
       "type": "IN",
       "amount": 1500,
-      "category": "Other Add",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T12:24:00Z",
       "runningBalance": 27383
@@ -231,7 +231,7 @@
       "id": "TXN-1026",
       "type": "IN",
       "amount": 1530,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T12:25:00Z",
       "runningBalance": 28913
@@ -240,7 +240,7 @@
       "id": "TXN-1027",
       "type": "IN",
       "amount": 1530,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T12:26:00Z",
       "runningBalance": 30443
@@ -249,7 +249,7 @@
       "id": "TXN-1028",
       "type": "IN",
       "amount": 1530,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T12:27:00Z",
       "runningBalance": 31973
@@ -258,7 +258,7 @@
       "id": "TXN-1029",
       "type": "IN",
       "amount": 1530,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T12:28:00Z",
       "runningBalance": 33503
@@ -267,7 +267,7 @@
       "id": "TXN-1030",
       "type": "IN",
       "amount": 1530,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T12:29:00Z",
       "runningBalance": 35033
@@ -276,7 +276,7 @@
       "id": "TXN-1031",
       "type": "IN",
       "amount": 25500,
-      "category": "Investment",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T13:30:00Z",
       "runningBalance": 60533
@@ -285,7 +285,7 @@
       "id": "TXN-1032",
       "type": "IN",
       "amount": 1530,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T13:31:00Z",
       "runningBalance": 62063
@@ -294,7 +294,7 @@
       "id": "TXN-1033",
       "type": "IN",
       "amount": 1520,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T13:32:00Z",
       "runningBalance": 63583
@@ -303,7 +303,7 @@
       "id": "TXN-1034",
       "type": "OUT",
       "amount": 55,
-      "category": "Operating Cost",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T13:33:00Z",
       "runningBalance": 63528
@@ -312,7 +312,7 @@
       "id": "TXN-1035",
       "type": "OUT",
       "amount": 15200,
-      "category": "Payout",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T13:34:00Z",
       "runningBalance": 48328
@@ -321,7 +321,7 @@
       "id": "TXN-1036",
       "type": "OUT",
       "amount": 10000,
-      "category": "Server Expense",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T13:35:00Z",
       "runningBalance": 38328
@@ -330,7 +330,7 @@
       "id": "TXN-1037",
       "type": "OUT",
       "amount": 22000,
-      "category": "Payout",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T13:36:00Z",
       "runningBalance": 16328
@@ -339,7 +339,7 @@
       "id": "TXN-1038",
       "type": "OUT",
       "amount": 6550,
-      "category": "Hosting",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T13:37:00Z",
       "runningBalance": 9778
@@ -348,7 +348,7 @@
       "id": "TXN-1039",
       "type": "IN",
       "amount": 16750,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T13:38:00Z",
       "runningBalance": 26528
@@ -357,7 +357,7 @@
       "id": "TXN-1040",
       "type": "OUT",
       "amount": 26000,
-      "category": "Payout",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T13:39:00Z",
       "runningBalance": 528
@@ -366,7 +366,7 @@
       "id": "TXN-1041",
       "type": "IN",
       "amount": 10200,
-      "category": "Client Payment",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T14:40:00Z",
       "runningBalance": 10728
@@ -375,7 +375,7 @@
       "id": "TXN-1042",
       "type": "OUT",
       "amount": 6000,
-      "category": "Server Expense",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T14:41:00Z",
       "runningBalance": 4728
@@ -384,7 +384,7 @@
       "id": "TXN-1043",
       "type": "OUT",
       "amount": 4150,
-      "category": "Operating Cost",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T14:42:00Z",
       "runningBalance": 578
@@ -393,7 +393,7 @@
       "id": "TXN-1044",
       "type": "OUT",
       "amount": 50,
-      "category": "Operating Cost",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T14:43:00Z",
       "runningBalance": 528
@@ -402,7 +402,7 @@
       "id": "TXN-1045",
       "type": "IN",
       "amount": 2040,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T14:44:00Z",
       "runningBalance": 2568
@@ -411,7 +411,7 @@
       "id": "TXN-1046",
       "type": "OUT",
       "amount": 1015,
-      "category": "Server Expense",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T14:45:00Z",
       "runningBalance": 1553
@@ -420,7 +420,7 @@
       "id": "TXN-1047",
       "type": "IN",
       "amount": 5090,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T14:46:00Z",
       "runningBalance": 6643
@@ -429,7 +429,7 @@
       "id": "TXN-1048",
       "type": "OUT",
       "amount": 5000,
-      "category": "Payout",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T14:47:00Z",
       "runningBalance": 1643
@@ -438,7 +438,7 @@
       "id": "TXN-1049",
       "type": "IN",
       "amount": 3000,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T14:48:00Z",
       "runningBalance": 4643
@@ -447,7 +447,7 @@
       "id": "TXN-1050",
       "type": "OUT",
       "amount": 3380,
-      "category": "Server Expense",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T14:49:00Z",
       "runningBalance": 1263
@@ -456,7 +456,7 @@
       "id": "TXN-1051",
       "type": "IN",
       "amount": 1538,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T15:50:00Z",
       "runningBalance": 2801
@@ -465,7 +465,7 @@
       "id": "TXN-1052",
       "type": "IN",
       "amount": 10250,
-      "category": "Client Payment",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T15:51:00Z",
       "runningBalance": 13051
@@ -474,7 +474,7 @@
       "id": "TXN-1053",
       "type": "IN",
       "amount": 1020,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T15:52:00Z",
       "runningBalance": 14071
@@ -483,7 +483,7 @@
       "id": "TXN-1054",
       "type": "IN",
       "amount": 2000,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T15:53:00Z",
       "runningBalance": 16071
@@ -492,7 +492,7 @@
       "id": "TXN-1055",
       "type": "IN",
       "amount": 2040,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T15:54:00Z",
       "runningBalance": 18111
@@ -501,7 +501,7 @@
       "id": "TXN-1056",
       "type": "IN",
       "amount": 3000,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T15:55:00Z",
       "runningBalance": 21111
@@ -510,7 +510,7 @@
       "id": "TXN-1057",
       "type": "OUT",
       "amount": 4200,
-      "category": "Server Expense",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T15:56:00Z",
       "runningBalance": 16911
@@ -519,7 +519,7 @@
       "id": "TXN-1058",
       "type": "IN",
       "amount": 1030,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T15:57:00Z",
       "runningBalance": 17941
@@ -528,7 +528,7 @@
       "id": "TXN-1059",
       "type": "IN",
       "amount": 1020,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T15:58:00Z",
       "runningBalance": 18961
@@ -537,7 +537,7 @@
       "id": "TXN-1060",
       "type": "OUT",
       "amount": 459,
-      "category": "Operating Cost",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T15:59:00Z",
       "runningBalance": 18502
@@ -546,7 +546,7 @@
       "id": "TXN-1061",
       "type": "IN",
       "amount": 750,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T16:00:00Z",
       "runningBalance": 19252
@@ -555,7 +555,7 @@
       "id": "TXN-1062",
       "type": "IN",
       "amount": 3030,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T16:01:00Z",
       "runningBalance": 22282
@@ -564,7 +564,7 @@
       "id": "TXN-1063",
       "type": "OUT",
       "amount": 2550,
-      "category": "Server Expense",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T16:02:00Z",
       "runningBalance": 19732
@@ -573,7 +573,7 @@
       "id": "TXN-1064",
       "type": "IN",
       "amount": 5000,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T16:03:00Z",
       "runningBalance": 24732
@@ -582,7 +582,7 @@
       "id": "TXN-1065",
       "type": "OUT",
       "amount": 20300,
-      "category": "Payout",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T16:04:00Z",
       "runningBalance": 4432
@@ -591,7 +591,7 @@
       "id": "TXN-1066",
       "type": "OUT",
       "amount": 3320,
-      "category": "Server Expense",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T16:05:00Z",
       "runningBalance": 1112
@@ -600,7 +600,7 @@
       "id": "TXN-1067",
       "type": "OUT",
       "amount": 500,
-      "category": "Operating Cost",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T16:06:00Z",
       "runningBalance": 612
@@ -609,7 +609,7 @@
       "id": "TXN-1068",
       "type": "IN",
       "amount": 1020,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T16:07:00Z",
       "runningBalance": 1632
@@ -618,7 +618,7 @@
       "id": "TXN-1069",
       "type": "IN",
       "amount": 2550,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T16:08:00Z",
       "runningBalance": 4182
@@ -627,7 +627,7 @@
       "id": "TXN-1070",
       "type": "IN",
       "amount": 25000,
-      "category": "Investment",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T16:09:00Z",
       "runningBalance": 29182
@@ -636,7 +636,7 @@
       "id": "TXN-1071",
       "type": "IN",
       "amount": 1000,
-      "category": "Other Add",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T17:10:00Z",
       "runningBalance": 30182
@@ -645,7 +645,7 @@
       "id": "TXN-1072",
       "type": "IN",
       "amount": 26150,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T17:11:00Z",
       "runningBalance": 56332
@@ -654,7 +654,7 @@
       "id": "TXN-1073",
       "type": "OUT",
       "amount": 50000,
-      "category": "Payout",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T17:12:00Z",
       "runningBalance": 6332
@@ -663,7 +663,7 @@
       "id": "TXN-1074",
       "type": "IN",
       "amount": 17300,
-      "category": "Server Deposit",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T17:13:00Z",
       "runningBalance": 23632
@@ -672,7 +672,7 @@
       "id": "TXN-1075",
       "type": "OUT",
       "amount": 40,
-      "category": "Operating Cost",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T17:14:00Z",
       "runningBalance": 23592
@@ -681,7 +681,7 @@
       "id": "TXN-639092",
       "type": "IN",
       "amount": 1,
-      "category": "Sales Income",
+      "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-03T17:47:49.181Z",
       "runningBalance": 23593
@@ -690,7 +690,7 @@
       "id": "TXN-610593",
       "type": "OUT",
       "amount": 1,
-      "category": "Payout",
+      "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-03T17:50:25.947Z",
       "runningBalance": 23592
@@ -703,6 +703,15 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-07-04T06:36:23.390Z",
       "runningBalance": 22577
+    },
+    {
+      "id": "TXN-828446",
+      "type": "OUT",
+      "amount": 22000,
+      "category": "Cash Out",
+      "note": "Hasi",
+      "timestamp": "2026-07-04T16:25:38.205Z",
+      "runningBalance": 577
     }
   ]
 }
