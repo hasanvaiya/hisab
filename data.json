@@ -705,12 +705,12 @@
       "runningBalance": 22577
     },
     {
-      "id": "TXN-828446",
+      "id": "TXN-670431",
       "type": "OUT",
       "amount": 22000,
       "category": "Cash Out",
-      "note": "Hasi",
-      "timestamp": "2026-07-04T16:25:38.205Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-04T16:26:15.548Z",
       "runningBalance": 577
     }
   ]
