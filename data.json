@@ -705,12 +705,12 @@
       "runningBalance": 22577
     },
     {
-      "id": "TXN-892475",
+      "id": "TXN-909663",
       "type": "OUT",
       "amount": 22000,
       "category": "Cash Out",
-      "note": "Out",
-      "timestamp": "2026-07-05T08:04:10.612Z",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-05T08:05:48.125Z",
       "runningBalance": 577
     }
   ]
