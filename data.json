@@ -1013,11 +1013,11 @@
     {
       "id": "TXN-340456",
       "type": "IN",
-      "amount": 6120,
+      "amount": 6050,
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-11T17:56:50.538Z",
-      "runningBalance": 9072
+      "runningBalance": 9002
     },
     {
       "id": "TXN-361332",
@@ -1026,7 +1026,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-11T17:56:55.988Z",
-      "runningBalance": 3972
+      "runningBalance": 3902
     }
   ]
 }
