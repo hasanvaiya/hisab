@@ -1029,22 +1029,13 @@
       "runningBalance": 3902
     },
     {
-      "id": "TXN-928868",
-      "type": "IN",
-      "amount": 1020,
-      "category": "Cash Add",
-      "note": "টাকা জমা",
-      "timestamp": "2026-07-12T09:42:27.551Z",
-      "runningBalance": 4922
-    },
-    {
-      "id": "TXN-148133",
-      "type": "IN",
-      "amount": 1020,
-      "category": "Cash Add",
-      "note": "টাকা জমা",
-      "timestamp": "2026-07-12T09:42:32.950Z",
-      "runningBalance": 5942
+      "id": "TXN-505356",
+      "type": "OUT",
+      "amount": 5700,
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-12T09:45:53.683Z",
+      "runningBalance": -1798
     }
   ]
 }
