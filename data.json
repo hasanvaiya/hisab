@@ -1036,6 +1036,24 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-07-12T09:45:53.683Z",
       "runningBalance": -1798
+    },
+    {
+      "id": "TXN-762417",
+      "type": "IN",
+      "amount": 1020,
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-13T06:52:38.824Z",
+      "runningBalance": -778
+    },
+    {
+      "id": "TXN-760868",
+      "type": "IN",
+      "amount": 1020,
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-13T06:52:44.961Z",
+      "runningBalance": 242
     }
   ]
 }
