@@ -1162,6 +1162,15 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-07-16T09:36:27.208Z",
       "runningBalance": 26557
+    },
+    {
+      "id": "TXN-490511",
+      "type": "OUT",
+      "amount": 3000,
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-07-16T09:36:36.427Z",
+      "runningBalance": 23557
     }
   ]
 }
