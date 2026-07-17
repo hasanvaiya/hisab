@@ -1238,11 +1238,11 @@
     {
       "id": "TXN-518779",
       "type": "OUT",
-      "amount": 15000,
+      "amount": 15200,
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-07-17T05:56:59.037Z",
-      "runningBalance": 34902
+      "runningBalance": 34702
     }
   ]
 }
