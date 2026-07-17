@@ -1209,13 +1209,13 @@
       "runningBalance": 22232
     },
     {
-      "id": "TXN-958105",
+      "id": "TXN-843035",
       "type": "IN",
-      "amount": 40000,
+      "amount": 10000,
       "category": "Cash Add",
       "note": "টাকা জমা",
-      "timestamp": "2026-07-17T03:43:32.236Z",
-      "runningBalance": 62232
+      "timestamp": "2026-07-17T03:43:55.244Z",
+      "runningBalance": 32232
     }
   ]
 }
