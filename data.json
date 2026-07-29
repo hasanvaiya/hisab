@@ -1414,6 +1414,15 @@
       "note": "টাকা জমা",
       "timestamp": "2026-07-29T12:30:05.290Z",
       "runningBalance": 3698
+    },
+    {
+      "id": "TXN-511917",
+      "type": "IN",
+      "amount": 1020,
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-29T12:30:11.284Z",
+      "runningBalance": 4718
     }
   ]
 }
