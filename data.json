@@ -1409,11 +1409,11 @@
     {
       "id": "TXN-872237",
       "type": "IN",
-      "amount": 2050,
+      "amount": 2550,
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-29T12:30:05.290Z",
-      "runningBalance": 3698
+      "runningBalance": 4198
     },
     {
       "id": "TXN-511917",
@@ -1422,7 +1422,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-07-29T12:30:11.284Z",
-      "runningBalance": 4718
+      "runningBalance": 5218
     }
   ]
 }
