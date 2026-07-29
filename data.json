@@ -1441,6 +1441,15 @@
       "note": "টাকা জমা",
       "timestamp": "2026-07-29T17:16:20.459Z",
       "runningBalance": 9808
+    },
+    {
+      "id": "TXN-131202",
+      "type": "OUT",
+      "amount": 30,
+      "category": "Cash Out",
+      "note": "Recharge",
+      "timestamp": "2026-07-29T17:18:52.254Z",
+      "runningBalance": 9778
     }
   ]
 }
