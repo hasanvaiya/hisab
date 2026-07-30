@@ -1450,6 +1450,15 @@
       "note": "Recharge",
       "timestamp": "2026-07-29T17:18:52.254Z",
       "runningBalance": 9778
+    },
+    {
+      "id": "TXN-232948",
+      "type": "IN",
+      "amount": 2040,
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-07-30T11:47:59.423Z",
+      "runningBalance": 11818
     }
   ]
 }
