@@ -1486,6 +1486,24 @@
       "note": "টাকা জমা",
       "timestamp": "2026-08-01T20:39:07.384Z",
       "runningBalance": 12048
+    },
+    {
+      "id": "TXN-140340",
+      "type": "IN",
+      "amount": 1000,
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-08-01T20:39:15.383Z",
+      "runningBalance": 13048
+    },
+    {
+      "id": "TXN-772558",
+      "type": "IN",
+      "amount": 3500,
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-08-01T20:39:23.242Z",
+      "runningBalance": 16548
     }
   ]
 }
