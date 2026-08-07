@@ -1587,13 +1587,13 @@
       "runningBalance": 2308
     },
     {
-      "id": "TXN-163888",
-      "type": "OUT",
-      "amount": 200,
-      "category": "Cash Out",
-      "note": "হাসান",
-      "timestamp": "2026-08-06T15:28:14.368Z",
-      "runningBalance": 2108
+      "id": "TXN-251022",
+      "type": "IN",
+      "amount": 15300,
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-08-07T17:19:57.717Z",
+      "runningBalance": 17608
     }
   ]
 }
