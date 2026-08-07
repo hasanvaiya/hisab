@@ -1517,11 +1517,11 @@
     {
       "id": "TXN-559823",
       "type": "OUT",
-      "amount": 3060,
+      "amount": 3260,
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-02T03:52:45.396Z",
-      "runningBalance": 16548
+      "runningBalance": 16348
     },
     {
       "id": "TXN-679497",
@@ -1530,7 +1530,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-02T10:54:27.081Z",
-      "runningBalance": 18588
+      "runningBalance": 18388
     },
     {
       "id": "TXN-412512",
@@ -1539,7 +1539,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-03T15:00:33.195Z",
-      "runningBalance": 19608
+      "runningBalance": 19408
     },
     {
       "id": "TXN-743766",
@@ -1548,7 +1548,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-03T15:00:44.703Z",
-      "runningBalance": 16548
+      "runningBalance": 16348
     },
     {
       "id": "TXN-111190",
@@ -1557,7 +1557,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-03T15:00:51.387Z",
-      "runningBalance": 17548
+      "runningBalance": 17348
     },
     {
       "id": "TXN-464235",
@@ -1566,7 +1566,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-03T16:44:25.436Z",
-      "runningBalance": 12548
+      "runningBalance": 12348
     },
     {
       "id": "TXN-717747",
@@ -1575,7 +1575,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-04T04:43:47.627Z",
-      "runningBalance": 17548
+      "runningBalance": 17348
     },
     {
       "id": "TXN-932630",
@@ -1584,7 +1584,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-04T17:41:31.381Z",
-      "runningBalance": 2308
+      "runningBalance": 2108
     },
     {
       "id": "TXN-251022",
@@ -1593,7 +1593,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-07T17:19:57.717Z",
-      "runningBalance": 17608
+      "runningBalance": 17408
     },
     {
       "id": "TXN-829288",
@@ -1602,7 +1602,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-07T17:20:03.125Z",
-      "runningBalance": 24768
+      "runningBalance": 24568
     },
     {
       "id": "TXN-660304",
@@ -1611,7 +1611,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-07T17:20:08.820Z",
-      "runningBalance": 22728
+      "runningBalance": 22528
     }
   ]
 }
