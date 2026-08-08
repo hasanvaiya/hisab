@@ -1621,6 +1621,15 @@
       "note": "টাকা জমা",
       "timestamp": "2026-08-08T07:28:35.098Z",
       "runningBalance": 32528
+    },
+    {
+      "id": "TXN-226523",
+      "type": "OUT",
+      "amount": 1200,
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-08-08T07:28:39.312Z",
+      "runningBalance": 31328
     }
   ]
 }
