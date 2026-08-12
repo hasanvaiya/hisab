@@ -1675,6 +1675,15 @@
       "note": "অন্য নাম্বার এ",
       "timestamp": "2026-08-12T10:10:25.402Z",
       "runningBalance": 0
+    },
+    {
+      "id": "TXN-757900",
+      "type": "IN",
+      "amount": 1200,
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-08-12T10:10:33.845Z",
+      "runningBalance": 1200
     }
   ]
 }
