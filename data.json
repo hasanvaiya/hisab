@@ -1668,22 +1668,13 @@
       "runningBalance": 158
     },
     {
-      "id": "TXN-313271",
+      "id": "TXN-989808",
       "type": "OUT",
       "amount": 158,
       "category": "Cash Out",
-      "note": "অন্য নাম্বার এ আছে। ",
-      "timestamp": "2026-08-12T10:09:33.626Z",
+      "note": "অন্য নাম্বার এ",
+      "timestamp": "2026-08-12T10:10:25.402Z",
       "runningBalance": 0
-    },
-    {
-      "id": "TXN-206462",
-      "type": "IN",
-      "amount": 1200,
-      "category": "Cash Add",
-      "note": "টাকা জমা",
-      "timestamp": "2026-08-12T10:09:39.590Z",
-      "runningBalance": 1200
     }
   ]
 }
