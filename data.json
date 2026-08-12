@@ -1666,6 +1666,15 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-08-09T10:30:56.776Z",
       "runningBalance": 158
+    },
+    {
+      "id": "TXN-313271",
+      "type": "OUT",
+      "amount": 158,
+      "category": "Cash Out",
+      "note": "অন্য নাম্বার এ আছে। ",
+      "timestamp": "2026-08-12T10:09:33.626Z",
+      "runningBalance": 0
     }
   ]
 }
