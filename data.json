@@ -1886,11 +1886,11 @@
     {
       "id": "TXN-827544",
       "type": "OUT",
-      "amount": 5000,
+      "amount": 3000,
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-22T18:13:45.884Z",
-      "runningBalance": 28705
+      "runningBalance": 30705
     },
     {
       "id": "TXN-665374",
@@ -1899,7 +1899,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-22T18:13:50.885Z",
-      "runningBalance": 23705
+      "runningBalance": 25705
     },
     {
       "id": "TXN-120288",
@@ -1908,7 +1908,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-22T18:13:55.380Z",
-      "runningBalance": 14205
+      "runningBalance": 16205
     }
   ]
 }
