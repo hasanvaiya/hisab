@@ -1981,6 +1981,15 @@
       "note": "টাকা জমা",
       "timestamp": "2026-08-25T17:46:11.997Z",
       "runningBalance": 43025
+    },
+    {
+      "id": "TXN-788426",
+      "type": "IN",
+      "amount": 5000,
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-08-25T17:57:44.298Z",
+      "runningBalance": 48025
     }
   ]
 }
