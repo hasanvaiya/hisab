@@ -2170,6 +2170,24 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-08-30T14:26:50.044Z",
       "runningBalance": 2825
+    },
+    {
+      "id": "TXN-607393",
+      "type": "IN",
+      "amount": 500,
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-08-30T14:34:20.029Z",
+      "runningBalance": 3325
+    },
+    {
+      "id": "TXN-149128",
+      "type": "OUT",
+      "amount": 3000,
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-08-30T14:35:23.190Z",
+      "runningBalance": 325
     }
   ]
 }
