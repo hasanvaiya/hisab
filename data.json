@@ -2336,11 +2336,11 @@
     {
       "id": "TXN-423010",
       "type": "IN",
-      "amount": 9200,
+      "amount": 9250,
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-05T07:20:36.419Z",
-      "runningBalance": 50567
+      "runningBalance": 50617
     }
   ]
 }
