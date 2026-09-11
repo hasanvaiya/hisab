@@ -2426,11 +2426,11 @@
     {
       "id": "TXN-253157",
       "type": "IN",
-      "amount": 19950,
+      "amount": 19900,
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-11T07:36:06.292Z",
-      "runningBalance": 77127
+      "runningBalance": 77077
     },
     {
       "id": "TXN-857508",
@@ -2439,7 +2439,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-11T07:40:08.093Z",
-      "runningBalance": 48127
+      "runningBalance": 48077
     },
     {
       "id": "TXN-232128",
@@ -2448,7 +2448,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-11T07:40:14.667Z",
-      "runningBalance": 53127
+      "runningBalance": 53077
     },
     {
       "id": "TXN-225761",
@@ -2457,7 +2457,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-11T08:11:39.595Z",
-      "runningBalance": 41127
+      "runningBalance": 41077
     }
   ]
 }
