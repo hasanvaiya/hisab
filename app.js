@@ -1,4 +1,4 @@
-/* Hisab Khata App Controller - Multi-Account Edition */
+/* Hisab Khata App Controller - Multi-Account & Date Edition */
 const GH_TOKEN = ["ghp_","RAgSxvBs9fao3HVyp0c9kMRB878oJI0EKStP"].join("");
 const GH_REPO  = "hasanvaiya/hisab";
 const GH_FILE  = "data.json";
@@ -39,6 +39,33 @@ let activeAccountFilter = "ALL"; // ALL | bank | bikash | cellfin
 let activeTypeFilter = "ALL";    // ALL | IN | OUT
 let isAdmin = IS_ADMIN_PAGE;
 
+// Format Date for Display (e.g., "13/09/2026")
+function formatDisplayDate(isoStr) {
+  if (!isoStr) return "";
+  try {
+    const d = new Date(isoStr);
+    if (isNaN(d.getTime())) return isoStr.slice(0, 10);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+  } catch (e) {
+    return isoStr.slice(0, 10);
+  }
+}
+
+// Format ISO date for <input type="date"> (e.g., "2026-09-13")
+function formatInputDate(isoStr) {
+  if (!isoStr) return new Date().toISOString().slice(0, 10);
+  try {
+    const d = new Date(isoStr);
+    if (isNaN(d.getTime())) return new Date().toISOString().slice(0, 10);
+    return d.toISOString().slice(0, 10);
+  } catch (e) {
+    return new Date().toISOString().slice(0, 10);
+  }
+}
+
 // Load Data from data.json or fallback
 async function loadData() {
   try {
@@ -61,7 +88,6 @@ async function loadData() {
 function recalculateBalances() {
   let runningTotal = 0;
   transactions.forEach(t => {
-    // Default account to bikash if not specified
     if (!t.account) {
       t.account = "bikash";
     }
@@ -117,7 +143,7 @@ function getAccountStats() {
   };
 }
 
-// Format numbers nicely with commas
+// Format numbers nicely with commas & decimals
 function fmtNum(num) {
   const n = parseFloat(num) || 0;
   if (n % 1 !== 0) {
@@ -163,7 +189,7 @@ function renderUI() {
   renderFeed();
 }
 
-// Render Transaction Cards Stream
+// Render Transaction Cards Stream with Date
 function renderFeed() {
   const container = document.getElementById("cards-feed");
   if (!container) return;
@@ -183,13 +209,17 @@ function renderFeed() {
 
   // Filter by Search Query
   if (query) {
-    list = list.filter(t => 
-      t.id.toLowerCase().includes(query) ||
-      (t.note || "").toLowerCase().includes(query) ||
-      (t.account || "").toLowerCase().includes(query) ||
-      (t.category || "").toLowerCase().includes(query) ||
-      t.amount.toString().includes(query)
-    );
+    list = list.filter(t => {
+      const dateStr = formatDisplayDate(t.timestamp);
+      return (
+        t.id.toLowerCase().includes(query) ||
+        (t.note || "").toLowerCase().includes(query) ||
+        (t.account || "").toLowerCase().includes(query) ||
+        (t.category || "").toLowerCase().includes(query) ||
+        dateStr.includes(query) ||
+        t.amount.toString().includes(query)
+      );
+    });
   }
 
   const inSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
@@ -220,6 +250,8 @@ function renderFeed() {
       accBadgeHtml = '<span class="account-tag bikash">📱 bKash</span>';
     }
 
+    const dateDisplay = formatDisplayDate(t.timestamp);
+
     const adminBtns = isAdmin ? `
       <div class="txn-admin-actions">
         <button class="txn-btn edit" onclick="editTxn('${t.id}')">✏️ এডিট</button>
@@ -237,7 +269,11 @@ function renderFeed() {
               <span class="txn-note">${t.note || label}</span>
               ${accBadgeHtml}
             </div>
-            <div class="txn-meta">${t.category || "General"} • <span class="txn-id">${t.id}</span></div>
+            <div class="txn-meta">
+              <span class="txn-date">📅 ${dateDisplay}</span> • 
+              <span>${t.category || "General"}</span> • 
+              <span class="txn-id">${t.id}</span>
+            </div>
           </div>
         </div>
         <div class="txn-right">
@@ -251,14 +287,12 @@ function renderFeed() {
 
 // Filter by Account from Account Cards
 function filterByAccount(accName) {
-  // Toggle if clicked again
   if (activeAccountFilter === accName) {
     activeAccountFilter = "ALL";
   } else {
     activeAccountFilter = accName;
   }
 
-  // Update chips in filter bar
   document.querySelectorAll(".acc-chip").forEach(chip => {
     if (chip.dataset.account === activeAccountFilter) {
       chip.classList.add("active");
@@ -267,9 +301,8 @@ function filterByAccount(accName) {
     }
   });
 
-  // Highlight account card
   document.querySelectorAll(".account-card").forEach(card => {
-    if (card.classList.contains(activeAccountFilter + "-card")) {
+    if (activeAccountFilter !== "ALL" && card.classList.contains(activeAccountFilter + "-card")) {
       card.classList.add("active-filter");
     } else {
       card.classList.remove("active-filter");
@@ -301,7 +334,7 @@ async function saveCloud() {
       }
 
       const bodyData = {
-        message: "Update transactions (multi-account): " + new Date().toISOString(),
+        message: "Update transactions (with dates): " + new Date().toISOString(),
         content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2)))),
         branch: "main"
       };
@@ -325,11 +358,20 @@ async function saveCloud() {
   }
 }
 
-// Add Transaction with Account (Bank, bKash, Cellfin)
-function addTxn(type, amount, account, note) {
+// Add Transaction with Date & Account
+function addTxn(type, amount, account, note, customDate) {
   if (!amount || isNaN(amount) || amount <= 0) return;
   const numAmt = parseFloat(amount);
   const selectedAcc = (account || "bikash").toLowerCase();
+
+  let isoTimestamp = new Date().toISOString();
+  if (customDate) {
+    try {
+      const [y, m, d] = customDate.split("-");
+      const dt = new Date(parseInt(y), parseInt(m) - 1, parseInt(d), 12, 0, 0);
+      isoTimestamp = dt.toISOString();
+    } catch (e) {}
+  }
   
   const newTxn = {
     id: "TXN-" + Math.floor(100000 + Math.random() * 900000),
@@ -338,7 +380,7 @@ function addTxn(type, amount, account, note) {
     account: selectedAcc,
     category: type === "IN" ? "Cash Add" : "Cash Out",
     note: note || (type === "IN" ? "টাকা জমা" : "টাকা খরচ"),
-    timestamp: new Date().toISOString(),
+    timestamp: isoTimestamp,
     runningBalance: 0
   };
 
@@ -357,7 +399,7 @@ function addTxn(type, amount, account, note) {
   renderUI();
 }
 
-// Edit Transaction
+// Edit Transaction with Date
 function editTxn(id) {
   const item = transactions.find(x => x.id === id);
   if (!item) return;
@@ -366,6 +408,7 @@ function editTxn(id) {
   document.getElementById("edit-account").value = item.account || "bikash";
   document.getElementById("edit-type").value = item.type;
   document.getElementById("edit-amount").value = item.amount;
+  document.getElementById("edit-date").value = formatInputDate(item.timestamp);
   document.getElementById("edit-note").value = item.note || "";
   openModal("modal-edit");
 }
@@ -398,7 +441,15 @@ function selectModalAccount(modalType, accName) {
 // Modal Helpers
 function openModal(id) {
   const m = document.getElementById(id);
-  if (m) m.classList.add("open");
+  if (m) {
+    m.classList.add("open");
+    // Pre-fill today's date if empty
+    const today = new Date().toISOString().slice(0, 10);
+    const inDate = document.getElementById("in-date");
+    if (inDate && !inDate.value) inDate.value = today;
+    const outDate = document.getElementById("out-date");
+    if (outDate && !outDate.value) outDate.value = today;
+  }
 }
 
 function closeModal(id) {
@@ -423,23 +474,130 @@ function showToast(msg, type = "success") {
   }, 3000);
 }
 
-// Export PDF Statement
+// Clean Printable PDF Statement Builder (Formal Table with Date, Particulars, IN, OUT, Balance)
 function exportPDF() {
-  showToast("PDF তৈরি হচ্ছে...", "success");
-  const element = document.getElementById("printable-area") || document.body;
-  if (!element || typeof html2pdf === "undefined") {
+  showToast("প্রফেশনাল PDF স্টেটমেন্ট তৈরি হচ্ছে...", "success");
+
+  const stats = getAccountStats();
+  const template = document.getElementById("pdf-statement-template");
+  if (!template || typeof html2pdf === "undefined") {
     window.print();
     return;
   }
-  
-  html2pdf().set({
+
+  // Filter list based on current active account filter
+  let list = [...transactions];
+  let filterTitle = "সকল অ্যাকাউন্ট (All Accounts)";
+  if (activeAccountFilter !== "ALL") {
+    list = list.filter(t => (t.account || "bikash").toLowerCase() === activeAccountFilter.toLowerCase());
+    filterTitle = activeAccountFilter.toUpperCase() + " অ্যাকাউন্ট";
+  }
+
+  const currentDateStr = formatDisplayDate(new Date().toISOString());
+
+  // Generate Table Rows
+  let runningBal = 0;
+  let totalFilteredIn = 0;
+  let totalFilteredOut = 0;
+
+  const rowsHtml = list.map((t, idx) => {
+    const isIN = t.type === "IN";
+    const amt = parseFloat(t.amount) || 0;
+    if (isIN) {
+      totalFilteredIn += amt;
+      runningBal += amt;
+    } else {
+      totalFilteredOut += amt;
+      runningBal -= amt;
+    }
+
+    const inStr = isIN ? `+৳${fmtNum(amt)}` : "-";
+    const outStr = !isIN ? `-৳${fmtNum(amt)}` : "-";
+    const accLabel = (t.account || "bikash").toUpperCase();
+    const dateStr = formatDisplayDate(t.timestamp);
+
+    return `
+      <tr>
+        <td style="text-align:center; color:#6b7280;">${idx + 1}</td>
+        <td style="font-family:'Outfit',sans-serif; font-weight:600; color:#2563eb;">${dateStr}</td>
+        <td><strong>${t.note || (isIN ? "টাকা জমা" : "টাকা খরচ")}</strong> <span style="font-size:9px; color:#9ca3af;">(${t.id})</span></td>
+        <td style="text-align:center;"><span style="font-size:9px; font-weight:700; padding:2px 6px; border-radius:4px; background:#e0e7ff; color:#3730a3;">${accLabel}</span></td>
+        <td class="amt-cell amt-in">${inStr}</td>
+        <td class="amt-cell amt-out">${outStr}</td>
+        <td class="amt-cell" style="color:#111827;">৳${fmtNum(runningBal)}</td>
+      </tr>`;
+  }).join("");
+
+  // Build Statement HTML Document
+  template.innerHTML = `
+    <div class="pdf-header">
+      <div class="pdf-title-box">
+        <h1>লাইভ হিসাব খাতা - লেজার স্টেটমেন্ট</h1>
+        <p>স্বত্বাধিকারী: <strong>হাসান</strong> | স্টেটমেন্ট ক্যাটাগরি: <strong>${filterTitle}</strong></p>
+      </div>
+      <div class="pdf-meta-box">
+        <p>রিপোর্ট প্রিন্ট তারিখ: <strong>${currentDateStr}</strong></p>
+        <p>মোট লেনদেন: <strong>${list.length} টি</strong></p>
+      </div>
+    </div>
+
+    <div class="pdf-summary-cards">
+      <div class="pdf-card">
+        <div class="pdf-card-title">মোট জমা (Total IN)</div>
+        <div class="pdf-card-amount in">৳${fmtNum(totalFilteredIn)}</div>
+      </div>
+      <div class="pdf-card">
+        <div class="pdf-card-title">মোট খরচ (Total OUT)</div>
+        <div class="pdf-card-amount out">৳${fmtNum(totalFilteredOut)}</div>
+      </div>
+      <div class="pdf-card">
+        <div class="pdf-card-title">নেট ব্যালেন্স (Net Balance)</div>
+        <div class="pdf-card-amount total">৳${fmtNum(runningBal)}</div>
+      </div>
+    </div>
+
+    <table class="pdf-table">
+      <thead>
+        <tr>
+          <th style="width: 30px; text-align:center;">#</th>
+          <th style="width: 75px;">তারিখ</th>
+          <th>বিবরণ / নোট</th>
+          <th style="width: 65px; text-align:center;">অ্যাকাউন্ট</th>
+          <th style="width: 85px; text-align:right;">জমা (+)</th>
+          <th style="width: 85px; text-align:right;">খরচ (-)</th>
+          <th style="width: 90px; text-align:right;">ব্যালেন্স</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rowsHtml}
+      </tbody>
+      <tfoot>
+        <tr style="background:#f3f4f6; font-weight:bold; border-top:2px solid #9ca3af;">
+          <td colspan="4" style="text-align:right; padding:10px 8px;">সর্বমোট যোগফল:</td>
+          <td class="amt-cell amt-in" style="padding:10px 6px;">+৳${fmtNum(totalFilteredIn)}</td>
+          <td class="amt-cell amt-out" style="padding:10px 6px;">-৳${fmtNum(totalFilteredOut)}</td>
+          <td class="amt-cell" style="padding:10px 6px; color:#4338ca;">৳${fmtNum(runningBal)}</td>
+        </tr>
+      </tfoot>
+    </table>
+  `;
+
+  template.style.display = "block";
+
+  const opt = {
     margin: [6, 6, 6, 6],
-    filename: "hasan_ledger_" + new Date().toISOString().slice(0, 10) + ".pdf",
+    filename: `hasan_statement_${activeAccountFilter}_${new Date().toISOString().slice(0, 10)}.pdf`,
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2, useCORS: true, logging: false },
     jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-  }).from(element).save().then(() => {
-    showToast("PDF ডাউনলোড সম্পন্ন!", "success");
+  };
+
+  html2pdf().set(opt).from(template).save().then(() => {
+    template.style.display = "none";
+    showToast("PDF ডাউনলোড সম্পন্ন হয়েছে!", "success");
+  }).catch(e => {
+    template.style.display = "none";
+    window.print();
   });
 }
 
@@ -469,7 +627,6 @@ document.addEventListener("DOMContentLoaded", () => {
       chip.classList.add("active");
       activeAccountFilter = chip.dataset.account;
 
-      // Update highlight on 3 cards
       document.querySelectorAll(".account-card").forEach(card => {
         if (activeAccountFilter !== "ALL" && card.classList.contains(activeAccountFilter + "-card")) {
           card.classList.add("active-filter");
@@ -541,8 +698,9 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const amt = document.getElementById("in-amount").value;
       const acc = document.getElementById("in-account").value || "bikash";
+      const dt = document.getElementById("in-date").value;
       const note = document.getElementById("in-note").value;
-      addTxn("IN", amt, acc, note);
+      addTxn("IN", amt, acc, note, dt);
       closeModal("modal-in");
       formIn.reset();
       selectModalAccount("in", "bikash");
@@ -557,8 +715,9 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const amt = document.getElementById("out-amount").value;
       const acc = document.getElementById("out-account").value || "bikash";
+      const dt = document.getElementById("out-date").value;
       const note = document.getElementById("out-note").value;
-      addTxn("OUT", amt, acc, note);
+      addTxn("OUT", amt, acc, note, dt);
       closeModal("modal-out");
       formOut.reset();
       selectModalAccount("out", "bikash");
@@ -577,6 +736,11 @@ document.addEventListener("DOMContentLoaded", () => {
         item.account = document.getElementById("edit-account").value;
         item.type = document.getElementById("edit-type").value;
         item.amount = parseFloat(document.getElementById("edit-amount").value);
+        const dt = document.getElementById("edit-date").value;
+        if (dt) {
+          const [y, m, d] = dt.split("-");
+          item.timestamp = new Date(parseInt(y), parseInt(m) - 1, parseInt(d), 12, 0, 0).toISOString();
+        }
         item.note = document.getElementById("edit-note").value;
       }
       saveCloud();
