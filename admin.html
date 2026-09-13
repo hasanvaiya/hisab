@@ -212,8 +212,12 @@
           <input type="hidden" id="in-account" value="bikash">
         </div>
         <div class="form-group">
+          <label class="form-label">তারিখ (Date) *</label>
+          <input type="date" class="form-input" id="in-date" required>
+        </div>
+        <div class="form-group">
           <label class="form-label">পরিমাণ (টাকা) *</label>
-          <input type="number" class="form-input" id="in-amount" placeholder="0.00" required min="1" inputmode="numeric">
+          <input type="number" class="form-input" id="in-amount" placeholder="0.00" required min="1" step="any" inputmode="decimal">
         </div>
         <div class="form-group">
           <label class="form-label">নোট / বিবরণ</label>
@@ -252,8 +256,12 @@
           <input type="hidden" id="out-account" value="bikash">
         </div>
         <div class="form-group">
+          <label class="form-label">তারিখ (Date) *</label>
+          <input type="date" class="form-input" id="out-date" required>
+        </div>
+        <div class="form-group">
           <label class="form-label">পরিমাণ (টাকা) *</label>
-          <input type="number" class="form-input" id="out-amount" placeholder="0.00" required min="1" inputmode="numeric">
+          <input type="number" class="form-input" id="out-amount" placeholder="0.00" required min="1" step="any" inputmode="decimal">
         </div>
         <div class="form-group">
           <label class="form-label">নোট / বিবরণ</label>
@@ -283,6 +291,10 @@
           </select>
         </div>
         <div class="form-group">
+          <label class="form-label">তারিখ (Date)</label>
+          <input type="date" class="form-input" id="edit-date" required>
+        </div>
+        <div class="form-group">
           <label class="form-label">লেনদেনের ধরন</label>
           <select class="form-select" id="edit-type">
             <option value="IN">IN (টাকা জমা)</option>
@@ -291,7 +303,7 @@
         </div>
         <div class="form-group">
           <label class="form-label">পরিমাণ (টাকা)</label>
-          <input type="number" class="form-input" id="edit-amount" required min="1" inputmode="numeric">
+          <input type="number" class="form-input" id="edit-amount" required min="1" step="any" inputmode="decimal">
         </div>
         <div class="form-group">
           <label class="form-label">নোট / বিবরণ</label>
@@ -301,6 +313,9 @@
       </form>
     </div>
   </div>
+
+  <!-- PDF STATEMENT PRINT TEMPLATE (Hidden, rendered during PDF export) -->
+  <div id="pdf-statement-template"></div>
 
   <!-- TOAST CONTAINER -->
   <div class="toast-container" id="toast-container"></div>
