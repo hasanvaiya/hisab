@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#070b14">
+  <meta name="theme-color" content="#070a12">
   <title>অ্যাডমিন প্যানেল - হাসান</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
     <!-- TOP HEADER -->
     <header class="app-header">
       <div class="user-profile">
-        <div class="avatar" style="background: linear-gradient(135deg, #10b981, #059669);">
+        <div class="avatar avatar-admin">
           H
           <span class="avatar-online-dot"></span>
         </div>
@@ -48,53 +48,92 @@
       </div>
     </header>
 
-    <!-- HERO BALANCE CARD -->
-    <section class="hero-card hero-card-admin">
+    <!-- MASTER BALANCE HERO CARD -->
+    <section class="master-hero-card master-hero-admin">
+      <div class="hero-glow-orb"></div>
       <div class="hero-top-row">
-        <span class="hero-label">বর্তমান মোট ব্যালেন্স</span>
+        <span class="hero-label">সর্বমোট ব্যালেন্স (All Accounts)</span>
         <span class="hero-pill">👑 OWNER MODE</span>
       </div>
       <div class="hero-balance-row">
         <span class="hero-currency-symbol">৳</span>
-        <span class="hero-balance-amount" id="balance-display">23,592</span>
+        <span class="hero-balance-amount" id="balance-display">লোড হচ্ছে...</span>
         <span class="hero-currency-tag">BDT</span>
       </div>
       <div class="hero-stats-grid">
         <div class="stat-box">
           <span class="stat-title">মোট জমা</span>
-          <span class="stat-value in" id="total-in-display">৳264,756</span>
+          <span class="stat-value in" id="total-in-display">--</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-box">
           <span class="stat-title">মোট খরচ</span>
-          <span class="stat-value out" id="total-out-display">৳241,164</span>
+          <span class="stat-value out" id="total-out-display">--</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-box">
           <span class="stat-title">নেট ফ্লো</span>
-          <span class="stat-value net" id="net-flow-display">+৳23,592</span>
+          <span class="stat-value net" id="net-flow-display">--</span>
         </div>
       </div>
     </section>
 
-    <!-- ADMIN ACTION BUTTONS -->
+    <!-- 3 ACCOUNTS SUMMARY CARDS (Bank, bKash, Cellfin) -->
+    <section class="accounts-section">
+      <div class="accounts-header">
+        <span class="accounts-title">অ্যাকাউন্টভিত্তিক ব্যালেন্স</span>
+      </div>
+      <div class="accounts-grid">
+        <!-- 1. Bank Card -->
+        <div class="account-card bank-card" onclick="filterByAccount('bank')">
+          <div class="acc-top">
+            <div class="acc-icon bank">🏦</div>
+            <span class="acc-badge bank">Bank</span>
+          </div>
+          <span class="acc-name">ব্যাংক</span>
+          <div class="acc-balance">৳<span id="bank-balance-display">0</span></div>
+        </div>
+
+        <!-- 2. bKash Card -->
+        <div class="account-card bikash-card" onclick="filterByAccount('bikash')">
+          <div class="acc-top">
+            <div class="acc-icon bikash">📱</div>
+            <span class="acc-badge bikash">bKash</span>
+          </div>
+          <span class="acc-name">বিকাশ</span>
+          <div class="acc-balance">৳<span id="bikash-balance-display">0</span></div>
+        </div>
+
+        <!-- 3. Cellfin Card -->
+        <div class="account-card cellfin-card" onclick="filterByAccount('cellfin')">
+          <div class="acc-top">
+            <div class="acc-icon cellfin">⚡</div>
+            <span class="acc-badge cellfin">Cellfin</span>
+          </div>
+          <span class="acc-name">সেলফিন</span>
+          <div class="acc-balance">৳<span id="cellfin-balance-display">0</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN ACTION BUTTONS (Money IN & OUT) -->
     <section class="admin-actions-grid">
-      <button class="action-btn in-btn" id="btn-open-in-modal">
+      <button class="action-card-btn in-btn" id="btn-open-in-modal">
         <div class="action-icon in-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
         </div>
         <div class="action-text">
           <strong>+ টাকা জমা</strong>
-          <span>Cash Add</span>
+          <span>Money IN</span>
         </div>
       </button>
-      <button class="action-btn out-btn" id="btn-open-out-modal">
+      <button class="action-card-btn out-btn" id="btn-open-out-modal">
         <div class="action-icon out-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
         </div>
         <div class="action-text">
           <strong>- টাকা খরচ</strong>
-          <span>Cash Out</span>
+          <span>Money OUT</span>
         </div>
       </button>
     </section>
@@ -102,1365 +141,29 @@
     <!-- TRANSACTION FEED -->
     <main class="feed-container" id="printable-area">
       <div class="feed-header">
-        <span class="feed-title">হিসাব তালিকা</span>
+        <span class="feed-title">হিসাব তালিকা (ম্যানেজ করুন)</span>
+      </div>
+
+      <!-- Account Filter Bar -->
+      <div class="account-filter-bar">
+        <button class="acc-chip active" data-account="ALL">সব অ্যাকাউন্ট</button>
+        <button class="acc-chip chip-bank" data-account="bank">🏦 ব্যাংক</button>
+        <button class="acc-chip chip-bikash" data-account="bikash">📱 বিকাশ</button>
+        <button class="acc-chip chip-cellfin" data-account="cellfin">⚡ সেলফিন</button>
+      </div>
+
+      <!-- In / Out Filter -->
+      <div class="sub-filter-row">
         <div class="filter-tabs">
           <button class="filter-tab active" data-filter="ALL">সকল</button>
           <button class="filter-tab" data-filter="IN">জমা</button>
           <button class="filter-tab" data-filter="OUT">খরচ</button>
         </div>
       </div>
+
+      <!-- Feed list -->
       <div class="cards-wrapper" id="cards-feed">
-        <div class="txn-card" data-type="OUT" data-id="TXN-1075">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1075</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳40</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳23,592</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1075')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1075')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1074">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1074</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳17,300</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳23,632</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1074')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1074')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1073">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1073</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳50,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳6,332</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1073')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1073')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1072">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1072</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳26,150</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳56,332</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1072')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1072')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1071">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1071</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳30,182</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1071')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1071')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1070">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1070</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳25,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳29,182</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1070')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1070')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1069">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1069</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳2,550</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳4,182</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1069')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1069')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1068">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1068</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,020</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳1,632</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1068')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1068')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1067">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1067</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳500</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳612</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1067')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1067')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1066">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1066</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳3,320</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳1,112</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1066')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1066')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1065">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1065</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳20,300</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳4,432</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1065')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1065')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1064">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1064</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳5,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳24,732</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1064')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1064')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1063">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1063</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳2,550</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳19,732</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1063')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1063')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1062">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1062</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳3,030</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳22,282</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1062')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1062')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1061">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1061</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳750</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳19,252</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1061')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1061')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1060">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1060</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳459</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳18,502</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1060')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1060')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1059">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1059</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,020</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳18,961</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1059')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1059')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1058">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1058</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,030</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳17,941</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1058')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1058')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1057">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1057</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳4,200</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳16,911</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1057')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1057')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1056">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1056</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳3,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳21,111</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1056')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1056')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1055">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1055</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳2,040</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳18,111</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1055')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1055')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1054">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1054</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳2,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳16,071</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1054')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1054')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1053">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1053</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,020</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳14,071</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1053')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1053')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1052">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1052</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳10,250</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳13,051</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1052')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1052')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1051">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1051</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,538</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳2,801</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1051')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1051')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1050">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1050</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳3,380</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳1,263</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1050')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1050')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1049">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1049</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳3,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳4,643</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1049')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1049')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1048">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1048</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳5,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳1,643</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1048')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1048')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1047">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1047</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳5,090</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳6,643</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1047')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1047')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1046">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1046</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳1,015</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳1,553</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1046')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1046')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1045">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1045</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳2,040</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳2,568</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1045')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1045')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1044">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1044</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳50</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳528</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1044')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1044')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1043">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1043</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳4,150</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳578</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1043')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1043')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1042">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1042</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳6,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳4,728</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1042')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1042')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1041">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1041</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳10,200</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳10,728</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1041')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1041')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1040">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1040</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳26,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳528</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1040')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1040')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1039">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1039</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳16,750</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳26,528</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1039')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1039')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1038">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1038</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳6,550</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳9,778</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1038')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1038')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1037">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1037</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳22,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳16,328</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1037')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1037')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1036">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1036</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳10,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳38,328</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1036')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1036')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1035">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1035</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳15,200</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳48,328</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1035')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1035')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1034">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1034</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳55</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳63,528</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1034')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1034')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1033">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1033</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,520</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳63,583</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1033')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1033')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1032">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1032</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,530</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳62,063</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1032')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1032')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1031">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1031</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳25,500</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳60,533</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1031')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1031')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1030">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1030</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,530</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳35,033</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1030')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1030')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1029">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1029</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,530</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳33,503</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1029')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1029')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1028">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1028</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,530</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳31,973</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1028')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1028')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1027">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1027</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,530</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳30,443</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1027')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1027')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1026">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1026</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,530</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳28,913</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1026')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1026')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1025">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1025</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,500</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳27,383</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1025')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1025')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1024">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1024</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳3,075</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳25,883</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1024')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1024')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1023">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1023</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳16,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳22,808</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1023')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1023')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1022">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1022</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,530</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳6,808</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1022')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1022')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1021">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1021</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳2,040</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳5,278</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1021')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1021')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1020">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1020</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,530</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳3,238</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1020')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1020')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1019">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1019</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳3,340</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳1,708</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1019')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1019')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1018">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1018</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳1,550</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳5,048</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1018')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1018')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1017">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1017</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳18,600</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳6,598</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1017')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1017')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1016">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1016</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳22,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳25,198</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1016')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1016')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1015">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1015</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳250</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳3,198</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1015')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1015')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1014">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1014</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳10,010</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳3,448</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1014')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1014')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1013">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1013</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳5,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳13,458</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1013')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1013')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1012">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1012</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳5,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳8,458</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1012')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1012')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1011">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1011</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳5,510</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳3,458</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1011')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1011')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1010">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1010</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳8,252</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳8,968</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1010')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1010')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1009">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1009</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳10,005</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳716</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1009')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1009')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1008">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1008</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳1,530</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳10,721</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1008')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1008')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1007">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1007</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳2,040</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳9,191</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1007')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1007')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1006">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1006</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳30</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳7,151</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1006')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1006')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1005">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1005</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳5,000</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳7,181</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1005')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1005')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="OUT" data-id="TXN-1004">
-      <div class="txn-left">
-        <div class="txn-type-icon out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা খরচ</div>
-          <div class="txn-meta">Cash Out • <span class="txn-id">TXN-1004</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount out">-৳11,100</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳2,181</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1004')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1004')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1003">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1003</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳2,550</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳13,281</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1003')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1003')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1002">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1002</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳3,081</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳10,731</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1002')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1002')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div><div class="txn-card" data-type="IN" data-id="TXN-1001">
-      <div class="txn-left">
-        <div class="txn-type-icon in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </div>
-        <div class="txn-info">
-          <div class="txn-note">টাকা জমা</div>
-          <div class="txn-meta">Cash Add • <span class="txn-id">TXN-1001</span></div>
-        </div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amount in">+৳7,650</div>
-        <div class="txn-running-balance">ব্যালেন্স ৳7,650</div>
-        <div class="txn-admin-actions">
-      <button class="txn-btn edit" onclick="editTxn('TXN-1001')">✏️ এডিট</button>
-      <button class="txn-btn delete" onclick="delTxn('TXN-1001')">🗑️ ডিলিট</button>
-    </div>
-      </div>
-    </div>
+        <div style="text-align: center; padding: 30px; color: var(--text-dim);">লোড হচ্ছে...</div>
       </div>
     </main>
 
@@ -1481,56 +184,80 @@
     </button>
   </nav>
 
-  <!-- MONEY IN MODAL -->
+  <!-- MONEY IN MODAL (Deposit) -->
   <div class="modal-overlay" id="modal-in">
     <div class="modal-sheet">
       <div class="modal-drag-indicator"></div>
       <div class="modal-header">
-        <span class="modal-title">+ টাকা জমা (Cash Add)</span>
+        <span class="modal-title">+ টাকা জমা করুন (Money IN)</span>
         <button class="modal-close-btn" onclick="closeModal('modal-in')">×</button>
       </div>
       <form id="form-in">
+        <div class="form-group">
+          <label class="form-label">অ্যাকাউন্ট নির্বাচন করুন *</label>
+          <div class="modal-account-pills">
+            <div class="acc-pill-option acc-bank" onclick="selectModalAccount('in', 'bank')">
+              <span class="p-icon">🏦</span>
+              <span class="p-name">ব্যাংক</span>
+            </div>
+            <div class="acc-pill-option acc-bikash selected" onclick="selectModalAccount('in', 'bikash')">
+              <span class="p-icon">📱</span>
+              <span class="p-name">বিকাশ</span>
+            </div>
+            <div class="acc-pill-option acc-cellfin" onclick="selectModalAccount('in', 'cellfin')">
+              <span class="p-icon">⚡</span>
+              <span class="p-name">সেলফিন</span>
+            </div>
+          </div>
+          <input type="hidden" id="in-account" value="bikash">
+        </div>
         <div class="form-group">
           <label class="form-label">পরিমাণ (টাকা) *</label>
           <input type="number" class="form-input" id="in-amount" placeholder="0.00" required min="1" inputmode="numeric">
         </div>
         <div class="form-group">
-          <label class="form-label">ক্যাটাগরি</label>
-          <select class="form-select" id="in-category">
-            <option value="Cash Add">Cash Add</option>
-          </select>
-        </div>
-        <div class="form-group">
           <label class="form-label">নোট / বিবরণ</label>
-          <input type="text" class="form-input" id="in-note" placeholder="ঐচ্ছিক বিবরণ লিখুন">
+          <input type="text" class="form-input" id="in-note" placeholder="ঐচ্ছিক নোট লিখুন">
         </div>
         <button type="submit" class="submit-btn in">+ জমা নিশ্চিত করুন</button>
       </form>
     </div>
   </div>
 
-  <!-- MONEY OUT MODAL -->
+  <!-- MONEY OUT MODAL (Expense) -->
   <div class="modal-overlay" id="modal-out">
     <div class="modal-sheet">
       <div class="modal-drag-indicator"></div>
       <div class="modal-header">
-        <span class="modal-title">- টাকা খরচ (Cash Out)</span>
+        <span class="modal-title">- টাকা খরচ করুন (Money OUT)</span>
         <button class="modal-close-btn" onclick="closeModal('modal-out')">×</button>
       </div>
       <form id="form-out">
+        <div class="form-group">
+          <label class="form-label">অ্যাকাউন্ট নির্বাচন করুন *</label>
+          <div class="modal-account-pills">
+            <div class="acc-pill-option acc-bank" onclick="selectModalAccount('out', 'bank')">
+              <span class="p-icon">🏦</span>
+              <span class="p-name">ব্যাংক</span>
+            </div>
+            <div class="acc-pill-option acc-bikash selected" onclick="selectModalAccount('out', 'bikash')">
+              <span class="p-icon">📱</span>
+              <span class="p-name">বিকাশ</span>
+            </div>
+            <div class="acc-pill-option acc-cellfin" onclick="selectModalAccount('out', 'cellfin')">
+              <span class="p-icon">⚡</span>
+              <span class="p-name">সেলফিন</span>
+            </div>
+          </div>
+          <input type="hidden" id="out-account" value="bikash">
+        </div>
         <div class="form-group">
           <label class="form-label">পরিমাণ (টাকা) *</label>
           <input type="number" class="form-input" id="out-amount" placeholder="0.00" required min="1" inputmode="numeric">
         </div>
         <div class="form-group">
-          <label class="form-label">ক্যাটাগরি</label>
-          <select class="form-select" id="out-category">
-            <option value="Cash Out">Cash Out</option>
-          </select>
-        </div>
-        <div class="form-group">
           <label class="form-label">নোট / বিবরণ</label>
-          <input type="text" class="form-input" id="out-note" placeholder="ঐচ্ছিক বিবরণ লিখুন">
+          <input type="text" class="form-input" id="out-note" placeholder="ঐচ্ছিক নোট লিখুন">
         </div>
         <button type="submit" class="submit-btn out">- খরচ নিশ্চিত করুন</button>
       </form>
@@ -1548,17 +275,18 @@
       <form id="form-edit">
         <input type="hidden" id="edit-id">
         <div class="form-group">
-          <label class="form-label">টাইপ</label>
-          <select class="form-select" id="edit-type">
-            <option value="IN">IN (টাকা জমা)</option>
-            <option value="OUT">OUT (টাকা খরচ)</option>
+          <label class="form-label">অ্যাকাউন্ট</label>
+          <select class="form-select" id="edit-account">
+            <option value="bank">🏦 ব্যাংক (Bank)</option>
+            <option value="bikash">📱 বিকাশ (bKash)</option>
+            <option value="cellfin">⚡ সেলফিন (Cellfin)</option>
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">ক্যাটাগরি</label>
-          <select class="form-select" id="edit-category">
-            <option value="Cash Add">Cash Add</option>
-            <option value="Cash Out">Cash Out</option>
+          <label class="form-label">লেনদেনের ধরন</label>
+          <select class="form-select" id="edit-type">
+            <option value="IN">IN (টাকা জমা)</option>
+            <option value="OUT">OUT (টাকা খরচ)</option>
           </select>
         </div>
         <div class="form-group">
