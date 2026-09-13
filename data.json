@@ -3511,6 +3511,16 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-09-13T15:59:47.981Z",
       "runningBalance": 864527.12
+    },
+    {
+      "id": "TXN-558026",
+      "type": "IN",
+      "amount": 490,
+      "account": "cellfin",
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-09-13T15:59:56.004Z",
+      "runningBalance": 865017.12
     }
   ]
 }
