@@ -119,7 +119,11 @@ function getAccountStats() {
 
 // Format numbers nicely with commas
 function fmtNum(num) {
-  return (num || 0).toLocaleString("en-BD");
+  const n = parseFloat(num) || 0;
+  if (n % 1 !== 0) {
+    return n.toLocaleString("en-BD", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  return n.toLocaleString("en-BD");
 }
 
 // Render Complete UI
