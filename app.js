@@ -1,4 +1,4 @@
-/* Hisab Khata App Controller */
+/* Hisab Khata App Controller - Multi-Account Edition */
 const GH_TOKEN = ["ghp_","RAgSxvBs9fao3HVyp0c9kMRB878oJI0EKStP"].join("");
 const GH_REPO  = "hasanvaiya/hisab";
 const GH_FILE  = "data.json";
@@ -35,7 +35,8 @@ const AudioFX = {
 
 // Global App State
 let transactions = [];
-let activeFilter = "ALL";
+let activeAccountFilter = "ALL"; // ALL | bank | bikash | cellfin
+let activeTypeFilter = "ALL";    // ALL | IN | OUT
 let isAdmin = IS_ADMIN_PAGE;
 
 // Load Data from data.json or fallback
@@ -56,63 +57,109 @@ async function loadData() {
   }
 }
 
-// Recalculate running balance
+// Normalize & recalculate running balances
 function recalculateBalances() {
-  let running = 0;
+  let runningTotal = 0;
   transactions.forEach(t => {
-    if (t.type === "IN") {
-      running += t.amount;
-      if (!t.category || t.category !== "Cash Add") t.category = "Cash Add";
-    } else {
-      running -= t.amount;
-      if (!t.category || t.category !== "Cash Out") t.category = "Cash Out";
+    // Default account to bikash if not specified
+    if (!t.account) {
+      t.account = "bikash";
     }
-    t.runningBalance = running;
+    t.amount = parseFloat(t.amount) || 0;
+
+    if (t.type === "IN") {
+      runningTotal += t.amount;
+      t.category = "Cash Add";
+    } else {
+      runningTotal -= t.amount;
+      t.category = "Cash Out";
+    }
+    t.runningBalance = runningTotal;
   });
 }
 
-// Get total stats
-function getStats() {
-  const totalIn = transactions.reduce((sum, t) => t.type === "IN" ? sum + t.amount : sum, 0);
-  const totalOut = transactions.reduce((sum, t) => t.type === "OUT" ? sum + t.amount : sum, 0);
+// Get account-specific & grand total stats
+function getAccountStats() {
+  let totalIn = 0;
+  let totalOut = 0;
+
+  let bankBal = 0;
+  let bikashBal = 0;
+  let cellfinBal = 0;
+
+  transactions.forEach(t => {
+    const amt = t.amount;
+    const isIN = t.type === "IN";
+    const delta = isIN ? amt : -amt;
+
+    if (isIN) totalIn += amt;
+    else totalOut += amt;
+
+    const acc = (t.account || "bikash").toLowerCase();
+    if (acc === "bank") {
+      bankBal += delta;
+    } else if (acc === "cellfin") {
+      cellfinBal += delta;
+    } else {
+      bikashBal += delta;
+    }
+  });
+
+  const totalNet = bankBal + bikashBal + cellfinBal;
+
   return {
     totalIn,
     totalOut,
-    netBalance: totalIn - totalOut
+    totalNet,
+    bankBal,
+    bikashBal,
+    cellfinBal
   };
 }
 
-// Format numbers nicely
+// Format numbers nicely with commas
 function fmtNum(num) {
-  return num.toLocaleString("en-BD");
+  return (num || 0).toLocaleString("en-BD");
 }
 
-// Render UI Elements
+// Render Complete UI
 function renderUI() {
   recalculateBalances();
-  const { totalIn, totalOut, netBalance } = getStats();
+  const stats = getAccountStats();
 
+  // Master Total Balance
   const balEl = document.getElementById("balance-display");
-  if (balEl) balEl.textContent = fmtNum(netBalance);
+  if (balEl) balEl.textContent = fmtNum(stats.totalNet);
 
   const tinEl = document.getElementById("total-in-display");
-  if (tinEl) tinEl.textContent = "৳" + fmtNum(totalIn);
+  if (tinEl) tinEl.textContent = "৳" + fmtNum(stats.totalIn);
 
   const toutEl = document.getElementById("total-out-display");
-  if (toutEl) toutEl.textContent = "৳" + fmtNum(totalOut);
+  if (toutEl) toutEl.textContent = "৳" + fmtNum(stats.totalOut);
 
   const netEl = document.getElementById("net-flow-display");
   if (netEl) {
-    netEl.textContent = (netBalance >= 0 ? "+৳" : "-৳") + fmtNum(Math.abs(netBalance));
+    netEl.textContent = (stats.totalNet >= 0 ? "+৳" : "-৳") + fmtNum(Math.abs(stats.totalNet));
   }
 
+  // 3 Accounts Balances
+  const bankEl = document.getElementById("bank-balance-display");
+  if (bankEl) bankEl.textContent = fmtNum(stats.bankBal);
+
+  const bikashEl = document.getElementById("bikash-balance-display");
+  if (bikashEl) bikashEl.textContent = fmtNum(stats.bikashBal);
+
+  const cellfinEl = document.getElementById("cellfin-balance-display");
+  if (cellfinEl) cellfinEl.textContent = fmtNum(stats.cellfinBal);
+
+  // Count
   const countEl = document.getElementById("txn-count-label");
   if (countEl) countEl.textContent = transactions.length + " টি হিসাব";
 
   renderFeed();
 }
 
-// Render Transaction Cards
+// Render Transaction Cards Stream
 function renderFeed() {
   const container = document.getElementById("cards-feed");
   if (!container) return;
@@ -120,14 +167,22 @@ function renderFeed() {
   const query = (document.getElementById("search-input")?.value || "").toLowerCase().trim();
   let list = [...transactions].reverse();
 
-  if (activeFilter !== "ALL") {
-    list = list.filter(t => t.type === activeFilter);
+  // Filter by Account (Bank, bKash, Cellfin)
+  if (activeAccountFilter !== "ALL") {
+    list = list.filter(t => (t.account || "bikash").toLowerCase() === activeAccountFilter.toLowerCase());
   }
 
+  // Filter by Type (IN, OUT)
+  if (activeTypeFilter !== "ALL") {
+    list = list.filter(t => t.type === activeTypeFilter);
+  }
+
+  // Filter by Search Query
   if (query) {
     list = list.filter(t => 
       t.id.toLowerCase().includes(query) ||
       (t.note || "").toLowerCase().includes(query) ||
+      (t.account || "").toLowerCase().includes(query) ||
       (t.category || "").toLowerCase().includes(query) ||
       t.amount.toString().includes(query)
     );
@@ -138,9 +193,9 @@ function renderFeed() {
 
   if (list.length === 0) {
     container.innerHTML = `
-      <div style="text-align: center; padding: 40px 20px; color: var(--text-dim);">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 48px; height: 48px; margin: 0 auto 12px; opacity: 0.4;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <p>কোনো হিসাব পাওয়া যায়নি</p>
+      <div style="text-align: center; padding: 36px 16px; color: var(--text-dim);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 44px; height: 44px; margin: 0 auto 10px; opacity: 0.35;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <p style="font-size: 0.88rem;">কোনো হিসাব পাওয়া যায়নি</p>
       </div>`;
     return;
   }
@@ -150,7 +205,16 @@ function renderFeed() {
     const iconCls = isIn ? "in" : "out";
     const sign = isIn ? "+" : "-";
     const label = isIn ? "টাকা জমা" : "টাকা খরচ";
-    const catName = isIn ? "Cash Add" : "Cash Out";
+
+    const acc = (t.account || "bikash").toLowerCase();
+    let accBadgeHtml = "";
+    if (acc === "bank") {
+      accBadgeHtml = '<span class="account-tag bank">🏦 Bank</span>';
+    } else if (acc === "cellfin") {
+      accBadgeHtml = '<span class="account-tag cellfin">⚡ Cellfin</span>';
+    } else {
+      accBadgeHtml = '<span class="account-tag bikash">📱 bKash</span>';
+    }
 
     const adminBtns = isAdmin ? `
       <div class="txn-admin-actions">
@@ -159,26 +223,59 @@ function renderFeed() {
       </div>` : "";
 
     return `
-      <div class="txn-card" data-type="${t.type}" data-id="${t.id}">
+      <div class="txn-card" data-type="${t.type}" data-account="${acc}" data-id="${t.id}">
         <div class="txn-left">
           <div class="txn-type-icon ${iconCls}">
             ${isIn ? inSvg : outSvg}
           </div>
           <div class="txn-info">
-            <div class="txn-note">${t.note || label}</div>
-            <div class="txn-meta">${catName} • <span class="txn-id">${t.id}</span></div>
+            <div class="txn-top-line">
+              <span class="txn-note">${t.note || label}</span>
+              ${accBadgeHtml}
+            </div>
+            <div class="txn-meta">${t.category || "General"} • <span class="txn-id">${t.id}</span></div>
           </div>
         </div>
         <div class="txn-right">
           <div class="txn-amount ${iconCls}">${sign}৳${fmtNum(t.amount)}</div>
-          <div class="txn-running-balance">ব্যালেন্স ৳${fmtNum(t.runningBalance || 0)}</div>
+          <div class="txn-running-balance">মোট ৳${fmtNum(t.runningBalance || 0)}</div>
           ${adminBtns}
         </div>
       </div>`;
   }).join("");
 }
 
-// Global Cloud Push to GitHub API
+// Filter by Account from Account Cards
+function filterByAccount(accName) {
+  // Toggle if clicked again
+  if (activeAccountFilter === accName) {
+    activeAccountFilter = "ALL";
+  } else {
+    activeAccountFilter = accName;
+  }
+
+  // Update chips in filter bar
+  document.querySelectorAll(".acc-chip").forEach(chip => {
+    if (chip.dataset.account === activeAccountFilter) {
+      chip.classList.add("active");
+    } else {
+      chip.classList.remove("active");
+    }
+  });
+
+  // Highlight account card
+  document.querySelectorAll(".account-card").forEach(card => {
+    if (card.classList.contains(activeAccountFilter + "-card")) {
+      card.classList.add("active-filter");
+    } else {
+      card.classList.remove("active-filter");
+    }
+  });
+
+  renderFeed();
+}
+
+// Cloud Push to GitHub API
 async function saveCloud() {
   recalculateBalances();
   const payload = {
@@ -200,7 +297,7 @@ async function saveCloud() {
       }
 
       const bodyData = {
-        message: "Update transactions: " + new Date().toISOString(),
+        message: "Update transactions (multi-account): " + new Date().toISOString(),
         content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2)))),
         branch: "main"
       };
@@ -224,17 +321,18 @@ async function saveCloud() {
   }
 }
 
-// Add Transaction
-function addTxn(type, amount, category, note) {
+// Add Transaction with Account (Bank, bKash, Cellfin)
+function addTxn(type, amount, account, note) {
   if (!amount || isNaN(amount) || amount <= 0) return;
   const numAmt = parseFloat(amount);
-  const catName = type === "IN" ? "Cash Add" : "Cash Out";
+  const selectedAcc = (account || "bikash").toLowerCase();
   
   const newTxn = {
     id: "TXN-" + Math.floor(100000 + Math.random() * 900000),
     type: type,
     amount: numAmt,
-    category: catName,
+    account: selectedAcc,
+    category: type === "IN" ? "Cash Add" : "Cash Out",
     note: note || (type === "IN" ? "টাকা জমা" : "টাকা খরচ"),
     timestamp: new Date().toISOString(),
     runningBalance: 0
@@ -261,8 +359,8 @@ function editTxn(id) {
   if (!item) return;
 
   document.getElementById("edit-id").value = item.id;
+  document.getElementById("edit-account").value = item.account || "bikash";
   document.getElementById("edit-type").value = item.type;
-  document.getElementById("edit-category").value = item.category || (item.type === "IN" ? "Cash Add" : "Cash Out");
   document.getElementById("edit-amount").value = item.amount;
   document.getElementById("edit-note").value = item.note || "";
   openModal("modal-edit");
@@ -275,6 +373,22 @@ function delTxn(id) {
   saveCloud();
   renderUI();
   showToast("লেনদেন ডিলিট করা হয়েছে", "error");
+}
+
+// Account selection inside Modals
+function selectModalAccount(modalType, accName) {
+  const modalEl = document.getElementById(modalType === "in" ? "modal-in" : "modal-out");
+  if (!modalEl) return;
+
+  modalEl.querySelectorAll(".acc-pill-option").forEach(pill => {
+    pill.classList.remove("selected");
+  });
+
+  const selectedPill = modalEl.querySelector(`.acc-pill-option.acc-${accName}`);
+  if (selectedPill) selectedPill.classList.add("selected");
+
+  const inputEl = document.getElementById(`${modalType}-account`);
+  if (inputEl) inputEl.value = accName;
 }
 
 // Modal Helpers
@@ -305,7 +419,7 @@ function showToast(msg, type = "success") {
   }, 3000);
 }
 
-// Export PDF
+// Export PDF Statement
 function exportPDF() {
   showToast("PDF তৈরি হচ্ছে...", "success");
   const element = document.getElementById("printable-area") || document.body;
@@ -315,10 +429,10 @@ function exportPDF() {
   }
   
   html2pdf().set({
-    margin: [8, 8, 8, 8],
-    filename: "hasan_hisab_" + new Date().toISOString().slice(0, 10) + ".pdf",
+    margin: [6, 6, 6, 6],
+    filename: "hasan_ledger_" + new Date().toISOString().slice(0, 10) + ".pdf",
     image: { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
+    html2canvas: { scale: 2, useCORS: true, logging: false },
     jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
   }).from(element).save().then(() => {
     showToast("PDF ডাউনলোড সম্পন্ন!", "success");
@@ -344,12 +458,32 @@ function checkPin() {
 document.addEventListener("DOMContentLoaded", () => {
   loadData();
 
-  // Filter Tabs Event Listeners
+  // Account Filter Chips
+  document.querySelectorAll(".acc-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll(".acc-chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      activeAccountFilter = chip.dataset.account;
+
+      // Update highlight on 3 cards
+      document.querySelectorAll(".account-card").forEach(card => {
+        if (activeAccountFilter !== "ALL" && card.classList.contains(activeAccountFilter + "-card")) {
+          card.classList.add("active-filter");
+        } else {
+          card.classList.remove("active-filter");
+        }
+      });
+
+      renderFeed();
+    });
+  });
+
+  // Sub-Filter Tabs (ALL, IN, OUT)
   document.querySelectorAll(".filter-tab").forEach(tab => {
     tab.addEventListener("click", () => {
       document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
-      activeFilter = tab.dataset.filter;
+      activeTypeFilter = tab.dataset.filter;
       renderFeed();
     });
   });
@@ -377,15 +511,24 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btn) btn.addEventListener("click", exportPDF);
   });
 
-  // Admin Modals
+  // Admin Modals Openers
   const openInBtn = document.getElementById("btn-open-in-modal");
-  if (openInBtn) openInBtn.addEventListener("click", () => openModal("modal-in"));
+  if (openInBtn) openInBtn.addEventListener("click", () => {
+    selectModalAccount("in", "bikash");
+    openModal("modal-in");
+  });
 
   const openOutBtn = document.getElementById("btn-open-out-modal");
-  if (openOutBtn) openOutBtn.addEventListener("click", () => openModal("modal-out"));
+  if (openOutBtn) openOutBtn.addEventListener("click", () => {
+    selectModalAccount("out", "bikash");
+    openModal("modal-out");
+  });
 
   const fabAddBtn = document.getElementById("fab-add-btn");
-  if (fabAddBtn) fabAddBtn.addEventListener("click", () => openModal("modal-in"));
+  if (fabAddBtn) fabAddBtn.addEventListener("click", () => {
+    selectModalAccount("in", "bikash");
+    openModal("modal-in");
+  });
 
   // Form Submit: Money IN
   const formIn = document.getElementById("form-in");
@@ -393,12 +536,13 @@ document.addEventListener("DOMContentLoaded", () => {
     formIn.addEventListener("submit", (e) => {
       e.preventDefault();
       const amt = document.getElementById("in-amount").value;
-      const cat = "Cash Add";
+      const acc = document.getElementById("in-account").value || "bikash";
       const note = document.getElementById("in-note").value;
-      addTxn("IN", amt, cat, note);
+      addTxn("IN", amt, acc, note);
       closeModal("modal-in");
       formIn.reset();
-      showToast("৳" + parseFloat(amt).toLocaleString() + " জমা সম্পন্ন!", "success");
+      selectModalAccount("in", "bikash");
+      showToast("৳" + parseFloat(amt).toLocaleString() + " জমা সম্পন্ন (" + acc.toUpperCase() + ")!", "success");
     });
   }
 
@@ -408,12 +552,13 @@ document.addEventListener("DOMContentLoaded", () => {
     formOut.addEventListener("submit", (e) => {
       e.preventDefault();
       const amt = document.getElementById("out-amount").value;
-      const cat = "Cash Out";
+      const acc = document.getElementById("out-account").value || "bikash";
       const note = document.getElementById("out-note").value;
-      addTxn("OUT", amt, cat, note);
+      addTxn("OUT", amt, acc, note);
       closeModal("modal-out");
       formOut.reset();
-      showToast("৳" + parseFloat(amt).toLocaleString() + " খরচ সম্পন্ন!", "error");
+      selectModalAccount("out", "bikash");
+      showToast("৳" + parseFloat(amt).toLocaleString() + " খরচ সম্পন্ন (" + acc.toUpperCase() + ")!", "error");
     });
   }
 
@@ -425,8 +570,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const id = document.getElementById("edit-id").value;
       const item = transactions.find(x => x.id === id);
       if (item) {
+        item.account = document.getElementById("edit-account").value;
         item.type = document.getElementById("edit-type").value;
-        item.category = document.getElementById("edit-category").value;
         item.amount = parseFloat(document.getElementById("edit-amount").value);
         item.note = document.getElementById("edit-note").value;
       }
@@ -437,14 +582,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Overlay background click to close
+  // Close modal when tapping on dark overlay
   document.querySelectorAll(".modal-overlay").forEach(overlay => {
     overlay.addEventListener("click", (e) => {
       if (e.target === overlay) overlay.classList.remove("open");
     });
   });
 
-  // Auto PIN check on 4 characters
+  // Auto PIN check when 4 digits typed
   const pinInput = document.getElementById("pin-input");
   if (pinInput) {
     pinInput.addEventListener("input", () => {
