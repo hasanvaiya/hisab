@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="header-actions">
-        <button class="icon-btn" id="pdf-header-btn" title="PDF রিপোর্ট">
+        <button class="icon-btn" id="pdf-header-btn" title="PDF রিপোর্ট ডাউনলোড">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
         </button>
       </div>
@@ -108,7 +108,7 @@
         <div class="quick-icon-wrapper pdf">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
         </div>
-        <span class="quick-label">PDF রিপোর্ট</span>
+        <span class="quick-label">PDF স্টেটমেন্ট</span>
       </div>
       <div class="quick-action-item" id="btn-search-toggle">
         <div class="quick-icon-wrapper search">
@@ -155,7 +155,7 @@
 
       <!-- Search Input Box -->
       <div class="search-box" id="search-box">
-        <input type="text" class="search-input" id="search-input" placeholder="আইডি, নোট বা পরিমাণ টাইপ করুন...">
+        <input type="text" class="search-input" id="search-input" placeholder="তারিখ (DD/MM), নোট বা পরিমাণ...">
       </div>
 
       <!-- Feed list -->
@@ -181,6 +181,9 @@
       <span>অ্যাডমিন</span>
     </a>
   </nav>
+
+  <!-- PDF STATEMENT PRINT TEMPLATE (Hidden, rendered during PDF export) -->
+  <div id="pdf-statement-template"></div>
 
   <!-- TOAST CONTAINER -->
   <div class="toast-container" id="toast-container"></div>
