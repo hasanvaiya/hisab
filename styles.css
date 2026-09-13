@@ -1,6 +1,6 @@
 /* ==========================================================================
    Live Hisab & Cashflow Tracker - Ultra-Premium Mobile Fintech UI
-   Multi-Account Edition: Bank, bKash, Cellfin & Grand Total
+   Multi-Account Edition with Date Display & Clean PDF Statement
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
@@ -9,7 +9,6 @@
   --bg-primary: #070a12;
   --bg-surface: #0e1424;
   --bg-surface-elevated: #162035;
-  --bg-surface-card: rgba(18, 26, 44, 0.7);
 
   --border-subtle: rgba(255, 255, 255, 0.07);
   --border-light: rgba(255, 255, 255, 0.12);
@@ -329,7 +328,7 @@ html, body {
 .stat-value.out { color: #fca5a5; }
 .stat-value.net { color: #ffffff; }
 
-/* 3-ACCOUNT BALANCES SECTION (Bank, bKash, Cellfin) */
+/* 3-ACCOUNT BALANCES SECTION */
 .accounts-section {
   margin-bottom: 18px;
 }
@@ -442,12 +441,6 @@ html, body {
   word-break: break-all;
 }
 
-.acc-currency {
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--text-dim);
-}
-
 /* QUICK ACTION GRID */
 .quick-actions-grid {
   display: grid;
@@ -513,7 +506,7 @@ html, body {
   text-align: center;
 }
 
-/* ADMIN ACTION BUTTONS (2 Big Action Cards) */
+/* ADMIN ACTION BUTTONS */
 .admin-actions-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -726,7 +719,7 @@ html, body {
   gap: 8px;
 }
 
-/* TRANSACTION CARD */
+/* TRANSACTION CARD WITH DATE */
 .txn-card {
   display: flex;
   align-items: center;
@@ -812,10 +805,25 @@ html, body {
 .account-tag.bikash { color: var(--bikash-color); background: var(--bikash-bg); }
 .account-tag.cellfin { color: var(--cellfin-color); background: var(--cellfin-bg); }
 
+/* DATE & META DISPLAY */
 .txn-meta {
   font-size: 0.68rem;
   color: var(--text-muted);
-  margin-top: 2px;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.txn-date {
+  font-family: var(--font-en);
+  font-weight: 600;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.68rem;
 }
 
 .txn-id {
@@ -1184,3 +1192,107 @@ html, body {
 
 .toast.success { border-left-color: var(--green); }
 .toast.error { border-left-color: var(--red); }
+
+/* HIDDEN PRINT/PDF STATEMENT CONTAINER (White background, Bank Statement format) */
+#pdf-statement-template {
+  display: none;
+  background: #ffffff;
+  color: #111827;
+  padding: 24px;
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+.pdf-header {
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pdf-title-box h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 3px;
+}
+
+.pdf-title-box p {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.pdf-meta-box {
+  text-align: right;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.pdf-summary-cards {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.pdf-card {
+  flex: 1;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.pdf-card-title {
+  font-size: 11px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.pdf-card-amount {
+  font-size: 15px;
+  font-weight: 800;
+  color: #111827;
+  margin-top: 2px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.pdf-card-amount.in { color: #059669; }
+.pdf-card-amount.out { color: #dc2626; }
+.pdf-card-amount.total { color: #4338ca; }
+
+.pdf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.pdf-table th {
+  background: #f3f4f6;
+  color: #374151;
+  padding: 8px 6px;
+  text-align: left;
+  font-weight: 700;
+  border-bottom: 1.5px solid #d1d5db;
+}
+
+.pdf-table td {
+  padding: 7px 6px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #1f2937;
+}
+
+.pdf-table tr:nth-child(even) td {
+  background: #f9fafb;
+}
+
+.pdf-table .amt-cell {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.pdf-table .amt-in { color: #059669; }
+.pdf-table .amt-out { color: #dc2626; }
