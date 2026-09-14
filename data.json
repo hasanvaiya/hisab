@@ -3541,6 +3541,16 @@
       "note": "টাকা জমা",
       "timestamp": "2026-09-14T06:00:00.000Z",
       "runningBalance": 602312.12
+    },
+    {
+      "id": "TXN-380151",
+      "type": "IN",
+      "amount": 99900,
+      "account": "bank",
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-09-14T06:00:00.000Z",
+      "runningBalance": 702212.12
     }
   ]
 }
