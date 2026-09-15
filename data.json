@@ -3813,16 +3813,6 @@
       "runningBalance": 388402.12
     },
     {
-      "id": "TXN-TRF-989563",
-      "type": "OUT",
-      "amount": 2000,
-      "account": "bank",
-      "category": "Cash Out",
-      "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
-      "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 386402.12
-    },
-    {
       "id": "TXN-486948",
       "type": "OUT",
       "amount": 24360,
@@ -3830,7 +3820,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 362042.12
+      "runningBalance": 364042.12
     },
     {
       "id": "TXN-908252",
@@ -3840,7 +3830,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 359042.12
+      "runningBalance": 361042.12
     },
     {
       "id": "TXN-270683",
@@ -3850,7 +3840,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 352042.12
+      "runningBalance": 354042.12
     },
     {
       "id": "TXN-456996",
@@ -3860,7 +3850,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 337042.12
+      "runningBalance": 339042.12
     }
   ]
 }
