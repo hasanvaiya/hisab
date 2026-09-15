@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>অ্যাডমিন প্যানেল | হিসাব খাতা - হাসান</title>
-  <meta name="theme-color" content="#060913">
+  <meta name="theme-color" content="#080d1a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
   <div class="app-container" id="printable-area">
@@ -22,31 +21,27 @@
     <!-- TOP HEADER -->
     <header class="app-header">
       <div class="user-profile">
-        <div class="avatar-wrapper">
-          <div class="avatar">H</div>
-          <span class="avatar-badge"></span>
-        </div>
+        <div class="avatar">H</div>
         <div class="user-details">
+          <span class="user-name">হাসান <span class="admin-badge">ADMIN</span></span>
           <span class="app-subtitle">
-            <span class="live-dot"></span> অ্যাডমিন কন্ট্রোল রুম
+            <span class="live-dot"></span> অ্যাডমিন কন্ট্রোল
           </span>
-          <span class="user-name">হাসান <span class="admin-crown-badge">ADMIN</span></span>
         </div>
       </div>
       <div class="header-actions">
-        <button class="icon-btn" id="pdf-header-btn" title="PDF রিপোর্ট ডাউনলোড">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+        <button class="icon-btn" id="pdf-header-btn" title="PDF স্টেটমেন্ট">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
         </button>
       </div>
     </header>
 
-    <!-- MASTER TOTAL BALANCE HERO CARD -->
+    <!-- MASTER TOTAL BALANCE CARD  -->
     <section class="master-hero-card">
-      <div class="hero-glow-beam"></div>
       <div class="hero-top-row">
-        <span class="hero-label">সর্বমোট ক্যাশ ব্যালেন্স (Total Cash)</span>
+        <span class="hero-label">সর্বমোট ক্যাশ ব্যালেন্স</span>
         <div class="hero-live-pill">
-          <span class="radar-dot"></span> LIVE SYNC
+          <span class="live-dot"></span> LIVE SYNC
         </div>
       </div>
       <div class="hero-balance-row">
@@ -55,75 +50,69 @@
         <span class="hero-bdt-tag">BDT</span>
       </div>
 
-      <!-- DYNAMIC CASHFLOW RATIO PROGRESS BAR -->
-      <div class="cashflow-ratio-container">
-        <div class="ratio-label-row">
-          <span class="ratio-label-in">▲ জমা: <span id="ratio-in-pct">50%</span></span>
-          <span class="ratio-label-out">▼ খরচ: <span id="ratio-out-pct">50%</span></span>
-        </div>
-        <div class="ratio-bar-track">
-          <div class="ratio-bar-in" id="ratio-bar-in" style="width: 50%;"></div>
-          <div class="ratio-bar-out" id="ratio-bar-out" style="width: 50%;"></div>
-        </div>
-      </div>
-
-      <!-- 3 STAT PILLS -->
+      <!-- 2 STATS BOXES: ONLY IN & OUT -->
       <div class="hero-stats-grid">
-        <div class="stat-card">
-          <span class="stat-card-title">↗ মোট জমা</span>
-          <span class="stat-card-value in" id="total-in-display">--</span>
+        <div class="stat-box">
+          <span class="stat-title">↗ মোট জমা (Cash In)</span>
+          <span class="stat-value in" id="total-in-display">--</span>
         </div>
-        <div class="stat-card">
-          <span class="stat-card-title">↘ মোট খরচ</span>
-          <span class="stat-card-value out" id="total-out-display">--</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-card-title">❖ নেট ফ্লো</span>
-          <span class="stat-card-value net" id="net-flow-display">--</span>
+        <div class="stat-box">
+          <span class="stat-title">↘ মোট খরচ (Cash Out)</span>
+          <span class="stat-value out" id="total-out-display">--</span>
         </div>
       </div>
     </section>
 
-    <!-- 3 HOLOGRAPHIC ACCOUNT CARDS (Bank, bKash, Cellfin) -->
+    <!-- ACCOUNT BALANCES: FULL-WIDTH BANKING ROWS -->
     <section class="accounts-section">
       <div class="section-header">
         <span class="section-title">💳 অ্যাকাউন্টভিত্তিক ব্যালেন্স</span>
         <span class="section-hint">ফিল্টার করতে ট্যাপ করুন</span>
       </div>
-      <div class="accounts-grid">
-        <!-- 1. Bank Card -->
-        <div class="account-card bank-card" onclick="filterByAccount('bank')">
-          <div class="acc-card-top">
-            <div class="card-chip"></div>
-            <span class="acc-brand-badge">Bank</span>
+      
+      <div class="accounts-list">
+        <!-- 1. Bank Row -->
+        <div class="account-row bank" onclick="filterByAccount('bank')">
+          <div class="acc-row-left">
+            <div class="acc-row-icon">🏦</div>
+            <div class="acc-row-info">
+              <span class="acc-row-title">ব্যাংক অ্যাকাউন্ট</span>
+              <span class="acc-row-sub">Bank Balance</span>
+            </div>
           </div>
-          <div>
-            <span class="acc-card-name">ব্যাংক</span>
-            <div class="acc-card-balance">৳<span id="bank-balance-display">0</span></div>
-          </div>
-        </div>
-
-        <!-- 2. bKash Card -->
-        <div class="account-card bikash-card" onclick="filterByAccount('bikash')">
-          <div class="acc-card-top">
-            <div class="card-chip"></div>
-            <span class="acc-brand-badge">bKash</span>
-          </div>
-          <div>
-            <span class="acc-card-name">বিকাশ</span>
-            <div class="acc-card-balance">৳<span id="bikash-balance-display">0</span></div>
+          <div class="acc-row-right">
+            <span class="acc-row-amount">৳<span id="bank-balance-display">0</span></span>
+            <span class="acc-row-filter-tag">ট্যাপ করে ফিল্টার</span>
           </div>
         </div>
 
-        <!-- 3. Cellfin Card -->
-        <div class="account-card cellfin-card" onclick="filterByAccount('cellfin')">
-          <div class="acc-card-top">
-            <div class="card-chip"></div>
-            <span class="acc-brand-badge">Cellfin</span>
+        <!-- 2. bKash Row -->
+        <div class="account-row bikash" onclick="filterByAccount('bikash')">
+          <div class="acc-row-left">
+            <div class="acc-row-icon">📱</div>
+            <div class="acc-row-info">
+              <span class="acc-row-title">বিকাশ ওয়ালেট</span>
+              <span class="acc-row-sub">bKash Balance</span>
+            </div>
           </div>
-          <div>
-            <span class="acc-card-name">সেলফিন</span>
-            <div class="acc-card-balance">৳<span id="cellfin-balance-display">0</span></div>
+          <div class="acc-row-right">
+            <span class="acc-row-amount">৳<span id="bikash-balance-display">0</span></span>
+            <span class="acc-row-filter-tag">ট্যাপ করে ফিল্টার</span>
+          </div>
+        </div>
+
+        <!-- 3. Cellfin Row -->
+        <div class="account-row cellfin" onclick="filterByAccount('cellfin')">
+          <div class="acc-row-left">
+            <div class="acc-row-icon">⚡</div>
+            <div class="acc-row-info">
+              <span class="acc-row-title">সেলফিন ওয়ালেট</span>
+              <span class="acc-row-sub">Cellfin Balance</span>
+            </div>
+          </div>
+          <div class="acc-row-right">
+            <span class="acc-row-amount">৳<span id="cellfin-balance-display">0</span></span>
+            <span class="acc-row-filter-tag">ট্যাপ করে ফিল্টার</span>
           </div>
         </div>
       </div>
@@ -132,15 +121,15 @@
     <!-- QUICK ACTIONS FOR ADMIN -->
     <section class="quick-actions-row">
       <div class="action-pill in" onclick="openModal('modal-in')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
         <span>+ টাকা জমা</span>
       </div>
       <div class="action-pill out" onclick="openModal('modal-out')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
         <span>- টাকা খরচ</span>
       </div>
       <div class="action-pill refresh" id="btn-refresh-quick">
-        <svg id="refresh-spin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+        <svg id="refresh-spin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
         <span>লাইভ রিফ্রেশ</span>
       </div>
     </section>
@@ -148,9 +137,7 @@
     <!-- TRANSACTION FEED -->
     <main class="feed-container">
       <div class="feed-header-row">
-        <span class="feed-title">
-          <span>⚡ হিসাব ম্যানেজমেন্ট</span>
-        </span>
+        <span class="feed-title">⚡ হিসাব ম্যানেজমেন্ট</span>
         <span class="feed-count-tag" id="txn-count-label">-- হিসাব</span>
       </div>
 
@@ -171,19 +158,22 @@
         </div>
       </div>
 
-      <!-- Search Input -->
+      <!-- Search Box -->
       <div class="search-wrapper open" id="search-wrapper">
         <div class="search-box">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input type="text" id="search-input" placeholder="তারিখ (DD/MM), বিবরণ বা আইডি দিয়ে সার্চ করুন...">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="search-input" placeholder="তারিখ (DD/MM), নোট বা আইডি...">
         </div>
       </div>
 
-      <!-- Feed list -->
+      <!-- Cards Feed -->
       <div class="cards-wrapper" id="cards-feed">
-        <div style="text-align: center; padding: 40px 16px; color: var(--text-dim);">
-          লেনদেনের হিসাব লোড হচ্ছে...
-        </div>
+        <div style="text-align: center; padding: 30px; color: var(--text-dim);">লোড হচ্ছে...</div>
+      </div>
+
+      <!-- Load More Button -->
+      <div class="load-more-wrapper" id="load-more-wrapper" style="display: none;">
+        <button class="btn-load-more" id="btn-load-more">আরও ২০টি হিসাব দেখুন</button>
       </div>
     </main>
 
@@ -192,14 +182,14 @@
   <!-- BOTTOM NAV (ADMIN WITH FAB) -->
   <nav class="bottom-nav">
     <a href="index.html" class="nav-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
       <span>কাস্টমার</span>
     </a>
-    <button class="nav-fab" id="fab-add-btn" title="নতুন হিসাব যোগ করুন">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
+    <button class="nav-fab" id="fab-add-btn" title="হিসাব যোগ করুন">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
     </button>
     <button class="nav-item" id="btn-pdf-nav">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
       <span>PDF</span>
     </button>
   </nav>
@@ -217,16 +207,16 @@
           <label class="form-label">অ্যাকাউন্ট নির্বাচন করুন *</label>
           <div class="modal-account-options">
             <div class="modal-acc-opt opt-bank" onclick="selectModalAccount('in', 'bank')">
-              <span class="opt-icon">🏦</span>
-              <span class="opt-name">ব্যাংক</span>
+              <span style="font-size: 1.1rem;">🏦</span>
+              <span style="font-size: 0.76rem; font-weight: 700;">ব্যাংক</span>
             </div>
             <div class="modal-acc-opt opt-bikash selected" onclick="selectModalAccount('in', 'bikash')">
-              <span class="opt-icon">📱</span>
-              <span class="opt-name">বিকাশ</span>
+              <span style="font-size: 1.1rem;">📱</span>
+              <span style="font-size: 0.76rem; font-weight: 700;">বিকাশ</span>
             </div>
             <div class="modal-acc-opt opt-cellfin" onclick="selectModalAccount('in', 'cellfin')">
-              <span class="opt-icon">⚡</span>
-              <span class="opt-name">সেলফিন</span>
+              <span style="font-size: 1.1rem;">⚡</span>
+              <span style="font-size: 0.76rem; font-weight: 700;">সেলফিন</span>
             </div>
           </div>
           <input type="hidden" id="in-account" value="bikash">
@@ -261,16 +251,16 @@
           <label class="form-label">অ্যাকাউন্ট নির্বাচন করুন *</label>
           <div class="modal-account-options">
             <div class="modal-acc-opt opt-bank" onclick="selectModalAccount('out', 'bank')">
-              <span class="opt-icon">🏦</span>
-              <span class="opt-name">ব্যাংক</span>
+              <span style="font-size: 1.1rem;">🏦</span>
+              <span style="font-size: 0.76rem; font-weight: 700;">ব্যাংক</span>
             </div>
             <div class="modal-acc-opt opt-bikash selected" onclick="selectModalAccount('out', 'bikash')">
-              <span class="opt-icon">📱</span>
-              <span class="opt-name">বিকাশ</span>
+              <span style="font-size: 1.1rem;">📱</span>
+              <span style="font-size: 0.76rem; font-weight: 700;">বিকাশ</span>
             </div>
             <div class="modal-acc-opt opt-cellfin" onclick="selectModalAccount('out', 'cellfin')">
-              <span class="opt-icon">⚡</span>
-              <span class="opt-name">সেলফিন</span>
+              <span style="font-size: 1.1rem;">⚡</span>
+              <span style="font-size: 0.76rem; font-weight: 700;">সেলফিন</span>
             </div>
           </div>
           <input type="hidden" id="out-account" value="bikash">
@@ -337,7 +327,7 @@
   <!-- PDF STATEMENT PRINT TEMPLATE (Hidden) -->
   <div id="pdf-statement-template"></div>
 
-  <!-- TOAST CONTAINER -->
+  <!-- TOAST NOTIFICATION -->
   <div class="toast-container" id="toast-container"></div>
 
   <script src="app.js"></script>
