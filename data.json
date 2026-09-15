@@ -3851,6 +3851,16 @@
       "timestamp": "2026-09-14T21:01:35.000Z",
       "category": "Cash Add",
       "runningBalance": 355092.12
+    },
+    {
+      "id": "TXN-MU35QIVH",
+      "type": "OUT",
+      "account": "bank",
+      "amount": 1000,
+      "note": "Cash Out",
+      "timestamp": "2026-09-14T21:01:54.000Z",
+      "category": "Cash Out",
+      "runningBalance": 354092.12
     }
   ]
 }
