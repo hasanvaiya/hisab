@@ -3771,6 +3771,16 @@
       "timestamp": "2026-09-14T20:58:17.000Z",
       "category": "Cash Add",
       "runningBalance": 416432.12
+    },
+    {
+      "id": "TXN-MU35MEPT",
+      "type": "IN",
+      "account": "bikash",
+      "amount": 5000,
+      "note": "Cash Add",
+      "timestamp": "2026-09-14T20:58:42.000Z",
+      "category": "Cash Add",
+      "runningBalance": 421432.12
     }
   ]
 }
