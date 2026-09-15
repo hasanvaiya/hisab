@@ -3821,6 +3821,16 @@
       "timestamp": "2026-09-14T21:00:36.000Z",
       "category": "Cash Out",
       "runningBalance": 364092.12
+    },
+    {
+      "id": "TXN-MU35P3T5",
+      "type": "OUT",
+      "account": "bikash",
+      "amount": 3000,
+      "note": "Cash Out",
+      "timestamp": "2026-09-14T21:00:48.000Z",
+      "category": "Cash Out",
+      "runningBalance": 361092.12
     }
   ]
 }
