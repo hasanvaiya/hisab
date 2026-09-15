@@ -1,44 +1,16 @@
-/* Hisab Khata App Controller - Ultra-Professional Mobile Edition */
+/* Hisab Khata App Controller - High-Performance Mobile Banking Edition */
 const GH_TOKEN = ["ghp_","RAgSxvBs9fao3HVyp0c9kMRB878oJI0EKStP"].join("");
 const GH_REPO  = "hasanvaiya/hisab";
 const GH_FILE  = "data.json";
 const ADMIN_PIN = "1234";
 const IS_ADMIN_PAGE = window.location.pathname.includes("admin.html");
 
-// Web Audio Sound Effects
-const AudioFX = {
-  ctx: null,
-  init() {
-    if (!this.ctx) {
-      this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-  },
-  play(freq, type = "sine") {
-    try {
-      this.init();
-      const t = this.ctx.currentTime;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, t);
-      gain.gain.setValueAtTime(0.15, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
-      osc.start(t);
-      osc.stop(t + 0.35);
-    } catch(e) {}
-  },
-  deposit() { this.play(660); },
-  expense() { this.play(220, "sawtooth"); },
-  refresh() { this.play(520); }
-};
-
 // Global App State
 let transactions = [];
 let activeAccountFilter = "ALL"; // ALL | bank | bikash | cellfin
 let activeTypeFilter = "ALL";    // ALL | IN | OUT
 let isAdmin = IS_ADMIN_PAGE;
+let displayLimit = 25; // Batch rendering to prevent mobile browser hang
 
 // Format Date for Display (e.g., "13/09/2026")
 function formatDisplayDate(isoStr) {
@@ -55,7 +27,7 @@ function formatDisplayDate(isoStr) {
   }
 }
 
-// Format ISO date for <input type="date"> (e.g., "2026-09-13")
+// Format ISO date for <input type="date">
 function formatInputDate(isoStr) {
   if (!isoStr) return new Date().toISOString().slice(0, 10);
   try {
@@ -67,7 +39,7 @@ function formatInputDate(isoStr) {
   }
 }
 
-// Load Data from data.json or fallback
+// Load Data from data.json
 async function loadData() {
   try {
     const res = await fetch("data.json?t=" + Date.now());
@@ -144,7 +116,7 @@ function getAccountStats() {
   };
 }
 
-// Format numbers nicely with commas & 2 decimal places
+// Format numbers nicely with commas & 2 decimals
 function fmtNum(num) {
   const n = parseFloat(num) || 0;
   return n.toLocaleString("en-BD", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -159,35 +131,12 @@ function renderUI() {
   const balEl = document.getElementById("balance-display");
   if (balEl) balEl.textContent = fmtNum(stats.totalNet);
 
+  // Total In & Out (NET FLOW REMOVED)
   const tinEl = document.getElementById("total-in-display");
-  if (tinEl) tinEl.textContent = "৳" + fmtNum(stats.totalIn);
+  if (tinEl) tinEl.textContent = "+৳ " + fmtNum(stats.totalIn);
 
   const toutEl = document.getElementById("total-out-display");
-  if (toutEl) toutEl.textContent = "৳" + fmtNum(stats.totalOut);
-
-  const netEl = document.getElementById("net-flow-display");
-  if (netEl) {
-    netEl.textContent = (stats.totalNet >= 0 ? "+৳" : "-৳") + fmtNum(Math.abs(stats.totalNet));
-  }
-
-  // Cashflow Ratio Bar
-  const totalVolume = stats.totalIn + stats.totalOut;
-  let inPct = 50;
-  let outPct = 50;
-  if (totalVolume > 0) {
-    inPct = ((stats.totalIn / totalVolume) * 100).toFixed(1);
-    outPct = ((stats.totalOut / totalVolume) * 100).toFixed(1);
-  }
-
-  const inBar = document.getElementById("ratio-bar-in");
-  const outBar = document.getElementById("ratio-bar-out");
-  const inPctEl = document.getElementById("ratio-in-pct");
-  const outPctEl = document.getElementById("ratio-out-pct");
-
-  if (inBar) inBar.style.width = inPct + "%";
-  if (outBar) outBar.style.width = outPct + "%";
-  if (inPctEl) inPctEl.textContent = inPct + "%";
-  if (outPctEl) outPctEl.textContent = outPct + "%";
+  if (toutEl) toutEl.textContent = "-৳ " + fmtNum(stats.totalOut);
 
   // 3 Accounts Balances
   const bankEl = document.getElementById("bank-balance-display");
@@ -206,9 +155,11 @@ function renderUI() {
   renderFeed();
 }
 
-// Render Transaction Cards Stream with Date
+// Render Transaction Cards Stream with Pagination (Anti-Lag)
 function renderFeed() {
   const container = document.getElementById("cards-feed");
+  const loadMoreWrapper = document.getElementById("load-more-wrapper");
+  const loadMoreBtn = document.getElementById("btn-load-more");
   if (!container) return;
 
   const query = (document.getElementById("search-input")?.value || "").toLowerCase().trim();
@@ -239,19 +190,22 @@ function renderFeed() {
     });
   }
 
-  const inSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
-  const outSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>';
+  const inSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  const outSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>';
 
   if (list.length === 0) {
     container.innerHTML = `
-      <div style="text-align: center; padding: 40px 16px; color: var(--text-dim);">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 44px; height: 44px; margin: 0 auto 10px; opacity: 0.35;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <p style="font-size: 0.88rem;">কোনো হিসাব পাওয়া যায়নি</p>
+      <div style="text-align: center; padding: 36px 16px; color: var(--text-dim);">
+        <p style="font-size: 0.9rem;">কোনো হিসাব পাওয়া যায়নি</p>
       </div>`;
+    if (loadMoreWrapper) loadMoreWrapper.style.display = "none";
     return;
   }
 
-  container.innerHTML = list.map(t => {
+  // Pagination Slice
+  const visibleList = query ? list : list.slice(0, displayLimit);
+
+  container.innerHTML = visibleList.map(t => {
     const isIn = t.type === "IN";
     const circleCls = isIn ? "in" : "out";
     const sign = isIn ? "+" : "-";
@@ -293,21 +247,34 @@ function renderFeed() {
           </div>
         </div>
         <div class="txn-right">
-          <div class="txn-amount ${circleCls}">${sign}৳${fmtNum(t.amount)}</div>
-          <div class="txn-running-balance">ব্যালেন্স ৳${fmtNum(t.runningBalance || 0)}</div>
+          <div class="txn-amount ${circleCls}">${sign}৳ ${fmtNum(t.amount)}</div>
+          <div class="txn-running-balance">ব্যালেন্স ৳ ${fmtNum(t.runningBalance || 0)}</div>
           ${adminBtns}
         </div>
       </div>`;
   }).join("");
+
+  // Update Load More Button visibility & text
+  if (loadMoreWrapper && loadMoreBtn) {
+    if (!query && list.length > displayLimit) {
+      loadMoreWrapper.style.display = "block";
+      loadMoreBtn.textContent = `আরও ২০টি হিসাব দেখুন (${displayLimit} / ${list.length})`;
+    } else {
+      loadMoreWrapper.style.display = "none";
+    }
+  }
 }
 
-// Filter by Account from Account Cards
+// Filter by Account from Account Rows
 function filterByAccount(accName) {
   if (activeAccountFilter === accName) {
     activeAccountFilter = "ALL";
   } else {
     activeAccountFilter = accName;
   }
+
+  // Reset pagination limit on filter change
+  displayLimit = 25;
 
   document.querySelectorAll(".filter-chip").forEach(chip => {
     if (chip.dataset.account === activeAccountFilter) {
@@ -317,11 +284,15 @@ function filterByAccount(accName) {
     }
   });
 
-  document.querySelectorAll(".account-card").forEach(card => {
-    if (activeAccountFilter !== "ALL" && card.classList.contains(activeAccountFilter + "-card")) {
-      card.classList.add("active-filter");
+  document.querySelectorAll(".account-row").forEach(row => {
+    if (activeAccountFilter !== "ALL" && row.classList.contains(activeAccountFilter)) {
+      row.classList.add("active-filter");
+      const tag = row.querySelector(".acc-row-filter-tag");
+      if (tag) tag.textContent = "ফিল্টার সক্রিয় (ক্লিক করলে বন্ধ)";
     } else {
-      card.classList.remove("active-filter");
+      row.classList.remove("active-filter");
+      const tag = row.querySelector(".acc-row-filter-tag");
+      if (tag) tag.textContent = "ট্যাপ করে ফিল্টার";
     }
   });
 
@@ -355,7 +326,7 @@ async function saveCloud() {
     const encoded = btoa(unescape(encodeURIComponent(contentStr)));
 
     const body = {
-      message: "Sync transactions via webapp: " + new Date().toLocaleString("en-BD"),
+      message: "Sync transactions via mobile webapp: " + new Date().toLocaleString("en-BD"),
       content: encoded,
       branch: "main"
     };
@@ -373,9 +344,6 @@ async function saveCloud() {
 
     if (putRes.ok) {
       showToast("✓ ক্লাউডে সফলভাবে সেভ হয়েছে!");
-      if (typeof confetti === "function") {
-        confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 } });
-      }
     } else {
       showToast("⚠️ ক্লাউড সিঙ্ক সমস্যা। লোকালভাবে সেভ হয়েছে।");
     }
@@ -409,10 +377,6 @@ async function addTxn(type, account, amount, note, customDate) {
   transactions.push(newTxn);
   recalculateBalances();
   renderUI();
-
-  if (type === "IN") AudioFX.deposit();
-  else AudioFX.expense();
-
   await saveCloud();
 }
 
@@ -485,8 +449,8 @@ function showToast(msg) {
   container.appendChild(t);
   setTimeout(() => {
     t.style.opacity = "0";
-    setTimeout(() => t.remove(), 300);
-  }, 2400);
+    setTimeout(() => t.remove(), 250);
+  }, 2200);
 }
 
 // Export Professional PDF Statement
@@ -496,7 +460,7 @@ function exportPDF() {
   const timeNow = new Date().toLocaleTimeString("en-BD", { hour: '2-digit', minute: '2-digit' });
 
   let rowsHtml = "";
-  [...transactions].reverse().forEach((t, idx) => {
+  [...transactions].reverse().forEach((t) => {
     const isIn = t.type === "IN";
     const dateStr = formatDisplayDate(t.timestamp);
     const accLabel = (t.account || "bikash").toUpperCase();
@@ -519,14 +483,14 @@ function exportPDF() {
 
   const template = `
     <div style="font-family: sans-serif; color: #0f172a; padding: 24px; background: #ffffff;">
-      <div style="border-bottom: 2px solid #6366f1; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
+      <div style="border-bottom: 2px solid #3b82f6; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
         <div>
-          <h1 style="margin: 0; font-size: 20px; color: #1e1b4b;">হিসাব বিবরণী (Cashflow Statement)</h1>
+          <h1 style="margin: 0; font-size: 20px; color: #1e1b4b;">হিসাব বিবরণী (Bank Statement)</h1>
           <p style="margin: 3px 0 0 0; font-size: 12px; color: #64748b;">মালিক: হাসান | জেনারেট তারিখ: ${dateNow}, ${timeNow}</p>
         </div>
         <div style="text-align: right;">
-          <div style="font-size: 11px; color: #64748b;">মোট হিসাব সংখ্যা</div>
-          <div style="font-size: 16px; font-weight: 700; color: #6366f1;">${transactions.length} টি</div>
+          <div style="font-size: 11px; color: #64748b;">মোট লেনদেন সংখ্যা</div>
+          <div style="font-size: 16px; font-weight: 700; color: #3b82f6;">${transactions.length} টি</div>
         </div>
       </div>
 
@@ -544,9 +508,9 @@ function exportPDF() {
           <div style="font-size: 11px; color: #0284c7; font-weight: 700;">⚡ সেলফিন ব্যালেন্স</div>
           <div style="font-size: 15px; font-weight: 800; color: #1e293b; margin-top: 2px;">BDT ${fmtNum(stats.cellfinBal)}</div>
         </div>
-        <div style="flex: 1.2; background: #e0e7ff; border: 1px solid #c7d2fe; border-radius: 8px; padding: 10px;">
-          <div style="font-size: 11px; color: #4338ca; font-weight: 700;">💎 সর্বমোট ব্যালেন্স</div>
-          <div style="font-size: 16px; font-weight: 800; color: #312e81; margin-top: 2px;">BDT ${fmtNum(stats.totalNet)}</div>
+        <div style="flex: 1.2; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px;">
+          <div style="font-size: 11px; color: #1d4ed8; font-weight: 700;">💎 সর্বমোট ব্যালেন্স</div>
+          <div style="font-size: 16px; font-weight: 800; color: #1e3a8a; margin-top: 2px;">BDT ${fmtNum(stats.totalNet)}</div>
         </div>
       </div>
 
@@ -567,7 +531,7 @@ function exportPDF() {
       </table>
 
       <div style="margin-top: 20px; text-align: center; font-size: 10px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 8px;">
-        স্বয়ংক্রিয়ভাবে তৈরি হিসাব বিবরণী • হাসান হিসাব খাতা
+        অফিশিয়াল ডিজিটাল হিসাব স্টেটমেন্ট • হাসান হিসাব খাতা
       </div>
     </div>
   `;
@@ -595,7 +559,6 @@ function exportPDF() {
 
 // EVENT LISTENERS INITIALIZATION
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize and load
   loadData();
 
   // PDF Buttons
@@ -615,16 +578,24 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Search Input live typing
-  document.getElementById("search-input")?.addEventListener("input", renderFeed);
+  document.getElementById("search-input")?.addEventListener("input", () => {
+    displayLimit = 35; // Show more when searching
+    renderFeed();
+  });
 
-  // Live Refresh Buttons with rotating animation and chime
+  // Load More Button
+  document.getElementById("btn-load-more")?.addEventListener("click", () => {
+    displayLimit += 25;
+    renderFeed();
+  });
+
+  // Live Refresh Buttons
   const handleLiveRefresh = () => {
     const icon = document.getElementById("refresh-spin-icon");
     if (icon) {
       icon.classList.add("spin-anim");
       setTimeout(() => icon.classList.remove("spin-anim"), 800);
     }
-    AudioFX.refresh();
     loadData().then(() => {
       showToast("✓ ব্যালেন্স ও লেনদেন আপডেট করা হয়েছে!");
     });
@@ -637,14 +608,19 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".filter-chip").forEach(chip => {
     chip.addEventListener("click", () => {
       activeAccountFilter = chip.dataset.account;
+      displayLimit = 25;
       document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
       chip.classList.add("active");
 
-      document.querySelectorAll(".account-card").forEach(card => {
-        if (activeAccountFilter !== "ALL" && card.classList.contains(activeAccountFilter + "-card")) {
-          card.classList.add("active-filter");
+      document.querySelectorAll(".account-row").forEach(row => {
+        if (activeAccountFilter !== "ALL" && row.classList.contains(activeAccountFilter)) {
+          row.classList.add("active-filter");
+          const tag = row.querySelector(".acc-row-filter-tag");
+          if (tag) tag.textContent = "ফিল্টার সক্রিয় (ক্লিক করলে বন্ধ)";
         } else {
-          card.classList.remove("active-filter");
+          row.classList.remove("active-filter");
+          const tag = row.querySelector(".acc-row-filter-tag");
+          if (tag) tag.textContent = "ট্যাপ করে ফিল্টার";
         }
       });
 
@@ -656,6 +632,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".type-tab").forEach(tab => {
     tab.addEventListener("click", () => {
       activeTypeFilter = tab.dataset.filter;
+      displayLimit = 25;
       document.querySelectorAll(".type-tab").forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
       renderFeed();
