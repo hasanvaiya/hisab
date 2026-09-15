@@ -3621,6 +3621,16 @@
       "note": "টাকা জমা",
       "timestamp": "2026-09-15T06:00:00.000Z",
       "runningBalance": 531992.12
+    },
+    {
+      "id": "TXN-803966",
+      "type": "IN",
+      "amount": 10000,
+      "account": "bikash",
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-09-15T06:00:00.000Z",
+      "runningBalance": 541992.12
     }
   ]
 }
