@@ -3701,6 +3701,16 @@
       "note": "Card to Bikash ",
       "timestamp": "2026-09-15T06:00:00.000Z",
       "runningBalance": 534922.12
+    },
+    {
+      "id": "TXN-474515",
+      "type": "OUT",
+      "amount": 3060,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-09-15T06:00:00.000Z",
+      "runningBalance": 531862.12
     }
   ]
 }
