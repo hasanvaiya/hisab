@@ -3751,6 +3751,16 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
       "runningBalance": 388432.12
+    },
+    {
+      "id": "TXN-MU35L93V",
+      "type": "IN",
+      "account": "bikash",
+      "amount": 25000,
+      "note": "Cash Add",
+      "timestamp": "2026-09-14T20:57:48.000Z",
+      "category": "Cash Add",
+      "runningBalance": 413432.12
     }
   ]
 }
