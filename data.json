@@ -3781,6 +3781,16 @@
       "timestamp": "2026-09-14T20:58:42.000Z",
       "category": "Cash Add",
       "runningBalance": 421432.12
+    },
+    {
+      "id": "TXN-MU35NCUU",
+      "type": "OUT",
+      "account": "bank",
+      "amount": 25040,
+      "note": "Cash Out",
+      "timestamp": "2026-09-14T20:59:26.000Z",
+      "category": "Cash Out",
+      "runningBalance": 396392.12
     }
   ]
 }
