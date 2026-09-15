@@ -138,6 +138,22 @@
       </button>
     </section>
 
+    <!-- BANK TO BKASH TRANSFER BUTTON -->
+    <section class="transfer-action-section">
+      <button class="action-card-btn transfer-btn" id="btn-open-transfer-modal">
+        <div class="action-icon transfer-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+        </div>
+        <div class="action-text">
+          <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <strong>🔄 ব্যাংক ➔ বিকাশ ট্রান্সফার</strong>
+            <span class="fee-badge">+১৫৳ চার্জ</span>
+          </div>
+          <span>ব্যাংক থেকে বিকাশে ফান্ড ট্রান্সফার (স্বয়ংক্রিয় ১৫ টাকা চার্জ সহ)</span>
+        </div>
+      </button>
+    </section>
+
     <!-- TRANSACTION FEED -->
     <main class="feed-container" id="printable-area">
       <div class="feed-header">
@@ -268,6 +284,69 @@
           <input type="text" class="form-input" id="out-note" placeholder="ঐচ্ছিক নোট লিখুন">
         </div>
         <button type="submit" class="submit-btn out">- খরচ নিশ্চিত করুন</button>
+      </form>
+    </div>
+  </div>
+
+    <!-- BANK TO BKASH TRANSFER MODAL -->
+  <div class="modal-overlay" id="modal-transfer">
+    <div class="modal-sheet">
+      <div class="modal-drag-indicator"></div>
+      <div class="modal-header">
+        <span class="modal-title">🔄 ব্যাংক ➔ বিকাশ ট্রান্সফার</span>
+        <button class="modal-close-btn" onclick="closeModal('modal-transfer')">×</button>
+      </div>
+      <form id="form-transfer">
+        <!-- Route visual banner -->
+        <div class="transfer-route-box">
+          <div class="route-point">
+            <span class="r-icon">🏦</span>
+            <span class="r-label">উৎস (From)</span>
+            <span class="r-name">ব্যাংক একাউন্ট</span>
+          </div>
+          <div class="route-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="route-point">
+            <span class="r-icon">📱</span>
+            <span class="r-label">গন্তব্য (To)</span>
+            <span class="r-name">বিকাশ একাউন্ট</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">তারিখ (Date) *</label>
+          <input type="date" class="form-input" id="trf-date" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ট্রান্সফারের পরিমাণ (টাকা) *</label>
+          <input type="number" class="form-input" id="trf-amount" placeholder="0.00" required min="1" step="any" inputmode="decimal">
+        </div>
+
+        <!-- Live Calculation Summary Card -->
+        <div class="transfer-calc-card">
+          <div class="calc-row">
+            <span class="c-label">📱 বিকাশে জমা হবে:</span>
+            <span class="c-val in" id="trf-calc-bikash">৳০</span>
+          </div>
+          <div class="calc-row">
+            <span class="c-label">⚡ সার্ভিস চার্জ (নির্ধারিত ফি):</span>
+            <span class="c-val fee" id="trf-calc-fee">৳১৫.০০</span>
+          </div>
+          <div class="calc-divider"></div>
+          <div class="calc-row total-row">
+            <span class="c-label">🏦 ব্যাংক থেকে মোট কর্তন:</span>
+            <span class="c-val out" id="trf-calc-total-bank">৳১৫.০০</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">নোট / বিবরণ (ঐচ্ছিক)</label>
+          <input type="text" class="form-input" id="trf-note" placeholder="যেমন: ব্যক্তিগত বা জরুরি খরচ">
+        </div>
+
+        <button type="submit" class="submit-btn transfer-submit">🔄 ট্রান্সফার নিশ্চিত করুন</button>
       </form>
     </div>
   </div>
