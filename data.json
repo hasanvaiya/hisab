@@ -3823,16 +3823,6 @@
       "runningBalance": 387402.12
     },
     {
-      "id": "TXN-TRF-139030",
-      "type": "IN",
-      "amount": 2000,
-      "account": "bikash",
-      "category": "Cash Add",
-      "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
-      "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 389402.12
-    },
-    {
       "id": "TXN-486948",
       "type": "OUT",
       "amount": 24360,
@@ -3840,7 +3830,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 365042.12
+      "runningBalance": 363042.12
     },
     {
       "id": "TXN-908252",
@@ -3850,7 +3840,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 362042.12
+      "runningBalance": 360042.12
     },
     {
       "id": "TXN-270683",
@@ -3860,7 +3850,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 355042.12
+      "runningBalance": 353042.12
     },
     {
       "id": "TXN-456996",
@@ -3870,7 +3860,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 340042.12
+      "runningBalance": 338042.12
     }
   ]
 }
