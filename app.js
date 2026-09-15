@@ -400,11 +400,13 @@ function addTxn(type, amount, account, note, customDate) {
 }
 
 
-// Bank to bKash Inter-Account Transfer with 15 Tk charge
+// Bank to bKash Inter-Account Transfer (Charge 15 Tk only if amount > 5000 Tk)
 function transferBankToBikash(amount, customDate, userNote) {
   const numAmt = parseFloat(amount);
   if (!numAmt || isNaN(numAmt) || numAmt <= 0) return;
-  const fee = 15;
+  
+  // 5000 টাকার বেশি পাঠালে শুধু ১৫ টাকা চার্জ যোগ হবে
+  const fee = numAmt > 5000 ? 15 : 0;
 
   let baseDt = new Date();
   if (customDate) {
@@ -429,17 +431,22 @@ function transferBankToBikash(amount, customDate, userNote) {
     runningBalance: 0
   };
 
-  // 2. Bank OUT for the 15 Tk extra fee
-  const feeTxn = {
-    id: "TXN-TRF-" + Math.floor(100000 + Math.random() * 900000),
-    type: "OUT",
-    amount: fee,
-    account: "bank",
-    category: "Cash Out",
-    note: `বিকাশ ট্রান্সফার ফি (১৫৳)${noteSuffix}`,
-    timestamp: new Date(baseTime + 1000).toISOString(),
-    runningBalance: 0
-  };
+  const newTxns = [bankTxn];
+
+  // 2. Bank OUT for fee ONLY if amount > 5000
+  if (fee > 0) {
+    const feeTxn = {
+      id: "TXN-TRF-" + Math.floor(100000 + Math.random() * 900000),
+      type: "OUT",
+      amount: fee,
+      account: "bank",
+      category: "Cash Out",
+      note: `বিকাশ ট্রান্সফার ফি (১৫৳)${noteSuffix}`,
+      timestamp: new Date(baseTime + 1000).toISOString(),
+      runningBalance: 0
+    };
+    newTxns.push(feeTxn);
+  }
 
   // 3. bKash IN for the transferred amount
   const bikashTxn = {
@@ -452,8 +459,9 @@ function transferBankToBikash(amount, customDate, userNote) {
     timestamp: new Date(baseTime + 2000).toISOString(),
     runningBalance: 0
   };
+  newTxns.push(bikashTxn);
 
-  transactions.push(bankTxn, feeTxn, bikashTxn);
+  transactions.push(...newTxns);
 
   AudioFX.deposit();
   if (window.confetti) {
@@ -844,7 +852,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // Transfer Modal Open & Calculation
+    // Transfer Modal Open & Calculation (Fee only if > 5000)
   function updateTransferCalc() {
     const amtEl = document.getElementById("trf-amount");
     const bikashEl = document.getElementById("trf-calc-bikash");
@@ -853,11 +861,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!amtEl || !bikashEl || !totalEl) return;
 
     const amt = parseFloat(amtEl.value) || 0;
-    const fee = 15;
-    const totalBank = amt > 0 ? (amt + fee) : fee;
+    // 5000 টাকার বেশি পাঠালে শুধু ১৫ টাকা চার্জ
+    const fee = amt > 5000 ? 15 : 0;
+    const totalBank = amt + fee;
 
     bikashEl.textContent = "৳" + fmtNum(amt);
-    if (feeEl) feeEl.textContent = "৳" + fmtNum(fee);
+    if (feeEl) {
+      if (fee > 0) {
+        feeEl.textContent = "৳" + fmtNum(fee);
+        feeEl.style.color = "var(--red)";
+      } else {
+        feeEl.textContent = "৳০ (ফ্রি)";
+        feeEl.style.color = "var(--green)";
+      }
+    }
     totalEl.textContent = "৳" + fmtNum(totalBank);
   }
 
@@ -887,7 +904,8 @@ document.addEventListener("DOMContentLoaded", () => {
       closeModal("modal-transfer");
       formTransfer.reset();
       updateTransferCalc();
-      showToast("৳" + parseFloat(amt).toLocaleString() + " ব্যাংক থেকে বিকাশে ট্রান্সফার সম্পন্ন (১৫৳ চার্জ সহ)!", "success");
+      const feeTxt = parseFloat(amt) > 5000 ? " (১৫৳ চার্জ সহ)" : "";
+      showToast("৳" + parseFloat(amt).toLocaleString() + " ব্যাংক থেকে বিকাশে ট্রান্সফার সম্পন্ন" + feeTxt + "!", "success");
     });
   }
 
