@@ -1,69 +1,63 @@
 /* ==========================================================================
-   Live Hisab Khata - Ultra-Professional Mobile Edition
-   Typography: Noto Sans Bengali + Plus Jakarta Sans + Inter (Tabular Numbers)
+   Live Hisab Khata - Professional Mobile Banking Edition
+   Optimized for Zero-Lag, 100% Readable Amounts, No Text Overflows
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Color Canvas */
-  --bg-dark: #060913;
-  --bg-surface: #0b1124;
-  --bg-card: rgba(13, 19, 41, 0.78);
-  --bg-card-hover: rgba(18, 27, 56, 0.92);
-
-  /* Borders & Glass */
+  /* Solid Professional Banking Colors (No Heavy GPU Blurs) */
+  --bg-app: #080d1a;
+  --bg-header: #0d1527;
+  --bg-card: #131d35;
+  --bg-card-alt: #0e172c;
+  --bg-hover: #192645;
+  
+  --border-card: #1e2d4d;
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(255, 255, 255, 0.15);
-  --border-focus: rgba(99, 102, 241, 0.6);
+  --border-highlight: #3b82f6;
 
   /* Status Colors */
   --emerald: #10b981;
-  --emerald-glow: rgba(16, 185, 129, 0.28);
   --emerald-bg: rgba(16, 185, 129, 0.12);
+  --emerald-border: rgba(16, 185, 129, 0.3);
 
   --rose: #f43f5e;
-  --rose-glow: rgba(244, 63, 94, 0.28);
   --rose-bg: rgba(244, 63, 94, 0.12);
+  --rose-border: rgba(244, 63, 94, 0.3);
 
-  --indigo: #6366f1;
-  --indigo-glow: rgba(99, 102, 241, 0.35);
-  --indigo-bg: rgba(99, 102, 241, 0.12);
+  --blue: #3b82f6;
+  --blue-bg: rgba(59, 130, 246, 0.12);
+  --blue-border: rgba(59, 130, 246, 0.3);
 
-  /* Account Specific Brandings */
-  --gold: #f59e0b;
-  --gold-glow: rgba(245, 158, 11, 0.32);
-  --gold-bg: rgba(245, 158, 11, 0.12);
+  /* Accounts */
+  --bank-gold: #f59e0b;
+  --bank-bg: rgba(245, 158, 11, 0.12);
+  --bank-border: rgba(245, 158, 11, 0.35);
 
-  --pink: #ec4899;
-  --pink-glow: rgba(236, 72, 153, 0.32);
-  --pink-bg: rgba(236, 72, 153, 0.12);
+  --bikash-pink: #ec4899;
+  --bikash-bg: rgba(236, 72, 153, 0.12);
+  --bikash-border: rgba(236, 72, 153, 0.35);
 
-  --cyan: #06b6d4;
-  --cyan-glow: rgba(6, 182, 212, 0.32);
-  --cyan-bg: rgba(6, 182, 212, 0.12);
+  --cellfin-cyan: #06b6d4;
+  --cellfin-bg: rgba(6, 182, 212, 0.12);
+  --cellfin-border: rgba(6, 182, 212, 0.35);
 
-  /* Typography Colors */
-  --text-main: #f8fafc;
+  /* Text Colors */
+  --text-primary: #ffffff;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
 
-  /* Fonts - Gold Standard Combination */
-  --font-bn: 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-en: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  --font-num: 'Plus Jakarta Sans', 'Inter', sans-serif;
-
-  /* Shadows */
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.75);
+  /* Fonts */
+  --font-bn: 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-en: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-num: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Radius */
-  --radius-xs: 8px;
-  --radius-sm: 12px;
-  --radius-md: 18px;
-  --radius-lg: 24px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
   --radius-pill: 9999px;
 }
 
@@ -72,7 +66,6 @@
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
 }
 
 html, body {
@@ -80,55 +73,26 @@ html, body {
   max-width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  background-color: var(--bg-dark);
-  color: var(--text-main);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
   font-family: var(--font-bn);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
-/* Atmospheric Ambient Aurora Orbs */
-body::before {
-  content: '';
-  position: fixed;
-  top: -120px;
-  left: -80px;
-  width: 360px;
-  height: 360px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, transparent 70%);
-  filter: blur(60px);
-  z-index: -2;
-  pointer-events: none;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  top: 220px;
-  right: -90px;
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
-  filter: blur(70px);
-  z-index: -2;
-  pointer-events: none;
-}
-
-/* Centered Mobile Container with Safe-Area Padding */
+/* Container for Mobile Screens */
 .app-container {
   width: 100%;
-  max-width: 460px;
+  max-width: 440px;
   margin: 0 auto;
   padding: 0 14px;
   padding-top: max(8px, env(safe-area-inset-top, 8px));
-  padding-bottom: calc(90px + env(safe-area-inset-bottom, 14px));
-  position: relative;
+  padding-bottom: calc(85px + env(safe-area-inset-bottom, 12px));
 }
 
 /* ==========================================================================
-   TOP APP HEADER (Sleek Glassmorphic)
+   TOP HEADER
    ========================================================================== */
 .app-header {
   display: flex;
@@ -138,109 +102,85 @@ body::after {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(6, 9, 19, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-card);
 }
 
 .user-profile {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.avatar-wrapper {
-  position: relative;
-  width: 42px;
-  height: 42px;
+  gap: 10px;
 }
 
 .avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 13px;
-  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-en);
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #ffffff;
-  box-shadow: 0 4px 14px var(--indigo-glow);
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
-}
-
-.avatar-badge {
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--emerald);
-  border: 2px solid var(--bg-dark);
-  box-shadow: 0 0 8px var(--emerald);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
 }
 
 .user-details {
   display: flex;
   flex-direction: column;
-  line-height: 1.25;
-}
-
-.app-subtitle {
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  letter-spacing: 0.3px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.app-subtitle .live-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--emerald);
-  box-shadow: 0 0 6px var(--emerald);
-  animation: pulse-dot 2s infinite ease-in-out;
 }
 
 .user-name {
-  font-size: 1.12rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #ffffff;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  line-height: 1.2;
 }
 
 .verified-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: #3b82f6;
   color: #ffffff;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 900;
 }
 
-.admin-crown-badge {
+.admin-badge {
   font-family: var(--font-en);
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #ffffff;
-  padding: 1.5px 6px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
+  background: #f59e0b;
+  color: #000000;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.app-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1px;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 6px var(--emerald);
 }
 
 .header-actions {
@@ -252,22 +192,19 @@ body::after {
 .icon-btn {
   width: 38px;
   height: 38px;
-  border-radius: 11px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-card);
   color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.22s ease;
+  transition: background 0.2s;
 }
 
-.icon-btn:hover, .icon-btn:active {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border-color: var(--border-light);
-  transform: scale(0.96);
+.icon-btn:active {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .icon-btn svg {
@@ -276,216 +213,131 @@ body::after {
 }
 
 /* ==========================================================================
-   MASTER TOTAL HERO CARD (Obsidian Titanium Centerpiece)
+   MASTER TOTAL BALANCE CARD
    ========================================================================== */
 .master-hero-card {
-  margin-top: 14px;
-  padding: 20px 18px 18px 18px;
+  margin-top: 12px;
+  padding: 18px 16px 16px 16px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(16, 23, 50, 0.88) 0%, rgba(8, 12, 26, 0.96) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-}
-
-.hero-glow-beam {
-  position: absolute;
-  top: -70px;
-  right: -40px;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.28) 0%, transparent 65%);
-  filter: blur(35px);
-  pointer-events: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .hero-top-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .hero-label {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-muted);
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
 }
 
 .hero-live-pill {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 3px 9px;
+  padding: 2.5px 8px;
   border-radius: var(--radius-pill);
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: var(--emerald-bg);
+  border: 1px solid var(--emerald-border);
   color: var(--emerald);
   font-family: var(--font-en);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.4px;
-}
-
-.hero-live-pill .radar-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--emerald);
-  box-shadow: 0 0 8px var(--emerald);
-  animation: pulse-dot 1.8s infinite;
 }
 
 .hero-balance-row {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 4px;
   margin: 4px 0 14px 0;
+  flex-wrap: nowrap;
 }
 
 .hero-currency {
   font-family: var(--font-bn);
-  font-size: 2.1rem;
+  font-size: 1.9rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #ffffff, #cbd5e1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #94a3b8;
   line-height: 1;
 }
 
 .hero-amount {
   font-family: var(--font-num);
   font-feature-settings: 'tnum';
-  font-size: 2.35rem;
+  font-size: 2.25rem;
   font-weight: 800;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.5px;
   color: #ffffff;
   line-height: 1;
-  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.15);
 }
 
 .hero-bdt-tag {
   font-family: var(--font-en);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--text-dim);
   background: rgba(255, 255, 255, 0.06);
   padding: 2px 6px;
-  border-radius: 5px;
+  border-radius: 4px;
   margin-left: 2px;
 }
 
-/* DYNAMIC CASHFLOW RATIO PROGRESS BAR */
-.cashflow-ratio-container {
-  margin-bottom: 16px;
-  padding: 8px 12px;
-  border-radius: var(--radius-sm);
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.ratio-label-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.72rem;
-  margin-bottom: 5px;
-  font-family: var(--font-en);
-  font-weight: 600;
-}
-
-.ratio-label-in {
-  color: var(--emerald);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.ratio-label-out {
-  color: var(--rose);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.ratio-bar-track {
-  width: 100%;
-  height: 7px;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  display: flex;
-}
-
-.ratio-bar-in {
-  height: 100%;
-  background: linear-gradient(90deg, #10b981, #34d399);
-  box-shadow: 0 0 8px var(--emerald-glow);
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: var(--radius-pill) 0 0 var(--radius-pill);
-}
-
-.ratio-bar-out {
-  height: 100%;
-  background: linear-gradient(90deg, #f43f5e, #fb7185);
-  box-shadow: 0 0 8px var(--rose-glow);
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
-}
-
-/* 3 Stat Badges Grid */
+/* 2-Column Stats Grid (NET FLOW REMOVED AS REQUESTED) */
 .hero-stats-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 7px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
   padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border-card);
 }
 
-.stat-card {
+.stat-box {
   display: flex;
   flex-direction: column;
-  padding: 8px 8px;
-  border-radius: var(--radius-xs);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-subtle);
 }
 
-.stat-card-title {
-  font-size: 0.7rem;
+.stat-title {
+  font-size: 0.74rem;
   color: var(--text-muted);
-  font-weight: 500;
-  margin-bottom: 3px;
+  font-weight: 600;
+  margin-bottom: 4px;
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
 }
 
-.stat-card-value {
+.stat-value {
   font-family: var(--font-num);
   font-feature-settings: 'tnum';
-  font-size: 0.92rem;
-  font-weight: 700;
+  font-size: 1.05rem;
+  font-weight: 800;
   line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.stat-card-value.in {
+.stat-value.in {
   color: var(--emerald);
 }
 
-.stat-card-value.out {
+.stat-value.out {
   color: var(--rose);
-}
-
-.stat-card-value.net {
-  color: var(--cyan);
 }
 
 /* ==========================================================================
-   3 HOLOGRAPHIC ACCOUNT CARDS (Bank, bKash, Cellfin)
+   ACCOUNT BALANCES - FULL-WIDTH BANKING ROWS (NO MORE CUTOFFS!)
    ========================================================================== */
 .accounts-section {
   margin-top: 18px;
@@ -503,176 +355,133 @@ body::after {
   font-size: 0.92rem;
   font-weight: 700;
   color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 
 .section-hint {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--text-dim);
 }
 
-.accounts-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-
-.account-card {
-  position: relative;
-  padding: 12px 10px 10px 10px;
-  border-radius: var(--radius-md);
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  cursor: pointer;
-  transition: all 0.26s cubic-bezier(0.34, 1.56, 0.64, 1);
-  overflow: hidden;
+.accounts-list {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 110px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  gap: 9px;
 }
 
-.account-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2.5px;
-  background: transparent;
-  transition: all 0.25s ease;
-}
-
-.account-card:hover {
-  transform: translateY(-2.5px);
-  background: var(--bg-card-hover);
-  border-color: var(--border-light);
-}
-
-.account-card:active {
-  transform: scale(0.97);
-}
-
-/* Microchip graphic */
-.card-chip {
-  width: 20px;
-  height: 15px;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.06);
-  position: relative;
-  margin-bottom: 6px;
-}
-
-.card-chip::after {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  right: 3px;
-  height: 7px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.acc-card-top {
+.account-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 13px 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.acc-brand-badge {
-  font-family: var(--font-en);
-  font-size: 0.62rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 1.5px 5px;
-  border-radius: 5px;
+.account-row:active {
+  background: var(--bg-hover);
+  transform: scale(0.99);
 }
 
-.acc-card-name {
-  font-size: 0.8rem;
-  font-weight: 600;
+.acc-row-left {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+}
+
+.acc-row-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.account-row.bank .acc-row-icon {
+  background: var(--bank-bg);
+  border: 1px solid var(--bank-border);
+}
+
+.account-row.bikash .acc-row-icon {
+  background: var(--bikash-bg);
+  border: 1px solid var(--bikash-border);
+}
+
+.account-row.cellfin .acc-row-icon {
+  background: var(--cellfin-bg);
+  border: 1px solid var(--cellfin-border);
+}
+
+.acc-row-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.acc-row-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.acc-row-sub {
+  font-size: 0.72rem;
   color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.acc-row-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Full Taka Amount - 100% Unclipped, Large & Bold */
+.acc-row-amount {
+  font-family: var(--font-num);
+  font-feature-settings: 'tnum';
+  font-size: 1.18rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.account-row.bank .acc-row-amount { color: #fde68a; }
+.account-row.bikash .acc-row-amount { color: #fbcfe8; }
+.account-row.cellfin .acc-row-amount { color: #a5f3fc; }
+
+.acc-row-filter-tag {
+  font-size: 0.68rem;
+  color: var(--text-dim);
   margin-top: 2px;
 }
 
-.acc-card-balance {
-  font-family: var(--font-num);
-  font-feature-settings: 'tnum';
-  font-size: clamp(0.82rem, 3.1vw, 1.02rem);
-  font-weight: 800;
-  margin-top: 4px;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* Active Filter State */
+.account-row.active-filter {
+  border-color: #3b82f6;
+  background: var(--bg-hover);
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.3);
 }
 
-/* Bank Styling */
-.bank-card {
-  border-color: rgba(245, 158, 11, 0.22);
-  background: linear-gradient(145deg, rgba(28, 21, 10, 0.88), rgba(11, 15, 30, 0.88));
-}
-.bank-card::before { background: var(--gold); }
-.bank-card .acc-brand-badge {
-  background: var(--gold-bg);
-  color: var(--gold);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-}
-.bank-card .acc-card-balance { color: #fde68a; }
+.account-row.bank.active-filter { border-color: var(--bank-gold); }
+.account-row.bikash.active-filter { border-color: var(--bikash-pink); }
+.account-row.cellfin.active-filter { border-color: var(--cellfin-cyan); }
 
-/* bKash Styling */
-.bikash-card {
-  border-color: rgba(236, 72, 153, 0.22);
-  background: linear-gradient(145deg, rgba(32, 10, 24, 0.88), rgba(11, 15, 30, 0.88));
-}
-.bikash-card::before { background: var(--pink); }
-.bikash-card .acc-brand-badge {
-  background: var(--pink-bg);
-  color: var(--pink);
-  border: 1px solid rgba(236, 72, 153, 0.3);
-}
-.bikash-card .acc-card-balance { color: #fbcfe8; }
-
-/* Cellfin Styling */
-.cellfin-card {
-  border-color: rgba(6, 182, 212, 0.22);
-  background: linear-gradient(145deg, rgba(7, 26, 36, 0.88), rgba(11, 15, 30, 0.88));
-}
-.cellfin-card::before { background: var(--cyan); }
-.cellfin-card .acc-brand-badge {
-  background: var(--cyan-bg);
-  color: var(--cyan);
-  border: 1px solid rgba(6, 182, 212, 0.3);
-}
-.cellfin-card .acc-card-balance { color: #a5f3fc; }
-
-/* Active Filter State on Account Cards */
-.account-card.active-filter {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-}
-.bank-card.active-filter {
-  border-color: var(--gold);
-  box-shadow: 0 0 18px var(--gold-glow);
-}
-.bikash-card.active-filter {
-  border-color: var(--pink);
-  box-shadow: 0 0 18px var(--pink-glow);
-}
-.cellfin-card.active-filter {
-  border-color: var(--cyan);
-  box-shadow: 0 0 18px var(--cyan-glow);
+.account-row.active-filter .acc-row-filter-tag {
+  color: #3b82f6;
+  font-weight: 700;
 }
 
 /* ==========================================================================
-   QUICK ACTIONS DOCK (Glass Capsules)
+   QUICK ACTION BUTTONS
    ========================================================================== */
 .quick-actions-row {
   display: grid;
@@ -685,36 +494,30 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  padding: 11px 8px;
+  gap: 6px;
+  padding: 11px 6px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.22s ease;
   font-size: 0.82rem;
   font-weight: 600;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.2s;
 }
 
-.action-pill:hover, .action-pill:active {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--border-light);
-  color: #ffffff;
-  transform: scale(0.97);
+.action-pill:active {
+  background: var(--bg-hover);
 }
 
 .action-pill svg {
   width: 17px;
   height: 17px;
-  stroke-width: 2.2;
 }
 
 .action-pill.pdf svg { color: var(--emerald); }
-.action-pill.search svg { color: var(--cyan); }
-.action-pill.refresh svg { color: var(--indigo); }
+.action-pill.search svg { color: var(--blue); }
+.action-pill.refresh svg { color: var(--bank-gold); }
 .action-pill.in svg { color: var(--emerald); }
 .action-pill.out svg { color: var(--rose); }
 
@@ -729,10 +532,10 @@ body::after {
 }
 
 /* ==========================================================================
-   TRANSACTION FEED & FILTER SECTION
+   TRANSACTIONS FEED & CONTROLS
    ========================================================================== */
 .feed-container {
-  margin-top: 22px;
+  margin-top: 20px;
 }
 
 .feed-header-row {
@@ -743,105 +546,86 @@ body::after {
 }
 
 .feed-title {
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #ffffff;
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 
 .feed-count-tag {
   font-family: var(--font-en);
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--indigo);
-  background: var(--indigo-bg);
-  padding: 2.5px 8px;
+  color: var(--blue);
+  background: var(--blue-bg);
+  padding: 2px 7px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(99, 102, 241, 0.25);
 }
 
-/* Account Pill Filter Bar */
+/* Account Filter Chips */
 .filter-chips-bar {
   display: flex;
-  gap: 7px;
+  gap: 6px;
   overflow-x: auto;
   padding-bottom: 6px;
   scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 .filter-chips-bar::-webkit-scrollbar { display: none; }
 
 .filter-chip {
   flex-shrink: 0;
-  padding: 6px 13px;
+  padding: 6px 12px;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
   color: var(--text-muted);
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 5px;
-}
-
-.filter-chip:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-main);
+  gap: 4px;
 }
 
 .filter-chip.active {
-  background: var(--indigo);
-  border-color: var(--indigo);
+  background: var(--blue);
+  border-color: var(--blue);
   color: #ffffff;
-  box-shadow: 0 4px 12px var(--indigo-glow);
 }
 
 .filter-chip.chip-bank.active {
-  background: var(--gold);
-  border-color: var(--gold);
+  background: var(--bank-gold);
+  border-color: var(--bank-gold);
   color: #000000;
-  box-shadow: 0 4px 12px var(--gold-glow);
 }
 
 .filter-chip.chip-bikash.active {
-  background: var(--pink);
-  border-color: var(--pink);
+  background: var(--bikash-pink);
+  border-color: var(--bikash-pink);
   color: #ffffff;
-  box-shadow: 0 4px 12px var(--pink-glow);
 }
 
 .filter-chip.chip-cellfin.active {
-  background: var(--cyan);
-  border-color: var(--cyan);
+  background: var(--cellfin-cyan);
+  border-color: var(--cellfin-cyan);
   color: #000000;
-  box-shadow: 0 4px 12px var(--cyan-glow);
 }
 
-/* Sub Filter Row (All, In, Out) */
+/* Type Segmented Control */
 .sub-filter-row {
   margin: 8px 0 12px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .type-segmented-tabs {
-  display: inline-flex;
+  display: flex;
   padding: 3px;
   border-radius: var(--radius-pill);
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid var(--border-subtle);
-  width: 100%;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-card);
 }
 
 .type-tab {
   flex: 1;
-  padding: 6px 10px;
+  padding: 6px 8px;
   border-radius: var(--radius-pill);
   background: transparent;
   border: none;
@@ -849,33 +633,28 @@ body::after {
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
   text-align: center;
 }
 
 .type-tab.active {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--bg-card);
   color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .type-tab.active[data-filter="IN"] {
   background: var(--emerald-bg);
   color: var(--emerald);
-  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .type-tab.active[data-filter="OUT"] {
   background: var(--rose-bg);
   color: var(--rose);
-  border: 1px solid rgba(244, 63, 94, 0.3);
 }
 
-/* Expandable Search Input */
+/* Search Box */
 .search-wrapper {
   margin-bottom: 12px;
   display: none;
-  animation: slide-down 0.22s ease forwards;
 }
 
 .search-wrapper.open {
@@ -899,62 +678,51 @@ body::after {
 
 .search-box input {
   width: 100%;
-  padding: 11px 12px 11px 38px;
+  padding: 10px 12px 10px 38px;
   border-radius: var(--radius-sm);
-  background: rgba(16, 22, 44, 0.85);
-  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
   color: #ffffff;
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   font-family: var(--font-bn);
   outline: none;
-  transition: all 0.22s ease;
 }
 
 .search-box input:focus {
-  border-color: var(--indigo);
-  box-shadow: 0 0 14px var(--indigo-glow);
+  border-color: var(--blue);
 }
 
 /* ==========================================================================
-   TRANSACTION FEED CARDS (Apple Wallet / Neo-Fintech Stream)
+   TRANSACTION FEED TILES (NO TEXT OVERLAPS!)
    ========================================================================== */
 .cards-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 8px;
 }
 
 .txn-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 13px 13px;
+  padding: 12px 12px;
   border-radius: var(--radius-md);
   background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  transition: all 0.2s ease;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.txn-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-light);
-  transform: translateY(-1.5px);
+  border: 1px solid var(--border-card);
 }
 
 .txn-left {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 10px;
   flex: 1;
-  min-width: 0;
+  min-width: 0; /* Prevents text overflow into right column */
 }
 
 .txn-type-circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 13px;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -963,28 +731,26 @@ body::after {
 
 .txn-type-circle.in {
   background: var(--emerald-bg);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid var(--emerald-border);
   color: var(--emerald);
-  box-shadow: 0 3px 10px var(--emerald-glow);
 }
 
 .txn-type-circle.out {
   background: var(--rose-bg);
-  border: 1px solid rgba(244, 63, 94, 0.3);
+  border: 1px solid var(--rose-border);
   color: var(--rose);
-  box-shadow: 0 3px 10px var(--rose-glow);
 }
 
 .txn-type-circle svg {
-  width: 19px;
-  height: 19px;
+  width: 18px;
+  height: 18px;
   stroke-width: 2.5;
 }
 
 .txn-info {
   display: flex;
   flex-direction: column;
-  gap: 2.5px;
+  gap: 3px;
   min-width: 0;
   flex: 1;
 }
@@ -992,54 +758,53 @@ body::after {
 .txn-note-row {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
+  min-width: 0;
 }
 
 .txn-note {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #f8fafc;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 170px;
 }
 
 .account-pill {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
   font-family: var(--font-en);
-  font-size: 0.66rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  padding: 1.5px 5.5px;
-  border-radius: 5px;
+  padding: 1px 5px;
+  border-radius: 4px;
   flex-shrink: 0;
 }
 
 .account-pill.bank {
-  background: var(--gold-bg);
-  color: var(--gold);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: var(--bank-bg);
+  color: var(--bank-gold);
+  border: 1px solid var(--bank-border);
 }
 
 .account-pill.bikash {
-  background: var(--pink-bg);
-  color: var(--pink);
-  border: 1px solid rgba(236, 72, 153, 0.3);
+  background: var(--bikash-bg);
+  color: var(--bikash-pink);
+  border: 1px solid var(--bikash-border);
 }
 
 .account-pill.cellfin {
-  background: var(--cyan-bg);
-  color: var(--cyan);
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  background: var(--cellfin-bg);
+  color: var(--cellfin-cyan);
+  border: 1px solid var(--cellfin-border);
 }
 
 .txn-meta {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.72rem;
+  gap: 5px;
+  font-size: 0.71rem;
   color: var(--text-muted);
 }
 
@@ -1049,17 +814,19 @@ body::after {
 
 .txn-id {
   font-family: var(--font-en);
-  font-size: 0.66rem;
+  font-size: 0.65rem;
   color: var(--text-dim);
 }
 
+/* Right Side - Amount & Balance (Fixed Width, No Word Wrap) */
 .txn-right {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 2.5px;
+  text-align: right;
   flex-shrink: 0;
   margin-left: 8px;
+  white-space: nowrap;
 }
 
 .txn-amount {
@@ -1081,56 +848,74 @@ body::after {
 .txn-running-balance {
   font-family: var(--font-num);
   font-feature-settings: 'tnum';
-  font-size: 0.71rem;
+  font-size: 0.7rem;
   color: var(--text-dim);
 }
 
-/* Admin Specific Buttons on cards */
+/* Admin Action Buttons */
 .txn-admin-actions {
   display: flex;
-  gap: 5px;
+  gap: 4px;
   margin-top: 4px;
 }
 
 .txn-btn {
-  padding: 2.5px 7px;
-  border-radius: 5px;
-  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.68rem;
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: all 0.15s ease;
 }
 
 .txn-btn.edit {
-  background: rgba(99, 102, 241, 0.15);
-  color: #a5b4fc;
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
 }
 
 .txn-btn.delete {
-  background: rgba(244, 63, 94, 0.15);
-  color: #fecdd3;
-  border: 1px solid rgba(244, 63, 94, 0.3);
+  background: rgba(244, 63, 94, 0.2);
+  color: #fca5a5;
+}
+
+/* Load More Button (Anti-Hang Pagination) */
+.load-more-wrapper {
+  margin: 16px 0;
+  text-align: center;
+}
+
+.btn-load-more {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-load-more:active {
+  background: var(--bg-hover);
 }
 
 /* ==========================================================================
-   FLOATING BOTTOM NAV DOCK
+   BOTTOM NAVIGATION
    ========================================================================== */
 .bottom-nav {
   position: fixed;
-  bottom: max(14px, env(safe-area-inset-bottom, 14px));
+  bottom: max(10px, env(safe-area-inset-bottom, 10px));
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 28px);
+  width: calc(100% - 24px);
   max-width: 410px;
-  padding: 8px 14px;
+  padding: 8px 12px;
   border-radius: var(--radius-pill);
-  background: rgba(10, 14, 30, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(99, 102, 241, 0.15);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: #0d1527;
+  border: 1px solid var(--border-card);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -1141,131 +926,109 @@ body::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   background: transparent;
   border: none;
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.73rem;
+  font-size: 0.72rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-pill);
-  transition: all 0.2s ease;
-}
-
-.nav-item:hover, .nav-item.active {
-  color: #ffffff;
 }
 
 .nav-item.active {
+  color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
 }
 
 .nav-item svg {
-  width: 19px;
-  height: 19px;
+  width: 18px;
+  height: 18px;
 }
 
-/* Admin Center Floating Action Button (FAB) */
+/* Admin Center FAB */
 .nav-fab {
   position: relative;
-  top: -18px;
-  width: 50px;
-  height: 50px;
+  top: -16px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1, #06b6d4);
-  border: 3px solid var(--bg-dark);
-  box-shadow: 0 8px 24px var(--indigo-glow);
+  background: #3b82f6;
+  border: 3px solid var(--bg-app);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.nav-fab:hover, .nav-fab:active {
-  transform: scale(1.08);
-  box-shadow: 0 12px 30px var(--indigo-glow);
 }
 
 .nav-fab svg {
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
   stroke-width: 2.5;
 }
 
 /* ==========================================================================
-   MODAL BOTTOM SHEETS (Money In, Money Out, Edit)
+   MODAL BOTTOM SHEETS
    ========================================================================== */
 .modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   z-index: 200;
   display: none;
   align-items: flex-end;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.25s ease;
 }
 
 .modal-overlay.open {
   display: flex;
-  opacity: 1;
 }
 
 .modal-sheet {
   width: 100%;
-  max-width: 450px;
-  background: #0c1124;
-  border: 1px solid var(--border-light);
+  max-width: 440px;
+  background: #0d1527;
+  border: 1px solid var(--border-card);
   border-bottom: none;
-  border-radius: 26px 26px 0 0;
-  padding: 14px 18px 30px 18px;
-  box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.8);
-  transform: translateY(100%);
-  transition: transform 0.28s cubic-bezier(0.34, 1.2, 0.64, 1);
+  border-radius: 20px 20px 0 0;
+  padding: 16px 18px 28px 18px;
   max-height: 90vh;
   overflow-y: auto;
 }
 
-.modal-overlay.open .modal-sheet {
-  transform: translateY(0);
-}
-
 .modal-drag-bar {
-  width: 38px;
+  width: 36px;
   height: 4px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 2px;
-  margin: 0 auto 14px auto;
+  margin: 0 auto 12px auto;
 }
 
 .modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .modal-title {
-  font-size: 1.12rem;
+  font-size: 1.08rem;
   font-weight: 700;
   color: #ffffff;
 }
 
 .modal-close-btn {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.08);
   border: none;
   color: var(--text-secondary);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1273,7 +1036,7 @@ body::after {
 }
 
 .form-group {
-  margin-bottom: 14px;
+  margin-bottom: 13px;
 }
 
 .form-label {
@@ -1281,135 +1044,100 @@ body::after {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-muted);
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 }
 
 /* Modal Account Selection Tiles */
 .modal-account-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 7px;
+  gap: 6px;
 }
 
 .modal-acc-opt {
-  padding: 9px 7px;
+  padding: 8px 6px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
   cursor: pointer;
   text-align: center;
-  transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3px;
 }
 
-.modal-acc-opt .opt-icon { font-size: 1.15rem; }
-.modal-acc-opt .opt-name { font-size: 0.76rem; font-weight: 700; }
-
 .modal-acc-opt.selected.opt-bank {
-  background: var(--gold-bg);
-  border-color: var(--gold);
-  color: var(--gold);
+  background: var(--bank-bg);
+  border-color: var(--bank-gold);
+  color: var(--bank-gold);
 }
 .modal-acc-opt.selected.opt-bikash {
-  background: var(--pink-bg);
-  border-color: var(--pink);
-  color: var(--pink);
+  background: var(--bikash-bg);
+  border-color: var(--bikash-pink);
+  color: var(--bikash-pink);
 }
 .modal-acc-opt.selected.opt-cellfin {
-  background: var(--cyan-bg);
-  border-color: var(--cyan);
-  color: var(--cyan);
+  background: var(--cellfin-bg);
+  border-color: var(--cellfin-cyan);
+  color: var(--cellfin-cyan);
 }
 
 .form-input, .form-select {
   width: 100%;
-  padding: 11px 13px;
+  padding: 10px 12px;
   border-radius: var(--radius-sm);
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
   color: #ffffff;
   font-family: var(--font-bn);
-  font-size: 0.94rem;
+  font-size: 0.92rem;
   outline: none;
-  transition: all 0.2s ease;
 }
 
 .form-input:focus, .form-select:focus {
-  border-color: var(--indigo);
-  box-shadow: 0 0 12px var(--indigo-glow);
+  border-color: var(--blue);
 }
 
 .submit-btn {
   width: 100%;
-  padding: 13px;
-  border-radius: var(--radius-md);
+  padding: 12px;
+  border-radius: var(--radius-sm);
   border: none;
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.22s ease;
   color: #ffffff;
   margin-top: 8px;
 }
 
-.submit-btn.in {
-  background: linear-gradient(135deg, #10b981, #059669);
-  box-shadow: 0 5px 18px var(--emerald-glow);
-}
+.submit-btn.in { background: #10b981; }
+.submit-btn.out { background: #f43f5e; }
+.submit-btn.brand { background: #3b82f6; }
 
-.submit-btn.out {
-  background: linear-gradient(135deg, #f43f5e, #e11d48);
-  box-shadow: 0 5px 18px var(--rose-glow);
-}
-
-.submit-btn.brand {
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  box-shadow: 0 5px 18px var(--indigo-glow);
-}
-
-/* Toast Notification */
+/* Toast */
 .toast-container {
   position: fixed;
-  top: 20px;
+  top: 16px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 300;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   pointer-events: none;
-  width: calc(100% - 28px);
-  max-width: 390px;
+  width: calc(100% - 24px);
+  max-width: 380px;
 }
 
 .toast {
-  padding: 11px 16px;
+  padding: 10px 16px;
   border-radius: var(--radius-pill);
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid var(--border-light);
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
-  font-size: 0.86rem;
+  font-size: 0.85rem;
   font-weight: 600;
   text-align: center;
-  box-shadow: var(--shadow-lg);
-  backdrop-filter: blur(16px);
-  animation: slide-toast 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes pulse-dot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.6; }
-}
-
-@keyframes slide-down {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slide-toast {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
 }
