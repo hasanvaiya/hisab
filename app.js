@@ -441,7 +441,7 @@ function transferBankToBikash(amount, customDate, userNote) {
       amount: fee,
       account: "bank",
       category: "Cash Out",
-      note: `বিকাশ ট্রান্সফার ফি (১৫৳)${noteSuffix}`,
+      note: `ATM Transaction Fee${noteSuffix}`,
       timestamp: new Date(baseTime + 1000).toISOString(),
       runningBalance: 0
     };
