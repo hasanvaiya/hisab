@@ -667,6 +667,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // PDF Buttons
+  ["btn-refresh-quick", "btn-refresh-nav"].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener("click", async () => {
+      showToast("লাইভ ডেটা রিফ্রেশ হচ্ছে...", "success");
+      await loadData();
+      showToast("সর্বশেষ ডেটা সিঙ্ক সম্পন্ন!", "success");
+    });
+  });
+
   ["pdf-header-btn", "btn-pdf-quick", "btn-pdf-nav"].forEach(id => {
     const btn = document.getElementById(id);
     if (btn) btn.addEventListener("click", exportPDF);
