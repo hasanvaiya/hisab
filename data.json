@@ -3751,36 +3751,6 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
       "runningBalance": 388432.12
-    },
-    {
-      "id": "TXN-TRF-460287",
-      "type": "OUT",
-      "amount": 25000,
-      "account": "bank",
-      "category": "Cash Out",
-      "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
-      "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 363432.12
-    },
-    {
-      "id": "TXN-TRF-443413",
-      "type": "OUT",
-      "amount": 15,
-      "account": "bank",
-      "category": "Cash Out",
-      "note": "বিকাশ ট্রান্সফার ফি (১৫৳)",
-      "timestamp": "2026-09-15T06:00:01.000Z",
-      "runningBalance": 363417.12
-    },
-    {
-      "id": "TXN-TRF-497861",
-      "type": "IN",
-      "amount": 25000,
-      "account": "bikash",
-      "category": "Cash Add",
-      "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
-      "timestamp": "2026-09-15T06:00:02.000Z",
-      "runningBalance": 388417.12
     }
   ]
 }
