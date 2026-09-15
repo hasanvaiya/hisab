@@ -2,12 +2,10 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#040711">
-  <title>লাইভ হিসাব খাতা - হাসান</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>হিসাব খাতা | হাসান - লাইভ ড্যাশবোর্ড</title>
+  <meta name="theme-color" content="#050713">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
@@ -18,149 +16,174 @@
     <!-- TOP HEADER -->
     <header class="app-header">
       <div class="user-profile">
-        <div class="avatar">
-          H
-          <span class="avatar-online-dot"></span>
+        <div class="avatar-wrapper">
+          <div class="avatar">H</div>
+          <span class="avatar-badge"></span>
         </div>
         <div class="user-details">
-          <span class="app-title">লাইভ হিসাব খাতা</span>
-          <span class="user-name">হাসান <span class="live-pulse"></span></span>
+          <span class="app-subtitle">
+            <span class="live-dot"></span> লাইভ হিসাব খাতা
+          </span>
+          <span class="user-name">হাসান <span class="verified-icon">✓</span></span>
         </div>
       </div>
       <div class="header-actions">
         <button class="icon-btn" id="pdf-header-btn" title="PDF রিপোর্ট ডাউনলোড">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
         </button>
       </div>
     </header>
 
-    <!-- MASTER TOTAL BALANCE CARD (All Accounts Combined) -->
+    <!-- MASTER TOTAL BALANCE HERO CARD -->
     <section class="master-hero-card">
-      <div class="hero-glow-orb"></div>
+      <div class="hero-glow-beam"></div>
       <div class="hero-top-row">
-        <span class="hero-label">সর্বমোট ব্যালেন্স (Total Cash)</span>
-        <span class="hero-pill">🟢 LIVE SYNC</span>
+        <span class="hero-label">মোট ক্যাশ ব্যালেন্স (Total Cash)</span>
+        <div class="hero-live-pill">
+          <span class="radar-dot"></span> LIVE SYNC
+        </div>
       </div>
       <div class="hero-balance-row">
-        <span class="hero-currency-symbol">৳</span>
-        <span class="hero-balance-amount" id="balance-display">লোড হচ্ছে...</span>
-        <span class="hero-currency-tag">BDT</span>
+        <span class="hero-currency">৳</span>
+        <span class="hero-amount" id="balance-display">লোড হচ্ছে...</span>
+        <span class="hero-bdt-tag">BDT</span>
       </div>
+
+      <!-- DYNAMIC CASHFLOW RATIO PROGRESS BAR -->
+      <div class="cashflow-ratio-container">
+        <div class="ratio-label-row">
+          <span class="ratio-label-in">▲ জমা: <span id="ratio-in-pct">50%</span></span>
+          <span class="ratio-label-out">▼ খরচ: <span id="ratio-out-pct">50%</span></span>
+        </div>
+        <div class="ratio-bar-track">
+          <div class="ratio-bar-in" id="ratio-bar-in" style="width: 50%;"></div>
+          <div class="ratio-bar-out" id="ratio-bar-out" style="width: 50%;"></div>
+        </div>
+      </div>
+
+      <!-- 3 STAT PILLS -->
       <div class="hero-stats-grid">
-        <div class="stat-box">
-          <span class="stat-title">মোট জমা</span>
-          <span class="stat-value in" id="total-in-display">--</span>
+        <div class="stat-card">
+          <span class="stat-card-title">↗ মোট জমা</span>
+          <span class="stat-card-value in" id="total-in-display">--</span>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat-box">
-          <span class="stat-title">মোট খরচ</span>
-          <span class="stat-value out" id="total-out-display">--</span>
+        <div class="stat-card">
+          <span class="stat-card-title">↘ মোট খরচ</span>
+          <span class="stat-card-value out" id="total-out-display">--</span>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat-box">
-          <span class="stat-title">নেট ফ্লো</span>
-          <span class="stat-value net" id="net-flow-display">--</span>
+        <div class="stat-card">
+          <span class="stat-card-title">❖ নেট ফ্লো</span>
+          <span class="stat-card-value net" id="net-flow-display">--</span>
         </div>
       </div>
     </section>
 
-    <!-- 3 ACCOUNTS SUMMARY CARDS (Bank, bKash, Cellfin) -->
+    <!-- 3 HOLOGRAPHIC ACCOUNT CARDS (Bank, bKash, Cellfin) -->
     <section class="accounts-section">
-      <div class="accounts-header">
-        <span class="accounts-title">অ্যাকাউন্টভিত্তিক ব্যালেন্স</span>
+      <div class="section-header">
+        <span class="section-title">💳 অ্যাকাউন্টভিত্তিক ব্যালেন্স</span>
+        <span class="section-hint">ফিল্টার করতে ক্লিক করুন</span>
       </div>
       <div class="accounts-grid">
         <!-- 1. Bank Card -->
         <div class="account-card bank-card" onclick="filterByAccount('bank')">
-          <div class="acc-top">
-            <div class="acc-icon bank">🏦</div>
-            <span class="acc-badge bank">Bank</span>
+          <div class="acc-card-top">
+            <div class="card-chip"></div>
+            <span class="acc-brand-badge">Bank</span>
           </div>
-          <span class="acc-name">ব্যাংক</span>
-          <div class="acc-balance">৳<span id="bank-balance-display">0</span></div>
+          <div>
+            <span class="acc-card-name">ব্যাংক</span>
+            <div class="acc-card-balance">৳<span id="bank-balance-display">0</span></div>
+          </div>
         </div>
 
         <!-- 2. bKash Card -->
         <div class="account-card bikash-card" onclick="filterByAccount('bikash')">
-          <div class="acc-top">
-            <div class="acc-icon bikash">📱</div>
-            <span class="acc-badge bikash">bKash</span>
+          <div class="acc-card-top">
+            <div class="card-chip"></div>
+            <span class="acc-brand-badge">bKash</span>
           </div>
-          <span class="acc-name">বিকাশ</span>
-          <div class="acc-balance">৳<span id="bikash-balance-display">0</span></div>
+          <div>
+            <span class="acc-card-name">বিকাশ</span>
+            <div class="acc-card-balance">৳<span id="bikash-balance-display">0</span></div>
+          </div>
         </div>
 
         <!-- 3. Cellfin Card -->
         <div class="account-card cellfin-card" onclick="filterByAccount('cellfin')">
-          <div class="acc-top">
-            <div class="acc-icon cellfin">⚡</div>
-            <span class="acc-badge cellfin">Cellfin</span>
+          <div class="acc-card-top">
+            <div class="card-chip"></div>
+            <span class="acc-brand-badge">Cellfin</span>
           </div>
-          <span class="acc-name">সেলফিন</span>
-          <div class="acc-balance">৳<span id="cellfin-balance-display">0</span></div>
+          <div>
+            <span class="acc-card-name">সেলফিন</span>
+            <div class="acc-card-balance">৳<span id="cellfin-balance-display">0</span></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- QUICK ACTIONS (NO ADMIN ACCESS HERE) -->
-    <section class="quick-actions-grid">
-      <div class="quick-action-item" id="btn-pdf-quick">
-        <div class="quick-icon-wrapper pdf">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
-        </div>
-        <span class="quick-label">PDF স্টেটমেন্ট</span>
+    <!-- QUICK ACTIONS DOCK -->
+    <section class="quick-actions-row">
+      <div class="action-pill pdf" id="btn-pdf-quick">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
+        <span>PDF স্টেটমেন্ট</span>
       </div>
-      <div class="quick-action-item" id="btn-search-toggle">
-        <div class="quick-icon-wrapper search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        </div>
-        <span class="quick-label">সার্চ করুন</span>
+      <div class="action-pill search" id="btn-search-toggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <span>সার্চ করুন</span>
       </div>
-      <div class="quick-action-item" id="btn-refresh-quick">
-        <div class="quick-icon-wrapper refresh">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-        </div>
-        <span class="quick-label">লাইভ রিফ্রেশ</span>
+      <div class="action-pill refresh" id="btn-refresh-quick">
+        <svg id="refresh-spin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+        <span>লাইভ রিফ্রেশ</span>
       </div>
     </section>
 
     <!-- TRANSACTION FEED -->
     <main class="feed-container">
-      <div class="feed-header">
-        <span class="feed-title">সর্বশেষ লেনদেন</span>
+      <div class="feed-header-row">
+        <span class="feed-title">
+          <span>⚡ সর্বশেষ লেনদেন</span>
+        </span>
+        <span class="feed-count-tag" id="txn-count-label">-- হিসাব</span>
       </div>
 
-      <!-- Account Filter Bar -->
-      <div class="account-filter-bar">
-        <button class="acc-chip active" data-account="ALL">সব অ্যাকাউন্ট</button>
-        <button class="acc-chip chip-bank" data-account="bank">🏦 ব্যাংক</button>
-        <button class="acc-chip chip-bikash" data-account="bikash">📱 বিকাশ</button>
-        <button class="acc-chip chip-cellfin" data-account="cellfin">⚡ সেলফিন</button>
+      <!-- Account Filter Chips -->
+      <div class="filter-chips-bar">
+        <button class="filter-chip active" data-account="ALL">সব অ্যাকাউন্ট</button>
+        <button class="filter-chip chip-bank" data-account="bank">🏦 ব্যাংক</button>
+        <button class="filter-chip chip-bikash" data-account="bikash">📱 বিকাশ</button>
+        <button class="filter-chip chip-cellfin" data-account="cellfin">⚡ সেলফিন</button>
       </div>
 
-      <!-- In / Out sub-filter -->
+      <!-- In / Out Segmented Switch -->
       <div class="sub-filter-row">
-        <div class="filter-tabs">
-          <button class="filter-tab active" data-filter="ALL">সকল</button>
-          <button class="filter-tab" data-filter="IN">জমা</button>
-          <button class="filter-tab" data-filter="OUT">খরচ</button>
+        <div class="type-segmented-tabs">
+          <button class="type-tab active" data-filter="ALL">সকল</button>
+          <button class="type-tab" data-filter="IN">জমা (In)</button>
+          <button class="type-tab" data-filter="OUT">খরচ (Out)</button>
         </div>
       </div>
 
-      <!-- Search Input Box -->
-      <div class="search-box" id="search-box">
-        <input type="text" class="search-input" id="search-input" placeholder="তারিখ (DD/MM), নোট বা পরিমাণ...">
+      <!-- Expandable Search Input -->
+      <div class="search-wrapper" id="search-wrapper">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="search-input" placeholder="তারিখ (DD/MM), বিবরণ বা পরিমাণ দিয়ে খুঁজুন...">
+        </div>
       </div>
 
-      <!-- Feed list -->
+      <!-- Feed List -->
       <div class="cards-wrapper" id="cards-feed">
-        <div style="text-align: center; padding: 30px; color: var(--text-dim);">লোড হচ্ছে...</div>
+        <div style="text-align: center; padding: 40px 16px; color: var(--text-dim);">
+          লেনদেনের হিসাব লোড হচ্ছে...
+        </div>
       </div>
     </main>
 
   </div>
 
-  <!-- BOTTOM NAV (NO ADMIN LINK HERE) -->
+  <!-- FLOATING BOTTOM NAV DOCK -->
   <nav class="bottom-nav">
     <a href="index.html" class="nav-item active">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
@@ -176,7 +199,7 @@
     </button>
   </nav>
 
-  <!-- PDF STATEMENT PRINT TEMPLATE (Hidden, rendered during PDF export) -->
+  <!-- PDF STATEMENT PRINT TEMPLATE (Hidden) -->
   <div id="pdf-statement-template"></div>
 
   <!-- TOAST CONTAINER -->
