@@ -1,45 +1,48 @@
 /* ==========================================================================
-   Live Hisab & Cashflow Tracker - Ultra-Premium Mobile Fintech UI
-   Multi-Account Edition with Date Display & Clean PDF Statement
+   Live Hisab & Cashflow Tracker - Luxury Obsidian Fintech Edition
+   Palette: Deep Space Obsidian, Royal Indigo, Gold, Rose & Cyan
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  --bg-primary: #070a12;
-  --bg-surface: #0e1424;
-  --bg-surface-elevated: #162035;
+  /* Ultra-Premium Obsidian Theme */
+  --bg-primary: #040711;
+  --bg-surface: #0a0f1d;
+  --bg-surface-elevated: #11182c;
+  --bg-surface-card: rgba(17, 24, 44, 0.7);
 
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-light: rgba(255, 255, 255, 0.12);
-  --border-active: rgba(99, 102, 241, 0.6);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.15);
+  --border-active: rgba(99, 102, 241, 0.7);
 
-  --green: #10b981;
+  /* Vivid Financial Status Colors */
+  --green: #00d589;
   --green-dark: #059669;
-  --green-glow: rgba(16, 185, 129, 0.22);
+  --green-glow: rgba(0, 213, 137, 0.25);
 
-  --red: #f43f5e;
+  --red: #ff3366;
   --red-dark: #e11d48;
-  --red-glow: rgba(244, 63, 94, 0.22);
+  --red-glow: rgba(255, 51, 102, 0.25);
 
   --brand: #6366f1;
   --brand-dark: #4f46e5;
-  --brand-glow: rgba(99, 102, 241, 0.25);
+  --brand-glow: rgba(99, 102, 241, 0.3);
 
-  /* Account Colors */
-  --bank-color: #f59e0b;
-  --bank-glow: rgba(245, 158, 11, 0.2);
-  --bank-bg: rgba(245, 158, 11, 0.1);
+  /* Account Specific High-Contrast Colors */
+  --bank-color: #fbbf24;
+  --bank-glow: rgba(251, 191, 36, 0.25);
+  --bank-bg: rgba(251, 191, 36, 0.12);
 
   --bikash-color: #f43f5e;
-  --bikash-glow: rgba(244, 63, 94, 0.2);
-  --bikash-bg: rgba(244, 63, 94, 0.1);
+  --bikash-glow: rgba(244, 63, 94, 0.25);
+  --bikash-bg: rgba(244, 63, 94, 0.12);
 
   --cellfin-color: #06b6d4;
-  --cellfin-glow: rgba(6, 182, 212, 0.2);
-  --cellfin-bg: rgba(6, 182, 212, 0.1);
+  --cellfin-glow: rgba(6, 182, 212, 0.25);
+  --cellfin-bg: rgba(6, 182, 212, 0.12);
 
-  --text-main: #f8fafc;
+  --text-main: #ffffff;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
 
@@ -89,10 +92,10 @@ html, body {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(7, 10, 18, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(4, 7, 17, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .user-profile {
@@ -105,7 +108,7 @@ html, body {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--brand), #4338ca);
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,13 +116,14 @@ html, body {
   font-weight: 800;
   font-size: 1.15rem;
   color: #ffffff;
-  box-shadow: 0 4px 14px var(--brand-glow);
+  box-shadow: 0 4px 16px var(--brand-glow);
   position: relative;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
 }
 
 .avatar-admin {
-  background: linear-gradient(135deg, #10b981, #047857);
-  box-shadow: 0 4px 14px var(--green-glow);
+  background: linear-gradient(135deg, #00d589, #059669);
+  box-shadow: 0 4px 16px var(--green-glow);
 }
 
 .avatar-online-dot {
@@ -131,6 +135,7 @@ html, body {
   border-radius: 50%;
   background: var(--green);
   border: 2px solid var(--bg-primary);
+  box-shadow: 0 0 8px var(--green);
 }
 
 .user-details {
@@ -159,7 +164,7 @@ html, body {
   height: 7px;
   border-radius: 50%;
   background: var(--green);
-  box-shadow: 0 0 8px var(--green);
+  box-shadow: 0 0 10px var(--green);
   animation: pulse-ring 2s infinite;
 }
 
@@ -201,33 +206,34 @@ html, body {
   height: 19px;
 }
 
-/* MASTER BALANCE HERO CARD */
+/* MASTER BALANCE HERO CARD (Luxury Deep Sapphire & Emerald Gradient) */
 .master-hero-card {
-  background: linear-gradient(145deg, #053326 0%, #064e3b 40%, #065f46 75%, #0d9488 100%);
+  background: linear-gradient(135deg, #18153f 0%, #0e1e38 45%, #053328 85%, #024131 100%);
   border-radius: var(--radius-lg);
   padding: 20px 18px 16px;
   margin-top: 10px;
   margin-bottom: 14px;
-  box-shadow: 0 14px 34px rgba(6, 78, 59, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   overflow: hidden;
 }
 
 .master-hero-admin {
-  background: linear-gradient(145deg, #1e1b4b 0%, #312e81 45%, #4338ca 75%, #4f46e5 100%);
-  box-shadow: 0 14px 34px rgba(49, 46, 129, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, #2a144e 0%, #1e1b4b 45%, #182855 80%, #0d4349 100%);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.22);
 }
 
 .hero-glow-orb {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(0, 213, 137, 0.15) 60%, transparent 80%);
   top: -40px;
   right: -40px;
   pointer-events: none;
-  filter: blur(20px);
+  filter: blur(15px);
 }
 
 .hero-top-row {
@@ -241,7 +247,7 @@ html, body {
 
 .hero-label {
   font-size: 0.76rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -251,12 +257,12 @@ html, body {
   font-size: 0.62rem;
   font-weight: 800;
   letter-spacing: 0.06em;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(8px);
-  padding: 3px 9px;
+  padding: 3px 10px;
   border-radius: var(--radius-full);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .hero-balance-row {
@@ -269,14 +275,14 @@ html, body {
 }
 
 .hero-currency-symbol {
-  font-size: 1.55rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-balance-amount {
   font-family: var(--font-en);
-  font-size: 2.55rem;
+  font-size: 2.6rem;
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -1.2px;
@@ -292,10 +298,10 @@ html, body {
 .hero-stats-grid {
   display: grid;
   grid-template-columns: 1fr 1px 1fr 1px 1fr;
-  background: rgba(0, 0, 0, 0.22);
+  background: rgba(0, 0, 0, 0.28);
   border-radius: var(--radius-md);
   padding: 10px 8px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   position: relative;
   z-index: 2;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -324,11 +330,11 @@ html, body {
   font-weight: 700;
 }
 
-.stat-value.in { color: #6ee7b7; }
-.stat-value.out { color: #fca5a5; }
+.stat-value.in { color: #5eead4; }
+.stat-value.out { color: #fda4af; }
 .stat-value.net { color: #ffffff; }
 
-/* 3-ACCOUNT BALANCES SECTION */
+/* 3-ACCOUNT BALANCES SECTION (Bank, bKash, Cellfin) */
 .accounts-section {
   margin-bottom: 18px;
 }
@@ -342,7 +348,7 @@ html, body {
 }
 
 .accounts-title {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -367,6 +373,7 @@ html, body {
   position: relative;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .account-card:hover, .account-card:active {
@@ -376,8 +383,8 @@ html, body {
 
 .account-card.active-filter {
   border-color: var(--brand);
-  background: rgba(99, 102, 241, 0.12);
-  box-shadow: 0 0 0 1px var(--brand);
+  background: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 14px rgba(99, 102, 241, 0.35);
 }
 
 .account-card.bank-card {
@@ -441,10 +448,10 @@ html, body {
   word-break: break-all;
 }
 
-/* QUICK ACTION GRID */
+/* QUICK ACTION GRID (3-Column Layout without Admin) */
 .quick-actions-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   margin-bottom: 18px;
 }
@@ -475,22 +482,22 @@ html, body {
 
 .quick-icon-wrapper.pdf {
   background: linear-gradient(135deg, #ef4444, #dc2626);
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
 }
 
 .quick-icon-wrapper.search {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+}
+
+.quick-icon-wrapper.refresh {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
 }
 
 .quick-icon-wrapper.count {
   background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-}
-
-.quick-icon-wrapper.admin {
-  background: linear-gradient(135deg, var(--green), var(--green-dark));
-  box-shadow: 0 4px 12px var(--green-glow);
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
 }
 
 .quick-icon-wrapper svg {
@@ -500,7 +507,7 @@ html, body {
 }
 
 .quick-label {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
   font-weight: 500;
   text-align: center;
@@ -531,13 +538,13 @@ html, body {
 }
 
 .action-card-btn.in-btn {
-  border-color: rgba(16, 185, 129, 0.3);
-  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(0, 213, 137, 0.35);
+  background: rgba(0, 213, 137, 0.06);
 }
 
 .action-card-btn.out-btn {
-  border-color: rgba(244, 63, 94, 0.3);
-  background: rgba(244, 63, 94, 0.05);
+  border-color: rgba(255, 51, 102, 0.35);
+  background: rgba(255, 51, 102, 0.06);
 }
 
 .action-icon {
@@ -584,6 +591,7 @@ html, body {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .feed-header {
@@ -618,7 +626,7 @@ html, body {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
-  padding: 4px 11px;
+  padding: 5px 12px;
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--text-muted);
@@ -632,24 +640,28 @@ html, body {
   background: var(--brand);
   color: #ffffff;
   border-color: var(--brand);
+  box-shadow: 0 2px 10px var(--brand-glow);
 }
 
 .acc-chip.chip-bank.active {
   background: var(--bank-color);
   color: #000000;
   border-color: var(--bank-color);
+  box-shadow: 0 2px 10px var(--bank-glow);
 }
 
 .acc-chip.chip-bikash.active {
   background: var(--bikash-color);
   color: #ffffff;
   border-color: var(--bikash-color);
+  box-shadow: 0 2px 10px var(--bikash-glow);
 }
 
 .acc-chip.chip-cellfin.active {
   background: var(--cellfin-color);
   color: #000000;
   border-color: var(--cellfin-color);
+  box-shadow: 0 2px 10px var(--cellfin-glow);
 }
 
 /* SUB FILTER TABS (All / IN / OUT) */
@@ -699,7 +711,7 @@ html, body {
 
 .search-input {
   width: 100%;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   padding: 10px 12px;
@@ -724,15 +736,15 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 11px 12px;
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .txn-card:active {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .txn-left {
@@ -820,7 +832,7 @@ html, body {
   font-family: var(--font-en);
   font-weight: 600;
   color: #38bdf8;
-  background: rgba(56, 189, 248, 0.1);
+  background: rgba(56, 189, 248, 0.12);
   padding: 1px 5px;
   border-radius: 4px;
   font-size: 0.68rem;
@@ -876,7 +888,7 @@ html, body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(14, 20, 36, 0.96);
+  background: rgba(10, 15, 29, 0.96);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-top: 1px solid var(--border-subtle);
@@ -941,8 +953,8 @@ html, body {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
   z-index: 200;
   display: none;
   align-items: flex-end;
@@ -1071,7 +1083,7 @@ html, body {
 
 .form-input, .form-select {
   width: 100%;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   padding: 11px 12px;
@@ -1143,7 +1155,7 @@ html, body {
 
 .pin-input {
   width: 100%;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   padding: 12px;
@@ -1193,7 +1205,7 @@ html, body {
 .toast.success { border-left-color: var(--green); }
 .toast.error { border-left-color: var(--red); }
 
-/* HIDDEN PRINT/PDF STATEMENT CONTAINER (White background, Bank Statement format) */
+/* HIDDEN PRINT/PDF STATEMENT CONTAINER */
 #pdf-statement-template {
   display: none;
   background: #ffffff;
