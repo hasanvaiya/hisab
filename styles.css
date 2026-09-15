@@ -1301,3 +1301,177 @@ html, body {
   background: linear-gradient(135deg, #10b981, #059669);
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
+
+/* ==========================================================================
+   TRANSFER ACTION & MODAL STYLES (Bank to bKash with 15 Tk Fee)
+   ========================================================================== */
+.transfer-action-section {
+  margin-top: -6px;
+  margin-bottom: 18px;
+}
+
+.action-card-btn.transfer-btn {
+  width: 100%;
+  border-color: rgba(99, 102, 241, 0.45);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(244, 63, 94, 0.08));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+}
+
+.action-card-btn.transfer-btn:active {
+  transform: scale(0.98);
+}
+
+.action-icon.transfer-icon {
+  background: linear-gradient(135deg, #6366f1, #f43f5e);
+  color: #ffffff;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+}
+
+.action-icon.transfer-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.action-card-btn.transfer-btn .fee-badge {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.03em;
+}
+
+.action-card-btn.transfer-btn .action-text {
+  flex: 1;
+}
+
+.action-card-btn.transfer-btn .action-text strong {
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.action-card-btn.transfer-btn .action-text span {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* TRANSFER MODAL SPECIFIC STYLES */
+.transfer-route-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.route-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 3px;
+}
+
+.route-point .r-icon {
+  font-size: 1.5rem;
+}
+
+.route-point .r-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.route-point .r-name {
+  font-size: 12px;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.route-arrow {
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.route-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.transfer-calc-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.calc-row .c-label {
+  color: var(--text-muted);
+}
+
+.calc-row .c-val {
+  font-family: var(--font-en);
+  font-weight: 700;
+}
+
+.calc-row .c-val.in { color: var(--green); }
+.calc-row .c-val.fee { color: #f59e0b; }
+.calc-row .c-val.out { color: var(--red); }
+
+.calc-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 2px 0;
+}
+
+.calc-row.total-row {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.calc-row.total-row .c-label {
+  color: var(--text-main);
+}
+
+.submit-btn.transfer-submit {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
+}
