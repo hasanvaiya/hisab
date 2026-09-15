@@ -1,4 +1,4 @@
-/* Hisab Khata App Controller - Aurora Neo-Fintech Edition */
+/* Hisab Khata App Controller - Ultra-Professional Mobile Edition */
 const GH_TOKEN = ["ghp_","RAgSxvBs9fao3HVyp0c9kMRB878oJI0EKStP"].join("");
 const GH_REPO  = "hasanvaiya/hisab";
 const GH_FILE  = "data.json";
@@ -144,13 +144,10 @@ function getAccountStats() {
   };
 }
 
-// Format numbers nicely with commas & decimals
+// Format numbers nicely with commas & 2 decimal places
 function fmtNum(num) {
   const n = parseFloat(num) || 0;
-  if (n % 1 !== 0) {
-    return n.toLocaleString("en-BD", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  }
-  return n.toLocaleString("en-BD");
+  return n.toLocaleString("en-BD", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 // Render Complete UI
