@@ -3791,6 +3791,16 @@
       "timestamp": "2026-09-14T20:59:26.000Z",
       "category": "Cash Out",
       "runningBalance": 396392.12
+    },
+    {
+      "id": "TXN-MU35O63O",
+      "type": "OUT",
+      "account": "bank",
+      "amount": 3000,
+      "note": "Cash Out",
+      "timestamp": "2026-09-14T21:00:04.000Z",
+      "category": "Cash Out",
+      "runningBalance": 393392.12
     }
   ]
 }
