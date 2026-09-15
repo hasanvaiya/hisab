@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#070a12">
+  <meta name="theme-color" content="#040711">
   <title>লাইভ হিসাব খাতা - হাসান</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,7 +102,7 @@
       </div>
     </section>
 
-    <!-- QUICK ACTIONS -->
+    <!-- QUICK ACTIONS (NO ADMIN ACCESS HERE) -->
     <section class="quick-actions-grid">
       <div class="quick-action-item" id="btn-pdf-quick">
         <div class="quick-icon-wrapper pdf">
@@ -116,18 +116,12 @@
         </div>
         <span class="quick-label">সার্চ করুন</span>
       </div>
-      <div class="quick-action-item" id="btn-count-quick">
-        <div class="quick-icon-wrapper count">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      <div class="quick-action-item" id="btn-refresh-quick">
+        <div class="quick-icon-wrapper refresh">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
         </div>
-        <span class="quick-label" id="txn-count-label">-- টি হিসাব</span>
+        <span class="quick-label">লাইভ রিফ্রেশ</span>
       </div>
-      <a href="admin.html" class="quick-action-item">
-        <div class="quick-icon-wrapper admin">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-        </div>
-        <span class="quick-label">অ্যাডমিন</span>
-      </a>
     </section>
 
     <!-- TRANSACTION FEED -->
@@ -166,7 +160,7 @@
 
   </div>
 
-  <!-- BOTTOM NAV -->
+  <!-- BOTTOM NAV (NO ADMIN LINK HERE) -->
   <nav class="bottom-nav">
     <a href="index.html" class="nav-item active">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
@@ -176,10 +170,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M12 18v-6m-3 3l3 3 3-3"/></svg>
       <span>PDF</span>
     </button>
-    <a href="admin.html" class="nav-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-      <span>অ্যাডমিন</span>
-    </a>
+    <button class="nav-item" id="btn-refresh-nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+      <span>রিফ্রেশ</span>
+    </button>
   </nav>
 
   <!-- PDF STATEMENT PRINT TEMPLATE (Hidden, rendered during PDF export) -->
