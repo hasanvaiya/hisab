@@ -3761,6 +3761,16 @@
       "timestamp": "2026-09-14T20:57:48.000Z",
       "category": "Cash Add",
       "runningBalance": 413432.12
+    },
+    {
+      "id": "TXN-MU35LVKD",
+      "type": "IN",
+      "account": "bikash",
+      "amount": 3000,
+      "note": "Cash Add",
+      "timestamp": "2026-09-14T20:58:17.000Z",
+      "category": "Cash Add",
+      "runningBalance": 416432.12
     }
   ]
 }
