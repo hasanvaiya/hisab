@@ -1,4 +1,4 @@
-/* Hisab Khata App Controller - Multi-Account & Date Edition */
+/* Hisab Khata App Controller - Aurora Neo-Fintech Edition */
 const GH_TOKEN = ["ghp_","RAgSxvBs9fao3HVyp0c9kMRB878oJI0EKStP"].join("");
 const GH_REPO  = "hasanvaiya/hisab";
 const GH_FILE  = "data.json";
@@ -30,7 +30,8 @@ const AudioFX = {
     } catch(e) {}
   },
   deposit() { this.play(660); },
-  expense() { this.play(220, "sawtooth"); }
+  expense() { this.play(220, "sawtooth"); },
+  refresh() { this.play(520); }
 };
 
 // Global App State
@@ -172,6 +173,25 @@ function renderUI() {
     netEl.textContent = (stats.totalNet >= 0 ? "+৳" : "-৳") + fmtNum(Math.abs(stats.totalNet));
   }
 
+  // Cashflow Ratio Bar
+  const totalVolume = stats.totalIn + stats.totalOut;
+  let inPct = 50;
+  let outPct = 50;
+  if (totalVolume > 0) {
+    inPct = ((stats.totalIn / totalVolume) * 100).toFixed(1);
+    outPct = ((stats.totalOut / totalVolume) * 100).toFixed(1);
+  }
+
+  const inBar = document.getElementById("ratio-bar-in");
+  const outBar = document.getElementById("ratio-bar-out");
+  const inPctEl = document.getElementById("ratio-in-pct");
+  const outPctEl = document.getElementById("ratio-out-pct");
+
+  if (inBar) inBar.style.width = inPct + "%";
+  if (outBar) outBar.style.width = outPct + "%";
+  if (inPctEl) inPctEl.textContent = inPct + "%";
+  if (outPctEl) outPctEl.textContent = outPct + "%";
+
   // 3 Accounts Balances
   const bankEl = document.getElementById("bank-balance-display");
   if (bankEl) bankEl.textContent = fmtNum(stats.bankBal);
@@ -227,7 +247,7 @@ function renderFeed() {
 
   if (list.length === 0) {
     container.innerHTML = `
-      <div style="text-align: center; padding: 36px 16px; color: var(--text-dim);">
+      <div style="text-align: center; padding: 40px 16px; color: var(--text-dim);">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 44px; height: 44px; margin: 0 auto 10px; opacity: 0.35;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
         <p style="font-size: 0.88rem;">কোনো হিসাব পাওয়া যায়নি</p>
       </div>`;
@@ -236,18 +256,18 @@ function renderFeed() {
 
   container.innerHTML = list.map(t => {
     const isIn = t.type === "IN";
-    const iconCls = isIn ? "in" : "out";
+    const circleCls = isIn ? "in" : "out";
     const sign = isIn ? "+" : "-";
     const label = isIn ? "টাকা জমা" : "টাকা খরচ";
 
     const acc = (t.account || "bikash").toLowerCase();
     let accBadgeHtml = "";
     if (acc === "bank") {
-      accBadgeHtml = '<span class="account-tag bank">🏦 Bank</span>';
+      accBadgeHtml = '<span class="account-pill bank">🏦 Bank</span>';
     } else if (acc === "cellfin") {
-      accBadgeHtml = '<span class="account-tag cellfin">⚡ Cellfin</span>';
+      accBadgeHtml = '<span class="account-pill cellfin">⚡ Cellfin</span>';
     } else {
-      accBadgeHtml = '<span class="account-tag bikash">📱 bKash</span>';
+      accBadgeHtml = '<span class="account-pill bikash">📱 bKash</span>';
     }
 
     const dateDisplay = formatDisplayDate(t.timestamp);
@@ -261,24 +281,23 @@ function renderFeed() {
     return `
       <div class="txn-card" data-type="${t.type}" data-account="${acc}" data-id="${t.id}">
         <div class="txn-left">
-          <div class="txn-type-icon ${iconCls}">
+          <div class="txn-type-circle ${circleCls}">
             ${isIn ? inSvg : outSvg}
           </div>
           <div class="txn-info">
-            <div class="txn-top-line">
-              <span class="txn-note">${t.note || label}</span>
+            <div class="txn-note-row">
+              <span class="txn-note" title="${t.note || label}">${t.note || label}</span>
               ${accBadgeHtml}
             </div>
             <div class="txn-meta">
               <span class="txn-date">📅 ${dateDisplay}</span> • 
-              <span>${t.category || "General"}</span> • 
               <span class="txn-id">${t.id}</span>
             </div>
           </div>
         </div>
         <div class="txn-right">
-          <div class="txn-amount ${iconCls}">${sign}৳${fmtNum(t.amount)}</div>
-          <div class="txn-running-balance">মোট ৳${fmtNum(t.runningBalance || 0)}</div>
+          <div class="txn-amount ${circleCls}">${sign}৳${fmtNum(t.amount)}</div>
+          <div class="txn-running-balance">ব্যালেন্স ৳${fmtNum(t.runningBalance || 0)}</div>
           ${adminBtns}
         </div>
       </div>`;
@@ -293,7 +312,7 @@ function filterByAccount(accName) {
     activeAccountFilter = accName;
   }
 
-  document.querySelectorAll(".acc-chip").forEach(chip => {
+  document.querySelectorAll(".filter-chip").forEach(chip => {
     if (chip.dataset.account === activeAccountFilter) {
       chip.classList.add("active");
     } else {
@@ -321,134 +340,136 @@ async function saveCloud() {
     transactions: transactions
   };
 
-  if (isAdmin && GH_TOKEN) {
-    try {
-      const getRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`, {
-        headers: { "Authorization": "token " + GH_TOKEN }
-      });
-      
-      let sha = null;
-      if (getRes.ok) {
-        const fileData = await getRes.json();
-        sha = fileData.sha;
+  try {
+    const getRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`, {
+      headers: {
+        "Authorization": `token ${GH_TOKEN}`,
+        "Accept": "application/vnd.github.v3+json"
       }
+    });
 
-      const bodyData = {
-        message: "Update transactions (with dates): " + new Date().toISOString(),
-        content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2)))),
-        branch: "main"
-      };
-      if (sha) bodyData.sha = sha;
-
-      const putRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`, {
-        method: "PUT",
-        headers: {
-          "Authorization": "token " + GH_TOKEN,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(bodyData)
-      });
-
-      if (putRes.ok) {
-        showToast("🌐 বিশ্বব্যাপী লাইভ আপডেট সফল!", "success");
-      }
-    } catch(e) {
-      console.error("Cloud sync error", e);
+    let sha = null;
+    if (getRes.ok) {
+      const getJson = await getRes.json();
+      sha = getJson.sha;
     }
+
+    const contentStr = JSON.stringify(payload, null, 2);
+    const encoded = btoa(unescape(encodeURIComponent(contentStr)));
+
+    const body = {
+      message: "Sync transactions via webapp: " + new Date().toLocaleString("en-BD"),
+      content: encoded,
+      branch: "main"
+    };
+    if (sha) body.sha = sha;
+
+    const putRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `token ${GH_TOKEN}`,
+        "Accept": "application/vnd.github.v3+json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (putRes.ok) {
+      showToast("✓ ক্লাউডে সফলভাবে সেভ হয়েছে!");
+      if (typeof confetti === "function") {
+        confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 } });
+      }
+    } else {
+      showToast("⚠️ ক্লাউড সিঙ্ক সমস্যা। লোকালভাবে সেভ হয়েছে।");
+    }
+  } catch (e) {
+    showToast("⚠️ নেটওয়ার্ক সমস্যা। অফলাইন সেভ হয়েছে।");
   }
 }
 
-// Add Transaction with Date & Account
-function addTxn(type, amount, account, note, customDate) {
-  if (!amount || isNaN(amount) || amount <= 0) return;
-  const numAmt = parseFloat(amount);
-  const selectedAcc = (account || "bikash").toLowerCase();
-
-  let isoTimestamp = new Date().toISOString();
-  if (customDate) {
-    try {
-      const [y, m, d] = customDate.split("-");
-      const dt = new Date(parseInt(y), parseInt(m) - 1, parseInt(d), 12, 0, 0);
-      isoTimestamp = dt.toISOString();
-    } catch (e) {}
+// Add New Transaction (Admin Only)
+async function addTxn(type, account, amount, note, customDate) {
+  const num = parseFloat(amount);
+  if (!num || isNaN(num) || num <= 0) {
+    alert("সঠিক পরিমাণ লিখুন!");
+    return;
   }
-  
+
+  const selectedDate = customDate ? new Date(customDate) : new Date();
+  const now = new Date();
+  selectedDate.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
+
   const newTxn = {
-    id: "TXN-" + Math.floor(100000 + Math.random() * 900000),
+    id: "TXN-" + Date.now().toString(36).toUpperCase(),
     type: type,
-    amount: numAmt,
-    account: selectedAcc,
-    category: type === "IN" ? "Cash Add" : "Cash Out",
-    note: note || (type === "IN" ? "টাকা জমা" : "টাকা খরচ"),
-    timestamp: isoTimestamp,
-    runningBalance: 0
+    account: (account || "bikash").toLowerCase(),
+    amount: num,
+    note: note.trim() || (type === "IN" ? "Cash Add" : "Cash Out"),
+    timestamp: selectedDate.toISOString(),
+    category: type === "IN" ? "Cash Add" : "Cash Out"
   };
 
   transactions.push(newTxn);
-  
-  if (type === "IN") {
-    AudioFX.deposit();
-    if (numAmt >= 20000 && window.confetti) {
-      confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
-    }
-  } else {
-    AudioFX.expense();
-  }
-
-  saveCloud();
+  recalculateBalances();
   renderUI();
+
+  if (type === "IN") AudioFX.deposit();
+  else AudioFX.expense();
+
+  await saveCloud();
 }
 
-// Edit Transaction with Date
+// Edit Transaction (Admin Only)
 function editTxn(id) {
-  const item = transactions.find(x => x.id === id);
-  if (!item) return;
+  const t = transactions.find(x => x.id === id);
+  if (!t) return;
 
-  document.getElementById("edit-id").value = item.id;
-  document.getElementById("edit-account").value = item.account || "bikash";
-  document.getElementById("edit-type").value = item.type;
-  document.getElementById("edit-amount").value = item.amount;
-  document.getElementById("edit-date").value = formatInputDate(item.timestamp);
-  document.getElementById("edit-note").value = item.note || "";
+  document.getElementById("edit-id").value = t.id;
+  document.getElementById("edit-account").value = (t.account || "bikash").toLowerCase();
+  document.getElementById("edit-type").value = t.type;
+  document.getElementById("edit-amount").value = t.amount;
+  document.getElementById("edit-note").value = t.note || "";
+  document.getElementById("edit-date").value = formatInputDate(t.timestamp);
+
   openModal("modal-edit");
 }
 
-// Delete Transaction
-function delTxn(id) {
-  if (!confirm("আপনি কি নিশ্চিতভাবে এই লেনদেনটি ডিলিট করতে চান?")) return;
-  transactions = transactions.filter(x => x.id !== id);
-  saveCloud();
+// Delete Transaction (Admin Only)
+async function delTxn(id) {
+  if (!confirm("আপনি কি নিশ্চিত এই হিসাবটি ডিলিট করতে চান?")) return;
+  transactions = transactions.filter(t => t.id !== id);
+  recalculateBalances();
   renderUI();
-  showToast("লেনদেন ডিলিট করা হয়েছে", "error");
+  await saveCloud();
+  showToast("হিসাব ডিলিট করা হয়েছে");
 }
 
-// Account selection inside Modals
-function selectModalAccount(modalType, accName) {
-  const modalEl = document.getElementById(modalType === "in" ? "modal-in" : "modal-out");
-  if (!modalEl) return;
+// Select Account in Modal
+function selectModalAccount(mode, accName) {
+  const hiddenInput = document.getElementById(mode + "-account");
+  if (hiddenInput) hiddenInput.value = accName;
 
-  modalEl.querySelectorAll(".acc-pill-option").forEach(pill => {
-    pill.classList.remove("selected");
-  });
-
-  const selectedPill = modalEl.querySelector(`.acc-pill-option.acc-${accName}`);
-  if (selectedPill) selectedPill.classList.add("selected");
-
-  const inputEl = document.getElementById(`${modalType}-account`);
-  if (inputEl) inputEl.value = accName;
+  const modal = document.getElementById("modal-" + mode);
+  if (modal) {
+    modal.querySelectorAll(".modal-acc-opt").forEach(opt => {
+      if (opt.classList.contains("opt-" + accName)) {
+        opt.classList.add("selected");
+      } else {
+        opt.classList.remove("selected");
+      }
+    });
+  }
 }
 
-// Modal Helpers
+// Modals Handler
 function openModal(id) {
   const m = document.getElementById(id);
   if (m) {
     m.classList.add("open");
-    // Pre-fill today's date if empty
-    const today = new Date().toISOString().slice(0, 10);
-    const inDate = document.getElementById("in-date");
-    if (inDate && !inDate.value) inDate.value = today;
-    const outDate = document.getElementById("out-date");
-    if (outDate && !outDate.value) outDate.value = today;
+    const dateInput = m.querySelector('input[type="date"]');
+    if (dateInput && !dateInput.value) {
+      dateInput.value = new Date().toISOString().slice(0, 10);
+    }
   }
 }
 
@@ -457,175 +478,170 @@ function closeModal(id) {
   if (m) m.classList.remove("open");
 }
 
-// Toast Helper
-function showToast(msg, type = "success") {
+// Toast Handler
+function showToast(msg) {
   const container = document.getElementById("toast-container");
   if (!container) return;
-
-  const toast = document.createElement("div");
-  toast.className = `toast ${type}`;
-  toast.innerHTML = (type === "success" ? "✅ " : "🔔 ") + msg;
-
-  container.appendChild(toast);
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.textContent = msg;
+  container.appendChild(t);
   setTimeout(() => {
-    toast.style.opacity = "0";
-    toast.style.transition = "opacity 0.3s ease";
-    setTimeout(() => toast.remove(), 300);
-  }, 3000);
+    t.style.opacity = "0";
+    setTimeout(() => t.remove(), 300);
+  }, 2400);
 }
 
-// Clean Printable PDF Statement Builder (Formal Table with Date, Particulars, IN, OUT, Balance)
+// Export Professional PDF Statement
 function exportPDF() {
-  showToast("প্রফেশনাল PDF স্টেটমেন্ট তৈরি হচ্ছে...", "success");
-
   const stats = getAccountStats();
-  const template = document.getElementById("pdf-statement-template");
-  if (!template || typeof html2pdf === "undefined") {
-    window.print();
-    return;
-  }
+  const dateNow = new Date().toLocaleDateString("en-BD", { day: '2-digit', month: '2-digit', year: 'numeric' });
+  const timeNow = new Date().toLocaleTimeString("en-BD", { hour: '2-digit', minute: '2-digit' });
 
-  // Filter list based on current active account filter
-  let list = [...transactions];
-  let filterTitle = "সকল অ্যাকাউন্ট (All Accounts)";
-  if (activeAccountFilter !== "ALL") {
-    list = list.filter(t => (t.account || "bikash").toLowerCase() === activeAccountFilter.toLowerCase());
-    filterTitle = activeAccountFilter.toUpperCase() + " অ্যাকাউন্ট";
-  }
-
-  const currentDateStr = formatDisplayDate(new Date().toISOString());
-
-  // Generate Table Rows
-  let runningBal = 0;
-  let totalFilteredIn = 0;
-  let totalFilteredOut = 0;
-
-  const rowsHtml = list.map((t, idx) => {
-    const isIN = t.type === "IN";
-    const amt = parseFloat(t.amount) || 0;
-    if (isIN) {
-      totalFilteredIn += amt;
-      runningBal += amt;
-    } else {
-      totalFilteredOut += amt;
-      runningBal -= amt;
-    }
-
-    const inStr = isIN ? `+৳${fmtNum(amt)}` : "-";
-    const outStr = !isIN ? `-৳${fmtNum(amt)}` : "-";
-    const accLabel = (t.account || "bikash").toUpperCase();
+  let rowsHtml = "";
+  [...transactions].reverse().forEach((t, idx) => {
+    const isIn = t.type === "IN";
     const dateStr = formatDisplayDate(t.timestamp);
+    const accLabel = (t.account || "bikash").toUpperCase();
+    const sign = isIn ? "+" : "-";
+    const colorStyle = isIn ? "color:#059669;" : "color:#dc2626;";
 
-    return `
-      <tr>
-        <td style="text-align:center; color:#6b7280;">${idx + 1}</td>
-        <td style="font-family:'Outfit',sans-serif; font-weight:600; color:#2563eb;">${dateStr}</td>
-        <td><strong>${t.note || (isIN ? "টাকা জমা" : "টাকা খরচ")}</strong> <span style="font-size:9px; color:#9ca3af;">(${t.id})</span></td>
-        <td style="text-align:center;"><span style="font-size:9px; font-weight:700; padding:2px 6px; border-radius:4px; background:#e0e7ff; color:#3730a3;">${accLabel}</span></td>
-        <td class="amt-cell amt-in">${inStr}</td>
-        <td class="amt-cell amt-out">${outStr}</td>
-        <td class="amt-cell" style="color:#111827;">৳${fmtNum(runningBal)}</td>
+    rowsHtml += `
+      <tr style="border-bottom: 1px solid #e2e8f0; font-size: 11px;">
+        <td style="padding: 6px 8px; font-family: monospace;">${dateStr}</td>
+        <td style="padding: 6px 8px; font-weight: 600;">${accLabel}</td>
+        <td style="padding: 6px 8px;">${t.note || (isIn ? 'Cash Add' : 'Cash Out')}</td>
+        <td style="padding: 6px 8px; text-align: right; font-weight: 700; ${colorStyle}">
+          ${sign} ${fmtNum(t.amount)}
+        </td>
+        <td style="padding: 6px 8px; text-align: right; font-family: monospace;">
+          ${fmtNum(t.runningBalance || 0)}
+        </td>
       </tr>`;
-  }).join("");
+  });
 
-  // Build Statement HTML Document
-  template.innerHTML = `
-    <div class="pdf-header">
-      <div class="pdf-title-box">
-        <h1>লাইভ হিসাব খাতা - লেজার স্টেটমেন্ট</h1>
-        <p>স্বত্বাধিকারী: <strong>হাসান</strong> | স্টেটমেন্ট ক্যাটাগরি: <strong>${filterTitle}</strong></p>
+  const template = `
+    <div style="font-family: sans-serif; color: #0f172a; padding: 24px; background: #ffffff;">
+      <div style="border-bottom: 2px solid #6366f1; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
+        <div>
+          <h1 style="margin: 0; font-size: 20px; color: #1e1b4b;">হিসাব বিবরণী (Cashflow Statement)</h1>
+          <p style="margin: 3px 0 0 0; font-size: 12px; color: #64748b;">মালিক: হাসান | জেনারেট তারিখ: ${dateNow}, ${timeNow}</p>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 11px; color: #64748b;">মোট হিসাব সংখ্যা</div>
+          <div style="font-size: 16px; font-weight: 700; color: #6366f1;">${transactions.length} টি</div>
+        </div>
       </div>
-      <div class="pdf-meta-box">
-        <p>রিপোর্ট প্রিন্ট তারিখ: <strong>${currentDateStr}</strong></p>
-        <p>মোট লেনদেন: <strong>${list.length} টি</strong></p>
+
+      <!-- Account Balances Summary -->
+      <div style="display: flex; gap: 10px; margin-bottom: 18px;">
+        <div style="flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px;">
+          <div style="font-size: 11px; color: #d97706; font-weight: 700;">🏦 ব্যাংক ব্যালেন্স</div>
+          <div style="font-size: 15px; font-weight: 800; color: #1e293b; margin-top: 2px;">BDT ${fmtNum(stats.bankBal)}</div>
+        </div>
+        <div style="flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px;">
+          <div style="font-size: 11px; color: #db2777; font-weight: 700;">📱 বিকাশ ব্যালেন্স</div>
+          <div style="font-size: 15px; font-weight: 800; color: #1e293b; margin-top: 2px;">BDT ${fmtNum(stats.bikashBal)}</div>
+        </div>
+        <div style="flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px;">
+          <div style="font-size: 11px; color: #0284c7; font-weight: 700;">⚡ সেলফিন ব্যালেন্স</div>
+          <div style="font-size: 15px; font-weight: 800; color: #1e293b; margin-top: 2px;">BDT ${fmtNum(stats.cellfinBal)}</div>
+        </div>
+        <div style="flex: 1.2; background: #e0e7ff; border: 1px solid #c7d2fe; border-radius: 8px; padding: 10px;">
+          <div style="font-size: 11px; color: #4338ca; font-weight: 700;">💎 সর্বমোট ব্যালেন্স</div>
+          <div style="font-size: 16px; font-weight: 800; color: #312e81; margin-top: 2px;">BDT ${fmtNum(stats.totalNet)}</div>
+        </div>
+      </div>
+
+      <!-- Transaction Table -->
+      <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+          <tr style="background: #f1f5f9; font-size: 11px; color: #475569;">
+            <th style="padding: 8px;">তারিখ</th>
+            <th style="padding: 8px;">অ্যাকাউন্ট</th>
+            <th style="padding: 8px;">বিবরণ</th>
+            <th style="padding: 8px; text-align: right;">পরিমাণ (BDT)</th>
+            <th style="padding: 8px; text-align: right;">ব্যালেন্স (BDT)</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowsHtml}
+        </tbody>
+      </table>
+
+      <div style="margin-top: 20px; text-align: center; font-size: 10px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 8px;">
+        স্বয়ংক্রিয়ভাবে তৈরি হিসাব বিবরণী • হাসান হিসাব খাতা
       </div>
     </div>
-
-    <div class="pdf-summary-cards">
-      <div class="pdf-card">
-        <div class="pdf-card-title">মোট জমা (Total IN)</div>
-        <div class="pdf-card-amount in">৳${fmtNum(totalFilteredIn)}</div>
-      </div>
-      <div class="pdf-card">
-        <div class="pdf-card-title">মোট খরচ (Total OUT)</div>
-        <div class="pdf-card-amount out">৳${fmtNum(totalFilteredOut)}</div>
-      </div>
-      <div class="pdf-card">
-        <div class="pdf-card-title">নেট ব্যালেন্স (Net Balance)</div>
-        <div class="pdf-card-amount total">৳${fmtNum(runningBal)}</div>
-      </div>
-    </div>
-
-    <table class="pdf-table">
-      <thead>
-        <tr>
-          <th style="width: 30px; text-align:center;">#</th>
-          <th style="width: 75px;">তারিখ</th>
-          <th>বিবরণ / নোট</th>
-          <th style="width: 65px; text-align:center;">অ্যাকাউন্ট</th>
-          <th style="width: 85px; text-align:right;">জমা (+)</th>
-          <th style="width: 85px; text-align:right;">খরচ (-)</th>
-          <th style="width: 90px; text-align:right;">ব্যালেন্স</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${rowsHtml}
-      </tbody>
-      <tfoot>
-        <tr style="background:#f3f4f6; font-weight:bold; border-top:2px solid #9ca3af;">
-          <td colspan="4" style="text-align:right; padding:10px 8px;">সর্বমোট যোগফল:</td>
-          <td class="amt-cell amt-in" style="padding:10px 6px;">+৳${fmtNum(totalFilteredIn)}</td>
-          <td class="amt-cell amt-out" style="padding:10px 6px;">-৳${fmtNum(totalFilteredOut)}</td>
-          <td class="amt-cell" style="padding:10px 6px; color:#4338ca;">৳${fmtNum(runningBal)}</td>
-        </tr>
-      </tfoot>
-    </table>
   `;
 
-  template.style.display = "block";
+  const container = document.getElementById("pdf-statement-template");
+  container.innerHTML = template;
 
   const opt = {
-    margin: [6, 6, 6, 6],
-    filename: `hasan_statement_${activeAccountFilter}_${new Date().toISOString().slice(0, 10)}.pdf`,
-    image: { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, logging: false },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    margin: [10, 10, 10, 10],
+    filename: `Hisab_Statement_${Date.now()}.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
   };
 
-  html2pdf().set(opt).from(template).save().then(() => {
-    template.style.display = "none";
-    showToast("PDF ডাউনলোড সম্পন্ন হয়েছে!", "success");
-  }).catch(e => {
-    template.style.display = "none";
-    window.print();
+  showToast("PDF তৈরি হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...");
+  html2pdf().set(opt).from(container).save().then(() => {
+    container.innerHTML = "";
+    showToast("✓ PDF ডাউনলোড সম্পন্ন!");
+  }).catch(() => {
+    container.innerHTML = "";
+    showToast("⚠️ PDF ডাউনলোডে সমস্যা হয়েছে");
   });
 }
 
-// Check Admin PIN
-function checkPin() {
-  const val = (document.getElementById("pin-input")?.value || "").trim();
-  if (val === ADMIN_PIN) {
-    document.getElementById("pin-overlay").style.display = "none";
-    document.getElementById("admin-main-content").style.display = "block";
-    isAdmin = true;
-    renderUI();
-    showToast("স্বাগতম অ্যাডমিন হাসান!", "success");
-  } else {
-    document.getElementById("pin-error").textContent = "ভুল PIN! আবার চেষ্টা করুন";
-    document.getElementById("pin-input").value = "";
-  }
-}
-
-// Initialize on DOM Ready
+// EVENT LISTENERS INITIALIZATION
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize and load
   loadData();
 
+  // PDF Buttons
+  document.getElementById("pdf-header-btn")?.addEventListener("click", exportPDF);
+  document.getElementById("btn-pdf-quick")?.addEventListener("click", exportPDF);
+  document.getElementById("btn-pdf-nav")?.addEventListener("click", exportPDF);
+
+  // Search Toggle
+  document.getElementById("btn-search-toggle")?.addEventListener("click", () => {
+    const sw = document.getElementById("search-wrapper");
+    if (sw) {
+      sw.classList.toggle("open");
+      if (sw.classList.contains("open")) {
+        document.getElementById("search-input")?.focus();
+      }
+    }
+  });
+
+  // Search Input live typing
+  document.getElementById("search-input")?.addEventListener("input", renderFeed);
+
+  // Live Refresh Buttons with rotating animation and chime
+  const handleLiveRefresh = () => {
+    const icon = document.getElementById("refresh-spin-icon");
+    if (icon) {
+      icon.classList.add("spin-anim");
+      setTimeout(() => icon.classList.remove("spin-anim"), 800);
+    }
+    AudioFX.refresh();
+    loadData().then(() => {
+      showToast("✓ ব্যালেন্স ও লেনদেন আপডেট করা হয়েছে!");
+    });
+  };
+
+  document.getElementById("btn-refresh-quick")?.addEventListener("click", handleLiveRefresh);
+  document.getElementById("btn-refresh-nav")?.addEventListener("click", handleLiveRefresh);
+
   // Account Filter Chips
-  document.querySelectorAll(".acc-chip").forEach(chip => {
+  document.querySelectorAll(".filter-chip").forEach(chip => {
     chip.addEventListener("click", () => {
-      document.querySelectorAll(".acc-chip").forEach(c => c.classList.remove("active"));
-      chip.classList.add("active");
       activeAccountFilter = chip.dataset.account;
+      document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
 
       document.querySelectorAll(".account-card").forEach(card => {
         if (activeAccountFilter !== "ALL" && card.classList.contains(activeAccountFilter + "-card")) {
@@ -639,140 +655,82 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Sub-Filter Tabs (ALL, IN, OUT)
-  document.querySelectorAll(".filter-tab").forEach(tab => {
+  // Type Filter Tabs (ALL, IN, OUT)
+  document.querySelectorAll(".type-tab").forEach(tab => {
     tab.addEventListener("click", () => {
-      document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
       activeTypeFilter = tab.dataset.filter;
+      document.querySelectorAll(".type-tab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
       renderFeed();
     });
   });
 
-  // Search Toggle & Input
-  const searchInput = document.getElementById("search-input");
-  if (searchInput) searchInput.addEventListener("input", renderFeed);
-
-  const searchToggleBtn = document.getElementById("btn-search-toggle");
-  if (searchToggleBtn) {
-    searchToggleBtn.addEventListener("click", () => {
-      const box = document.getElementById("search-box");
-      if (box) {
-        box.classList.toggle("open");
-        if (box.classList.contains("open") && searchInput) {
-          searchInput.focus();
-        }
-      }
-    });
-  }
-
-  // PDF Buttons
-  ["btn-refresh-quick", "btn-refresh-nav"].forEach(id => {
-    const btn = document.getElementById(id);
-    if (btn) btn.addEventListener("click", async () => {
-      showToast("লাইভ ডেটা রিফ্রেশ হচ্ছে...", "success");
-      await loadData();
-      showToast("সর্বশেষ ডেটা সিঙ্ক সম্পন্ন!", "success");
-    });
-  });
-
-  ["pdf-header-btn", "btn-pdf-quick", "btn-pdf-nav"].forEach(id => {
-    const btn = document.getElementById(id);
-    if (btn) btn.addEventListener("click", exportPDF);
-  });
-
-  // Admin Modals Openers
-  const openInBtn = document.getElementById("btn-open-in-modal");
-  if (openInBtn) openInBtn.addEventListener("click", () => {
-    selectModalAccount("in", "bikash");
+  // FAB Button in Admin
+  document.getElementById("fab-add-btn")?.addEventListener("click", () => {
     openModal("modal-in");
   });
 
-  const openOutBtn = document.getElementById("btn-open-out-modal");
-  if (openOutBtn) openOutBtn.addEventListener("click", () => {
-    selectModalAccount("out", "bikash");
-    openModal("modal-out");
+  // Form Submissions
+  document.getElementById("form-in")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const acc = document.getElementById("in-account").value;
+    const date = document.getElementById("in-date").value;
+    const amt = document.getElementById("in-amount").value;
+    const note = document.getElementById("in-note").value;
+
+    await addTxn("IN", acc, amt, note, date);
+    closeModal("modal-in");
+    e.target.reset();
   });
 
-  const fabAddBtn = document.getElementById("fab-add-btn");
-  if (fabAddBtn) fabAddBtn.addEventListener("click", () => {
-    selectModalAccount("in", "bikash");
-    openModal("modal-in");
+  document.getElementById("form-out")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const acc = document.getElementById("out-account").value;
+    const date = document.getElementById("out-date").value;
+    const amt = document.getElementById("out-amount").value;
+    const note = document.getElementById("out-note").value;
+
+    await addTxn("OUT", acc, amt, note, date);
+    closeModal("modal-out");
+    e.target.reset();
   });
 
-  // Form Submit: Money IN
-  const formIn = document.getElementById("form-in");
-  if (formIn) {
-    formIn.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const amt = document.getElementById("in-amount").value;
-      const acc = document.getElementById("in-account").value || "bikash";
-      const dt = document.getElementById("in-date").value;
-      const note = document.getElementById("in-note").value;
-      addTxn("IN", amt, acc, note, dt);
-      closeModal("modal-in");
-      formIn.reset();
-      selectModalAccount("in", "bikash");
-      showToast("৳" + parseFloat(amt).toLocaleString() + " জমা সম্পন্ন (" + acc.toUpperCase() + ")!", "success");
-    });
-  }
+  document.getElementById("form-edit")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const id = document.getElementById("edit-id").value;
+    const acc = document.getElementById("edit-account").value;
+    const date = document.getElementById("edit-date").value;
+    const type = document.getElementById("edit-type").value;
+    const amt = parseFloat(document.getElementById("edit-amount").value);
+    const note = document.getElementById("edit-note").value;
 
-  // Form Submit: Money OUT
-  const formOut = document.getElementById("form-out");
-  if (formOut) {
-    formOut.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const amt = document.getElementById("out-amount").value;
-      const acc = document.getElementById("out-account").value || "bikash";
-      const dt = document.getElementById("out-date").value;
-      const note = document.getElementById("out-note").value;
-      addTxn("OUT", amt, acc, note, dt);
-      closeModal("modal-out");
-      formOut.reset();
-      selectModalAccount("out", "bikash");
-      showToast("৳" + parseFloat(amt).toLocaleString() + " খরচ সম্পন্ন (" + acc.toUpperCase() + ")!", "error");
-    });
-  }
-
-  // Form Submit: Edit
-  const formEdit = document.getElementById("form-edit");
-  if (formEdit) {
-    formEdit.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const id = document.getElementById("edit-id").value;
-      const item = transactions.find(x => x.id === id);
-      if (item) {
-        item.account = document.getElementById("edit-account").value;
-        item.type = document.getElementById("edit-type").value;
-        item.amount = parseFloat(document.getElementById("edit-amount").value);
-        const dt = document.getElementById("edit-date").value;
-        if (dt) {
-          const [y, m, d] = dt.split("-");
-          item.timestamp = new Date(parseInt(y), parseInt(m) - 1, parseInt(d), 12, 0, 0).toISOString();
-        }
-        item.note = document.getElementById("edit-note").value;
+    const t = transactions.find(x => x.id === id);
+    if (t) {
+      t.account = acc;
+      t.type = type;
+      t.amount = amt;
+      t.note = note;
+      t.category = type === "IN" ? "Cash Add" : "Cash Out";
+      if (date) {
+        const d = new Date(date);
+        const old = new Date(t.timestamp);
+        d.setHours(old.getHours() || 12, old.getMinutes() || 0, old.getSeconds() || 0);
+        t.timestamp = d.toISOString();
       }
-      saveCloud();
+      recalculateBalances();
       renderUI();
+      await saveCloud();
       closeModal("modal-edit");
-      showToast("আপডেট সম্পন্ন হয়েছে!", "success");
-    });
-  }
+      showToast("✓ হিসাব আপডেট সফল হয়েছে!");
+    }
+  });
 
-  // Close modal when tapping on dark overlay
+  // Close modals on backdrop click
   document.querySelectorAll(".modal-overlay").forEach(overlay => {
     overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) overlay.classList.remove("open");
-    });
-  });
-
-  // Auto PIN check when 4 digits typed
-  const pinInput = document.getElementById("pin-input");
-  if (pinInput) {
-    pinInput.addEventListener("input", () => {
-      if (pinInput.value.length === 4) {
-        setTimeout(checkPin, 100);
+      if (e.target === overlay) {
+        overlay.classList.remove("open");
       }
     });
-  }
+  });
 });
