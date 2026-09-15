@@ -3785,12 +3785,12 @@
     {
       "id": "TXN-TRF-101168",
       "type": "OUT",
-      "amount": 7000,
+      "amount": 9000,
       "account": "bank",
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 381417.12
+      "runningBalance": 379417.12
     },
     {
       "id": "TXN-TRF-254214",
@@ -3800,7 +3800,7 @@
       "category": "Cash Out",
       "note": "ATM Transaction Fee",
       "timestamp": "2026-09-15T06:00:01.000Z",
-      "runningBalance": 381402.12
+      "runningBalance": 379402.12
     },
     {
       "id": "TXN-TRF-288592",
@@ -3810,7 +3810,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-09-15T06:00:02.000Z",
-      "runningBalance": 388402.12
+      "runningBalance": 386402.12
     },
     {
       "id": "TXN-TRF-989563",
@@ -3820,7 +3820,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 387402.12
+      "runningBalance": 385402.12
     },
     {
       "id": "TXN-486948",
@@ -3830,7 +3830,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 363042.12
+      "runningBalance": 361042.12
     },
     {
       "id": "TXN-908252",
@@ -3840,7 +3840,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 360042.12
+      "runningBalance": 358042.12
     },
     {
       "id": "TXN-270683",
@@ -3850,7 +3850,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 353042.12
+      "runningBalance": 351042.12
     },
     {
       "id": "TXN-456996",
@@ -3860,7 +3860,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 338042.12
+      "runningBalance": 336042.12
     }
   ]
 }
