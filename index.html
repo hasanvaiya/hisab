@@ -2,10 +2,17 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>হিসাব খাতা | হাসান - লাইভ ড্যাশবোর্ড</title>
-  <meta name="theme-color" content="#050713">
+  <meta name="theme-color" content="#060913">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- Fast Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
@@ -38,7 +45,7 @@
     <section class="master-hero-card">
       <div class="hero-glow-beam"></div>
       <div class="hero-top-row">
-        <span class="hero-label">মোট ক্যাশ ব্যালেন্স (Total Cash)</span>
+        <span class="hero-label">সর্বমোট ক্যাশ ব্যালেন্স (Total Cash)</span>
         <div class="hero-live-pill">
           <span class="radar-dot"></span> LIVE SYNC
         </div>
@@ -82,7 +89,7 @@
     <section class="accounts-section">
       <div class="section-header">
         <span class="section-title">💳 অ্যাকাউন্টভিত্তিক ব্যালেন্স</span>
-        <span class="section-hint">ফিল্টার করতে ক্লিক করুন</span>
+        <span class="section-hint">ফিল্টার করতে ট্যাপ করুন</span>
       </div>
       <div class="accounts-grid">
         <!-- 1. Bank Card -->
@@ -169,7 +176,7 @@
       <div class="search-wrapper" id="search-wrapper">
         <div class="search-box">
           <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input type="text" id="search-input" placeholder="তারিখ (DD/MM), বিবরণ বা পরিমাণ দিয়ে খুঁজুন...">
+          <input type="text" id="search-input" placeholder="তারিখ (DD/MM), বিবরণ বা পরিমাণ লিখুন...">
         </div>
       </div>
 
