@@ -3611,6 +3611,16 @@
       "note": "ভাড়া",
       "timestamp": "2026-09-15T06:00:00.000Z",
       "runningBalance": 456992.12
+    },
+    {
+      "id": "TXN-641039",
+      "type": "IN",
+      "amount": 75000,
+      "account": "bank",
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-09-15T06:00:00.000Z",
+      "runningBalance": 531992.12
     }
   ]
 }
