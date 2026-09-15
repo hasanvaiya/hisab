@@ -3771,6 +3771,16 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
       "runningBalance": 359392.12
+    },
+    {
+      "id": "TXN-892707",
+      "type": "OUT",
+      "amount": 4000,
+      "account": "bank",
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-09-15T06:00:00.000Z",
+      "runningBalance": 355392.12
     }
   ]
 }
