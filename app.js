@@ -399,6 +399,71 @@ function addTxn(type, amount, account, note, customDate) {
   renderUI();
 }
 
+
+// Bank to bKash Inter-Account Transfer with 15 Tk charge
+function transferBankToBikash(amount, customDate, userNote) {
+  const numAmt = parseFloat(amount);
+  if (!numAmt || isNaN(numAmt) || numAmt <= 0) return;
+  const fee = 15;
+
+  let baseDt = new Date();
+  if (customDate) {
+    try {
+      const [y, m, d] = customDate.split("-");
+      baseDt = new Date(parseInt(y), parseInt(m) - 1, parseInt(d), 12, 0, 0);
+    } catch (e) {}
+  }
+  const baseTime = baseDt.getTime();
+
+  const noteSuffix = userNote ? ` (${userNote})` : "";
+
+  // 1. Bank OUT for the transferred amount
+  const bankTxn = {
+    id: "TXN-TRF-" + Math.floor(100000 + Math.random() * 900000),
+    type: "OUT",
+    amount: numAmt,
+    account: "bank",
+    category: "Cash Out",
+    note: `ব্যাংক ➔ বিকাশ ট্রান্সফার${noteSuffix}`,
+    timestamp: new Date(baseTime).toISOString(),
+    runningBalance: 0
+  };
+
+  // 2. Bank OUT for the 15 Tk extra fee
+  const feeTxn = {
+    id: "TXN-TRF-" + Math.floor(100000 + Math.random() * 900000),
+    type: "OUT",
+    amount: fee,
+    account: "bank",
+    category: "Cash Out",
+    note: `বিকাশ ট্রান্সফার ফি (১৫৳)${noteSuffix}`,
+    timestamp: new Date(baseTime + 1000).toISOString(),
+    runningBalance: 0
+  };
+
+  // 3. bKash IN for the transferred amount
+  const bikashTxn = {
+    id: "TXN-TRF-" + Math.floor(100000 + Math.random() * 900000),
+    type: "IN",
+    amount: numAmt,
+    account: "bikash",
+    category: "Cash Add",
+    note: `ব্যাংক থেকে বিকাশ প্রাপ্তি${noteSuffix}`,
+    timestamp: new Date(baseTime + 2000).toISOString(),
+    runningBalance: 0
+  };
+
+  transactions.push(bankTxn, feeTxn, bikashTxn);
+
+  AudioFX.deposit();
+  if (window.confetti) {
+    confetti({ particleCount: 75, spread: 60, origin: { y: 0.6 } });
+  }
+
+  saveCloud();
+  renderUI();
+}
+
 // Edit Transaction with Date
 function editTxn(id) {
   const item = transactions.find(x => x.id === id);
@@ -777,5 +842,53 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+
+  // Transfer Modal Open & Calculation
+  function updateTransferCalc() {
+    const amtEl = document.getElementById("trf-amount");
+    const bikashEl = document.getElementById("trf-calc-bikash");
+    const feeEl = document.getElementById("trf-calc-fee");
+    const totalEl = document.getElementById("trf-calc-total-bank");
+    if (!amtEl || !bikashEl || !totalEl) return;
+
+    const amt = parseFloat(amtEl.value) || 0;
+    const fee = 15;
+    const totalBank = amt > 0 ? (amt + fee) : fee;
+
+    bikashEl.textContent = "৳" + fmtNum(amt);
+    if (feeEl) feeEl.textContent = "৳" + fmtNum(fee);
+    totalEl.textContent = "৳" + fmtNum(totalBank);
+  }
+
+  const openTransferBtn = document.getElementById("btn-open-transfer-modal");
+  if (openTransferBtn) {
+    openTransferBtn.addEventListener("click", () => {
+      const dateEl = document.getElementById("trf-date");
+      if (dateEl) dateEl.value = formatInputDate(new Date().toISOString());
+      updateTransferCalc();
+      openModal("modal-transfer");
+    });
+  }
+
+  const trfAmountInput = document.getElementById("trf-amount");
+  if (trfAmountInput) {
+    trfAmountInput.addEventListener("input", updateTransferCalc);
+  }
+
+  const formTransfer = document.getElementById("form-transfer");
+  if (formTransfer) {
+    formTransfer.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const amt = document.getElementById("trf-amount").value;
+      const dt = document.getElementById("trf-date").value;
+      const note = document.getElementById("trf-note").value;
+      transferBankToBikash(amt, dt, note);
+      closeModal("modal-transfer");
+      formTransfer.reset();
+      updateTransferCalc();
+      showToast("৳" + parseFloat(amt).toLocaleString() + " ব্যাংক থেকে বিকাশে ট্রান্সফার সম্পন্ন (১৫৳ চার্জ সহ)!", "success");
+    });
+  }
 
 });
