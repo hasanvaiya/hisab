@@ -3631,6 +3631,16 @@
       "note": "টাকা জমা",
       "timestamp": "2026-09-15T06:00:00.000Z",
       "runningBalance": 541992.12
+    },
+    {
+      "id": "TXN-860424",
+      "type": "OUT",
+      "amount": 7000,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-09-15T06:00:00.000Z",
+      "runningBalance": 534992.12
     }
   ]
 }
