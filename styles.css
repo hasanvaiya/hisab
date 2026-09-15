@@ -291,7 +291,7 @@ html, body {
 
 .hero-stats-grid {
   display: grid;
-  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  grid-template-columns: 1fr 1px 1fr;
   background: rgba(0, 0, 0, 0.22);
   border-radius: var(--radius-md);
   padding: 10px 8px;
