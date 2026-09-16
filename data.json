@@ -3941,6 +3941,16 @@
       "note": "50  send  money  free ",
       "timestamp": "2026-09-16T06:00:00.000Z",
       "runningBalance": 338862.12
+    },
+    {
+      "id": "TXN-436988",
+      "type": "OUT",
+      "amount": 7000,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-09-16T06:00:00.000Z",
+      "runningBalance": 331862.12
     }
   ]
 }
