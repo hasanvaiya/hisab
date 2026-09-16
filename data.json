@@ -3931,6 +3931,16 @@
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-09-16T06:00:02.000Z",
       "runningBalance": 339012.12
+    },
+    {
+      "id": "TXN-365605",
+      "type": "OUT",
+      "amount": 150,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "50  send  money  free ",
+      "timestamp": "2026-09-16T06:00:00.000Z",
+      "runningBalance": 338862.12
     }
   ]
 }
