@@ -4011,6 +4011,16 @@
       "note": "01771579420",
       "timestamp": "2026-09-18T06:00:00.000Z",
       "runningBalance": 371772.12
+    },
+    {
+      "id": "TXN-717296",
+      "type": "IN",
+      "amount": 38000,
+      "account": "bikash",
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-09-18T06:00:00.000Z",
+      "runningBalance": 409772.12
     }
   ]
 }
