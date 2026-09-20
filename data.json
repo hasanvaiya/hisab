@@ -4051,6 +4051,16 @@
       "note": "01733471475",
       "timestamp": "2026-09-20T06:00:00.000Z",
       "runningBalance": 402342.12
+    },
+    {
+      "id": "TXN-936937",
+      "type": "OUT",
+      "amount": 2800,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "01941344859",
+      "timestamp": "2026-09-20T06:00:00.000Z",
+      "runningBalance": 399542.12
     }
   ]
 }
