@@ -4061,6 +4061,16 @@
       "note": "01941344859",
       "timestamp": "2026-09-20T06:00:00.000Z",
       "runningBalance": 399542.12
+    },
+    {
+      "id": "TXN-965280",
+      "type": "IN",
+      "amount": 1020,
+      "account": "bikash",
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-09-21T06:00:00.000Z",
+      "runningBalance": 400562.12
     }
   ]
 }
