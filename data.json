@@ -4071,6 +4071,16 @@
       "note": "টাকা জমা",
       "timestamp": "2026-09-21T06:00:00.000Z",
       "runningBalance": 400562.12
+    },
+    {
+      "id": "TXN-449022",
+      "type": "IN",
+      "amount": 20000,
+      "account": "bank",
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-09-21T06:00:00.000Z",
+      "runningBalance": 420562.12
     }
   ]
 }
