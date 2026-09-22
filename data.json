@@ -4111,6 +4111,16 @@
       "note": " ক্যাশ করছি",
       "timestamp": "2026-09-22T06:00:00.000Z",
       "runningBalance": 442792.12
+    },
+    {
+      "id": "TXN-184917",
+      "type": "OUT",
+      "amount": 50,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "Recharge",
+      "timestamp": "2026-09-22T06:00:00.000Z",
+      "runningBalance": 442742.12
     }
   ]
 }
