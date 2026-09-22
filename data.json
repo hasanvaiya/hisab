@@ -4101,6 +4101,16 @@
       "note": "টাকা জমা",
       "timestamp": "2026-09-21T06:00:00.000Z",
       "runningBalance": 443792.12
+    },
+    {
+      "id": "TXN-660890",
+      "type": "OUT",
+      "amount": 1000,
+      "account": "bank",
+      "category": "Cash Out",
+      "note": " ক্যাশ করছি",
+      "timestamp": "2026-09-22T06:00:00.000Z",
+      "runningBalance": 442792.12
     }
   ]
 }
