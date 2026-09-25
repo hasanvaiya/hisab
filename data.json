@@ -4151,6 +4151,16 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-09-25T06:00:00.000Z",
       "runningBalance": 412642.12
+    },
+    {
+      "id": "TXN-384509",
+      "type": "OUT",
+      "amount": 3500,
+      "account": "bank",
+      "category": "Cash Out",
+      "note": "Govment tax",
+      "timestamp": "2026-09-25T06:00:00.000Z",
+      "runningBalance": 409142.12
     }
   ]
 }
