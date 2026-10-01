@@ -4161,6 +4161,16 @@
       "note": "Govment tax",
       "timestamp": "2026-09-25T06:00:00.000Z",
       "runningBalance": 409142.12
+    },
+    {
+      "id": "TXN-142137",
+      "type": "IN",
+      "amount": 84000,
+      "account": "bank",
+      "category": "Cash Add",
+      "note": "টাকা জমা",
+      "timestamp": "2026-10-01T06:00:00.000Z",
+      "runningBalance": 493142.12
     }
   ]
 }
