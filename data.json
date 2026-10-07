@@ -4241,6 +4241,16 @@
       "note": "ভাড়া",
       "timestamp": "2026-10-07T06:00:00.000Z",
       "runningBalance": 418915.12
+    },
+    {
+      "id": "TXN-584770",
+      "type": "OUT",
+      "amount": 100,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "ভাত খাইছি",
+      "timestamp": "2026-10-07T06:00:00.000Z",
+      "runningBalance": 418815.12
     }
   ]
 }
