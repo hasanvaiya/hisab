@@ -4231,6 +4231,16 @@
       "note": "Mb kinsi",
       "timestamp": "2026-10-06T06:00:00.000Z",
       "runningBalance": 419515.12
+    },
+    {
+      "id": "TXN-618556",
+      "type": "OUT",
+      "amount": 600,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "ভাড়া",
+      "timestamp": "2026-10-07T06:00:00.000Z",
+      "runningBalance": 418915.12
     }
   ]
 }
