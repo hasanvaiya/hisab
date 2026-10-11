@@ -4271,6 +4271,16 @@
       "note": "01772721952",
       "timestamp": "2026-10-10T06:00:00.000Z",
       "runningBalance": 377115.12
+    },
+    {
+      "id": "TXN-743049",
+      "type": "OUT",
+      "amount": 100010,
+      "account": "bank",
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-10-11T06:00:00.000Z",
+      "runningBalance": 277105.12
     }
   ]
 }
