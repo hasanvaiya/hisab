@@ -4301,6 +4301,16 @@
       "note": "recharge ",
       "timestamp": "2026-10-13T06:00:00.000Z",
       "runningBalance": 276965.12
+    },
+    {
+      "id": "TXN-694799",
+      "type": "OUT",
+      "amount": 5000,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-10-17T06:00:00.000Z",
+      "runningBalance": 271965.12
     }
   ]
 }
