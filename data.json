@@ -4321,6 +4321,16 @@
       "note": "10 ta send money",
       "timestamp": "2026-10-17T06:00:00.000Z",
       "runningBalance": 271915.12
+    },
+    {
+      "id": "TXN-349123",
+      "type": "OUT",
+      "amount": 11000,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-10-18T06:00:00.000Z",
+      "runningBalance": 260915.12
     }
   ]
 }
