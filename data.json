@@ -4371,6 +4371,16 @@
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-10-19T06:00:02.000Z",
       "runningBalance": 254400.12
+    },
+    {
+      "id": "TXN-477182",
+      "type": "OUT",
+      "amount": 50,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "Recharge ",
+      "timestamp": "2026-10-19T06:00:00.000Z",
+      "runningBalance": 254350.12
     }
   ]
 }
