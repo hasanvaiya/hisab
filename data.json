@@ -4456,7 +4456,7 @@
       "id": "TXN-358818",
       "type": "OUT",
       "amount": 12500,
-      "account": "bikash",
+      "account": "bank",
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-19T06:00:00.000Z",
