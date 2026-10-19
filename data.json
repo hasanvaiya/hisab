@@ -4401,6 +4401,16 @@
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-10-19T06:00:02.000Z",
       "runningBalance": 254385.12
+    },
+    {
+      "id": "TXN-306391",
+      "type": "OUT",
+      "amount": 80,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "ভাড়া",
+      "timestamp": "2026-10-19T06:00:00.000Z",
+      "runningBalance": 254305.12
     }
   ]
 }
