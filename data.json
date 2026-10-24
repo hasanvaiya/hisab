@@ -4481,6 +4481,16 @@
       "note": "10 send money",
       "timestamp": "2026-10-20T06:00:00.000Z",
       "runningBalance": 201264.12
+    },
+    {
+      "id": "TXN-518385",
+      "type": "OUT",
+      "amount": 4600,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-10-24T06:00:00.000Z",
+      "runningBalance": 196664.12
     }
   ]
 }
