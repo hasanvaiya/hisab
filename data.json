@@ -4516,7 +4516,7 @@
       "id": "TXN-446301",
       "type": "OUT",
       "amount": 13000,
-      "account": "bikash",
+      "account": "bank",
       "category": "Cash Out",
       "note": "Mobail",
       "timestamp": "2026-10-27T06:00:00.000Z",
