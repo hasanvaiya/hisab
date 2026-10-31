@@ -4621,6 +4621,16 @@
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-10-31T06:00:02.000Z",
       "runningBalance": 166514.12
+    },
+    {
+      "id": "TXN-716630",
+      "type": "OUT",
+      "amount": 21000,
+      "account": "bank",
+      "category": "Cash Out",
+      "note": "টাকা খরচ",
+      "timestamp": "2026-10-31T06:00:00.000Z",
+      "runningBalance": 145514.12
     }
   ]
 }
