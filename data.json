@@ -4641,16 +4641,6 @@
       "note": "টাকা খরচ",
       "timestamp": "2026-10-31T06:00:00.000Z",
       "runningBalance": 124814.12
-    },
-    {
-      "id": "TXN-309801",
-      "type": "IN",
-      "amount": 1000,
-      "account": "bikash",
-      "category": "Cash Add",
-      "note": "টাকা জমা",
-      "timestamp": "2026-10-31T06:00:00.000Z",
-      "runningBalance": 125814.12
     }
   ]
 }
