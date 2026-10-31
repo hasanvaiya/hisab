@@ -1653,23 +1653,13 @@
       "account": "bikash"
     },
     {
-      "id": "TXN-140340",
-      "type": "IN",
-      "amount": 1000,
-      "category": "Cash Add",
-      "note": "টাকা জমা",
-      "timestamp": "2026-08-01T20:39:15.383Z",
-      "runningBalance": 13048,
-      "account": "bikash"
-    },
-    {
       "id": "TXN-772558",
       "type": "IN",
       "amount": 3500,
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-01T20:39:23.242Z",
-      "runningBalance": 16548,
+      "runningBalance": 15548,
       "account": "bikash"
     },
     {
@@ -1679,7 +1669,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-02T03:52:30.225Z",
-      "runningBalance": 19608,
+      "runningBalance": 18608,
       "account": "bikash"
     },
     {
@@ -1689,7 +1679,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-02T03:52:45.396Z",
-      "runningBalance": 16348,
+      "runningBalance": 15348,
       "account": "bikash"
     },
     {
@@ -1699,7 +1689,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-02T10:54:27.081Z",
-      "runningBalance": 18388,
+      "runningBalance": 17388,
       "account": "bikash"
     },
     {
@@ -1709,7 +1699,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-03T15:00:33.195Z",
-      "runningBalance": 19408,
+      "runningBalance": 18408,
       "account": "bikash"
     },
     {
@@ -1719,7 +1709,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-03T15:00:44.703Z",
-      "runningBalance": 16348,
+      "runningBalance": 15348,
       "account": "bikash"
     },
     {
@@ -1729,7 +1719,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-03T15:00:51.387Z",
-      "runningBalance": 17348,
+      "runningBalance": 16348,
       "account": "bikash"
     },
     {
@@ -1739,7 +1729,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-03T16:44:25.436Z",
-      "runningBalance": 12348,
+      "runningBalance": 11348,
       "account": "bikash"
     },
     {
@@ -1749,7 +1739,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-04T04:43:47.627Z",
-      "runningBalance": 17348,
+      "runningBalance": 16348,
       "account": "bikash"
     },
     {
@@ -1759,7 +1749,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-04T17:41:31.381Z",
-      "runningBalance": 2108,
+      "runningBalance": 1108,
       "account": "bikash"
     },
     {
@@ -1769,7 +1759,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-07T17:19:57.717Z",
-      "runningBalance": 17408,
+      "runningBalance": 16408,
       "account": "bikash"
     },
     {
@@ -1779,7 +1769,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-07T17:20:03.125Z",
-      "runningBalance": 24568,
+      "runningBalance": 23568,
       "account": "bikash"
     },
     {
@@ -1789,7 +1779,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-07T17:20:08.820Z",
-      "runningBalance": 22528,
+      "runningBalance": 21528,
       "account": "bikash"
     },
     {
@@ -1799,7 +1789,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-08T07:28:35.098Z",
-      "runningBalance": 32528,
+      "runningBalance": 31528,
       "account": "bikash"
     },
     {
@@ -1809,7 +1799,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-08T07:28:39.312Z",
-      "runningBalance": 31328,
+      "runningBalance": 30328,
       "account": "bikash"
     },
     {
@@ -1819,7 +1809,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-08T07:28:43.305Z",
-      "runningBalance": 30128,
+      "runningBalance": 29128,
       "account": "bikash"
     },
     {
@@ -1829,7 +1819,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-08T08:17:12.815Z",
-      "runningBalance": 3728,
+      "runningBalance": 2728,
       "account": "bikash"
     },
     {
@@ -1839,7 +1829,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-08T08:17:17.997Z",
-      "runningBalance": 2708,
+      "runningBalance": 1708,
       "account": "bikash"
     },
     {
@@ -1849,7 +1839,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-09T10:30:56.776Z",
-      "runningBalance": 158,
+      "runningBalance": -842,
       "account": "bikash"
     },
     {
@@ -1859,7 +1849,7 @@
       "category": "Cash Out",
       "note": "অন্য নাম্বার এ",
       "timestamp": "2026-08-12T10:10:25.402Z",
-      "runningBalance": 0,
+      "runningBalance": -1000,
       "account": "bikash"
     },
     {
@@ -1869,7 +1859,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-12T10:10:33.845Z",
-      "runningBalance": 1200,
+      "runningBalance": 200,
       "account": "bikash"
     },
     {
@@ -1879,7 +1869,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-13T13:38:04.141Z",
-      "runningBalance": 5200,
+      "runningBalance": 4200,
       "account": "bikash"
     },
     {
@@ -1889,7 +1879,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-14T13:19:43.122Z",
-      "runningBalance": 4525,
+      "runningBalance": 3525,
       "account": "bikash"
     },
     {
@@ -1899,7 +1889,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-14T14:07:14.511Z",
-      "runningBalance": 5545,
+      "runningBalance": 4545,
       "account": "bikash"
     },
     {
@@ -1909,7 +1899,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-16T05:30:48.544Z",
-      "runningBalance": 55545,
+      "runningBalance": 54545,
       "account": "bikash"
     },
     {
@@ -1919,7 +1909,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-16T05:59:58.962Z",
-      "runningBalance": 55295,
+      "runningBalance": 54295,
       "account": "bikash"
     },
     {
@@ -1929,7 +1919,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-16T06:00:08.205Z",
-      "runningBalance": 40595,
+      "runningBalance": 39595,
       "account": "bikash"
     },
     {
@@ -1939,7 +1929,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-16T06:00:12.789Z",
-      "runningBalance": 30095,
+      "runningBalance": 29095,
       "account": "bikash"
     },
     {
@@ -1949,7 +1939,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-16T06:00:17.923Z",
-      "runningBalance": 19095,
+      "runningBalance": 18095,
       "account": "bikash"
     },
     {
@@ -1959,7 +1949,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-16T06:00:22.889Z",
-      "runningBalance": 5295,
+      "runningBalance": 4295,
       "account": "bikash"
     },
     {
@@ -1969,7 +1959,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-17T11:18:31.115Z",
-      "runningBalance": 35295,
+      "runningBalance": 34295,
       "account": "bikash"
     },
     {
@@ -1979,7 +1969,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-17T11:18:36.868Z",
-      "runningBalance": 10935,
+      "runningBalance": 9935,
       "account": "bikash"
     },
     {
@@ -1989,7 +1979,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-17T11:18:45.175Z",
-      "runningBalance": 9435,
+      "runningBalance": 8435,
       "account": "bikash"
     },
     {
@@ -1999,7 +1989,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-17T11:27:04.643Z",
-      "runningBalance": 10765,
+      "runningBalance": 9765,
       "account": "bikash"
     },
     {
@@ -2009,7 +1999,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-18T18:52:58.009Z",
-      "runningBalance": 20765,
+      "runningBalance": 19765,
       "account": "bikash"
     },
     {
@@ -2019,7 +2009,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-18T18:53:02.633Z",
-      "runningBalance": 41165,
+      "runningBalance": 40165,
       "account": "bikash"
     },
     {
@@ -2029,7 +2019,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-18T18:54:08.587Z",
-      "runningBalance": 30965,
+      "runningBalance": 29965,
       "account": "bikash"
     },
     {
@@ -2039,7 +2029,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-18T18:54:13.259Z",
-      "runningBalance": 30665,
+      "runningBalance": 29665,
       "account": "bikash"
     },
     {
@@ -2049,7 +2039,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-18T18:54:25.077Z",
-      "runningBalance": 20665,
+      "runningBalance": 19665,
       "account": "bikash"
     },
     {
@@ -2059,7 +2049,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-20T05:35:25.925Z",
-      "runningBalance": 21685,
+      "runningBalance": 20685,
       "account": "bikash"
     },
     {
@@ -2069,7 +2059,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-20T05:35:30.230Z",
-      "runningBalance": 37685,
+      "runningBalance": 36685,
       "account": "bikash"
     },
     {
@@ -2079,7 +2069,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-21T11:30:27.267Z",
-      "runningBalance": 32685,
+      "runningBalance": 31685,
       "account": "bikash"
     },
     {
@@ -2089,7 +2079,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-21T11:30:35.817Z",
-      "runningBalance": 33705,
+      "runningBalance": 32705,
       "account": "bikash"
     },
     {
@@ -2099,7 +2089,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-22T18:13:45.884Z",
-      "runningBalance": 30705,
+      "runningBalance": 29705,
       "account": "bikash"
     },
     {
@@ -2109,7 +2099,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-22T18:13:50.885Z",
-      "runningBalance": 25705,
+      "runningBalance": 24705,
       "account": "bikash"
     },
     {
@@ -2119,7 +2109,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-22T06:00:00.000Z",
-      "runningBalance": 15705,
+      "runningBalance": 14705,
       "account": "bikash"
     },
     {
@@ -2129,7 +2119,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-24T11:18:51.291Z",
-      "runningBalance": 20705,
+      "runningBalance": 19705,
       "account": "bikash"
     },
     {
@@ -2139,7 +2129,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-24T11:18:58.803Z",
-      "runningBalance": 705,
+      "runningBalance": -295,
       "account": "bikash"
     },
     {
@@ -2149,7 +2139,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-24T12:07:50.560Z",
-      "runningBalance": 21105,
+      "runningBalance": 20105,
       "account": "bikash"
     },
     {
@@ -2159,7 +2149,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-24T12:08:50.507Z",
-      "runningBalance": -425,
+      "runningBalance": -1425,
       "account": "bikash"
     },
     {
@@ -2169,7 +2159,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-24T13:05:44.498Z",
-      "runningBalance": 4575,
+      "runningBalance": 3575,
       "account": "bikash"
     },
     {
@@ -2179,7 +2169,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-25T11:52:25.878Z",
-      "runningBalance": 19475,
+      "runningBalance": 18475,
       "account": "bikash"
     },
     {
@@ -2189,7 +2179,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-25T11:52:30.769Z",
-      "runningBalance": 3225,
+      "runningBalance": 2225,
       "account": "bikash"
     },
     {
@@ -2199,7 +2189,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-25T17:46:11.997Z",
-      "runningBalance": 42525,
+      "runningBalance": 41525,
       "account": "bikash"
     },
     {
@@ -2209,7 +2199,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-25T17:57:44.298Z",
-      "runningBalance": 47525,
+      "runningBalance": 46525,
       "account": "bikash"
     },
     {
@@ -2219,7 +2209,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-25T18:01:04.252Z",
-      "runningBalance": 4025,
+      "runningBalance": 3025,
       "account": "bikash"
     },
     {
@@ -2229,7 +2219,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-27T13:06:58.335Z",
-      "runningBalance": 5045,
+      "runningBalance": 4045,
       "account": "bikash"
     },
     {
@@ -2239,7 +2229,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-27T18:19:16.094Z",
-      "runningBalance": 3645,
+      "runningBalance": 2645,
       "account": "bikash"
     },
     {
@@ -2249,7 +2239,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-27T18:19:57.996Z",
-      "runningBalance": 1605,
+      "runningBalance": 605,
       "account": "bikash"
     },
     {
@@ -2259,7 +2249,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-28T08:33:41.317Z",
-      "runningBalance": 4105,
+      "runningBalance": 3105,
       "account": "bikash"
     },
     {
@@ -2269,7 +2259,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-28T06:00:00.000Z",
-      "runningBalance": 4160,
+      "runningBalance": 3160,
       "account": "bikash"
     },
     {
@@ -2279,7 +2269,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-29T04:44:41.092Z",
-      "runningBalance": 5180,
+      "runningBalance": 4180,
       "account": "bikash"
     },
     {
@@ -2289,7 +2279,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-29T06:31:12.536Z",
-      "runningBalance": 10180,
+      "runningBalance": 9180,
       "account": "bikash"
     },
     {
@@ -2299,7 +2289,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-29T06:35:09.906Z",
-      "runningBalance": -30,
+      "runningBalance": -1030,
       "account": "bikash"
     },
     {
@@ -2309,7 +2299,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-29T09:46:08.864Z",
-      "runningBalance": 970,
+      "runningBalance": -30,
       "account": "bikash"
     },
     {
@@ -2319,7 +2309,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-29T09:46:15.905Z",
-      "runningBalance": 2470,
+      "runningBalance": 1470,
       "account": "bikash"
     },
     {
@@ -2329,7 +2319,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-29T10:27:04.626Z",
-      "runningBalance": 3470,
+      "runningBalance": 2470,
       "account": "bikash"
     },
     {
@@ -2339,7 +2329,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-29T12:30:49.047Z",
-      "runningBalance": 8570,
+      "runningBalance": 7570,
       "account": "bikash"
     },
     {
@@ -2349,7 +2339,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-30T05:44:48.419Z",
-      "runningBalance": 9080,
+      "runningBalance": 8080,
       "account": "bikash"
     },
     {
@@ -2359,7 +2349,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-30T13:44:00.567Z",
-      "runningBalance": 11580,
+      "runningBalance": 10580,
       "account": "bikash"
     },
     {
@@ -2369,7 +2359,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-30T13:44:05.875Z",
-      "runningBalance": 16580,
+      "runningBalance": 15580,
       "account": "bikash"
     },
     {
@@ -2379,7 +2369,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-30T14:24:06.161Z",
-      "runningBalance": 29580,
+      "runningBalance": 28580,
       "account": "bikash"
     },
     {
@@ -2389,7 +2379,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-30T14:24:17.145Z",
-      "runningBalance": 29330,
+      "runningBalance": 28330,
       "account": "bikash"
     },
     {
@@ -2399,7 +2389,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-30T14:26:44.497Z",
-      "runningBalance": 5330,
+      "runningBalance": 4330,
       "account": "bikash"
     },
     {
@@ -2409,7 +2399,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-30T14:26:50.044Z",
-      "runningBalance": 2330,
+      "runningBalance": 1330,
       "account": "bikash"
     },
     {
@@ -2419,7 +2409,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-30T14:34:20.029Z",
-      "runningBalance": 2830,
+      "runningBalance": 1830,
       "account": "bikash"
     },
     {
@@ -2429,7 +2419,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-30T14:35:23.190Z",
-      "runningBalance": -170,
+      "runningBalance": -1170,
       "account": "bikash"
     },
     {
@@ -2439,7 +2429,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-31T12:45:33.174Z",
-      "runningBalance": -470,
+      "runningBalance": -1470,
       "account": "bikash"
     },
     {
@@ -2449,7 +2439,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-08-31T16:18:16.981Z",
-      "runningBalance": 4530,
+      "runningBalance": 3530,
       "account": "bikash"
     },
     {
@@ -2459,7 +2449,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-08-31T16:18:21.844Z",
-      "runningBalance": -570,
+      "runningBalance": -1570,
       "account": "bikash"
     },
     {
@@ -2469,7 +2459,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-01T04:37:13.682Z",
-      "runningBalance": 4930,
+      "runningBalance": 3930,
       "account": "bikash"
     },
     {
@@ -2479,7 +2469,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-01T06:18:55.383Z",
-      "runningBalance": 5950,
+      "runningBalance": 4950,
       "account": "bikash"
     },
     {
@@ -2489,7 +2479,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-01T07:41:38.476Z",
-      "runningBalance": 55950,
+      "runningBalance": 54950,
       "account": "bikash"
     },
     {
@@ -2499,7 +2489,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-01T09:34:52.086Z",
-      "runningBalance": 54930,
+      "runningBalance": 53930,
       "account": "bikash"
     },
     {
@@ -2509,7 +2499,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-01T09:34:56.406Z",
-      "runningBalance": 55430,
+      "runningBalance": 54430,
       "account": "bikash"
     },
     {
@@ -2519,7 +2509,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-01T19:18:47.946Z",
-      "runningBalance": 55930,
+      "runningBalance": 54930,
       "account": "bikash"
     },
     {
@@ -2529,7 +2519,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-01T19:18:54.727Z",
-      "runningBalance": 48930,
+      "runningBalance": 47930,
       "account": "bikash"
     },
     {
@@ -2539,7 +2529,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-02T07:28:26.873Z",
-      "runningBalance": 34730,
+      "runningBalance": 33730,
       "account": "bikash"
     },
     {
@@ -2549,7 +2539,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-02T10:14:47.284Z",
-      "runningBalance": 50730,
+      "runningBalance": 49730,
       "account": "bikash"
     },
     {
@@ -2559,7 +2549,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-02T10:14:52.661Z",
-      "runningBalance": 53280,
+      "runningBalance": 52280,
       "account": "bikash"
     },
     {
@@ -2569,7 +2559,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-03T09:23:10.382Z",
-      "runningBalance": 52872,
+      "runningBalance": 51872,
       "account": "bikash"
     },
     {
@@ -2579,7 +2569,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-03T14:03:30.354Z",
-      "runningBalance": 47872,
+      "runningBalance": 46872,
       "account": "bikash"
     },
     {
@@ -2589,7 +2579,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-03T18:49:43.538Z",
-      "runningBalance": 40872,
+      "runningBalance": 39872,
       "account": "bikash"
     },
     {
@@ -2599,7 +2589,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-05T07:20:36.419Z",
-      "runningBalance": 50122,
+      "runningBalance": 49122,
       "account": "bikash"
     },
     {
@@ -2609,7 +2599,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-05T13:51:52.264Z",
-      "runningBalance": 51122,
+      "runningBalance": 50122,
       "account": "bikash"
     },
     {
@@ -2619,7 +2609,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-05T15:11:48.824Z",
-      "runningBalance": 52142,
+      "runningBalance": 51142,
       "account": "bikash"
     },
     {
@@ -2629,7 +2619,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-09T06:23:24.644Z",
-      "runningBalance": 58262,
+      "runningBalance": 57262,
       "account": "bikash"
     },
     {
@@ -2639,7 +2629,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-09T15:21:47.741Z",
-      "runningBalance": 40262,
+      "runningBalance": 39262,
       "account": "bikash"
     },
     {
@@ -2649,7 +2639,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-10T06:57:32.423Z",
-      "runningBalance": 36182,
+      "runningBalance": 35182,
       "account": "bikash"
     },
     {
@@ -2659,7 +2649,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-10T10:49:25.493Z",
-      "runningBalance": 7182,
+      "runningBalance": 6182,
       "account": "bikash"
     },
     {
@@ -2669,7 +2659,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-10T11:00:17.852Z",
-      "runningBalance": 6182,
+      "runningBalance": 5182,
       "account": "bikash"
     },
     {
@@ -2679,7 +2669,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-11T07:14:16.154Z",
-      "runningBalance": 6682,
+      "runningBalance": 5682,
       "account": "bikash"
     },
     {
@@ -2689,7 +2679,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-11T07:35:43.011Z",
-      "runningBalance": 56682,
+      "runningBalance": 55682,
       "account": "bikash"
     },
     {
@@ -2699,7 +2689,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-11T07:36:06.292Z",
-      "runningBalance": 76582,
+      "runningBalance": 75582,
       "account": "bikash"
     },
     {
@@ -2709,7 +2699,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-11T07:40:08.093Z",
-      "runningBalance": 47582,
+      "runningBalance": 46582,
       "account": "bikash"
     },
     {
@@ -2719,7 +2709,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-11T07:40:14.667Z",
-      "runningBalance": 52582,
+      "runningBalance": 51582,
       "account": "bikash"
     },
     {
@@ -2729,7 +2719,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-11T08:11:39.595Z",
-      "runningBalance": 40582,
+      "runningBalance": 39582,
       "account": "bikash"
     },
     {
@@ -2739,7 +2729,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-11T12:33:15.073Z",
-      "runningBalance": 14842,
+      "runningBalance": 13842,
       "account": "bikash"
     },
     {
@@ -2749,7 +2739,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-12T14:48:00.419Z",
-      "runningBalance": 18892,
+      "runningBalance": 17892,
       "account": "bikash"
     },
     {
@@ -2759,7 +2749,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-12T15:23:37.481Z",
-      "runningBalance": 29892,
+      "runningBalance": 28892,
       "account": "bikash"
     },
     {
@@ -2769,7 +2759,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-12T15:24:27.613Z",
-      "runningBalance": -108,
+      "runningBalance": -1108,
       "account": "bikash"
     },
     {
@@ -2779,7 +2769,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-13T04:45:39.393Z",
-      "runningBalance": 9892,
+      "runningBalance": 8892,
       "account": "bikash"
     },
     {
@@ -2789,7 +2779,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-13T05:02:43.893Z",
-      "runningBalance": 14892,
+      "runningBalance": 13892,
       "account": "bikash"
     },
     {
@@ -2799,7 +2789,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-13T05:30:18.216Z",
-      "runningBalance": 9792,
+      "runningBalance": 8792,
       "account": "bikash"
     },
     {
@@ -2809,7 +2799,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-13T06:54:05.443Z",
-      "runningBalance": 29792,
+      "runningBalance": 28792,
       "account": "bikash"
     },
     {
@@ -2819,7 +2809,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-13T14:58:11.409Z",
-      "runningBalance": 9292,
+      "runningBalance": 8292,
       "account": "bikash"
     },
     {
@@ -2830,7 +2820,7 @@
       "category": "Cash Add",
       "note": "CASH DEPOSIT",
       "timestamp": "2026-08-09T09:03:00Z",
-      "runningBalance": 10292
+      "runningBalance": 9292
     },
     {
       "id": "TXN-BANK-1002",
@@ -2840,7 +2830,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to CellFin : 01400336907",
       "timestamp": "2026-08-12T10:06:00Z",
-      "runningBalance": 9792
+      "runningBalance": 8792
     },
     {
       "id": "TXN-BANK-1003",
@@ -2850,7 +2840,7 @@
       "category": "Cash Add",
       "note": "REMOTE DEPOSIT(. From Remote Br.228-Bhairab Branch, Kishoreganj Remote Charge0.00 VAT0.0)",
       "timestamp": "2026-08-24T11:09:00Z",
-      "runningBalance": 109792
+      "runningBalance": 108792
     },
     {
       "id": "TXN-BANK-1004",
@@ -2860,7 +2850,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to CellFin : 01400336907",
       "timestamp": "2026-08-24T12:12:00Z",
-      "runningBalance": 89792
+      "runningBalance": 88792
     },
     {
       "id": "TXN-BANK-1005",
@@ -2870,7 +2860,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to CellFin : 01400336907",
       "timestamp": "2026-08-24T13:15:00Z",
-      "runningBalance": 84292
+      "runningBalance": 83292
     },
     {
       "id": "TXN-BANK-1006",
@@ -2880,7 +2870,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to CellFin : 01400336907",
       "timestamp": "2026-08-25T14:18:00Z",
-      "runningBalance": 69292
+      "runningBalance": 68292
     },
     {
       "id": "TXN-BANK-1007",
@@ -2890,7 +2880,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to CellFin : 01400336907",
       "timestamp": "2026-08-27T15:21:00Z",
-      "runningBalance": 28792
+      "runningBalance": 27792
     },
     {
       "id": "TXN-BANK-1008",
@@ -2900,7 +2890,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to CellFin : 01400336907",
       "timestamp": "2026-08-27T16:24:00Z",
-      "runningBalance": 18792
+      "runningBalance": 17792
     },
     {
       "id": "TXN-BANK-1009",
@@ -2910,7 +2900,7 @@
       "category": "Cash Add",
       "note": "REMOTE DEPOSIT(. From Remote Br.233-Nawabganj Branch, Dhaka Remote Charge0.00 VAT0.0)",
       "timestamp": "2026-08-27T17:27:00Z",
-      "runningBalance": 638792
+      "runningBalance": 637792
     },
     {
       "id": "TXN-BANK-1010",
@@ -2920,7 +2910,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to CellFin : 01400336907",
       "timestamp": "2026-08-27T18:30:00Z",
-      "runningBalance": 588792
+      "runningBalance": 587792
     },
     {
       "id": "TXN-BANK-1011",
@@ -2930,7 +2920,7 @@
       "category": "Cash Add",
       "note": "REMOTE DEPOSIT(KATAKHALI BAZAR, Fakirhat, Bagerhat from remote branch 777 Charge 80.0)",
       "timestamp": "2026-08-27T19:33:00Z",
-      "runningBalance": 668792
+      "runningBalance": 667792
     },
     {
       "id": "TXN-BANK-1012",
@@ -2940,7 +2930,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Npsb Transfer, hasan, Charge: 0.000, Vat: 0.000",
       "timestamp": "2026-08-27T08:36:00Z",
-      "runningBalance": 618782
+      "runningBalance": 617782
     },
     {
       "id": "TXN-BANK-1013",
@@ -2950,7 +2940,7 @@
       "category": "Cash Add",
       "note": "REMOTE DEPOSIT(SAHEBALI CHOWDURI, Kalir Bazar, Madaripur-Sadar, Madaripur from remote branch 777 Charge 50.0)",
       "timestamp": "2026-08-27T09:39:00Z",
-      "runningBalance": 668732
+      "runningBalance": 667732
     },
     {
       "id": "TXN-BANK-1014",
@@ -2960,7 +2950,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20503240202906317, MD. HAIDER ALI YEASIN, hasan",
       "timestamp": "2026-08-27T10:42:00Z",
-      "runningBalance": 618717.62
+      "runningBalance": 617717.62
     },
     {
       "id": "TXN-BANK-1015",
@@ -2970,7 +2960,7 @@
       "category": "Cash Add",
       "note": "[CellFin] Transfer From: 20503240202906317, fuckyou",
       "timestamp": "2026-08-27T11:45:00Z",
-      "runningBalance": 668617.62
+      "runningBalance": 667617.62
     },
     {
       "id": "TXN-BANK-1016",
@@ -2980,7 +2970,7 @@
       "category": "Cash Add",
       "note": "REMOTE DEPOSIT(RUMA, Kalir Bazar, Madaripur-Sadar, Madaripur from remote branch 777 Charge 50.0)",
       "timestamp": "2026-08-27T12:48:00Z",
-      "runningBalance": 718567.62
+      "runningBalance": 717567.62
     },
     {
       "id": "TXN-BANK-1017",
@@ -2990,7 +2980,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20501490204012918, MST AMINA BEGUM, hasan",
       "timestamp": "2026-08-27T13:51:00Z",
-      "runningBalance": 660550.94
+      "runningBalance": 659550.94
     },
     {
       "id": "TXN-BANK-1018",
@@ -3000,7 +2990,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20507770232963061, Mst Papia Sultana, hasan",
       "timestamp": "2026-08-27T14:54:00Z",
-      "runningBalance": 595532.25
+      "runningBalance": 594532.25
     },
     {
       "id": "TXN-BANK-1019",
@@ -3010,7 +3000,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to CellFin : 01400336907",
       "timestamp": "2026-08-27T15:57:00Z",
-      "runningBalance": 495532.25
+      "runningBalance": 494532.25
     },
     {
       "id": "TXN-BANK-1020",
@@ -3020,7 +3010,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Npsb Transfer, hasan, Charge: 0.000, Vat: 0.000",
       "timestamp": "2026-08-30T16:00:00Z",
-      "runningBalance": 445522.25
+      "runningBalance": 444522.25
     },
     {
       "id": "TXN-BANK-1021",
@@ -3030,7 +3020,7 @@
       "category": "Cash Add",
       "note": "[CellFin] refund, Original Tr Id: 9626082800005892",
       "timestamp": "2026-08-30T17:03:00Z",
-      "runningBalance": 495532.25
+      "runningBalance": 494532.25
     },
     {
       "id": "TXN-BANK-1022",
@@ -3040,7 +3030,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Npsb Transfer, hasan, Charge: 0.000, Vat: 0.000",
       "timestamp": "2026-08-30T18:06:00Z",
-      "runningBalance": 445522.25
+      "runningBalance": 444522.25
     },
     {
       "id": "TXN-BANK-1023",
@@ -3050,7 +3040,7 @@
       "category": "Cash Add",
       "note": "[CellFin] refund, Original Tr Id: 9626082800038599",
       "timestamp": "2026-08-30T19:09:00Z",
-      "runningBalance": 495532.25
+      "runningBalance": 494532.25
     },
     {
       "id": "TXN-BANK-1024",
@@ -3060,7 +3050,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20507770212432908, SALMA AKTER, hasan",
       "timestamp": "2026-08-30T08:12:00Z",
-      "runningBalance": 395503.5
+      "runningBalance": 394503.5
     },
     {
       "id": "TXN-BANK-1025",
@@ -3070,7 +3060,7 @@
       "category": "Cash Out",
       "note": "Send money to bKash wallet 01400336907, ref - hasan",
       "timestamp": "2026-08-30T09:15:00Z",
-      "runningBalance": 390503.5
+      "runningBalance": 389503.5
     },
     {
       "id": "TXN-BANK-1026",
@@ -3080,7 +3070,7 @@
       "category": "Cash Add",
       "note": "[CellFin] refund, Original Tr Id: 9626082900034223",
       "timestamp": "2026-08-30T10:18:00Z",
-      "runningBalance": 395503.5
+      "runningBalance": 394503.5
     },
     {
       "id": "TXN-BANK-1027",
@@ -3090,7 +3080,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20507770225898194, NAJMA KHATUN, hasan",
       "timestamp": "2026-08-30T11:21:00Z",
-      "runningBalance": 387997.75
+      "runningBalance": 386997.75
     },
     {
       "id": "TXN-BANK-1028",
@@ -3100,7 +3090,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20507770225898194, NAJMA KHATUN, hasan",
       "timestamp": "2026-08-30T12:24:00Z",
-      "runningBalance": 324979.64
+      "runningBalance": 323979.64
     },
     {
       "id": "TXN-BANK-1029",
@@ -3110,7 +3100,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20507770232963061, Mst Papia Sultana, hasan",
       "timestamp": "2026-08-30T13:27:00Z",
-      "runningBalance": 304973.89
+      "runningBalance": 303973.89
     },
     {
       "id": "TXN-BANK-1030",
@@ -3120,7 +3110,7 @@
       "category": "Cash Out",
       "note": "Send money to bKash wallet 01340528065, ref - hasan",
       "timestamp": "2026-08-31T14:30:00Z",
-      "runningBalance": 299973.89
+      "runningBalance": 298973.89
     },
     {
       "id": "TXN-BANK-1031",
@@ -3130,7 +3120,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Npsb Transfer, hasan, Charge: 0.000, Vat: 0.000",
       "timestamp": "2026-08-31T15:33:00Z",
-      "runningBalance": 286863.89
+      "runningBalance": 285863.89
     },
     {
       "id": "TXN-BANK-1032",
@@ -3140,7 +3130,7 @@
       "category": "Cash Out",
       "note": "Send money to Nagad wallet 01354301016, ref - jsjaj",
       "timestamp": "2026-08-31T16:36:00Z",
-      "runningBalance": 286363.89
+      "runningBalance": 285363.89
     },
     {
       "id": "TXN-BANK-1033",
@@ -3150,7 +3140,7 @@
       "category": "Cash Out",
       "note": "Send money to Nagad wallet 01877091377, ref - hasan",
       "timestamp": "2026-08-31T17:39:00Z",
-      "runningBalance": 285363.89
+      "runningBalance": 284363.89
     },
     {
       "id": "TXN-BANK-1034",
@@ -3160,7 +3150,7 @@
       "category": "Cash Add",
       "note": "CBS:Inter Bank Fund Transfer, From:SEBPLC  INSTAPAY IB>   DHAK          BD, Terminal ID:00000205, Trace:625729, throw NPSB RRN:260831625729",
       "timestamp": "2026-08-31T18:42:00Z",
-      "runningBalance": 375263.89
+      "runningBalance": 374263.89
     },
     {
       "id": "TXN-BANK-1035",
@@ -3170,7 +3160,7 @@
       "category": "Cash Out",
       "note": "Send money to bKash wallet 01340528065, ref - haaan",
       "timestamp": "2026-09-01T19:45:00Z",
-      "runningBalance": 370263.89
+      "runningBalance": 369263.89
     },
     {
       "id": "TXN-BANK-1036",
@@ -3180,7 +3170,7 @@
       "category": "Cash Out",
       "note": "POS Cash Withdrawal, From:IBBL Branch POS Merchant>1000         BD, Terminal ID:80274002, Trace:971 RRN:002877886733",
       "timestamp": "2026-09-01T08:48:00Z",
-      "runningBalance": 320263.89
+      "runningBalance": 319263.89
     },
     {
       "id": "TXN-BANK-1037",
@@ -3190,7 +3180,7 @@
       "category": "Cash Add",
       "note": "REMOTE DEPOSIT(. From Remote Br.228-Bhairab Branch, Kishoreganj Remote Charge0.00 VAT0.0)",
       "timestamp": "2026-09-03T09:51:00Z",
-      "runningBalance": 334263.89
+      "runningBalance": 333263.89
     },
     {
       "id": "TXN-BANK-1038",
@@ -3200,7 +3190,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Npsb Transfer, hasan, Charge: 0.000, Vat: 0.000",
       "timestamp": "2026-09-06T10:54:00Z",
-      "runningBalance": 325053.89
+      "runningBalance": 324053.89
     },
     {
       "id": "TXN-BANK-1039",
@@ -3210,7 +3200,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20507770207677634, MORIUM AKTAR SATU, hasan",
       "timestamp": "2026-09-06T11:57:00Z",
-      "runningBalance": 246531.33000000002
+      "runningBalance": 245531.33000000002
     },
     {
       "id": "TXN-BANK-1040",
@@ -3220,7 +3210,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20503320201714817, HASY, hasan",
       "timestamp": "2026-09-06T12:00:00Z",
-      "runningBalance": 176511.21000000002
+      "runningBalance": 175511.21000000002
     },
     {
       "id": "TXN-BANK-1041",
@@ -3230,7 +3220,7 @@
       "category": "Cash Out",
       "note": "TRANSFER(500,Card Issue Fee (With VAT) for Card XXXX5247),SEP-2026 F4",
       "timestamp": "2026-09-07T13:03:00Z",
-      "runningBalance": 175936.21000000002
+      "runningBalance": 174936.21000000002
     },
     {
       "id": "TXN-BANK-1042",
@@ -3240,7 +3230,7 @@
       "category": "Cash Add",
       "note": "REMOTE DEPOSIT(Gopalpur Bazar, Alfadanga, FARIDPUR from remote branch 777 Charge 120.0)",
       "timestamp": "2026-09-10T14:06:00Z",
-      "runningBalance": 325816.21
+      "runningBalance": 324816.21
     },
     {
       "id": "TXN-BANK-1043",
@@ -3250,7 +3240,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20503730100110103, M/S MASUD ENTERPRISE, hsan",
       "timestamp": "2026-09-13T15:09:00Z",
-      "runningBalance": 225787.46000000002
+      "runningBalance": 224787.46000000002
     },
     {
       "id": "TXN-BANK-1044",
@@ -3260,7 +3250,7 @@
       "category": "Cash Out",
       "note": "Visa Fund Trnasfer, From:bKash_AddMoney>DHAKA BD, Terminal ID:99999999, Trace:76522,, To A/C:20503589940850200 RRN:625407076522",
       "timestamp": "2026-09-13T16:12:00Z",
-      "runningBalance": 225275.96000000002
+      "runningBalance": 224275.96000000002
     },
     {
       "id": "TXN-BANK-1045",
@@ -3270,7 +3260,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:925687 RRN:625400302623",
       "timestamp": "2026-09-13T17:15:00Z",
-      "runningBalance": 215275.96000000002
+      "runningBalance": 214275.96000000002
     },
     {
       "id": "TXN-BANK-1046",
@@ -3280,7 +3270,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:925687 Fee RRN:625400302623",
       "timestamp": "2026-09-13T18:18:00Z",
-      "runningBalance": 215260.96000000002
+      "runningBalance": 214260.96000000002
     },
     {
       "id": "TXN-BANK-1047",
@@ -3290,7 +3280,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:925779 RRN:625400302991",
       "timestamp": "2026-09-13T19:21:00Z",
-      "runningBalance": 205260.96000000002
+      "runningBalance": 204260.96000000002
     },
     {
       "id": "TXN-BANK-1048",
@@ -3300,7 +3290,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:925779 Fee RRN:625400302991",
       "timestamp": "2026-09-13T08:24:00Z",
-      "runningBalance": 205245.96000000002
+      "runningBalance": 204245.96000000002
     },
     {
       "id": "TXN-BANK-1049",
@@ -3310,7 +3300,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Npsb Transfer, hasan, Charge: 0.000, Vat: 0.000",
       "timestamp": "2026-09-13T09:27:00Z",
-      "runningBalance": 155235.96000000002
+      "runningBalance": 154235.96000000002
     },
     {
       "id": "TXN-BANK-1050",
@@ -3320,7 +3310,7 @@
       "category": "Cash Out",
       "note": "Send money to bKash wallet 01400336907, ref - hasan",
       "timestamp": "2026-09-13T10:30:00Z",
-      "runningBalance": 150235.96000000002
+      "runningBalance": 149235.96000000002
     },
     {
       "id": "TXN-BANK-1051",
@@ -3330,7 +3320,7 @@
       "category": "Cash Add",
       "note": "CBS:Inter Bank Fund Transfer, From:DUTCH-BANGLA BANK LTD.>  DHAKA        BD, Terminal ID:90001000, Trace:519259, throw NPSB RRN:625430519259",
       "timestamp": "2026-09-13T11:33:00Z",
-      "runningBalance": 250235.96000000002
+      "runningBalance": 249235.96000000002
     },
     {
       "id": "TXN-BANK-1052",
@@ -3340,7 +3330,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20503730100110103, M/S MASUD ENTERPRISE, hasan",
       "timestamp": "2026-09-13T12:36:00Z",
-      "runningBalance": 150207.21000000002
+      "runningBalance": 149207.21000000002
     },
     {
       "id": "TXN-BANK-1053",
@@ -3350,7 +3340,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:166134 RRN:625500219343",
       "timestamp": "2026-09-13T13:39:00Z",
-      "runningBalance": 140207.21000000002
+      "runningBalance": 139207.21000000002
     },
     {
       "id": "TXN-BANK-1054",
@@ -3360,7 +3350,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:166134 Fee RRN:625500219343",
       "timestamp": "2026-09-13T14:42:00Z",
-      "runningBalance": 140192.21000000002
+      "runningBalance": 139192.21000000002
     },
     {
       "id": "TXN-BANK-1055",
@@ -3370,7 +3360,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:166260 RRN:625500219957",
       "timestamp": "2026-09-13T15:45:00Z",
-      "runningBalance": 139192.21000000002
+      "runningBalance": 138192.21000000002
     },
     {
       "id": "TXN-BANK-1056",
@@ -3380,7 +3370,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:166260 Fee RRN:625500219957",
       "timestamp": "2026-09-13T16:48:00Z",
-      "runningBalance": 139177.21000000002
+      "runningBalance": 138177.21000000002
     },
     {
       "id": "TXN-BANK-1057",
@@ -3390,7 +3380,7 @@
       "category": "Cash Add",
       "note": "REMOTE DEPOSIT(MINARA BEGUM  01837673783, Narayanpur Bazar, Belabo, NARSINGDI from remote branch 777 Charge 150.0)",
       "timestamp": "2026-09-13T17:51:00Z",
-      "runningBalance": 289177.21
+      "runningBalance": 288177.21
     },
     {
       "id": "TXN-BANK-1058",
@@ -3400,7 +3390,7 @@
       "category": "Cash Out",
       "note": "Visa Fund Trnasfer, From:bKash_AddMoney>DHAKA BD, Terminal ID:99999999, Trace:166652,, To A/C:20503589940850200 RRN:625504166652",
       "timestamp": "2026-09-13T18:54:00Z",
-      "runningBalance": 279165.71
+      "runningBalance": 278165.71
     },
     {
       "id": "TXN-BANK-1059",
@@ -3410,7 +3400,7 @@
       "category": "Cash Out",
       "note": "Send money to bKash wallet 01340528065, ref - hasan",
       "timestamp": "2026-09-13T19:57:00Z",
-      "runningBalance": 274165.71
+      "runningBalance": 273165.71
     },
     {
       "id": "TXN-BANK-1060",
@@ -3420,7 +3410,7 @@
       "category": "Cash Add",
       "note": "REMOTE DEPOSIT(MST LUCKY BEGUM, Algi Bazar, Raypura, NARSINGDI from remote branch 777 Charge 200.0)",
       "timestamp": "2026-09-13T08:00:00Z",
-      "runningBalance": 503965.71
+      "runningBalance": 502965.71
     },
     {
       "id": "TXN-BANK-1061",
@@ -3430,7 +3420,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:232761 RRN:625600499046",
       "timestamp": "2026-09-13T09:03:00Z",
-      "runningBalance": 493965.71
+      "runningBalance": 492965.71
     },
     {
       "id": "TXN-BANK-1062",
@@ -3440,7 +3430,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:232761 Fee RRN:625600499046",
       "timestamp": "2026-09-13T10:06:00Z",
-      "runningBalance": 493950.71
+      "runningBalance": 492950.71
     },
     {
       "id": "TXN-BANK-1063",
@@ -3450,7 +3440,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:232938 RRN:625600499889",
       "timestamp": "2026-09-13T11:09:00Z",
-      "runningBalance": 483950.71
+      "runningBalance": 482950.71
     },
     {
       "id": "TXN-BANK-1064",
@@ -3460,7 +3450,7 @@
       "category": "Cash Out",
       "note": "ATM Cash Withdrawal, From:CHOLONTIKA MOR ATM> DHAKA            BD, Terminal ID:UCBMP032, Trace:232938 Fee RRN:625600499889",
       "timestamp": "2026-09-13T12:12:00Z",
-      "runningBalance": 483920.71
+      "runningBalance": 482920.71
     },
     {
       "id": "TXN-BANK-1065",
@@ -3470,7 +3460,7 @@
       "category": "Cash Add",
       "note": "TRANSFER(RTGS Inward Receive From BANK ASIA LTD.)",
       "timestamp": "2026-09-13T13:15:00Z",
-      "runningBalance": 633820.71
+      "runningBalance": 632820.71
     },
     {
       "id": "TXN-BANK-1066",
@@ -3480,7 +3470,7 @@
       "category": "Cash Add",
       "note": "REMOTE DEPOSIT(NUR MOHAMMAD, BHOIROBA BAZA, MOHESHPUR, JHENAIDAH From Remote Br.777-Agent Banking Remote Charge,Vat 250.00)",
       "timestamp": "2026-09-13T14:18:00Z",
-      "runningBalance": 1033570.71
+      "runningBalance": 1032570.71
     },
     {
       "id": "TXN-BANK-1067",
@@ -3490,7 +3480,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20503730100110103, M/S MASUD ENTERPRISE, hasan",
       "timestamp": "2026-09-13T15:21:00Z",
-      "runningBalance": 888529.02
+      "runningBalance": 887529.02
     },
     {
       "id": "TXN-BANK-1068",
@@ -3500,7 +3490,7 @@
       "category": "Cash Out",
       "note": "[CellFin] Transfer to 20503320201714817, HASY, hasan",
       "timestamp": "2026-09-13T16:24:00Z",
-      "runningBalance": 864522.12
+      "runningBalance": 863522.12
     },
     {
       "id": "TXN-306805",
@@ -3510,7 +3500,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-13T15:59:47.981Z",
-      "runningBalance": 864032.12
+      "runningBalance": 863032.12
     },
     {
       "id": "TXN-558026",
@@ -3520,7 +3510,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-13T15:59:56.004Z",
-      "runningBalance": 864522.12
+      "runningBalance": 863522.12
     },
     {
       "id": "TXN-215773",
@@ -3530,7 +3520,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-14T06:00:00.000Z",
-      "runningBalance": 501917.12
+      "runningBalance": 500917.12
     },
     {
       "id": "TXN-107989",
@@ -3540,7 +3530,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-14T06:00:00.000Z",
-      "runningBalance": 601817.12
+      "runningBalance": 600817.12
     },
     {
       "id": "TXN-380151",
@@ -3550,7 +3540,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-14T06:00:00.000Z",
-      "runningBalance": 701717.12
+      "runningBalance": 700717.12
     },
     {
       "id": "TXN-625471",
@@ -3560,7 +3550,7 @@
       "category": "Cash Out",
       "note": "Recharge",
       "timestamp": "2026-09-14T06:00:00.000Z",
-      "runningBalance": 701667.12
+      "runningBalance": 700667.12
     },
     {
       "id": "TXN-311980",
@@ -3570,7 +3560,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-14T06:00:00.000Z",
-      "runningBalance": 556667.12
+      "runningBalance": 555667.12
     },
     {
       "id": "TXN-242554",
@@ -3580,7 +3570,7 @@
       "category": "Cash Out",
       "note": "ভাড়া",
       "timestamp": "2026-09-14T06:00:00.000Z",
-      "runningBalance": 556567.12
+      "runningBalance": 555567.12
     },
     {
       "id": "TXN-469883",
@@ -3590,7 +3580,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 506567.12
+      "runningBalance": 505567.12
     },
     {
       "id": "TXN-703682",
@@ -3600,7 +3590,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 456557.12
+      "runningBalance": 455557.12
     },
     {
       "id": "TXN-448970",
@@ -3610,7 +3600,7 @@
       "category": "Cash Out",
       "note": "ভাড়া",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 456497.12
+      "runningBalance": 455497.12
     },
     {
       "id": "TXN-641039",
@@ -3620,7 +3610,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 531497.12
+      "runningBalance": 530497.12
     },
     {
       "id": "TXN-803966",
@@ -3630,7 +3620,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 541497.12
+      "runningBalance": 540497.12
     },
     {
       "id": "TXN-860424",
@@ -3640,7 +3630,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 534497.12
+      "runningBalance": 533497.12
     },
     {
       "id": "TXN-832821",
@@ -3650,7 +3640,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 539544.12
+      "runningBalance": 538544.12
     },
     {
       "id": "TXN-386352",
@@ -3660,7 +3650,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 534544.12
+      "runningBalance": 533544.12
     },
     {
       "id": "TXN-762460",
@@ -3670,7 +3660,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 554544.12
+      "runningBalance": 553544.12
     },
     {
       "id": "TXN-129942",
@@ -3680,7 +3670,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 534504.12
+      "runningBalance": 533504.12
     },
     {
       "id": "TXN-327484",
@@ -3690,7 +3680,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 544504.12
+      "runningBalance": 543504.12
     },
     {
       "id": "TXN-764707",
@@ -3700,7 +3690,7 @@
       "category": "Cash Out",
       "note": "Card to Bikash ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 534474.12
+      "runningBalance": 533474.12
     },
     {
       "id": "TXN-474515",
@@ -3710,7 +3700,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 531414.12
+      "runningBalance": 530414.12
     },
     {
       "id": "TXN-120726",
@@ -3720,7 +3710,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 503014.12
+      "runningBalance": 502014.12
     },
     {
       "id": "TXN-188744",
@@ -3730,7 +3720,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 452999.12
+      "runningBalance": 451999.12
     },
     {
       "id": "TXN-971780",
@@ -3740,7 +3730,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 402984.12
+      "runningBalance": 401984.12
     },
     {
       "id": "TXN-671568",
@@ -3750,7 +3740,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 387984.12
+      "runningBalance": 386984.12
     },
     {
       "id": "TXN-TRF-471415",
@@ -3760,7 +3750,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 362984.12
+      "runningBalance": 361984.12
     },
     {
       "id": "TXN-TRF-170479",
@@ -3770,7 +3760,7 @@
       "category": "Cash Out",
       "note": "ATM Transaction Fee",
       "timestamp": "2026-09-15T06:00:01.000Z",
-      "runningBalance": 362969.12
+      "runningBalance": 361969.12
     },
     {
       "id": "TXN-TRF-728939",
@@ -3780,7 +3770,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-09-15T06:00:02.000Z",
-      "runningBalance": 387969.12
+      "runningBalance": 386969.12
     },
     {
       "id": "TXN-TRF-101168",
@@ -3790,7 +3780,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 380969.12
+      "runningBalance": 379969.12
     },
     {
       "id": "TXN-TRF-254214",
@@ -3800,7 +3790,7 @@
       "category": "Cash Out",
       "note": "ATM Transaction Fee",
       "timestamp": "2026-09-15T06:00:01.000Z",
-      "runningBalance": 380954.12
+      "runningBalance": 379954.12
     },
     {
       "id": "TXN-TRF-288592",
@@ -3810,7 +3800,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-09-15T06:00:02.000Z",
-      "runningBalance": 387954.12
+      "runningBalance": 386954.12
     },
     {
       "id": "TXN-486948",
@@ -3820,7 +3810,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 363594.12
+      "runningBalance": 362594.12
     },
     {
       "id": "TXN-908252",
@@ -3830,7 +3820,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 360594.12
+      "runningBalance": 359594.12
     },
     {
       "id": "TXN-270683",
@@ -3840,7 +3830,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 353594.12
+      "runningBalance": 352594.12
     },
     {
       "id": "TXN-456996",
@@ -3850,7 +3840,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 338594.12
+      "runningBalance": 337594.12
     },
     {
       "id": "TXN-TRF-145913",
@@ -3860,7 +3850,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-09-15T06:00:00.000Z",
-      "runningBalance": 336594.12
+      "runningBalance": 335594.12
     },
     {
       "id": "TXN-TRF-569882",
@@ -3870,7 +3860,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-09-15T06:00:02.000Z",
-      "runningBalance": 338594.12
+      "runningBalance": 337594.12
     },
     {
       "id": "TXN-TRF-979092",
@@ -3880,7 +3870,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-09-16T06:00:00.000Z",
-      "runningBalance": 328594.12
+      "runningBalance": 327594.12
     },
     {
       "id": "TXN-TRF-700794",
@@ -3890,7 +3880,7 @@
       "category": "Cash Out",
       "note": "ATM Transaction Fee",
       "timestamp": "2026-09-16T06:00:01.000Z",
-      "runningBalance": 328579.12
+      "runningBalance": 327579.12
     },
     {
       "id": "TXN-TRF-336365",
@@ -3900,7 +3890,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-09-16T06:00:02.000Z",
-      "runningBalance": 338579.12
+      "runningBalance": 337579.12
     },
     {
       "id": "TXN-TRF-651901",
@@ -3910,7 +3900,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-09-16T06:00:00.000Z",
-      "runningBalance": 328579.12
+      "runningBalance": 327579.12
     },
     {
       "id": "TXN-TRF-209368",
@@ -3920,7 +3910,7 @@
       "category": "Cash Out",
       "note": "ATM Transaction Fee",
       "timestamp": "2026-09-16T06:00:01.000Z",
-      "runningBalance": 328564.12
+      "runningBalance": 327564.12
     },
     {
       "id": "TXN-TRF-909457",
@@ -3930,7 +3920,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-09-16T06:00:02.000Z",
-      "runningBalance": 338564.12
+      "runningBalance": 337564.12
     },
     {
       "id": "TXN-365605",
@@ -3940,7 +3930,7 @@
       "category": "Cash Out",
       "note": "50  send  money  free ",
       "timestamp": "2026-09-16T06:00:00.000Z",
-      "runningBalance": 338414.12
+      "runningBalance": 337414.12
     },
     {
       "id": "TXN-436988",
@@ -3950,7 +3940,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-16T06:00:00.000Z",
-      "runningBalance": 331414.12
+      "runningBalance": 330414.12
     },
     {
       "id": "TXN-395683",
@@ -3960,7 +3950,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-16T06:00:00.000Z",
-      "runningBalance": 329374.12
+      "runningBalance": 328374.12
     },
     {
       "id": "TXN-121500",
@@ -3970,7 +3960,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-16T06:00:00.000Z",
-      "runningBalance": 328864.12
+      "runningBalance": 327864.12
     },
     {
       "id": "TXN-867882",
@@ -3980,7 +3970,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-17T06:00:00.000Z",
-      "runningBalance": 378864.12
+      "runningBalance": 377864.12
     },
     {
       "id": "TXN-962421",
@@ -3990,7 +3980,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-17T06:00:00.000Z",
-      "runningBalance": 376834.12
+      "runningBalance": 375834.12
     },
     {
       "id": "TXN-518131",
@@ -4000,7 +3990,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-18T06:00:00.000Z",
-      "runningBalance": 376324.12
+      "runningBalance": 375324.12
     },
     {
       "id": "TXN-540023",
@@ -4010,7 +4000,7 @@
       "category": "Cash Out",
       "note": "01771579420",
       "timestamp": "2026-09-18T06:00:00.000Z",
-      "runningBalance": 371324.12
+      "runningBalance": 370324.12
     },
     {
       "id": "TXN-717296",
@@ -4020,7 +4010,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-18T06:00:00.000Z",
-      "runningBalance": 409324.12
+      "runningBalance": 408324.12
     },
     {
       "id": "TXN-815382",
@@ -4030,7 +4020,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-19T06:00:00.000Z",
-      "runningBalance": 410854.12
+      "runningBalance": 409854.12
     },
     {
       "id": "TXN-927607",
@@ -4040,7 +4030,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-19T06:00:00.000Z",
-      "runningBalance": 412894.12
+      "runningBalance": 411894.12
     },
     {
       "id": "TXN-954865",
@@ -4050,7 +4040,7 @@
       "category": "Cash Out",
       "note": "01733471475",
       "timestamp": "2026-09-20T06:00:00.000Z",
-      "runningBalance": 401894.12
+      "runningBalance": 400894.12
     },
     {
       "id": "TXN-936937",
@@ -4060,7 +4050,7 @@
       "category": "Cash Out",
       "note": "01941344859",
       "timestamp": "2026-09-20T06:00:00.000Z",
-      "runningBalance": 399094.12
+      "runningBalance": 398094.12
     },
     {
       "id": "TXN-965280",
@@ -4070,7 +4060,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-21T06:00:00.000Z",
-      "runningBalance": 400114.12
+      "runningBalance": 399114.12
     },
     {
       "id": "TXN-449022",
@@ -4080,7 +4070,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-21T06:00:00.000Z",
-      "runningBalance": 420114.12
+      "runningBalance": 419114.12
     },
     {
       "id": "TXN-219741",
@@ -4090,7 +4080,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-21T06:00:00.000Z",
-      "runningBalance": 413344.12
+      "runningBalance": 412344.12
     },
     {
       "id": "TXN-168319",
@@ -4100,7 +4090,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-09-21T06:00:00.000Z",
-      "runningBalance": 443344.12
+      "runningBalance": 442344.12
     },
     {
       "id": "TXN-660890",
@@ -4110,7 +4100,7 @@
       "category": "Cash Out",
       "note": " ক্যাশ করছি",
       "timestamp": "2026-09-22T06:00:00.000Z",
-      "runningBalance": 442344.12
+      "runningBalance": 441344.12
     },
     {
       "id": "TXN-184917",
@@ -4120,7 +4110,7 @@
       "category": "Cash Out",
       "note": "Recharge",
       "timestamp": "2026-09-22T06:00:00.000Z",
-      "runningBalance": 442294.12
+      "runningBalance": 441294.12
     },
     {
       "id": "TXN-444871",
@@ -4130,7 +4120,7 @@
       "category": "Cash Out",
       "note": "ভাড়া",
       "timestamp": "2026-09-23T06:00:00.000Z",
-      "runningBalance": 442194.12
+      "runningBalance": 441194.12
     },
     {
       "id": "TXN-139524",
@@ -4140,7 +4130,7 @@
       "category": "Cash Out",
       "note": "01717795787",
       "timestamp": "2026-09-24T06:00:00.000Z",
-      "runningBalance": 417194.12
+      "runningBalance": 416194.12
     },
     {
       "id": "TXN-528429",
@@ -4150,7 +4140,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-09-25T06:00:00.000Z",
-      "runningBalance": 412194.12
+      "runningBalance": 411194.12
     },
     {
       "id": "TXN-384509",
@@ -4160,7 +4150,7 @@
       "category": "Cash Out",
       "note": "Govment tax",
       "timestamp": "2026-09-25T06:00:00.000Z",
-      "runningBalance": 408694.12
+      "runningBalance": 407694.12
     },
     {
       "id": "TXN-142137",
@@ -4170,7 +4160,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-10-01T06:00:00.000Z",
-      "runningBalance": 492694.12
+      "runningBalance": 491694.12
     },
     {
       "id": "TXN-385091",
@@ -4180,7 +4170,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-01T06:00:00.000Z",
-      "runningBalance": 492195.12
+      "runningBalance": 491195.12
     },
     {
       "id": "TXN-194883",
@@ -4190,7 +4180,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-04T06:00:00.000Z",
-      "runningBalance": 488355.12
+      "runningBalance": 487355.12
     },
     {
       "id": "TXN-559260",
@@ -4200,7 +4190,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-04T06:00:00.000Z",
-      "runningBalance": 418335.12
+      "runningBalance": 417335.12
     },
     {
       "id": "TXN-565717",
@@ -4210,7 +4200,7 @@
       "category": "Cash Add",
       "note": "টাকা জমা",
       "timestamp": "2026-10-05T06:00:00.000Z",
-      "runningBalance": 420375.12
+      "runningBalance": 419375.12
     },
     {
       "id": "TXN-696686",
@@ -4220,7 +4210,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-05T06:00:00.000Z",
-      "runningBalance": 419575.12
+      "runningBalance": 418575.12
     },
     {
       "id": "TXN-664397",
@@ -4230,7 +4220,7 @@
       "category": "Cash Out",
       "note": "Mb kinsi",
       "timestamp": "2026-10-06T06:00:00.000Z",
-      "runningBalance": 419515.12
+      "runningBalance": 418515.12
     },
     {
       "id": "TXN-618556",
@@ -4240,7 +4230,7 @@
       "category": "Cash Out",
       "note": "ভাড়া",
       "timestamp": "2026-10-07T06:00:00.000Z",
-      "runningBalance": 418915.12
+      "runningBalance": 417915.12
     },
     {
       "id": "TXN-584770",
@@ -4250,7 +4240,7 @@
       "category": "Cash Out",
       "note": "ভাত খাইছি",
       "timestamp": "2026-10-07T06:00:00.000Z",
-      "runningBalance": 418815.12
+      "runningBalance": 417815.12
     },
     {
       "id": "TXN-617005",
@@ -4260,7 +4250,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-08T06:00:00.000Z",
-      "runningBalance": 416115.12
+      "runningBalance": 415115.12
     },
     {
       "id": "TXN-115101",
@@ -4270,7 +4260,7 @@
       "category": "Cash Out",
       "note": "01772721952",
       "timestamp": "2026-10-10T06:00:00.000Z",
-      "runningBalance": 377115.12
+      "runningBalance": 376115.12
     },
     {
       "id": "TXN-743049",
@@ -4280,7 +4270,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-11T06:00:00.000Z",
-      "runningBalance": 277105.12
+      "runningBalance": 276105.12
     },
     {
       "id": "TXN-367248",
@@ -4290,7 +4280,7 @@
       "category": "Cash Out",
       "note": "ভাড়া",
       "timestamp": "2026-10-11T06:00:00.000Z",
-      "runningBalance": 277015.12
+      "runningBalance": 276015.12
     },
     {
       "id": "TXN-816703",
@@ -4300,7 +4290,7 @@
       "category": "Cash Out",
       "note": "recharge ",
       "timestamp": "2026-10-13T06:00:00.000Z",
-      "runningBalance": 276965.12
+      "runningBalance": 275965.12
     },
     {
       "id": "TXN-694799",
@@ -4310,7 +4300,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-17T06:00:00.000Z",
-      "runningBalance": 271965.12
+      "runningBalance": 270965.12
     },
     {
       "id": "TXN-474864",
@@ -4320,7 +4310,7 @@
       "category": "Cash Out",
       "note": "10 ta send money",
       "timestamp": "2026-10-17T06:00:00.000Z",
-      "runningBalance": 271915.12
+      "runningBalance": 270915.12
     },
     {
       "id": "TXN-349123",
@@ -4330,7 +4320,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-18T06:00:00.000Z",
-      "runningBalance": 260915.12
+      "runningBalance": 259915.12
     },
     {
       "id": "TXN-523759",
@@ -4340,7 +4330,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-19T06:00:00.000Z",
-      "runningBalance": 254415.12
+      "runningBalance": 253415.12
     },
     {
       "id": "TXN-TRF-731314",
@@ -4350,7 +4340,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-10-19T06:00:00.000Z",
-      "runningBalance": 244415.12
+      "runningBalance": 243415.12
     },
     {
       "id": "TXN-TRF-944419",
@@ -4360,7 +4350,7 @@
       "category": "Cash Out",
       "note": "ATM Transaction Fee",
       "timestamp": "2026-10-19T06:00:01.000Z",
-      "runningBalance": 244400.12
+      "runningBalance": 243400.12
     },
     {
       "id": "TXN-TRF-249676",
@@ -4370,7 +4360,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-10-19T06:00:02.000Z",
-      "runningBalance": 254400.12
+      "runningBalance": 253400.12
     },
     {
       "id": "TXN-TRF-239509",
@@ -4380,7 +4370,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-10-19T06:00:00.000Z",
-      "runningBalance": 224400.12
+      "runningBalance": 223400.12
     },
     {
       "id": "TXN-TRF-541481",
@@ -4390,7 +4380,7 @@
       "category": "Cash Out",
       "note": "ATM Transaction Fee",
       "timestamp": "2026-10-19T06:00:01.000Z",
-      "runningBalance": 224385.12
+      "runningBalance": 223385.12
     },
     {
       "id": "TXN-TRF-373191",
@@ -4400,7 +4390,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-10-19T06:00:02.000Z",
-      "runningBalance": 254385.12
+      "runningBalance": 253385.12
     },
     {
       "id": "TXN-306391",
@@ -4410,7 +4400,7 @@
       "category": "Cash Out",
       "note": "ভাড়া",
       "timestamp": "2026-10-19T06:00:00.000Z",
-      "runningBalance": 254305.12
+      "runningBalance": 253305.12
     },
     {
       "id": "TXN-778621",
@@ -4420,7 +4410,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-19T06:00:00.000Z",
-      "runningBalance": 229805.12
+      "runningBalance": 228805.12
     },
     {
       "id": "TXN-542881",
@@ -4430,7 +4420,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-19T06:00:00.000Z",
-      "runningBalance": 214805.12
+      "runningBalance": 213805.12
     },
     {
       "id": "TXN-TRF-599393",
@@ -4440,7 +4430,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-10-19T06:00:00.000Z",
-      "runningBalance": 211205.12
+      "runningBalance": 210205.12
     },
     {
       "id": "TXN-TRF-105221",
@@ -4450,7 +4440,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-10-19T06:00:02.000Z",
-      "runningBalance": 214805.12
+      "runningBalance": 213805.12
     },
     {
       "id": "TXN-358818",
@@ -4460,7 +4450,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-19T06:00:00.000Z",
-      "runningBalance": 202305.12
+      "runningBalance": 201305.12
     },
     {
       "id": "TXN-683829",
@@ -4470,7 +4460,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-20T06:00:00.000Z",
-      "runningBalance": 201305.12
+      "runningBalance": 200305.12
     },
     {
       "id": "TXN-497567",
@@ -4480,7 +4470,7 @@
       "category": "Cash Out",
       "note": "10 send money",
       "timestamp": "2026-10-20T06:00:00.000Z",
-      "runningBalance": 201264.12
+      "runningBalance": 200264.12
     },
     {
       "id": "TXN-518385",
@@ -4490,7 +4480,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-24T06:00:00.000Z",
-      "runningBalance": 196664.12
+      "runningBalance": 195664.12
     },
     {
       "id": "TXN-TRF-570464",
@@ -4500,7 +4490,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-10-25T06:00:00.000Z",
-      "runningBalance": 195664.12
+      "runningBalance": 194664.12
     },
     {
       "id": "TXN-TRF-751871",
@@ -4510,7 +4500,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-10-25T06:00:02.000Z",
-      "runningBalance": 196664.12
+      "runningBalance": 195664.12
     },
     {
       "id": "TXN-446301",
@@ -4520,7 +4510,7 @@
       "category": "Cash Out",
       "note": "Mobail",
       "timestamp": "2026-10-27T06:00:00.000Z",
-      "runningBalance": 183664.12
+      "runningBalance": 182664.12
     },
     {
       "id": "TXN-211325",
@@ -4530,7 +4520,7 @@
       "category": "Cash Out",
       "note": "Recharge  and garivara",
       "timestamp": "2026-10-27T06:00:00.000Z",
-      "runningBalance": 182664.12
+      "runningBalance": 181664.12
     },
     {
       "id": "TXN-TRF-350097",
@@ -4540,7 +4530,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-10-27T06:00:00.000Z",
-      "runningBalance": 181664.12
+      "runningBalance": 180664.12
     },
     {
       "id": "TXN-TRF-515505",
@@ -4550,7 +4540,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-10-27T06:00:02.000Z",
-      "runningBalance": 182664.12
+      "runningBalance": 181664.12
     },
     {
       "id": "TXN-TRF-414960",
@@ -4560,7 +4550,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-10-28T06:00:00.000Z",
-      "runningBalance": 172664.12
+      "runningBalance": 171664.12
     },
     {
       "id": "TXN-TRF-477307",
@@ -4570,7 +4560,7 @@
       "category": "Cash Out",
       "note": "ATM Transaction Fee",
       "timestamp": "2026-10-28T06:00:01.000Z",
-      "runningBalance": 172649.12
+      "runningBalance": 171649.12
     },
     {
       "id": "TXN-TRF-435813",
@@ -4580,7 +4570,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-10-28T06:00:02.000Z",
-      "runningBalance": 182649.12
+      "runningBalance": 181649.12
     },
     {
       "id": "TXN-468081",
@@ -4590,7 +4580,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-28T06:00:00.000Z",
-      "runningBalance": 166529.12
+      "runningBalance": 165529.12
     },
     {
       "id": "TXN-TRF-965516",
@@ -4600,7 +4590,7 @@
       "category": "Cash Out",
       "note": "ব্যাংক ➔ বিকাশ ট্রান্সফার",
       "timestamp": "2026-10-31T06:00:00.000Z",
-      "runningBalance": 146529.12
+      "runningBalance": 145529.12
     },
     {
       "id": "TXN-TRF-292135",
@@ -4610,7 +4600,7 @@
       "category": "Cash Out",
       "note": "ATM Transaction Fee",
       "timestamp": "2026-10-31T06:00:01.000Z",
-      "runningBalance": 146514.12
+      "runningBalance": 145514.12
     },
     {
       "id": "TXN-TRF-238310",
@@ -4620,7 +4610,7 @@
       "category": "Cash Add",
       "note": "ব্যাংক থেকে বিকাশ প্রাপ্তি",
       "timestamp": "2026-10-31T06:00:02.000Z",
-      "runningBalance": 166514.12
+      "runningBalance": 165514.12
     },
     {
       "id": "TXN-716630",
@@ -4630,7 +4620,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-31T06:00:00.000Z",
-      "runningBalance": 145514.12
+      "runningBalance": 144514.12
     },
     {
       "id": "TXN-205960",
@@ -4640,7 +4630,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-31T06:00:00.000Z",
-      "runningBalance": 125514.12
+      "runningBalance": 124514.12
     },
     {
       "id": "TXN-656431",
@@ -4650,7 +4640,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-31T06:00:00.000Z",
-      "runningBalance": 124814.12
+      "runningBalance": 123814.12
     }
   ]
 }
