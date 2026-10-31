@@ -4615,12 +4615,12 @@
     {
       "id": "TXN-716630",
       "type": "OUT",
-      "amount": 21000,
+      "amount": 20000,
       "account": "bank",
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-31T06:00:00.000Z",
-      "runningBalance": 144514.12
+      "runningBalance": 145514.12
     },
     {
       "id": "TXN-205960",
@@ -4630,7 +4630,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-31T06:00:00.000Z",
-      "runningBalance": 124514.12
+      "runningBalance": 125514.12
     },
     {
       "id": "TXN-656431",
@@ -4640,7 +4640,7 @@
       "category": "Cash Out",
       "note": "টাকা খরচ",
       "timestamp": "2026-10-31T06:00:00.000Z",
-      "runningBalance": 123814.12
+      "runningBalance": 124814.12
     }
   ]
 }
