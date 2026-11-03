@@ -4681,6 +4681,16 @@
       "note": "ভাড়া",
       "timestamp": "2026-11-03T06:00:00.000Z",
       "runningBalance": 122314.12
+    },
+    {
+      "id": "TXN-848390",
+      "type": "OUT",
+      "amount": 200,
+      "account": "bikash",
+      "category": "Cash Out",
+      "note": "মিষ্টি ",
+      "timestamp": "2026-11-03T06:00:00.000Z",
+      "runningBalance": 122114.12
     }
   ]
 }
